@@ -79,34 +79,42 @@
 import Vue from 'vue';
 import getReviews from '../../api/reviews';
 
+type PostColours = { primary: string, secondary: string, tertiary: string };
+type ColourStyles = { [key: string]: string };
+
 export default Vue.extend({
     name: 'AudioxideReview',
     data: () => ({
-        review: {},
+        review: {} as {
+            meta: {
+                'Post Colours': PostColours,
+                'Week Number': string,
+            }
+        },
     }),
     async created() {
         this.review = (await getReviews())[1];
     },
     computed: {
-        colours() {
+        colours(): PostColours {
             return this.review.meta['Post Colours'];
         },
-        weekStr() {
+        weekStr(): string {
             return this.review.meta['Week Number'].padStart(7, '0');
         },
-        textStyles() {
+        textStyles(): ColourStyles {
             return { color: this.colours.primary };
         },
-        chromeStyles() {
+        chromeStyles(): ColourStyles {
             return { 'border-bottom-color': this.colours.primary };
         },
-        sidebarStyles() {
+        sidebarStyles(): ColourStyles {
             return { 'background-color': this.colours.primary };
         },
-        sidebarTextStyles() {
+        sidebarTextStyles(): ColourStyles {
             return { color: this.colours.secondary };
         },
-        sidebarHighlightStyles() {
+        sidebarHighlightStyles(): ColourStyles {
             return { color: this.colours.tertiary };
         }
     }
