@@ -7,6 +7,7 @@
       <h2 class="subtitle">
         Audioxide site implemented with Nuxt.js
       </h2>
+      <p>The only page available currently is <nuxt-link to="/reviews/test">a review page</nuxt-link>
       <div class="links">
         <a href="https://nuxtjs.org/" target="_blank" class="button--green">
           Documentation
