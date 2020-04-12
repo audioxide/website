@@ -13,7 +13,7 @@
             </h1>
             <p class="review-header__authors">
                 <a class="review-header__author"
-                v-for="(reviewItem, key) in review.reviews" :key="key" :href="'../authors/' + reviewItem.reviewer.slug">{{reviewItem.reviewer.name}}</a>
+                v-for="(reviewItem, key) in review.reviews" :key="`reviewers-${key}`" :href="'../authors/' + reviewItem.reviewer.slug">{{reviewItem.reviewer.name}}</a>
             </p>
         </header>
         <aside class="review-sidebar">
@@ -33,7 +33,7 @@
                 <p class="review-sidebar__heading" :style="sidebarHighlightStyles">Essential</p>
                 <p class="review-sidebar__track"
                     v-for="(track, key) in review.meta['Essential Tracks']"
-                    :key="key">
+                    :key="`essential-tracks-${key}`">
                     {{ track }}
                 </p>
                 </template>
@@ -42,7 +42,7 @@
                 <p class="review-sidebar__track"
                     :styles="sidebarTextStyles"
                     v-for="(track, key) in review.meta['Favourite Tracks']"
-                    :key="key">
+                    :key="`favourite-tracks-${key}`">
                     {{ track }}
                 </p>
                 </template>
@@ -52,7 +52,7 @@
         <section class="review-content">
             <article>
                 <section v-for="(reviewItem, key) in review.reviews" :key="key">
-                    <h2 class="review-content__reviewer">{{reviewItem.reviewer.name}}</h2>
+                    <h2 class="review-content__reviewer">{{reviewers[key]}}</h2>
                     <p class="review-content__reviewer-social"><a :href="reviewItem.reviewer.url">Website</a></p>
                     <div class="review-content__review">
                         <span v-html="reviewItem.body" />
@@ -63,12 +63,12 @@
                         <div class="review-content__favourite-tracks">
                                 <span class="review-content__favourite-track"
                                     v-for="(track, tkey) in reviewItem.tracks"
-                                    :key="tkey">
+                                    :key="`reviewer-tracks-${tkey}`">
                                     {{track}}
                                 </span>
                         </div>
                     </div>
-                    <hr class="review-content__divider" v-if="key === review.reviews.length - 1">
+                    <hr class="review-content__divider" v-if="key !== review.reviews.length - 1">
                 </section>
             </article>
         </section>
@@ -77,7 +77,6 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import getReviews from '../../api/reviews';
 
 type PostColours = { primary: string, secondary: string, tertiary: string };
 type ColourStyles = { [key: string]: string };
@@ -89,13 +88,33 @@ export default Vue.extend({
             meta: {
                 'Post Colours': PostColours,
                 'Week Number': string,
-            }
+            },
+            reviews: {
+                reviewer: {
+                    name: string,
+                }
+            }[],
         },
     }),
-    async created() {
-        this.review = (await getReviews())[1];
+    beforeRouteEnter(to, from, next) {
+        next(vm => {
+            // TODO: Fix, this is nasty and wrong
+            (vm as unknown as { pullReview: Function }).pullReview(to.params.slug);
+        });
+    },
+    async beforeRouteUpdate(to, from, next){
+        await this.pullReview(to.params.slug);
+        next();
+    },
+    methods: {
+        async pullReview(slug: string) {
+            this.review = await this.$store.dispatch('posts/getReview', slug);
+        }
     },
     computed: {
+        reviewers(): string[] {
+            return this.review.reviews.map(review => review.reviewer.name.split(' ')[0]);
+        },
         colours(): PostColours {
             return this.review.meta['Post Colours'];
         },

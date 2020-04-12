@@ -1,16 +1,13 @@
 import wp from './provider';
-import { resolveFeaturedMedia, parseMetaField } from './utilities';
-
-// TODO: Move this to Vuex
-const users = wp.users().perPage(30).get();
+import { search } from './users';
+import { applyParams, resolveFeaturedMedia, parseMetaField } from './utilities';
 
 // A bunch of nasty string parsing to get some structured data from the WP content
 const parseReview = async (html) => {
     const container = document.createElement('div');
     container.innerHTML = html;
     const reviewerName = container.querySelector('h3').textContent.trim();
-    // TODO: Improve this hack
-    const reviewer = (await users).find(({ slug }) => reviewerName.toLowerCase().replace('é', 'e') === slug);
+    const reviewer = await search(reviewerName);
     const body = html.replace(/^.+?<\/h3>(.+?)<span class="score".+?$/s, "$1").trim();
     const scoreWrap = container.querySelector('span.score');
     const scoreJson = scoreWrap.getAttribute('data-score');
@@ -49,16 +46,31 @@ const parseScore = (score) => {
     };
 };
 
-export default async () => {
-    const posts = await wp.posts().categories(2);
-    for (const post of posts) {
-        const reviews = post.content.rendered.split('<hr />');
-        post.reviews = await Promise.all(reviews.map(parseReview));
-        resolveFeaturedMedia(post);
-        parseMetaField(post, 'Post Colours', parseColours);
-        parseMetaField(post, 'Overall Score', parseScore);
-        parseMetaField(post, 'Essential Tracks', parseTracks);
-        parseMetaField(post, 'Favourite Tracks', parseTracks);
-    }
-    return posts;
-};
+const processReview = async (post) => {
+    const reviews = post.content.rendered.split('<hr />');
+    post.reviews = await Promise.all(reviews.map(parseReview));
+    post.date = new Date(post.date);
+    post.date_gmt = new Date(post.date_gmt);
+    resolveFeaturedMedia(post);
+    parseMetaField(post, 'Post Colours', parseColours);
+    parseMetaField(post, 'Overall Score', parseScore);
+    parseMetaField(post, 'Essential Tracks', parseTracks);
+    parseMetaField(post, 'Favourite Tracks', parseTracks);
+    return post;
+}
+
+const processReviews = async (cb) => Promise.all((await cb).map(processReview));
+
+const getRawPosts = () => wp.posts();
+
+const getRawReviews = (params = {}) => applyParams(getRawPosts().categories(2), params);
+
+const getRawArticles = (params = {}) => applyParams(getRawPosts().excludeCategories(2), params);
+
+export const getArticleBySlug = (slug) => getRawArticles().slug(slug);
+
+export const getArticles = (params) => getRawArticles(params);
+
+export const getReviewBySlug = (slug) => processReviews(getRawReviews().slug(slug));
+
+export const getReviews = (params) => processReviews(getRawReviews(params));
