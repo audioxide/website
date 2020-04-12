@@ -1,5 +1,7 @@
 import wp from './provider';
 
+export const applyParams = (call, params) => Object.entries(params).reduce((acc, param) => acc.param(...param), call).get();
+
 export const parseMetaField = (post, field, cb) => {
     if (typeof post === 'object'
     && post !== null
