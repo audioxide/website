@@ -96,20 +96,11 @@ export default Vue.extend({
             }[],
         },
     }),
-    beforeRouteEnter(to, from, next) {
-        next(vm => {
-            // TODO: Fix, this is nasty and wrong
-            (vm as unknown as { pullReview: Function }).pullReview(to.params.slug);
-        });
+    validate({ params, store }) {
+        return store.dispatch('posts/getReview', params.slug);
     },
-    async beforeRouteUpdate(to, from, next){
-        await this.pullReview(to.params.slug);
-        next();
-    },
-    methods: {
-        async pullReview(slug: string) {
-            this.review = await this.$store.dispatch('posts/getReview', slug);
-        }
+    async created() {
+        this.review = await this.$store.dispatch('posts/getReview', this.$route.params.slug);
     },
     computed: {
         reviewers(): string[] {

@@ -1,11 +1,11 @@
-import { get, searchWith } from '../api/users';
+import { get, searchBySlugWith } from '../api/users';
 
 export const state = () => ({
     users: [],
 });
 
 export const getters = {
-    search: (state) => (search) => searchWith(state.users, search),
+    search: (state) => (search) => searchBySlugWith(state.users, search),
 };
 
 export const mutations = {

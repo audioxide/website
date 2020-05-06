@@ -12,18 +12,18 @@ import Vue from 'vue';
 
 export default Vue.extend({
     created() {
-        if (this.$store.state.posts.lastSerialReviewDate === -1) {
+        if (!this.$store.state.posts.tags[2]) {
             this.$store.dispatch('posts/getReviews');
         }
     },
     computed: {
         reviews() {
-            return this.$store.getters['posts/reviews'];
+            return this.$store.getters['posts/byTag'][2];
         },
     },
     methods: {
         loadMore() {
-            this.$store.dispatch('posts/getReviews');
+            this.$store.dispatch('posts/getPostsInCategory', 2);
         }
     }
 });

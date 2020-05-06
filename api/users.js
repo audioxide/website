@@ -9,7 +9,11 @@ export const get = async () => {
     return users;
 }
 
-// TODO: Improve this hack
-export const searchWith = (users, query) => users.find(({ slug }) => query.toLowerCase().replace('é', 'e') === slug);
+export const searchByIdWith = (users, query) => users.find(({ id }) => query === id);
 
-export const search = async (query) => searchWith(await get(), query);
+// TODO: Improve this hack
+export const searchBySlugWith = (users, query) => users.find(({ slug }) => query.toLowerCase().replace('é', 'e') === slug);
+
+export const searchById = async (query) => searchByIdWith(await get(), query);
+
+export const searchBySlug = async (query) => searchBySlugWith(await get(), query);
