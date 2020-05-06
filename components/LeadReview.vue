@@ -14,10 +14,8 @@
     </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue';
-
-export default Vue.extend({
+<script>
+export default {
     props: ['post'],
     computed: {
         albumArtSrc() {
@@ -39,5 +37,5 @@ export default Vue.extend({
             return this.post.reviews;
         }
     }
-});
+}
 </script>
