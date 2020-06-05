@@ -27,16 +27,12 @@
                 <li v-for="(item, key) in activenav"
                     :key="key"
                     class="site-nav__list-item site-nav__list-item--always-show">
-                  <router-link :to="item.route.href">
-                    {{ item.route.route.meta.title || item.route.route.name }}
-                  </router-link>
+                  <nuxt-link :to="item.link.route">{{ item.link.text }}</nuxt-link>
                   <ul v-if="!collapsed && 'children' in item" class="site-nav__listing--sub">
                     <li v-for="(child, cKey) in item.children"
                         :key="cKey"
                         class="site-nav__list-item site-nav__list-item--sub">
-                      <router-link :to="child.route.href">
-                        {{ child.route.route.meta.title || child.route.route.name }}
-                      </router-link>
+                      <nuxt-link :to="child.route">{{ child.text }}</nuxt-link>
                     </li>
                   </ul>
                 </li>
@@ -57,36 +53,35 @@
 </template>
 
 <script>
-const rawnav = [
-  { name: 'Reviews', children: ['27Club', 'Scoring', 'Stats'] },
-  { name: 'Articles', children: ['GameMusic', 'Rankings'] },
-  'Interviews',
-  'About',
-  'Contact',
+const nav = [
+    {
+        link: { text: 'Reviews', route: '/reviews' },
+        children: [
+            { text: '27 Club', route: '/27-club' },
+            { text: 'Scoring', route: '/scoring' },
+            { text: 'Stats', route: '/stats' },
+        ],
+    },
+    {
+        link: { text: 'Articles', route: '/articles' },
+        children: [
+            { text: 'Game Music', route: '/game-music' },
+            { text: 'Rankings', route: '/rankings' }
+        ]
+    },
+    { link: { text: 'Interviews', route: '/interviews' } },
+    { link: { text: 'About', route: '/about' } },
+    { link: { text: 'Contact', route: '/contact' } },
 ];
 
 export default {
   name: 'NavBar',
   data: () => ({
-    rawnav,
+    nav,
     cutoff: 3,
     collapsed: true,
   }),
   computed: {
-    nav() {
-      return this.rawnav.map((item) => {
-        let obj = item;
-        if (typeof item !== 'object') {
-          obj = { name: item };
-        }
-        if ('children' in obj) {
-          obj.children = obj.children
-            .map(name => ({ name, route: this.$router.resolve({ name }) }));
-        }
-        obj.route = this.$router.resolve({ name: obj.name });
-        return obj;
-      });
-    },
     mininav() {
       return this.nav.slice(0, this.cutoff);
     },

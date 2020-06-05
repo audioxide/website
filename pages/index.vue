@@ -4,11 +4,11 @@
     <div class="reviews">
       <h3>Reviews (<nuxt-link to="/reviews">See all</nuxt-link>)</h3>
       <div class="listing" v-for="(review, key) in reviews" :key="key">
-        <img :src="review.featured_media.media_details.sizes['audioxide-album'].source_url" />
+        <img :src="review.featuredimage" />
         <div>
-          <h4>{{ review.meta['Album Name'] }}</h4>
-          <h5>{{ review.meta['Artist Name'] }}</h5>
-          <p>{{ review.meta['Summary'] }}</p>
+          <h4>{{ review.album }}</h4>
+          <h5>{{ review.artist }}</h5>
+          <p>{{ review.summary }}</p>
         </div>
       </div>
     </div>
@@ -16,20 +16,20 @@
       <h3>Articles</h3>
       <div class="listing" v-for="(article, key) in articles" :key="key">
         <div>
-          <h4>{{ article.title.rendered }}</h4>
-          <p>{{ article.meta['_aioseop_description'] }}</p>
+          <h4>{{ article.title | unescape }}</h4>
+          <p>{ { article.meta['_aioseop_description'] } }</p>
           <p>By {{ article.author.name }}</p>
         </div>
-        <img :src="article.featured_media.media_details.sizes['bones-thumb-300'].source_url" />
+        <img :src="article.featuredimage" />
       </div>
     </div>
     <div class="interviews">
       <h3>Interviews</h3>
       <div class="listing">
         <div v-for="(interview, key) in interviews" :key="key">
-          <img :src="interview.featured_media.media_details.sizes['bones-thumb-300'].source_url" />
-          <h4>{{ interview.title.rendered }}</h4>
-          <p>{{ interview.meta['_aioseop_description'] }}</p>
+          <img :src="interview.featuredimage" />
+          <h4>{{ interview.title | unescape }}</h4>
+          <p>{ { interview.meta['_aioseop_description'] } }</p>
           <p>By {{ interview.author.name }}</p>
         </div>
       </div>
@@ -37,10 +37,10 @@
     <div class="funnyfarm">
       <h3>Funnyfarm</h3>
       <div class="listing" v-for="(interview, key) in funnyfarm" :key="key">
-        <img :src="interview.featured_media.media_details.sizes['bones-thumb-300'].source_url" />
+        <img :src="interview.featuredimage" />
         <div>
-          <h4>{{ interview.title.rendered }}</h4>
-          <p>{{ interview.meta['_aioseop_description'] }}</p>
+          <h4>{{ interview.title | unescape }}</h4>
+          <p>{ { interview.meta['_aioseop_description'] } }</p>
         </div>
       </div>
     </div>
@@ -61,30 +61,24 @@ export default Vue.extend({
   components: { LeadPost },
   asyncData({ store }) {
     return Promise.all([
-      store.dispatch('posts/getPostsInCategory', 2),
-      store.dispatch('posts/getPostsInCategory', 1),
-      store.dispatch('posts/getPostsInCategory', 213),
-      store.dispatch('posts/getPostsInCategory', 281),
+      store.dispatch('posts/getLatestData'),
     ]);
   },
   computed: {
-    blah() {
-      return this.$store.state.posts.tags;
-    },
-    shit() {
-      return this.$store.getters['posts/byTag'];
+    posts() {
+      return this.$store.state.posts.posts;
     },
     reviews() {
-      return (this.$store.getters['posts/byTag'][2] || []).slice(0, 5);
+      return this.posts.reviews;
     },
     articles() {
-      return (this.$store.getters['posts/byTag'][1] || []).slice(0, 3);
+      return this.posts.articles;
     },
     interviews() {
-      return (this.$store.getters['posts/byTag'][213] || []).slice(0, 3);
+      return this.posts.interviews;
     },
     funnyfarm() {
-      return (this.$store.getters['posts/byTag'][281] || []).slice(0, 3);
+      return this.posts.funnyfarm;
     }
   }
 })

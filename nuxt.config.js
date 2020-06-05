@@ -1,6 +1,12 @@
 export default {
   mode: 'spa',
   /*
+  ** Environment defaults
+  */
+  env: {
+    apiUrl: `${process.env.API_URL || 'http://localhost:8888'}/`,
+  },
+  /*
    ** Headers of the page
    */
   head: {

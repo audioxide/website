@@ -7,8 +7,19 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import AudioxideHeader from '../components/AudioxideHeader.vue';
 import AudioxideFooter from '../components/AudioxideFooter.vue';
+import { padNum } from '../assets/utilities';
+
+Vue.filter('unescape', str => str.replace(/&#(\d+);/g, (match, dec) => String.fromCharCode(dec)));
+Vue.filter('formatDate', date => {
+  let obj = date;
+  if (!(date instanceof Date)) {
+    obj = new Date(date);
+  }
+  return `${padNum(obj.getDate())}.${padNum(obj.getMonth() + 1)}.0${obj.getFullYear()}`;
+});
 
 export default {
   name: 'AudioxideApp',
@@ -44,5 +55,25 @@ export default {
       .site-content {
           width: $site-content__width--x-large;
       }
+  }
+
+  .sr-only {
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+  }
+
+  .collapsible__toggle {
+    &:hover, &:focus {
+      text-decoration: underline;
+    }
+    &::-webkit-details-marker {
+      display: none;
+    }
   }
 </style>

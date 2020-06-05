@@ -1,47 +1,47 @@
 <template>
-    <main class="site-content site-content--flex" v-if="review.meta">
+    <main class="site-content site-content--flex" v-if="review.metadata">
         <header class="review-header" :style="chromeStyles">
             <details class="collapsible">
                 <summary class="collapsible__toggle">
-                    <p class="content-header__date">{{ review.date }}</p>
+                    <p class="content-header__date">{{ review.metadata.created | formatDate }}</p>
                 </summary>
-                <p class="content-header__date">Last modified {{ review.modified }}</p>
+                <p class="content-header__date">Last modified {{ review.metadata.modified | formatDate }}</p>
             </details>
             <h1 class="review-header__heading">
-                <span class="review-header__album" :style="textStyles">{{review.meta['Album Name']}}</span>
-                <span class="review-header__artist">{{review.meta['Artist Name']}}</span>
+                <span class="review-header__album" :style="textStyles">{{review.metadata.album}}</span>
+                <span class="review-header__artist">{{review.metadata.artist}}</span>
             </h1>
             <p class="review-header__authors">
-                <a class="review-header__author"
-                v-for="(reviewItem, key) in review.reviews" :key="`reviewers-${key}`" :href="'../authors/' + reviewItem.reviewer.slug">{{reviewItem.reviewer.name}}</a>
+                <span>Review by </span>
+                <span v-for="(reviewItem, key) in reviews" :key="`reviewers-${key}`">
+                    <a class="review-header__author" :href="'../authors/' + reviewItem.author.slug">{{reviewItem.author.name}}</a>{{ key !== reviews.length - 1 ? ', ' : ''}}
+                </span>
             </p>
         </header>
         <aside class="review-sidebar">
-            <img class="review-sidebar__album-cover" :src="review.featured_media.source_url">
-            <p class="review-sidebar__album-info">{{ review.featured_media.description }}</p>
+            <img class="review-sidebar__album-cover" :src="review.metadata.featuredimage">
+            <p class="review-sidebar__album-info">{ { review.featured_media.description } }</p>
             <div class="review-sidebar__total-score" :style="sidebarStyles">
-                <p>
-                    <span class="review-sidebar__score" :styles="sidebarTextStyles">
-                        {{review.meta['Overall Score'].given}}
-                    </span>
-                    <span class="review-sidebar__total" :styles="sidebarHighlightStyles">{{review.meta['Overall Score'].possible}}</span>
-                </p>
+                <span class="review-sidebar__score" :style="sidebarTextStyles">
+                    {{review.metadata.totalscore.given}}
+                </span>
+                <span class="review-sidebar__total" :style="sidebarHighlightStyles">{{review.metadata.totalscore.possible}}</span>
             </div>
-            <p class="review-sidebar__summary" :style="textStyles">{{ review.meta['Summary'] }}</p>
+            <p class="review-sidebar__summary" :style="textStyles">{{ review.metadata.summary }}</p>
             <div class="review-sidebar__tracks" :style="sidebarStyles">
-                <template v-if="review.meta['Essential Tracks'].length">
+                <template v-if="review.metadata.essentialtracks.length">
                 <p class="review-sidebar__heading" :style="sidebarHighlightStyles">Essential</p>
                 <p class="review-sidebar__track"
-                    v-for="(track, key) in review.meta['Essential Tracks']"
+                    v-for="(track, key) in review.metadata.essentialtracks"
                     :key="`essential-tracks-${key}`">
                     {{ track }}
                 </p>
                 </template>
-                <template v-if="review.meta['Favourite Tracks'].length">
+                <template v-if="review.metadata.favouritetracks.length">
                 <p class="review-sidebar__heading" :style="sidebarHighlightStyles">Favourites</p>
                 <p class="review-sidebar__track"
-                    :styles="sidebarTextStyles"
-                    v-for="(track, key) in review.meta['Favourite Tracks']"
+                    :style="sidebarTextStyles"
+                    v-for="(track, key) in review.metadata.favouritetracks"
                     :key="`favourite-tracks-${key}`">
                     {{ track }}
                 </p>
@@ -50,43 +50,29 @@
             <p class="review-sidebar__serial">No. {{ weekStr }}</p>
         </aside>
         <section class="review-content">
-            <article>
-                <section v-for="(reviewItem, key) in review.reviews" :key="key">
-                    <h2 class="review-content__reviewer">{{reviewers[key]}}</h2>
-                    <p class="review-content__reviewer-social"><a :href="reviewItem.reviewer.url">Website</a></p>
-                    <div class="review-content__review">
-                        <span v-html="reviewItem.body" />
-                        <p class="review-content__score">
-                            <span class="review-content__given" :style="textStyles">{{reviewItem.score.score}}</span>
-                            <span class="review-content__possible">{{reviewItem.score.max}}</span>
-                        </p>
-                        <div class="review-content__favourite-tracks">
-                                <span class="review-content__favourite-track"
-                                    v-for="(track, tkey) in reviewItem.tracks"
-                                    :key="`reviewer-tracks-${tkey}`">
-                                    {{track}}
-                                </span>
-                        </div>
-                    </div>
-                    <hr class="review-content__divider" v-if="key !== review.reviews.length - 1">
-                </section>
-            </article>
+            <post-content :content="review.content" :colours="colours" />
+            <div class="tags">
+                <span v-for="(tag, key) in review.metadata.tags" :key="key" class="tag"><nuxt-link :to="`/tags/${tag}`">{{tag}}</nuxt-link></span>
+            </div>
         </section>
     </main>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+import PostContent from '../../components/PostContent.vue';
+import { padNum } from '~/assets/utilities';
 
-type PostColours = { primary: string, secondary: string, tertiary: string };
+type PostColours = [string, string, string];
 type ColourStyles = { [key: string]: string };
 
 export default Vue.extend({
     name: 'AudioxideReview',
+    components: { PostContent },
     data: () => ({
         review: {} as {
-            meta: {
-                'Post Colours': PostColours,
+            metadata: {
+                colours: PostColours,
                 'Week Number': string,
             },
             reviews: {
@@ -96,36 +82,41 @@ export default Vue.extend({
             }[],
         },
     }),
-    validate({ params, store }) {
-        return store.dispatch('posts/getReview', params.slug);
+    validate({ params: { slug }, store }) {
+        return store.dispatch('posts/getPost', {type: 'reviews', slug });
     },
     async created() {
-        this.review = await this.$store.dispatch('posts/getReview', this.$route.params.slug);
+        this.review = this.$store.state.posts.postData.reviews[this.$route.params.slug];
     },
     computed: {
-        reviewers(): string[] {
-            return this.review.reviews.map(review => review.reviewer.name.split(' ')[0]);
-        },
-        colours(): PostColours {
-            return this.review.meta['Post Colours'];
+        reviews(): string[] {
+            const reviews = [];
+            for (let review of this.review.content) {
+                if (typeof review !== 'object') continue;
+                reviews.push(review);
+            }
+            return reviews;
         },
         weekStr(): string {
-            return this.review.meta['Week Number'].padStart(7, '0');
+            return padNum(this.review.metadata.week, 7);
+        },
+        colours(): PostColours {
+            return this.review.metadata.colours;
         },
         textStyles(): ColourStyles {
-            return { color: this.colours.primary };
+            return { color: this.colours[0] };
         },
         chromeStyles(): ColourStyles {
-            return { 'border-bottom-color': this.colours.primary };
+            return { 'border-bottom-color': this.colours[0] };
         },
         sidebarStyles(): ColourStyles {
-            return { 'background-color': this.colours.primary };
+            return { 'background-color': this.colours[0] };
         },
         sidebarTextStyles(): ColourStyles {
-            return { color: this.colours.secondary };
+            return { color: this.colours[1] };
         },
         sidebarHighlightStyles(): ColourStyles {
-            return { color: this.colours.tertiary };
+            return { color: this.colours[2] };
         }
     }
 })
@@ -169,18 +160,7 @@ export default Vue.extend({
 
     .review-header__authors {
         color: $colour-grey;
-        &:before {
-            content: "Review by";
-        }
-        & .review-header__author:not(:last-child):after {
-            content: ",";
-        }
     }
-
-</style>
-
-<style lang="scss">
-    @import "~assets/styles/variables";
 
     @include medium {
         .review-sidebar {
@@ -208,6 +188,7 @@ export default Vue.extend({
     }
 
     .review-sidebar__total-score {
+        @include score-wrap;
         font-size: $site-content__font--xx-large;
         padding: $site-content__spacer 0;
     }
@@ -244,7 +225,10 @@ export default Vue.extend({
     .review-sidebar__track {
         @include site-content__body-text;
         margin: 0;
-        padding: $site-content__spacer--large 0;
+        padding-bottom: $site-content__spacer--large;
+        .review-sidebar__heading + & {
+            padding-top: $site-content__spacer--large;
+        }
     }
 
     .review-sidebar__serial {
@@ -253,12 +237,6 @@ export default Vue.extend({
         margin-top: $site-content__spacer--small;
         text-align: right;
     }
-
-
-</style>
-
-<style lang="scss">
-    @import "~assets/styles/variables";
 
     .review-content {
         margin-top: $site-content__spacer--large;
@@ -271,70 +249,8 @@ export default Vue.extend({
         }
     }
 
-    .review-content__reviewer,
-    .review-content__reviewer-social,
-    .review-content__score {
-        font-family: $heading-fontstack;
-    }
-
-    .review-content__reviewer {
-        font-weight: bold;
-        font-size: $site-content__font--large;
-    }
-
-    .review-content__reviewer-social {
-        @include site-content__subtext;
-        margin-bottom: $site-content__spacer--small;
-    }
-
-    .review-content__review {
-        margin: $site-content__spacer--large 0;
-        font-family: $base-fontstack;
-        /* p tags are created on the fly, so we have to target the element */
-        & p:not(.review-content__score) {
-            @include site-content__body-text;
-        }
-        &:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-    }
-
-    .review-content__favourite-track {
-        @include site-content__body-text;
-        margin: 0;
-        display: block;
-    }
-
-    .review-content__favourite-track:first-child:before {
-        content: "Favourite tracks // ";
-        font-weight: bold;
-    }
-
-    .review-content__favourite-track:nth-child(2) {
-        margin-left: 195px;
-    }
-
-    .review-content__favourite-track:nth-child(3) {
-        margin-left: 220px;
-    }
-
-    .review-content__score {
-        float: right;
-        font-size: $site-content__font--x-large;
-    }
-
-    .review-content__given {
-        @include review__score-given;
-    }
-
-    .review-content__possible {
-        @include review__score-possible;
-    }
-
-    .review-content__divider {
-        width: 75%;
+    .tags .tag {
+        @include tag;
     }
 
 </style>
