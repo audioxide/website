@@ -1,10 +1,11 @@
 import Vue from 'vue';
-import { getPosts, getReviews, getReviewBySlug, getArticles, getArticleBySlug } from '../api/posts';
+import { latest, posts, post } from '../api';
 
 const loaded = new Set();
 
 export const state = () => ({
-    posts: [],
+    posts: {},
+    postData: {},
     tags: {},
 });
 
@@ -19,13 +20,16 @@ export const getters = {
 
 export const mutations = {
     setPosts(state, posts) {
-        for (const post of posts) {
-            if (!loaded.has(post.id)) {
-                state.posts.push(post);
-                loaded.add(post.id);
-            }
+        Vue.set(state, 'posts', posts)
+    },
+    setPostsByType(state, { type, posts }) {
+        Vue.set(state.posts, type, posts);
+    },
+    setPostData(state, { type, slug, data }) {
+        if (!(type in state.postData)) {
+            Vue.set(state.postData, type, {});
         }
-        state.posts.sort((a, b) => ((b.date > a.date) * 2) -1);
+        Vue.set(state.postData[type], slug, data);
     },
     tag(state, { post, category }) {
         Vue.set(state.tags, category, new Date(post.date));
@@ -33,6 +37,18 @@ export const mutations = {
 };
 
 export const actions = {
+    async getLatestData({ commit }) {
+        commit('setPosts', await latest());
+    },
+    async getPostType({ commit }, type) {
+        commit('setPostsByType', { type, posts: await posts(type) });
+    },
+    async getPost({ commit, state }, { type, slug }) {
+        if (!(type in state.postData) || !(slug in state.postData[type])) {
+            commit('setPostData', { type, slug, data: await post(type, slug) });
+        }
+        return state.postData[type][slug];
+    },
     async getPostsInCategory({ state, commit }, category) {
         const params = { categories: [category] };
         if (state.tags[category]) {

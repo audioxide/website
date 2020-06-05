@@ -1,9 +1,8 @@
 <template>
     <section>
         <div v-for="(article, key) in articles" :key="key">
-            <p><nuxt-link :to="`/articles/${article.slug}`">{{ article.title.rendered }}</nuxt-link></p>
+            <p><nuxt-link :to="`/articles/${article.slug}`">{{ article.title | unescape }}</nuxt-link></p>
         </div>
-        <p @click="loadMore">Load more</p>
     </section>
 </template>
 
@@ -11,20 +10,17 @@
 import Vue from 'vue';
 
 export default Vue.extend({
-    created() {
-        if (this.$store.state.posts.lastSerialArticleDate === -1) {
-            this.$store.dispatch('posts/getArticles');
+    name: 'ArticleListing',
+    async validate({ params: { slug }, store }) {
+        if (!store.state.posts.posts.articles) {
+            await store.dispatch('posts/getPostType', 'articles');
         }
+        return true;
     },
     computed: {
         articles() {
-            return this.$store.getters['posts/articles'];
+            return this.$store.state.posts.posts.articles;
         },
     },
-    methods: {
-        loadMore() {
-            this.$store.dispatch('posts/getArticles');
-        }
-    }
 });
 </script>

@@ -1,9 +1,8 @@
 <template>
     <section>
         <div v-for="(review, key) in reviews" :key="key">
-            <p><nuxt-link :to="`/reviews/${review.slug}`">{{ review.meta['Artist Name'] }} // {{ review.meta['Album Name'] }}</nuxt-link></p>
+            <p><nuxt-link :to="`/reviews/${review.slug}`">{{ review.artist }} // {{ review.album }}</nuxt-link></p>
         </div>
-        <p @click="loadMore">Load more</p>
     </section>
 </template>
 
@@ -11,20 +10,17 @@
 import Vue from 'vue';
 
 export default Vue.extend({
-    created() {
-        if (!this.$store.state.posts.tags[2]) {
-            this.$store.dispatch('posts/getReviews');
+    name: 'ReviewListing',
+    async validate({ params: { slug }, store }) {
+        if (!store.state.posts.posts.reviews) {
+            await store.dispatch('posts/getPostType', 'reviews');
         }
+        return true;
     },
     computed: {
         reviews() {
-            return this.$store.getters['posts/byTag'][2];
+            return this.$store.state.posts.posts.reviews;
         },
     },
-    methods: {
-        loadMore() {
-            this.$store.dispatch('posts/getPostsInCategory', 2);
-        }
-    }
 });
 </script>
