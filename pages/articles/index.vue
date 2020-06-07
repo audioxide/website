@@ -12,9 +12,10 @@ import Vue from 'vue';
 export default Vue.extend({
     name: 'ArticleListing',
     async validate({ params: { slug }, store }) {
-        if (!store.state.posts.posts.articles) {
+        // Add in an API endpoint that allows us to check if we have all the articles
+        // if (!store.state.posts.posts.articles) {
             await store.dispatch('posts/getPostType', 'articles');
-        }
+        // }
         return true;
     },
     computed: {

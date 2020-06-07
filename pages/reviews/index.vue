@@ -12,9 +12,10 @@ import Vue from 'vue';
 export default Vue.extend({
     name: 'ReviewListing',
     async validate({ params: { slug }, store }) {
-        if (!store.state.posts.posts.reviews) {
+        // Add in an API endpoint that allows us to check if we have all the reviews
+        // if (!store.state.posts.posts.reviews) {
             await store.dispatch('posts/getPostType', 'reviews');
-        }
+        // }
         return true;
     },
     computed: {
