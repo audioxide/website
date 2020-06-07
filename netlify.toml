@@ -5,12 +5,12 @@
   API_URL = "https://alpha.audioxide.com/api"
 
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
   from = "/api/*"
   to = "https://stoic-galileo-1d5a50.netlify.app/:splat"
   status = 200
   force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
