@@ -4,7 +4,7 @@
     <div class="reviews">
       <h3>Reviews (<nuxt-link to="/reviews">See all</nuxt-link>)</h3>
       <div class="listing" v-for="(review, key) in reviews" :key="key">
-        <img :src="review.featuredimage" />
+        <img :src="review.featuredimage['xsmall-square']" />
         <div>
           <h4>{{ review.album }}</h4>
           <h5>{{ review.artist }}</h5>
@@ -17,30 +17,30 @@
       <div class="listing" v-for="(article, key) in articles" :key="key">
         <div>
           <h4>{{ article.title | unescape }}</h4>
-          <p>{ { article.meta['_aioseop_description'] } }</p>
+          <p>{{ article.blurb }}</p>
           <p>By {{ article.author.name }}</p>
         </div>
-        <img :src="article.featuredimage" />
+        <img :src="article.featuredimage.xsmall" />
       </div>
     </div>
     <div class="interviews">
       <h3>Interviews</h3>
       <div class="listing">
         <div v-for="(interview, key) in interviews" :key="key">
-          <img :src="interview.featuredimage" />
+          <img :src="interview.featuredimage.xsmall" />
           <h4>{{ interview.title | unescape }}</h4>
-          <p>{ { interview.meta['_aioseop_description'] } }</p>
+          <p>{{ interview.blurb }}</p>
           <p>By {{ interview.author.name }}</p>
         </div>
       </div>
     </div>
     <div class="funnyfarm">
       <h3>Funnyfarm</h3>
-      <div class="listing" v-for="(interview, key) in funnyfarm" :key="key">
-        <img :src="interview.featuredimage" />
+      <div class="listing" v-for="(funnyfarm, key) in funnyfarm" :key="key">
+        <img :src="funnyfarm.featuredimage.xsmall" />
         <div>
-          <h4>{{ interview.title | unescape }}</h4>
-          <p>{ { interview.meta['_aioseop_description'] } }</p>
+          <h4>{{ funnyfarm.title | unescape }}</h4>
+          <p>{{ funnyfarm.blurb }}</p>
         </div>
       </div>
     </div>
@@ -65,20 +65,20 @@ export default Vue.extend({
     ]);
   },
   computed: {
-    posts() {
+    posts(): PostGrouping<Post> {
       return this.$store.state.posts.posts;
     },
-    reviews() {
-      return this.posts.reviews;
+    reviews(): PostListing<Review> {
+      return this.posts.reviews as PostListing<Review>;
     },
-    articles() {
-      return this.posts.articles;
+    articles(): PostListing<Article> {
+      return this.posts.articles as PostListing<Article>;
     },
-    interviews() {
-      return this.posts.interviews;
+    interviews(): PostListing<Article> {
+      return this.posts.interviews as PostListing<Article>;
     },
-    funnyfarm() {
-      return this.posts.funnyfarm;
+    funnyfarm(): PostListing<Article> {
+      return this.posts.funnyfarm as PostListing<Article>;
     }
   }
 })

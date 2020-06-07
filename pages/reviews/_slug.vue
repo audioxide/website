@@ -19,7 +19,7 @@
             </p>
         </header>
         <aside class="review-sidebar">
-            <img class="review-sidebar__album-cover" :src="review.metadata.featuredimage">
+            <img class="review-sidebar__album-cover" :src="review.metadata.featuredimage['medium-square']">
             <p class="review-sidebar__album-info">{ { review.featured_media.description } }</p>
             <div class="review-sidebar__total-score" :style="sidebarStyles">
                 <span class="review-sidebar__score" :style="sidebarTextStyles">
@@ -70,17 +70,7 @@ export default Vue.extend({
     name: 'AudioxideReview',
     components: { PostContent },
     data: () => ({
-        review: {} as {
-            metadata: {
-                colours: PostColours,
-                'Week Number': string,
-            },
-            reviews: {
-                reviewer: {
-                    name: string,
-                }
-            }[],
-        },
+        review: {} as Review,
     }),
     validate({ params: { slug }, store }) {
         return store.dispatch('posts/getPost', {type: 'reviews', slug });
@@ -89,7 +79,7 @@ export default Vue.extend({
         this.review = this.$store.state.posts.postData.reviews[this.$route.params.slug];
     },
     computed: {
-        reviews(): string[] {
+        reviews(): ReviewItem[] {
             const reviews = [];
             for (let review of this.review.content) {
                 if (typeof review !== 'object') continue;

@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue, { PropType } from 'vue';
 import { isObject, resolveAuthorLink } from '~/assets/utilities';
 
 type AuthorLink = {
@@ -36,8 +36,8 @@ type AuthorLink = {
 export default Vue.extend({
     name: 'PostContent',
     props: {
-        content: { type: Array, required: true },
-        colours: Array,
+        content: { type: Array as PropType<Post['content']>, required: true },
+        colours: Array as unknown as PropType<ReviewMetadata['colours']>,
         decorate: { type: Boolean, default: false },
     },
     /* data: () => ({
@@ -58,23 +58,23 @@ export default Vue.extend({
             const primary = isObject(this.colours) ? this.colours[0] : 'black';
             return { color: primary };
         },
-        authors(): (object | undefined)[] {
+        authors(): (Author | undefined)[] {
             return this.content.map(item => {
-                if (!isObject(item)) return undefined;
-                return item.author;
+                if (!isObject(item) || !('author' in item)) return undefined;
+                return (item as ReviewItem).author;
             })
         },
         authorName(): (string | null)[] {
             return this.authors.map(item => item ? item.name : null);
         },
         authorLink(): (AuthorLink | null)[] {
-            return this.authors.map(resolveAuthorLink);
+            return this.authors.map(author => resolveAuthorLink(author));
         },
-        contentHTML(): string {
+        contentHTML(): string[] {
             return this.content.map(item => {
                 if (typeof item === 'string') return item;
                 if (isObject(item)) {
-                    return item.review || item.content || item.body || '';
+                    return (item as ReviewItem).review || item.content || item.body || '';
                 }
                 return '';
             });
