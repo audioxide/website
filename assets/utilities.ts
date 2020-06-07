@@ -6,7 +6,7 @@ const padNum = (
 
 const isObject = (obj: any): obj is object => typeof obj === 'object' && obj !== null;
 
-const resolveAuthorLink = (author) => {
+const resolveAuthorLink = (author?: Author) => {
     if (!author || !isObject(author.links)) return null;
     const linkData = author.links[author.links.default];
     switch(author.links.default) {

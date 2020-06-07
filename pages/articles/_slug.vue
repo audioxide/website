@@ -31,7 +31,7 @@ export default Vue.extend({
     name: 'AudioxideArticle',
     components: { PostContent },
     data: () => ({
-        article: {},
+        article: {} as Article,
     }),
     validate({ params: { slug }, store }) {
         return store.dispatch('posts/getPost', {type: 'articles', slug });
@@ -41,7 +41,7 @@ export default Vue.extend({
     },
     computed: {
         authorLink() {
-            if (isObject(this.article.metadata.auth)) return;
+            if (isObject(this.article.metadata.author)) return;
             return resolveAuthorLink(this.article.metadata.author);
         }
     },

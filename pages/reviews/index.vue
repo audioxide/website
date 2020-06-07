@@ -18,7 +18,7 @@ export default Vue.extend({
         return true;
     },
     computed: {
-        reviews() {
+        reviews(): PostListing<Review> {
             return this.$store.state.posts.posts.reviews;
         },
     },
