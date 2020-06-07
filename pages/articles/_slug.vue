@@ -8,7 +8,10 @@
                 <p class="article-header__date">Last modified {{ article.metadata.modified | formatDate }}</p>
             </details>
             <h1 class="article-header__heading">{{ article.metadata.title | unescape }}</h1>
-            <p class="article-header__author" v-if="article.metadata.author">By <a :href="authorLink.url">{{ article.metadata.author.name }}</a></p>
+            <p class="article-header__author" v-if="article.metadata.author">By
+                <a :href="authorLink.url" v-if="authorLink">{{ article.metadata.author.name }}</a>
+                <span v-else>{{ article.metadata.author.name }}</span>
+            </p>
         </header>
         <section class="article-content">
             <post-content :content="article.content" :decorate="true" />
@@ -41,7 +44,7 @@ export default Vue.extend({
     },
     computed: {
         authorLink() {
-            if (isObject(this.article.metadata.author)) return;
+            if (!isObject(this.article.metadata.author)) return;
             return resolveAuthorLink(this.article.metadata.author);
         }
     },
