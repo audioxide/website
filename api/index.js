@@ -35,6 +35,11 @@ const getSingle = async (route) => {
     return data;
 };
 
+const banner = () => getListing('albumbanner.json').then(r => r.map((album) => {
+    album.image = APIURL + album.image.substr(1);
+    return album;
+}));
+
 const latest = () => getGrouping('latest.json');
 
 const posts = (type) => getListing(`${type}.json`);
@@ -46,6 +51,7 @@ const tags = () => getGrouping('tags.json');
 const tag = (slug) => getSingle(`tags/${slug}.json`);
 
 export {
+    banner,
     latest,
     posts,
     post,
