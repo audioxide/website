@@ -8,6 +8,7 @@
                 <p class="article-header__date">Last modified {{ article.metadata.modified | formatDate }}</p>
             </details>
             <h1 class="article-header__heading">{{ article.metadata.title | unescape }}</h1>
+            <h2 class="article-header__summary" v-if="article.metadata.summary">{{ article.metadata.summary || unescape }}</h2>
             <p class="article-header__author" v-if="article.metadata.author">By
                 <a :href="authorLink.url" v-if="authorLink">{{ article.metadata.author.name }}</a>
                 <span v-else>{{ article.metadata.author.name }}</span>
