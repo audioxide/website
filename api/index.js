@@ -19,19 +19,19 @@ const getData = (route) => fetch(APIURL + route).then(r => r.json());
 
 const getGrouping = async (route) => {
     const data = await getData(route);
-    Object.values(data).forEach(posts => posts.forEach(resolveFeaturedImage));
+    // Object.values(data).forEach(posts => posts.forEach(resolveFeaturedImage));
     return data;
 };
 
 const getListing = async (route) => {
     const data = await getData(route);
-    data.forEach(resolveFeaturedImage);
+    // data.forEach(resolveFeaturedImage);
     return data;
 };
 
 const getSingle = async (route) => {
     const data = await getData(route);
-    resolveFeaturedImage(data);
+    // resolveFeaturedImage(data);
     return data;
 };
 
