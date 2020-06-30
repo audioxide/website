@@ -52,7 +52,7 @@ export default Vue.extend({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     @import "~assets/styles/variables";
 
     .article-header {
