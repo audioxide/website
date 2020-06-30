@@ -147,6 +147,14 @@ export default Vue.extend({
         & > p {
             width: 67%;
         }
+        & .pull-right {
+            float: right;
+            margin-right: -25%;
+        }
+        & .pull-left {
+            float: left;
+            margin-left: -25%;
+        }
     }
 
     .track-wrapper {
