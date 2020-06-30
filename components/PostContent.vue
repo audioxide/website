@@ -128,6 +128,7 @@ export default Vue.extend({
             }
             img {
                 width: 100%;
+                height: auto;
             }
         }
         &:after {
