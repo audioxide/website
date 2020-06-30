@@ -35,10 +35,7 @@ const getSingle = async (route) => {
     return data;
 };
 
-const banner = () => getListing('albumbanner.json').then(r => r.map((album) => {
-    album.image = APIURL + album.image.substr(1);
-    return album;
-}));
+const banner = () => getListing('albumbanner.json');
 
 const latest = () => getGrouping('latest.json');
 
