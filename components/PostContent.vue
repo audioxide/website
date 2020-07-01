@@ -144,7 +144,7 @@ export default Vue.extend({
             float: left;
             line-height: 0.85em;
         }
-        & > p {
+        & > p, & > img {
             width: 67%;
         }
         & .pull-right {

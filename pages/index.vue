@@ -20,14 +20,14 @@
           <p>{{ article.blurb }}</p>
           <p>By {{ article.author.name }}</p>
         </div>
-        <img :src="article.featuredimage.xsmall" />
+        <img :src="article.featuredimage['xsmall-standard']" />
       </div>
     </div>
     <div class="interviews">
       <h3>Interviews</h3>
       <div class="listing">
         <div v-for="(interview, key) in interviews" :key="key">
-          <img :src="interview.featuredimage.xsmall" />
+          <img :src="interview.featuredimage['xsmall-standard']" />
           <h4>{{ interview.title | unescape }}</h4>
           <p>{{ interview.blurb }}</p>
           <p>By {{ interview.author.name }}</p>
@@ -37,7 +37,7 @@
     <div class="funnyfarm">
       <h3>Funnyfarm</h3>
       <div class="listing" v-for="(funnyfarm, key) in funnyfarm" :key="key">
-        <img :src="funnyfarm.featuredimage.xsmall" />
+        <img :src="funnyfarm.featuredimage['xsmall-standard']" />
         <div>
           <h4>{{ funnyfarm.title | unescape }}</h4>
           <p>{{ funnyfarm.blurb }}</p>
