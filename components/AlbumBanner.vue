@@ -2,10 +2,10 @@
     <div class="album-banner">
         <div class="album-banner__container">
             <div class="album-banner__art-wrapper" v-for="(album, key) in bannerData" :key="key">
-                <a :href="`/reviews/${album.slug}/`" class="album-banner__review-link">
+                <nuxt-link :to="`/reviews/${album.slug}/`" class="album-banner__review-link">
                     <span class="album-banner__score">{{ album.score }}</span>
                     <img class="album-banner__album-art" :src="album.image" :alt="`Album cover for ${album.artist} - ${album.album}`">
-                </a>
+                </nuxt-link>
             </div>
         </div>
     </div>
