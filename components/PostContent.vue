@@ -109,9 +109,6 @@ export default Vue.extend({
             p {
                 @include site-content__body-text;
                 margin: 0 auto;
-                & + p, & + h3 {
-                    margin-top: $site-content__spacer--x-large;
-                }
             }
 
             h2, h3, h4 {
@@ -119,7 +116,7 @@ export default Vue.extend({
                 font-weight: bold;
                 margin: $site-content__spacer--x-large auto 0;
             }
-            h3 + h4 {
+            h2 + h3, h3 + h4 {
                 margin-top: $site-content__spacer--small;
             }
             h4 {
@@ -130,6 +127,16 @@ export default Vue.extend({
                 width: 100%;
                 height: auto;
             }
+            blockquote {
+                margin: 0 auto;
+                border-left: 5px solid $colour-grey--light;
+                padding-left: 20px;
+            }
+            p, blockquote {
+                & + p, & + blockquote, & + h2, & + h3, & + h4 {
+                    margin-top: $site-content__spacer--x-large;
+                }
+            }
         }
         &:after {
             content: "";
@@ -139,14 +146,19 @@ export default Vue.extend({
     }
 
     .decorated .content ::v-deep {
+        & > {
+            p, img, h2, h3, h4, blockquote {
+                width: 67%;
+            }
+        }
         & > p:first-of-type:first-letter {
             font-size: $site-content__font--xx-large;
             float: left;
             line-height: 0.85em;
         }
-        & > p, & > img {
+        /* & > p, & > img, & > h2, & > h3, & > blockquote {
             width: 67%;
-        }
+        } */
         & .pull-right {
             float: right;
             margin-right: -25%;
