@@ -18,7 +18,7 @@
         <div>
           <h4>{{ article.title | unescape }}</h4>
           <p>{{ article.blurb }}</p>
-          <p>By {{ article.author.name }}</p>
+          <p v-if="article.author">By {{ article.author.name }}</p>
         </div>
         <img :src="article.featuredimage['xsmall-standard']" />
       </div>
@@ -30,7 +30,7 @@
           <img :src="interview.featuredimage['xsmall-standard']" />
           <h4>{{ interview.title | unescape }}</h4>
           <p>{{ interview.blurb }}</p>
-          <p>By {{ interview.author.name }}</p>
+          <p v-if="article.author">By {{ interview.author.name }}</p>
         </div>
       </div>
     </div>
