@@ -30,7 +30,7 @@
           <img :src="interview.featuredimage['xsmall-standard']" />
           <h4>{{ interview.title | unescape }}</h4>
           <p>{{ interview.blurb }}</p>
-          <p v-if="article.author">By {{ interview.author.name }}</p>
+          <p v-if="interview.author">By {{ interview.author.name }}</p>
         </div>
       </div>
     </div>
