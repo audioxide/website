@@ -1,24 +1,24 @@
 type ImageDimensions = { w: number, h?: number };
 
 type ImageSizes = [
-    "xsmall",
+    "xsmall-standard",
     "xsmall-square",
     "xsmall-original",
-    "small",
+    "small-standard",
     "small-square",
     "small-original",
-    "medium",
+    "medium-standard",
     "medium-square",
     "medium-original",
-    "large",
+    "large-standard",
     "large-square",
     "large-original",
-    "xlarge",
+    "xlarge-standard",
     "xlarge-square",
     "xlarge-original",
 ];
 
-type ImageSizesObj = { [key in ImageSizes[number]]: ImageDimensions };
+type ImageSizesObj = { [key in ImageSizes[number]]: string };
 
 type AuthorLinkTypes = "twitter" | "instagram" | "facebook" | "email" | "website";
 
