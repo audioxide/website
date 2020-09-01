@@ -45,9 +45,9 @@
         </div>
 
         <!-- Logo -->
-        <a href="/" class="site-nav__logo">
+        <nuxt-link to="/" class="site-nav__logo">
             <span class="site-nav__logo-text">Audioxide</span>
-        </a>
+        </nuxt-link>
 
     </nav>
 </template>

@@ -16,6 +16,7 @@ export const getters = {
         acc,
         { [key]: posts.filter(post => post.date >= (tags[key] || Number.MIN_SAFE_INTEGER) && post.categories.includes(key)) }
     ), {}),
+    latestPost: ({ posts }) => Object.values(posts).reduce((latest, [post]) => !latest || new Date(post.metadata.created) > new Date(latest.metadata.created) ? post : latest, undefined),
 };
 
 export const mutations = {
