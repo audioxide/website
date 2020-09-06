@@ -49,11 +49,6 @@ export default Vue.extend({
     }
     .lead-post {
         width: 85%;
-        min-width: 960px;
         margin: 0 auto;
     }
-    /* .lead-post {
-        border-radius: 15px;
-        box-shadow: 0px 0px 10px 0px rgba(191,181,191,0.96);
-    } */
 </style>

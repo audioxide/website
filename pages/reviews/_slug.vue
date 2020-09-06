@@ -72,11 +72,11 @@ export default Vue.extend({
     data: () => ({
         review: {} as Review,
     }),
-    validate({ params: { slug }, store }) {
-        return store.dispatch('posts/getPost', {type: 'reviews', slug });
+    asyncData({ params: { slug }, store }) {
+        return store.dispatch('posts/getPost', { type: 'reviews', slug });
     },
     async created() {
-        this.review = this.$store.state.posts.postData.reviews[this.$route.params.slug];
+        this.review = this.$store.getters['posts/pathLookup'][`reviews/${this.$route.params.slug}`];
     },
     computed: {
         reviews(): ReviewItem[] {

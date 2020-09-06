@@ -9,8 +9,10 @@
         <!-- </div> -->
         <div>
           <h4>
-            <span class="album">{{ review.metadata.album }}</span>
-            <span class="artist">{{ review.metadata.artist }}</span>
+            <nuxt-link :to="`reviews/${review.metadata.slug}`" class="overlay-link">
+              <span class="album">{{ review.metadata.album }}</span>
+              <span class="artist">{{ review.metadata.artist }}</span>
+            </nuxt-link>
           </h4>
           <p>{{ review.metadata.blurb }}</p>
         </div>
@@ -50,11 +52,9 @@
       <h3>Articles</h3>
       <div class="listing" v-for="(article, key) in articles" :key="key">
         <img :src="article.metadata.featuredimage['small-standard']" />
-        <div>
-          <h4>{{ article.metadata.title | unescape }}</h4>
-          <p>{{ article.metadata.blurb }}</p>
-          <p v-if="article.metadata.author">By {{ article.metadata.author.name }}</p>
-        </div>
+        <h4><nuxt-link :to="`articles/${article.metadata.slug}`" class="overlay-link">{{ article.metadata.title | unescape }}</nuxt-link></h4>
+        <p>{{ article.metadata.blurb }}</p>
+        <p v-if="article.metadata.author">By {{ article.metadata.author.name }}</p>
       </div>
       <nuxt-link to="articles" class="more-link">Read more articles</nuxt-link>
     </div>
@@ -63,7 +63,7 @@
       <div class="listing" v-for="(interview, key) in interviews" :key="key">
         <img :src="interview.metadata.featuredimage['xsmall-standard']" />
         <div>
-          <h4>{{ interview.metadata.title | unescape }}</h4>
+          <h4><nuxt-link :to="`interviews/${interview.metadata.slug}`" class="overlay-link">{{ interview.metadata.title | unescape }}</nuxt-link></h4>
           <!-- <p>{{ interview.metadata.blurb }}</p> -->
           <!-- <p v-if="interview.metadata.author">By {{ interview.metadata.author.name }}</p> -->
         </div>
@@ -75,7 +75,7 @@
       <div class="listing" v-for="(funnyfarm, key) in funnyfarm" :key="key">
         <img :src="funnyfarm.metadata.featuredimage['xsmall-standard']" />
         <div>
-          <h4>{{ funnyfarm.metadata.title | unescape }}</h4>
+          <h4><nuxt-link :to="`funnyfarm/${funnyfarm.metadata.slug}`" class="overlay-link">{{ funnyfarm.metadata.title | unescape }}</nuxt-link></h4>
           <p>{{ funnyfarm.metadata.blurb }}</p>
         </div>
       </div>
@@ -109,17 +109,48 @@ export default Vue.extend({
       return this.$store.getters['posts/latestPost'];
     },
     reviews(): PostListing<Review> {
-      return this.posts.reviews.filter(review => review !== this.latest) as PostListing<Review>;
+      return this.posts.reviews
+        .filter(review => review !== this.latest)
+        .slice(0, this.getLimit({
+          large: 8,
+          medium: 6,
+          default: 4,
+        })) as PostListing<Review>;
     },
     articles(): PostListing<Article> {
-      return this.posts.articles.slice(0, 3) as PostListing<Article>;
+      return this.posts.articles.slice(0, this.getLimit({
+        large: 3,
+        medium: 3,
+        default: 2,
+      })) as PostListing<Article>;
     },
     interviews(): PostListing<Article> {
-      return this.posts.interviews as PostListing<Article>;
+      return this.posts.interviews.slice(0, this.getLimit({
+        large: 3,
+        medium: 4,
+        default: 2,
+      })) as PostListing<Article>;
     },
     funnyfarm(): PostListing<Article> {
-      return this.posts.funnyfarm.slice(0, 4) as PostListing<Article>;
+      return this.posts.funnyfarm.slice(0, this.getLimit({
+        large: 4,
+        medium: 4,
+        default: 2,
+      })) as PostListing<Article>;
     }
+  },
+  methods: {
+    getLimit(sizes: { [key: string]: number }) {
+      let limit = sizes.default;
+      Object.keys(sizes).some((key) => {
+        if (this.$store.state.breakpoint === key) {
+          limit = sizes[key];
+          return true;
+        }
+        return false;
+      });
+      return limit;
+    },
   }
 })
 </script>
@@ -158,7 +189,16 @@ export default Vue.extend({
       text-decoration: none;
       &::before/* , &::after */ {
         transition: 0.25s width cubic-bezier(0.22, 0.61, 0.36, 1);
-        width: 5%;
+        width: 20%;
+        @include small {
+          width: 15%;
+        }
+        @include medium {
+          width: 10%;
+        }
+        @include large {
+          width: 5%;
+        }
         height: 1px;
         background-color: black;
         content: '';
@@ -172,9 +212,44 @@ export default Vue.extend({
         color: lighten($color: #000000, $amount: 10%);
         &::before/* , &::after */ {
           transition-duration: 1.5s;
-          width: 12%;
+          width: 60%;
+          @include small {
+            width: 40%;
+          }
+          @include medium {
+            width: 25%;
+          }
+          @include large {
+            width: 12%;
+          }
         }
       }
+    }
+  }
+
+  .listing {
+    position: relative;
+    h4 span {
+      display: block;
+    }
+  }
+
+  .overlay-link {
+    position: static;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+    &:before {
+      bottom: 0;
+      content: '';
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      right: 0;
+      top: 0;
+      white-space: nowrap;
+      z-index: 1;
     }
   }
 
@@ -280,7 +355,15 @@ export default Vue.extend({
     }
     .listing {
       // width: 45%;
-      width: calc(24% - 1.5em);
+      // width: calc(24% - 1.5em);
+      // width: calc(33% - 1.5em);
+      @include medium {
+        display: flex;
+        width: calc(33% - 1.5em);
+      }
+      @include large {
+        width: calc(25% - 1.5em);
+      }
       display: flex;
       align-items: flex-start;
       margin-bottom: 2em;
@@ -304,8 +387,10 @@ export default Vue.extend({
   }
 
   .articles {
-    display: flex;
-    justify-content: space-between;
+    @include small {
+      display: flex;
+      justify-content: space-between;
+    }
     // background: black;
     padding-top: 2%;
     padding-bottom: 2%;
@@ -325,23 +410,29 @@ export default Vue.extend({
       }
     }
     .listing {
-      width: calc((100% / 3) - 1.5em);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       color: white;
+      margin-bottom: 1.5em;
+      @include small {
+        width: calc((100% / 2) - 1.5em);
+      }
+      @include medium {
+        width: calc((100% / 3) - 1.5em);
+      }
       img {
         width: 100%;
-      }
-      & > div {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
       }
       h4 {
         font-family: $heading-fontstack;
         font-size: $site-content__font--large;
         margin-bottom: $site-content__spacer--large;
         line-height: 1.2em;
-        margin-top: .1em;
-        min-height: calc((1.2em * 2) + .1em);
+        margin-top: .5em;
+      }
+      p {
+        flex-grow: 1;
       }
     }
   }
@@ -352,8 +443,28 @@ export default Vue.extend({
     flex-wrap: wrap;
     margin: 2% 0;
     .listing {
-      display: flex;
-      width: calc(50% - 1.5em);
+      @include small {
+        // display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+      @include medium {
+        width: calc(50% - 1.5em);
+      }
+      @include large {
+        width: calc((100% / 3) - 1.5em);
+      }
+      img {
+        width: 100%;
+      }
+      h4 {
+        font-family: $heading-fontstack;
+        font-size: $site-content__font--large;
+        margin-bottom: $site-content__spacer--large;
+        line-height: 1.2em;
+        margin-top: .5em;
+        flex-grow: 2;
+      }
     }
   }
 
@@ -362,11 +473,43 @@ export default Vue.extend({
     justify-content: space-between;
     margin: 2% 0;
     .listing {
-      display: flex;
-      width: calc(25% - 1.5em);
+      margin-bottom: 1.5em;
+      @include small {
+        display: flex;
+        align-items: flex-start;
+      }
+      @include medium {
+        width: calc(50% - 1.5em);
+      }
+      @include large {
+        width: calc(25% - 1.5em);
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+      h4 {
+        font-family: $heading-fontstack;
+        font-size: $site-content__font--large;
+        margin-bottom: $site-content__spacer--large;
+        line-height: 1.2em;
+        margin-top: .5em;
+      }
       img {
-        width: 60%;
+        width: 100%;
         margin-right: 1em;
+        @include small {
+          // flex-grow: 1;
+          width: auto;
+        }
+        @include medium {
+          width: 50%;
+        }
+        @include large {
+          width: auto;
+          flex-grow: 0;
+        }
+      }
+      div {
+        flex-grow: 3;
       }
     }
   }

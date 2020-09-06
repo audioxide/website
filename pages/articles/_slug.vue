@@ -37,11 +37,11 @@ export default Vue.extend({
     data: () => ({
         article: {} as Article,
     }),
-    validate({ params: { slug }, store }) {
-        return store.dispatch('posts/getPost', {type: 'articles', slug });
+    asyncData({ params: { slug }, store }) {
+        return store.dispatch('posts/getPost', { type: 'articles', slug });
     },
     async created() {
-        this.article = this.$store.state.posts.postData.articles[this.$route.params.slug];
+        this.article = this.$store.getters['posts/pathLookup'][`articles/${this.$route.params.slug}`];
     },
     computed: {
         authorLink() {
