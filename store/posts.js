@@ -3,6 +3,47 @@ import { latest, posts, post } from '../api';
 
 const loaded = new Set();
 
+/*
+- post type comes in
+- for each new post
+    - check by path (type + slug) if it already exists
+        - Object.assign new post into existing object
+    - else push it to the end of that post type array
+- at the end, sort all change post type arrays by date created
+*/
+const sortPostArray = (arr) => arr.sort((a, b) => {
+    const aTime = a.created;
+    const bTime = b.created;
+    if (aTime === bTime) return 0;
+    return (((aTime < bTime) * 2) - 1);
+});
+
+const mergePost = (postObject, lookup, newPost, sort = false) => {
+    const type = newPost.metadata.type;
+    const slug = newPost.metadata.slug;
+    const path = `${type}/${slug}`;
+    if (path in lookup) {
+        Object.keys(newPost).forEach(key => Vue.set(lookup[path], key, newPost[key]));
+        return false;
+    }
+    if (!Array.isArray(postObject[type])) {
+        Vue.set(postObject, type, []);
+    }
+    postObject[type].push(newPost);
+    if (sort) sortPostArray(postObject[type]);
+    return true;
+};
+
+const mergePosts = (postObject, lookup, newPosts) => {
+    const changed = new Set();
+    newPosts.forEach(post => {
+        if (mergePost(postObject, lookup, post)) {
+            changed.add(post.metadata.type);
+        }
+    });
+    changed.forEach(type => sortPostArray(postObject[type]));
+}
+
 export const state = () => ({
     posts: {},
     postData: {},
@@ -10,8 +51,12 @@ export const state = () => ({
 });
 
 export const getters = {
-    slugLookup: ({ posts }) => posts.reduce((acc, post) => Object.assign(acc, { [post.slug]: post}), {}),
-    idLookup: ({ posts }) => posts.reduce((acc, post) => Object.assign(acc, { [post.id]: post }), {}),
+    pathLookup: ({ posts }) => Object.values(posts).reduce((acc, grouping) => {
+        grouping.forEach(post => {
+            acc[`${post.metadata.type}/${post.metadata.slug}`] = post;
+        });
+        return acc;
+    }, {}),
     byTag: ({ posts, tags }) => Object.keys(tags).map(id => parseInt(id)).reduce((acc, key) => Object.assign(
         acc,
         { [key]: posts.filter(post => post.date >= (tags[key] || Number.MIN_SAFE_INTEGER) && post.categories.includes(key)) }
@@ -19,74 +64,48 @@ export const getters = {
     latestPost: ({ posts }) => Object.values(posts).reduce((latest, [post]) => !latest || new Date(post.metadata.created) > new Date(latest.metadata.created) ? post : latest, undefined),
 };
 
+const getterId = 'posts/pathLookup';
 export const mutations = {
-    setPosts(state, posts) {
-        Vue.set(state, 'posts', posts)
+    setPostsObject(state, posts) {
+        Object.values(posts).forEach(postArr => mergePosts(state.posts, this.getters[getterId], postArr));
     },
-    setPostsByType(state, { type, posts }) {
-        Vue.set(state.posts, type, posts);
+    setPostsArray(state, posts) {
+        mergePosts(state.posts, this.getters[getterId], posts);
     },
-    setPostData(state, { type, slug, data }) {
-        if (!(type in state.postData)) {
-            Vue.set(state.postData, type, {});
-        }
-        Vue.set(state.postData[type], slug, data);
-    },
-    tag(state, { post, category }) {
-        Vue.set(state.tags, category, new Date(post.date));
+    setPost(state, post) {
+        mergePost(state.posts, this.getters[getterId], post, true);
     },
 };
 
 export const actions = {
     async getLatestData({ commit }) {
-        commit('setPosts', await latest());
+        const id = 'latest';
+        if (loaded.has(id)) return;
+        loaded.add(id);
+        try {
+            commit('setPostsObject', await latest());
+        } catch {
+            loaded.delete(id);
+        }
     },
     async getPostType({ commit }, type) {
-        commit('setPostsByType', { type, posts: await posts(type) });
-    },
-    async getPost({ commit, state }, { type, slug }) {
-        if (!(type in state.postData) || !(slug in state.postData[type])) {
-            commit('setPostData', { type, slug, data: await post(type, slug) });
+        const id = `posts/${type}`;
+        if (loaded.has(id)) return;
+        loaded.add(id);
+        try {
+            commit('setPostsArray', await posts(type));
+        } catch {
+            loaded.delete(id);
         }
-        return state.postData[type][slug];
     },
-    async getPostsInCategory({ state, commit }, category) {
-        const params = { categories: [category] };
-        if (state.tags[category]) {
-            params.before = state.tags[category];
+    async getPost({ commit }, { type, slug }) {
+        const id = `post/${type}/${slug}`;
+        if (loaded.has(id)) return;
+        loaded.add(id);
+        try {
+            commit('setPost', await post(type, slug));
+        } catch {
+            loaded.delete(id);
         }
-        const posts = await getPosts(params);
-        commit('setPosts', posts);
-        commit('tag', { post: posts[posts.length - 1], category });
     },
-    async getReviews({ state, commit }) {
-        const params = {};
-        if (state.lastSerialReviewDate !== -1) {
-            params.before = state.lastSerialReviewDate;
-        }
-        const reviews = await getReviews(params);
-        commit('setPosts', reviews);
-        commit('tag', { post: reviews[reviews.length - 1], category: 2 });
-    },
-    async getReview({ commit, getters }, slug) {
-        if (!(slug in getters.slugLookup)) {
-            commit('setPosts', await getReviewBySlug(slug));
-        }
-        return getters.slugLookup[slug];
-    },
-    async getArticles({ state, commit }) {
-        const params = {};
-        if (state.lastSerialArticleDate !== -1) {
-            params.before = state.lastSerialArticleDate;
-        }
-        const articles = await getArticles(params);
-        commit('setPosts', articles);
-        commit('tag', { post: articles[articles.length - 1], category: 1 });
-    },
-    async getArticle({ commit, getters }, slug) {
-        if (!(slug in getters.slugLookup)) {
-            commit('setPosts', await getArticleBySlug(slug));
-        }
-        return getters.slugLookup[slug];
-    }
 };

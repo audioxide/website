@@ -50,8 +50,15 @@ export default {
     @import "~assets/styles/variables";
 
     .lead-review {
-        padding: 100px 0;
-        display: flex;
+        padding: 1.5em 0;
+        // display: flex;
+    }
+
+    @include medium {
+        .lead-review {
+            padding: 100px 0;
+            display: flex;
+        }
     }
 
     .review-details {
@@ -83,7 +90,17 @@ export default {
     }
 
     img {
-        max-height: 300px;
+        // max-height: 300px;
+        width: 100%;
         box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+        margin-bottom: 1.5em;
+    }
+
+    @include medium {
+        img {
+            max-height: 300px;
+            width: auto;
+            margin-bottom: 0;
+        }
     }
 </style>
