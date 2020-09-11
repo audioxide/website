@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { banner } from '../api';
+import { banner, types, page } from '../api';
 
 export const strict = false;
 
@@ -26,6 +26,8 @@ export const plugins = [
 ]
 
 export const state = () => ({
+    types: {},
+    pages: {},
     banner: {},
     breakpoint: 'base',
 });
@@ -36,11 +38,25 @@ export const mutations = {
     },
     setBreakpoint(state, breakpoint) {
         state.breakpoint = breakpoint;
-    }
+    },
+    setTypes(state, types) {
+        Vue.set(state, 'types', types);
+    },
+    setPage(state, page) {
+        Vue.set(state.pages, page.metadata.slug, page);
+    },
 };
 
 export const actions = {
     async getBannerData({ commit }) {
         commit('setBannerData', await banner());
     },
+    async getTypes({ commit }) {
+        commit('setTypes', await types());
+    },
+    async getPage({ state, commit }, slug) {
+        if (!(slug in state)) {
+            commit('setPage', await page(slug));
+        }
+    }
 };
