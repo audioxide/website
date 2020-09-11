@@ -17,7 +17,7 @@ const resolveFeaturedImage = post => {
 
 const getData = (route) => fetch(APIURL + route).then(r => r.json());
 
-const getGrouping = async (route) => {
+/* const getGrouping = async (route) => {
     const data = await getData(route);
     // Object.values(data).forEach(posts => posts.forEach(resolveFeaturedImage));
     return data;
@@ -33,25 +33,31 @@ const getSingle = async (route) => {
     const data = await getData(route);
     // resolveFeaturedImage(data);
     return data;
-};
+}; */
 
-const banner = () => getListing('albumbanner.json');
+const banner = () => getData('albumbanner.json');
 
-const latest = () => getGrouping('latest.json');
+const latest = () => getData('latest.json');
 
-const posts = (type) => getListing(`${type}.json`);
+const posts = (type) => getData(`${type}.json`);
 
-const post = (type, slug) => getSingle(`posts/${type}-${slug}.json`);
+const post = (type, slug) => getData(`posts/${type}-${slug}.json`);
 
-const tags = () => getGrouping('tags.json');
+const page = (slug) => getData(`pages/${slug}.json`);
 
-const tag = (slug) => getSingle(`tags/${slug}.json`);
+const tags = () => getData('tags.json');
+
+const tag = (slug) => getData(`tags/${slug}.json`);
+
+const types = () => getData('types.json');
 
 export {
     banner,
     latest,
     posts,
     post,
+    page,
     tags,
     tag,
+    types,
 }
