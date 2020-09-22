@@ -34,10 +34,10 @@ const mergePost = (postObject, lookup, newPost, sort = false) => {
     return true;
 };
 
-const mergePosts = (postObject, lookup, newPosts) => {
+const mergePosts = (postObject, lookup, newPosts, forceSort = false) => {
     const changed = new Set();
     newPosts.forEach(post => {
-        if (mergePost(postObject, lookup, post)) {
+        if (mergePost(postObject, lookup, post) || forceSort) {
             changed.add(post.metadata.type);
         }
     });
@@ -67,7 +67,7 @@ export const getters = {
 const getterId = 'posts/pathLookup';
 export const mutations = {
     setPostsObject(state, posts) {
-        Object.values(posts).forEach(postArr => mergePosts(state.posts, this.getters[getterId], postArr));
+        Object.values(posts).forEach(postArr => mergePosts(state.posts, this.getters[getterId], postArr, true));
     },
     setPostsArray(state, posts) {
         mergePosts(state.posts, this.getters[getterId], posts);
