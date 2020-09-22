@@ -1,5 +1,9 @@
 type ImageDimensions = { w: number, h?: number };
 
+type ImageSizeResolutions = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
+
+type ImageSizeAspectRatios = 'standard' | 'square' | 'original';
+
 type ImageSizes = [
     "xsmall-standard",
     "xsmall-square",
