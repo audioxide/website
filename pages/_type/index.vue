@@ -4,7 +4,7 @@
             <post-single :post="data" />
         </template>
         <template v-else-if="type === 'post'">
-            <post-listing :listing="data" />
+            <span v-for="(post, key) in data" :key="key"><article-link :post="post" /></span>
         </template>
         <template v-else>
             <p>This page doesn't exist.</p>
@@ -14,8 +14,8 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import PostSingle from '../../components/PostSingle.vue';
-import PostListing from '../../components/PostListing.vue';
+import PostSingle from '@/components/PostSingle.vue';
+import ArticleLink from '@/components/ArticleLink.vue';
 
 type ContentTypes = { pages: string[], postTypes: string[] };
 const isPost = (type: string, types: ContentTypes) => types.postTypes.includes(type);
@@ -23,7 +23,7 @@ const isPage = (type: string, types: ContentTypes) => types.pages.includes(type)
 
 export default Vue.extend({
     name: 'ArticleListing',
-    components: { PostSingle, PostListing },
+    components: { PostSingle, ArticleLink },
     data: () => ({
         type: '',
         slug: '',
