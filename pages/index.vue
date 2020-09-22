@@ -3,32 +3,33 @@
     <component :is="leadComponent" :post="leadPost" />
     <div class="panel reviews">
       <h3>Reviews <nuxt-link to="reviews">See all <span class="sr-only">reviews</span></nuxt-link></h3>
-      <div class="listing" v-for="(item, key) in reviews" :key="key">
-        <review-link :post="item" image-size="xsmall" />
+      <div class="listing">
+        <review-link v-for="(item, key) in reviews" :key="key" :post="item" image-size="xsmall" />
       </div>
     </div>
     <div class="panel articles">
       <h3>Articles <nuxt-link to="articles">See all <span class="sr-only">articles</span></nuxt-link></h3>
-      <div class="listing" v-for="(item, key) in articles" :key="key">
-        <article-link :post="item" />
+      <div class="listing">
+        <article-link v-for="(item, key) in articles" :key="key" :post="item" />
       </div>
     </div>
     <div class="panel interviews">
       <h3>Interviews <nuxt-link to="interviews">See all <span class="sr-only">interviews</span></nuxt-link></h3>
-      <div class="listing" v-for="(item, key) in interviews" :key="key">
-        <article-link :post="item" :author="false" />
+      <div class="listing">
+        <article-link v-for="(item, key) in interviews" :key="key" :post="item" :author="false" />
       </div>
     </div>
     <div class="panel listening-parties">
       <h3>Listening Parties <nuxt-link to="interviews">See all <span class="sr-only">listening parties</span></nuxt-link></h3>
-      <div class="listing" v-for="(item, key) in listeningParties" :key="key">
-        <review-link :post="item" image-size="xsmall" :author="false" />
+      <div class="listing">
+        <review-link v-for="(item, key) in listeningParties" :key="key"
+                    :post="item" image-size="xsmall" :author="false" />
       </div>
     </div>
     <div class="panel funnyfarm">
       <h3>Funnyfarm <nuxt-link to="interviews">See all <span class="sr-only">funnyfarm articles</span></nuxt-link></h3>
-      <div class="listing" v-for="(item, key) in funnyfarm" :key="key">
-        <article-link :post="item" :author="false" />
+      <div class="listing">
+        <article-link v-for="(item, key) in funnyfarm" :key="key" :post="item" :author="false" />
       </div>
     </div>
   </main>
@@ -141,17 +142,15 @@ export default Vue.extend({
     }
   }
 
-  :not(.interviews) .listing:not(:last-child) {
+  :not(.interviews) .post-link:not(:last-child) {
     border-bottom: 3px solid #f5f5f5;
   }
 
   .interviews {
-    display: flex;
-    flex-wrap: wrap;
-    h3 {
-      width: 100%;
-    }
     .listing {
+      display: flex;
+    }
+    .post-link {
       width: 25%;
     }
   }
