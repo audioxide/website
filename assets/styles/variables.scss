@@ -169,26 +169,29 @@ $site-foot__icon-margin: $site-foot__icon-size * 0.25;
 }
 
 @mixin postLink {
-  .overlay-link {
-    position: static;
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
+  .post-link {
+    position: relative;
+    .overlay-link {
+      position: static;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+      &:before {
+        bottom: 0;
+        content: '';
+        left: 0;
+        overflow: hidden;
+        position: absolute;
+        right: 0;
+        top: 0;
+        white-space: nowrap;
+        z-index: 1;
+      }
     }
-    &:before {
-      bottom: 0;
-      content: '';
-      left: 0;
-      overflow: hidden;
-      position: absolute;
-      right: 0;
-      top: 0;
-      white-space: nowrap;
-      z-index: 1;
-    }
-  }
 
-  h4 {
-    font-family: $heading-fontstack;
+    h4 {
+      font-family: $heading-fontstack;
+    }
   }
 }
