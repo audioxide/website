@@ -1,6 +1,6 @@
 <template>
   <main>
-    <component :is="leadComponent" :post="leadPost" />
+    <component :is="leadComponent" :post="leadPost" class="lead-post" />
     <div class="panel reviews">
       <h3>Reviews <nuxt-link to="reviews">See all <span class="sr-only">reviews</span></nuxt-link></h3>
       <div class="listing">
@@ -67,23 +67,17 @@ export default Vue.extend({
       return this.posts.reviews
         .filter(review => review !== this.leadPost)
         .slice(0, this.getLimit({
-          large: 8,
-          medium: 6,
-          default: 4,
+          default: 7,
         })) as PostListing<Review>;
     },
     articles(): PostListing<Article> {
       return this.posts.articles.slice(0, this.getLimit({
-        large: 3,
-        medium: 3,
-        default: 2,
+        default: 3,
       })) as PostListing<Article>;
     },
     interviews(): PostListing<Article> {
       return this.posts.interviews.slice(0, this.getLimit({
-        large: 3,
-        medium: 4,
-        default: 2,
+        default: 4,
       })) as PostListing<Article>;
     },
     funnyfarm(): PostListing<Article> {
@@ -116,20 +110,63 @@ export default Vue.extend({
 <style lang="scss" scoped>
   @import "~assets/styles/variables";
 
+  main {
+    width: 80%;
+    margin: 40px auto;
+    display: grid;
+    grid-template: repeat(5, auto) / repeat(10, 1fr);
+    grid-column-gap: 30px;
+    grid-row-gap: 10px;
+  }
+
+  .lead-post {
+    grid-area: 1 / 4 / 2 / 8;
+    margin-bottom: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+    border: 3px solid $colour-grey--light;
+    border-radius: 15px;
+    padding-top: 0;
+    ::v-deep {
+      img {
+        margin: 0;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+      }
+      .info {
+        padding: 30px;
+      }
+      h4 {
+        font-size: $site-content__font--large;
+      }
+    }
+  }
+
+  .lead-post, .interviews .post-link {
+    display: block;
+    ::v-deep img {
+      width: 100%;
+    }
+  }
+
   .panel {
     // padding: 0 7.5%;
     position: relative;
     overflow: hidden;
     flex-wrap: wrap;
     & > h3 {
-      // font-family: $heading-fontstack;
-      font-size: $site-content__font--small;
-      font-variant: small-caps;
+      font-family: $section-fontstack;
+      font-size: $site-content__font--section-heading;
+      // font-variant: small-caps;
+      font-weight: 500;
+      font-style: italic;
       width: 100%;
       // text-align: center;
       position: relative;
       border-top: 3px solid #f5f5f5;
       border-bottom: 3px solid #f5f5f5;
+      text-align: center;
+      padding: 18px 10px;
       // margin-bottom: 1.5em;
       /* &::after {
         width: 5%;
@@ -142,17 +179,51 @@ export default Vue.extend({
     }
   }
 
-  :not(.interviews) .post-link:not(:last-child) {
+  .reviews {
+    grid-area: 1 / 1 / 3 / 4;
+  }
+
+  .articles {
+    grid-area: 2 / 4 / 3 / 11;
+    padding-left: 20px;
+    ::v-deep img {
+      order: 1;
+      margin-right: 0;
+      margin-left: 10px;
+    }
+    &::before {
+      content: "";
+      height: 80%;
+      width: 3px;
+      display: block;
+      background-color: $colour-grey--light;
+      position: absolute;
+      top: 10%;
+      left: -6px;
+    }
+  }
+
+  :not(.interviews) > .listing > .post-link:not(:last-child) {
     border-bottom: 3px solid #f5f5f5;
   }
 
   .interviews {
+    grid-area: 3 / 1 / 4 / 11;
     .listing {
       display: flex;
+      justify-content: space-between;
     }
     .post-link {
-      width: 25%;
+      width: calc(25% - 15px);
     }
+  }
+
+  .listening-parties {
+    grid-area: 4 / 7 / 5 / 11;
+  }
+
+  .funnyfarm {
+    grid-area: 4 / 1 / 5 / 7;
   }
 
   /* .listing {

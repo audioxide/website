@@ -277,6 +277,13 @@ export default {
 
     @import '~assets/styles/variables';
 
+    a {
+        color: white;
+        &:hover {
+            color: darken(white, 10%);
+        }
+    }
+
     .site-nav__search {
         display: block;
         margin-bottom: var(--site-nav__margin--small);
