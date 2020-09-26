@@ -27,10 +27,11 @@ $bp_large: 90em;
 }
 
 @import '~assets/webfonts/allroundgothic_medium_macroman/stylesheet.css';
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro|Spectral');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,600;1,400;1,600&family=Spectral+SC:ital,wght@0,500;1,500&family=Spectral:ital,wght@0,200;0,400;0,600;1,200;1,400;1,600&display=swap');
 
 /* Font stacks */
 $base-fontstack: 'Spectral', serif;
+$section-fontstack: 'Spectral SC', serif;
 $heading-fontstack: 'Source Sans Pro', sans-serif;
 $logo-fontstack: AllRoundGothic-Medium, sans-serif;
 
@@ -38,6 +39,7 @@ $logo-fontstack: AllRoundGothic-Medium, sans-serif;
 $colour-grey--light: #f5f5f5;
 $colour-grey: #767676;
 $colour-grey--dark: #686868;
+$colour-pink: #f01d4f;
 
 /* Global image paths */
 $logo-signet: url('~assets/img/signetwhite.svg');
@@ -81,10 +83,12 @@ $site-content__underhang: 0.9;
 $site-content__width: $content-width * $site-content__underhang;
 $site-content__width--large: $content-width--large * $site-content__underhang;
 $site-content__width--x-large: $content-width--x-large * $site-content__underhang;
-$site-content__font--xx-large: 5em;
-$site-content__font--x-large: 3em;
-$site-content__font--large: 1.5em;
-$site-content__font--small: 0.9em;
+$site-content__font--xx-large: 5rem;
+$site-content__font--x-large: 3rem;
+$site-content__font--large: 1.5rem;
+$site-content__font--section-heading: 1.1rem;
+$site-content__font: 1rem;
+$site-content__font--small: 0.9rem;
 $site-content__spacer--xx-large: 2em;
 $site-content__spacer--x-large: 1.5em;
 $site-content__spacer--large: 1em;
@@ -171,9 +175,25 @@ $site-foot__icon-margin: $site-foot__icon-size * 0.25;
 @mixin postLink {
   .post-link {
     position: relative;
+    display: flex;
+    padding: 30px 0;
+    font-family: $base-fontstack;
+    font-size: $site-content__font--small;
+
+    img {
+      flex-grow: 1;
+      flex-basis: 0;
+      align-self: start;
+      margin-right: 10px;
+    }
+
+    .info {
+      flex-grow: 2;
+      flex-basis: 0;
+    }
+
     .overlay-link {
       position: static;
-      text-decoration: none;
       &:hover {
         text-decoration: underline;
       }
@@ -192,6 +212,21 @@ $site-foot__icon-margin: $site-foot__icon-size * 0.25;
 
     h4 {
       font-family: $heading-fontstack;
+      font-size: $site-content__font;
+      font-weight: 600;
+      line-height: normal;
+      margin-top: 2px;
+    }
+
+    p {
+      margin: 1em 0;
+    }
+
+    .author {
+      font-family: $heading-fontstack;
+      .name {
+        font-weight: 600;
+      }
     }
   }
 }

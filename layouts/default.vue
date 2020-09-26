@@ -35,6 +35,22 @@ export default {
 <style lang="scss">
   @import "~assets/styles/variables";
 
+  html, body {
+    font-size: 16px;
+  }
+
+  a {
+    text-decoration: underline;
+    color: $colour-pink;
+    &:hover {
+      color: lighten($colour-pink, 10%);
+    }
+  }
+
+  p {
+    line-height: 1.3;
+  }
+
   .site-content {
       width: $site-content__width;
       margin: 0 auto;
