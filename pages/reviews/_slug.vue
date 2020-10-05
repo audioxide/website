@@ -12,7 +12,7 @@
                 <span class="review-header__artist">{{review.metadata.artist}}</span>
             </h1>
             <p class="review-header__authors">
-                <span>Review by </span>
+                <span>Album review by </span>
                 <span v-for="(reviewItem, key) in reviews" :key="`reviewers-${key}`">
                     <a class="review-header__author" :href="'../authors/' + reviewItem.author.slug">{{reviewItem.author.name}}</a>{{ key !== reviews.length - 1 ? ', ' : ''}}
                 </span>
@@ -28,10 +28,11 @@
                 <span class="review-sidebar__total" :style="sidebarHighlightStyles">{{review.metadata.totalscore.possible}}</span>
             </div>
             <p class="review-sidebar__summary" :style="textStyles">{{ review.metadata.summary }}</p>
-            <div class="review-sidebar__tracks" :style="sidebarStyles">
+            <div class="review-sidebar__tracks" :class="{ 'review-sidebar__tracks--artist-link': review.metadata.artistLink }" :style="sidebarStyles">
                 <template v-if="review.metadata.essentialtracks.length">
                 <p class="review-sidebar__heading" :style="sidebarHighlightStyles">Essential</p>
                 <p class="review-sidebar__track"
+                    :style="sidebarTextStyles"
                     v-for="(track, key) in review.metadata.essentialtracks"
                     :key="`essential-tracks-${key}`">
                     {{ track }}
@@ -47,6 +48,11 @@
                 </p>
                 </template>
             </div>
+            <template v-if="review.metadata.artistLink">
+            <div class="review-sidebar__artist-link">
+                <p><a :href="review.metadata.artistLink" target="_blank">Support the artist</a></p>
+            </div>
+            </template>
             <p class="review-sidebar__serial">No. {{ weekStr }}</p>
         </aside>
         <section class="review-content">
@@ -170,7 +176,37 @@ export default Vue.extend({
     .review-sidebar__total-score, .review-sidebar__tracks {
         background: black;
         color: white;
+    }
+
+    .review-sidebar__total-score, .review-sidebar__tracks, .review-sidebar__artist-link {
         text-align: center;
+        border-radius: 15px;
+    }
+
+    .review-sidebar__total-score, .review-sidebar__artist-link {
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+    }
+
+    .review-sidebar__tracks--artist-link {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+        margin-bottom: 3px;
+    }
+
+    .review-sidebar__tracks, .review-sidebar__artist-link {
+        padding: 10px 20px;
+    }
+
+    .review-sidebar__tracks {
+        padding-bottom: 30px;
+    }
+
+    .review-sidebar__artist-link {
+        background: white;
+        display: block;
+        font-family: $heading-fontstack;
+        border: 3px solid $colour-pink;
     }
 
     .review-sidebar__heading, .review-sidebar__total-score {
@@ -195,7 +231,7 @@ export default Vue.extend({
         @include site-content__body-text;
         margin: 0;
         font-style: italic;
-        padding: $site-content__spacer $site-content__spacer--small;
+        padding: $site-content__spacer--large;
         &:before {
             content: open-quote;
         }
@@ -226,6 +262,7 @@ export default Vue.extend({
         font-family: $heading-fontstack;
         margin-top: $site-content__spacer--small;
         text-align: right;
+        padding: 5px 15px;
     }
 
     .review-content {
