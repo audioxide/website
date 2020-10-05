@@ -3,7 +3,7 @@
         <img v-if="image" :src="post.metadata.featuredimage[`${imageSize}-square`]" />
         <div class="info">
             <h4 v-if="title">
-                <nuxt-link :to="`${post.metadata.type}/${post.metadata.slug}`" class="overlay-link">
+                <nuxt-link :to="`/${post.metadata.type}/${post.metadata.slug}`" class="overlay-link">
                     <span class="album">{{ post.metadata.album }}</span>
                     <span class="artist">{{ post.metadata.artist }}</span>
                 </nuxt-link>

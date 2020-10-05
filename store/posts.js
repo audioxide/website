@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { latest, posts, post } from '../api';
+import { latest, posts, post, tag } from '../api';
 
 const loaded = new Set();
 
@@ -47,7 +47,7 @@ const mergePosts = (postObject, lookup, newPosts, forceSort = false) => {
 export const state = () => ({
     posts: {},
     postData: {},
-    tags: {},
+    tags: [],
 });
 
 export const getters = {
@@ -57,9 +57,9 @@ export const getters = {
         });
         return acc;
     }, {}),
-    byTag: ({ posts, tags }) => Object.keys(tags).map(id => parseInt(id)).reduce((acc, key) => Object.assign(
+    byTag: ({ posts, tags }) => tags.reduce((acc, key) => Object.assign(
         acc,
-        { [key]: posts.filter(post => post.date >= (tags[key] || Number.MIN_SAFE_INTEGER) && post.categories.includes(key)) }
+        { [key]: Object.values(posts).reduce((acc, typeList) => acc.concat(typeList.filter(post => post.metadata.tags.includes(key))), []) }
     ), {}),
     latestPost: ({ posts }) => Object.values(posts).reduce((latest, [post]) => !latest || new Date(post.metadata.created) > new Date(latest.metadata.created) ? post : latest, undefined),
 };
@@ -75,6 +75,11 @@ export const mutations = {
     setPost(state, post) {
         mergePost(state.posts, this.getters[getterId], post, true);
     },
+    addTag(state, tag) {
+        if (!state.tags.includes(tag)) {
+            state.tags.push(tag);
+        }
+    }
 };
 
 export const actions = {
@@ -94,6 +99,17 @@ export const actions = {
         loaded.add(id);
         try {
             commit('setPostsArray', await posts(type));
+        } catch {
+            loaded.delete(id);
+        }
+    },
+    async getPostTag({ commit }, tagSlug) {
+        const id = `posts/tags/${tagSlug}`;
+        if (loaded.has(id)) return;
+        loaded.add(id);
+        try {
+            commit('setPostsArray', await tag(tagSlug));
+            commit('addTag', tagSlug);
         } catch {
             loaded.delete(id);
         }
