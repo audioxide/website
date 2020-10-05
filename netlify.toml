@@ -1,5 +1,8 @@
 [build]
   publish = "dist/"
+  command = "sed -i \"s|SITE_URL|${URL}|g\" netlify.toml && export API_URL=$URL/api && npm run build"
+
+[context.deploy-preview]
   command = "sed -i \"s|SITE_URL|${DEPLOY_PRIME_URL}|g\" netlify.toml && export API_URL=$DEPLOY_PRIME_URL/api && npm run build"
 
 [[redirects]]
