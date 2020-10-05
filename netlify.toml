@@ -2,7 +2,7 @@
   publish = "dist/"
   command = "sed -i \"s|SITE_URL|${URL}|g\" netlify.toml && npm run build"
 [build.environment]
-  API_URL = "$SITE_URL/api"
+  API_URL = "SITE_URL/api"
 
 [[redirects]]
   from = "/api/*"
@@ -18,4 +18,4 @@
 [[headers]]
   for = "/api/*"
   [headers.values]
-    Access-Control-Allow-Origin = "${SITE_URL}"
+    Access-Control-Allow-Origin = "SITE_URL"
