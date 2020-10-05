@@ -103,11 +103,11 @@ $site-content__spacer--small: 0.25em;
 @mixin site-content__body-text {
   margin-bottom: $site-content__spacer--xx-large;
   line-height: $site-content__spacer--x-large;
-  font-size: 1.2em;
+  font-size: 1.1em;
   letter-spacing: -0.2px;
 }
 
-$site-content__content-size: 75%;
+$site-content__content-size: 67%;
 
 /* Review config */
 $review__sidebar-size: calc(100% - #{$site-content__content-size});
