@@ -1,8 +1,6 @@
 [build]
   publish = "dist/"
-  command = "sed -i \"s|SITE_URL|${URL}|g\" netlify.toml && npm run build"
-[build.environment]
-  API_URL = "SITE_URL/api"
+  command = "sed -i \"s|SITE_URL|${URL}|g\" netlify.toml && export API_URL=$URL/api && npm run build"
 
 [[redirects]]
   from = "/api/*"
