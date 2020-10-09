@@ -111,6 +111,14 @@ export default Vue.extend({
                 margin: 0 auto;
             }
 
+            strong {
+                font-weight: 600;
+            }
+
+            em {
+                font-style: italic;
+            }
+
             h2, h3, h4 {
                 font-family: $heading-fontstack;
                 font-weight: bold;
