@@ -1,106 +1,66 @@
 <template>
-    <article :class="{ 'decorated': decorate }">
-        <section v-for="(item, key) in content" :key="key">
-            <h2 class="author" v-if="authorName[key]">{{authorName[key]}}</h2>
-            <p class="author-social" v-if="authorLink[key]"><a :href="authorLink[key].url">{{ authorLink[key].text }}</a></p>
-            <span class="content" v-html="contentHTML[key]" />
-            <p class="score" v-if="item.score">
-                <span class="given" :style="textHighlight">{{item.score.score}}</span>
-                <span class="sr-only">out of</span>
-                <span class="possible">{{item.score.max}}</span>
-            </p>
-            <div class="track-wrapper" v-if="item.tracks">
-                <span class="track-prefix">Favourite tracks //</span>
-                <span class="tracks">
-                    <span class="track"
-                        v-for="(track, tkey) in item.tracks"
-                        :key="`tracks-${tkey}`">
-                        {{track}}
-                    </span>
-                </span>
-            </div>
-            <hr class="divider" v-if="key !== content.length - 1">
-        </section>
-    </article>
+    <span class="content" :class="{ decorate }" v-html="content" ref="contentParent" />
 </template>
 
 <script lang="ts">
 import Vue, { PropType } from 'vue';
-import { isObject, resolveAuthorLink } from '~/assets/utilities';
 
-type AuthorLink = {
-    text: string,
-    url: string,
-};
+type PartialEvent = { preventDefault: Event['preventDefault'], target: Event['target'] };
 
 export default Vue.extend({
     name: 'PostContent',
     props: {
-        content: { type: Array as PropType<Post['content']>, required: true },
-        colours: Array as unknown as PropType<ReviewMetadata['colours']>,
+        content: { type: String, required: true },
         decorate: { type: Boolean, default: false },
     },
-    /* data: () => ({
-        review: {} as {
-            meta: {
-                'Post Colours': PostColours,
-                'Week Number': string,
-            },
-            reviews: {
-                reviewer: {
-                    name: string,
-                }
-            }[],
-        },
-    }), */
-    computed: {
-        textHighlight(): ({ color: string }) {
-            const primary = isObject(this.colours) ? this.colours[0] : 'black';
-            return { color: primary };
-        },
-        authors(): (Author | undefined)[] {
-            return this.content.map(item => {
-                if (!isObject(item) || !('author' in item)) return undefined;
-                return (item as ReviewItem).author;
-            })
-        },
-        authorName(): (string | null)[] {
-            return this.authors.map(item => item ? item.name : null);
-        },
-        authorLink(): (AuthorLink | null)[] {
-            return this.authors.map(author => resolveAuthorLink(author));
-        },
-        contentHTML(): string[] {
-            return this.content.map(item => {
-                if (typeof item === 'string') return item;
-                if (isObject(item)) {
-                    return (item as ReviewItem).review || item.content || item.body || '';
-                }
-                return '';
-            });
+    data: () => ({
+        handler: null as ((evt: PartialEvent) => void) | null,
+    }),
+    mounted() {
+        const parent = this.$refs.contentParent;
+        let preventDefault: PartialEvent['preventDefault'];
+        this.handler = (evt: PartialEvent) => {
+            preventDefault = preventDefault || evt.preventDefault.bind(evt);
+            const elm = evt.target;
+            if (!(elm instanceof Element)) return;
+            if (elm.nodeName !== 'A') {
+                if (parent === elm.parentNode || !this.handler) return;
+                this.handler({ preventDefault, target: elm.parentNode });
+                return;
+            }
+            const url = (elm as HTMLAnchorElement).href;
+            let host, pathname;
+            if (window.URL && window.URL.prototype && ('href' in window.URL.prototype)) {
+                ({host, pathname} = new URL(url));
+            } else {
+                // No version of IE supports an instance of URL
+                const uriRegex = /^(([^:\/?#]+):)?(\/\/([^\/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?/;
+                const result = url.match(uriRegex);
+                if (!result) return;
+                host = result[4];
+                pathname = result[5];
+            }
+            if (host === window.location.host) {
+                evt.preventDefault();
+                this.$router.push(pathname);
+            }
+        };
+
+        if (parent instanceof Element) {
+            parent.addEventListener('click', this.handler, false);
         }
-    }
+    },
+    beforeDestroy() {
+        const parent = this.$refs.contentParent;
+        if (this.handler && parent instanceof Element) {
+            parent.removeEventListener('click', this.handler);
+        }
+    },
 })
 </script>
 
 <style lang="scss" scoped>
     @import "~assets/styles/variables";
-
-    .author,
-    .author-social,
-    .score {
-        font-family: $heading-fontstack;
-    }
-
-    .author {
-        font-weight: bold;
-        font-size: $site-content__font--large;
-    }
-
-    .author-social {
-        @include site-content__subtext;
-        margin-bottom: $site-content__spacer--small;
-    }
 
     .content {
         margin: $site-content__spacer--large 0;
@@ -153,7 +113,7 @@ export default Vue.extend({
         }
     }
 
-    .decorated .content ::v-deep {
+    .decorate.content ::v-deep {
         & > {
             p, img, h2, h3, h4, blockquote {
                 width: 67%;
@@ -176,54 +136,4 @@ export default Vue.extend({
             margin-left: -25%;
         }
     }
-
-    .track-wrapper {
-        display: flex;
-    }
-
-    .track-prefix, .track {
-        @include site-content__body-text;
-        margin: 0;
-    }
-
-    .track {
-        display: block;
-    }
-
-    .track-prefix {
-        font-weight: bold;
-        margin-right: 0.25em;
-    }
-
-    .track:nth-child(2) {
-        margin-left: 35px;
-    }
-
-    .track:nth-child(3) {
-        margin-left: 70px;
-    }
-
-    .score {
-        @include score-wrap;
-        align-items: center;
-        float: right;
-        font-size: 1.7em;
-        width: 82px;
-        height: 82px;
-        border: 2.5px $colour-grey--light solid;
-        border-radius: 2em;
-    }
-
-    .given {
-        @include review__score-given;
-    }
-
-    .possible {
-        @include review__score-possible;
-    }
-
-    .divider {
-        width: 75%;
-    }
-
 </style>

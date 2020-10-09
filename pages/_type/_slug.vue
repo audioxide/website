@@ -15,7 +15,7 @@
             </p>
         </header>
         <section class="article-content">
-            <post-content :content="article.content" :decorate="true" />
+            <post-content-block :content="article.content" :decorate="true" />
             <div class="tags">
                 <span v-for="(tag, key) in article.metadata.tags" :key="key" class="tag"><nuxt-link :to="`/tags/${tag}`">{{tag}}</nuxt-link></span>
             </div>
@@ -25,7 +25,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import PostContent from '../../components/PostContent.vue';
+import PostContentBlock from '../../components/PostContentBlock.vue';
 import { resolveAuthorLink, isObject, metaTitle, toTitleCase } from '../../assets/utilities';
 
 type PostColours = [string, string, string];
@@ -33,7 +33,7 @@ type ColourStyles = { [key: string]: string };
 
 export default Vue.extend({
     name: 'AudioxideArticle',
-    components: { PostContent },
+    components: { PostContentBlock },
     data: () => ({
         article: {} as Article,
         type: 'articles',

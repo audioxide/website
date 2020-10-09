@@ -56,7 +56,7 @@
             <p class="review-sidebar__serial">No. {{ weekStr }}</p>
         </aside>
         <section class="review-content">
-            <post-content :content="review.content" :colours="colours" />
+            <post-content-block :content="review.content" :colours="colours" />
             <div class="tags">
                 <span v-for="(tag, key) in review.metadata.tags" :key="key" class="tag"><nuxt-link :to="`/tags/${tag}`">{{tag}}</nuxt-link></span>
             </div>
@@ -66,7 +66,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import PostContent from '../../components/PostContent.vue';
+import PostContentBlock from '../../components/PostContentBlock.vue';
 import { audioxideStructuredData, metaTitle, padNum } from '~/assets/utilities';
 import { MetaInfo } from 'vue-meta';
 import formatISO from 'date-fns/formatISO';
@@ -76,7 +76,7 @@ type ColourStyles = { [key: string]: string };
 
 export default Vue.extend({
     name: 'AudioxideReview',
-    components: { PostContent },
+    components: { PostContentBlock },
     data: () => ({
         review: {} as Review,
     }),
