@@ -81,6 +81,8 @@ interface ReviewMetadata extends PostMetadata {
     week: number,
     essentialtracks?: string[],
     favouritetracks?: string[],
+    artistMBID: string,
+    albumMBID: string,
 }
 
 interface Post {

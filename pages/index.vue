@@ -39,9 +39,18 @@
 import Vue from 'vue';
 import ArticleLink from '@/components/ArticleLink.vue';
 import ReviewLink from '@/components/ReviewLink.vue';
+import { audioxideStructuredData } from '~/assets/utilities';
 
 export default Vue.extend({
   components: { ArticleLink, ReviewLink },
+  head() {
+    return {
+      script: [{
+        type: 'application/ld+json',
+        json: audioxideStructuredData(),
+      }],
+    };
+  },
   asyncData({ store }) {
     return Promise.all([
       store.dispatch('posts/getLatestData'),
