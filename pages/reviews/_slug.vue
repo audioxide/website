@@ -67,7 +67,9 @@
 <script lang="ts">
 import Vue from 'vue';
 import PostContent from '../../components/PostContent.vue';
-import { padNum } from '~/assets/utilities';
+import { audioxideStructuredData, metaTitle, padNum } from '~/assets/utilities';
+import { MetaInfo } from 'vue-meta';
+import formatISO from 'date-fns/formatISO';
 
 type PostColours = [string, string, string];
 type ColourStyles = { [key: string]: string };
@@ -78,6 +80,46 @@ export default Vue.extend({
     data: () => ({
         review: {} as Review,
     }),
+    head() {
+        const metadata = this.review.metadata;
+        const albumArtist = metadata ? `: ${metadata.album} // ${metadata.artist}` : '';
+        const pageMeta: MetaInfo = { title: metaTitle(`Review${albumArtist}`) };
+        if (metadata) {
+            pageMeta.script = [{
+                type: 'application/ld+json',
+                json: {
+                    '@context': 'http://schema.org',
+                    '@type': 'Review',
+                    reviewBody: metadata.summary || metadata.blurb || '',
+                    datePublished: formatISO(metadata.created, { representation: 'date' }),
+                    author: this.reviews.map(review => ({
+                        '@type': 'Person',
+                        name: review.author.name,
+                    })),
+                    itemReviewed: {
+                        '@type': 'MusicAlbum',
+                        'name': metadata.album,
+                        '@id': `https://musicbrainz.org/release-group/${metadata.albumMBID}`,
+                        'image': (metadata.featuredimage || {})['medium-square'] || '',
+                        'albumReleaseType': 'http://schema.org/AlbumRelease',
+                        'byArtist':{
+                            '@type': 'MusicGroup',
+                            'name': metadata.artist,
+                            '@id': `https://musicbrainz.org/artist/${metadata.artistMBID}`,
+                        }
+                    },
+                    reviewRating: {
+                        '@type': 'Rating',
+                        ratingValue: metadata.totalscore.given,
+                        worstRating: 0,
+                        bestRating: metadata.totalscore.possible,
+                    },
+                    publisher: audioxideStructuredData(),
+                }
+            }]
+        }
+        return pageMeta;
+    },
     asyncData({ params: { slug }, store }) {
         return store.dispatch('posts/getPost', { type: 'reviews', slug });
     },

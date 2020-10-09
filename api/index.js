@@ -1,53 +1,54 @@
+import parseISO from 'date-fns/parseISO';
+
 const APIURL = process.env.apiUrl;
 
-const resolveFeaturedImage = post => {
-    let imageObj;
-    if ('metadata' in post && 'featuredimage' in post.metadata) {
-        imageObj = post.metadata.featuredimage;
-    }
-    if ('featuredimage' in post) {
-        imageObj = post.featuredimage;
-    }
-    if (!imageObj) return;
-    Object.entries(imageObj).forEach(([key, imageUrl]) => {
-        // Add API url to make an absolute URL and remove duplicate /
-        imageObj[key] = APIURL + imageUrl.substr(1);
+const processPost = (post) => {
+    if (typeof post !== 'object'
+        || post === null
+        || !('metadata' in post)
+        || typeof post.metadata !== 'object'
+        || post.metadata === null) return post;
+    const metadata = post.metadata;
+    ['created', 'modified'].forEach(key => {
+        if (key in metadata) {
+            metadata[key] = parseISO(metadata[key]);
+        }
     });
-}
+};
 
 const getData = (route) => fetch(APIURL + route).then(r => r.json());
 
-/* const getGrouping = async (route) => {
+const getGrouping = async (route) => {
     const data = await getData(route);
-    // Object.values(data).forEach(posts => posts.forEach(resolveFeaturedImage));
+    Object.values(data).forEach(posts => posts.forEach(processPost));
     return data;
 };
 
 const getListing = async (route) => {
     const data = await getData(route);
-    // data.forEach(resolveFeaturedImage);
+    data.forEach(processPost);
     return data;
 };
 
 const getSingle = async (route) => {
     const data = await getData(route);
-    // resolveFeaturedImage(data);
+    processPost(data);
     return data;
-}; */
+};
 
-const banner = () => getData('albumbanner.json');
+const banner = () => getListing('albumbanner.json');
 
-const latest = () => getData('latest.json');
+const latest = () => getGrouping('latest.json');
 
-const posts = (type) => getData(`${type}.json`);
+const posts = (type) => getListing(`${type}.json`);
 
-const post = (type, slug) => getData(`posts/${type}-${slug}.json`);
+const post = (type, slug) => getSingle(`posts/${type}-${slug}.json`);
 
-const page = (slug) => getData(`pages/${slug}.json`);
+const page = (slug) => getSingle(`pages/${slug}.json`);
 
-const tags = () => getData('tags.json');
+const tags = () => getGrouping('tags.json');
 
-const tag = (slug) => getData(`tags/${slug}.json`);
+const tag = (slug) => getListing(`tags/${slug}.json`);
 
 const types = () => getData('types.json');
 

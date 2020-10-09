@@ -16,6 +16,9 @@
     "@nuxt/typescript-runtime": "^0.4.0",
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/pwa": "^3.0.0-0",
+    "@types/he": "^1.1.1",
+    "date-fns": "^2.16.1",
+    "he": "^1.2.0",
     "nuxt": "^2.0.0",
     "wpapi": "^1.2.1"
   },

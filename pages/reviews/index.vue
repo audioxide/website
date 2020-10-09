@@ -8,9 +8,11 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { metaTitle } from '~/assets/utilities';
 
 export default Vue.extend({
     name: 'ReviewListing',
+    head: () => ({ title: metaTitle('Reviews') }),
     /* async validate({ params: { slug }, store }) {
         // Add in an API endpoint that allows us to check if we have all the reviews
         // if (!store.state.posts.posts.reviews) {

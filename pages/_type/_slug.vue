@@ -26,7 +26,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import PostContent from '../../components/PostContent.vue';
-import { resolveAuthorLink, isObject } from '../../assets/utilities';
+import { resolveAuthorLink, isObject, metaTitle, toTitleCase } from '../../assets/utilities';
 
 type PostColours = [string, string, string];
 type ColourStyles = { [key: string]: string };
@@ -39,6 +39,13 @@ export default Vue.extend({
         type: 'articles',
         slug: '',
     }),
+    head() {
+        const metadata = this.article.metadata;
+        if (metadata) {
+            return { title: metaTitle(metadata.title) };
+        }
+        return { title: metaTitle(toTitleCase(this.slug, '-')) };
+    },
     asyncData({ params: { type, slug }, store }) {
         return store.dispatch('posts/getPost', { type, slug });
     },

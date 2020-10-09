@@ -1,10 +1,10 @@
 <template>
     <span>
         <template v-if="type === 'page'">
-            <post-single :post="data" />
+            <post-single :post="pageData" />
         </template>
         <template v-else-if="type === 'post'">
-            <span v-for="(post, key) in data" :key="key"><article-link :post="post" /></span>
+            <span v-for="(post, key) in pageData" :key="key"><article-link :post="post" /></span>
         </template>
         <template v-else>
             <p>This page doesn't exist.</p>
@@ -14,8 +14,10 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import he from 'he';
 import PostSingle from '@/components/PostSingle.vue';
 import ArticleLink from '@/components/ArticleLink.vue';
+import { metaTitle, toTitleCase } from '~/assets/utilities';
 
 type ContentTypes = { pages: string[], postTypes: string[] };
 const isPost = (type: string, types: ContentTypes) => types.postTypes.includes(type);
@@ -28,6 +30,19 @@ export default Vue.extend({
         type: '',
         slug: '',
     }),
+    head() {
+        let title = '';
+        switch(this.type) {
+            case 'page':
+                const page = this.pageData as Post;
+                title = he.decode(page.metadata.title);
+                break;
+            case 'post':
+                title = toTitleCase(this.slug, '-');
+                break;
+        }
+        return { title: metaTitle(title) };
+    },
     async validate({ params: { type }, store }) {
         if (!('pages' in store.state.types) || !('postTypes' in store.state.types)) {
             await store.dispatch('getTypes');
@@ -56,7 +71,7 @@ export default Vue.extend({
         }
     },
     computed: {
-        data() {
+        pageData(): Post | Post[] | undefined {
             if (this.type === 'page') {
                 return this.$store.state.pages[this.slug];
             }
