@@ -12,8 +12,8 @@ const loaded = new Set();
 - at the end, sort all change post type arrays by date created
 */
 const sortPostArray = (arr) => arr.sort((a, b) => {
-    const aTime = a.created;
-    const bTime = b.created;
+    const aTime = a.metadata.created;
+    const bTime = b.metadata.created;
     if (aTime === bTime) return 0;
     return (((aTime < bTime) * 2) - 1);
 });
@@ -34,10 +34,10 @@ const mergePost = (postObject, lookup, newPost, sort = false) => {
     return true;
 };
 
-const mergePosts = (postObject, lookup, newPosts, forceSort = false) => {
+const mergePosts = (postObject, lookup, newPosts) => {
     const changed = new Set();
     newPosts.forEach(post => {
-        if (mergePost(postObject, lookup, post) || forceSort) {
+        if (mergePost(postObject, lookup, post)) {
             changed.add(post.metadata.type);
         }
     });
@@ -67,7 +67,7 @@ export const getters = {
 const getterId = 'posts/pathLookup';
 export const mutations = {
     setPostsObject(state, posts) {
-        Object.values(posts).forEach(postArr => mergePosts(state.posts, this.getters[getterId], postArr, true));
+        Object.values(posts).forEach(postArr => mergePosts(state.posts, this.getters[getterId], postArr));
     },
     setPostsArray(state, posts) {
         mergePosts(state.posts, this.getters[getterId], posts);
