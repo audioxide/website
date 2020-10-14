@@ -6,7 +6,7 @@
                 aria-label="Toggle site menu"
                 tabindex="0"
                 data-site-nav-toggle>
-                <span class="burger-toggle__menu-bars"></span>
+                <icon icon="bars" />
         </span>
 
         <div class="menu-wrap"
@@ -19,6 +19,7 @@
 
             </form>
             <label class="site-nav__search" aria-label="Search site">
+                <icon icon="search" />
                 <input class="site-nav__search-input" type="text" />
             </label>
 
@@ -161,14 +162,6 @@ export default {
         margin-bottom: $site-nav__margin--small;
     }
 
-
-    .site-nav__search::before {
-        @include icon;
-        font-family: "Font Awesome 5 Pro";
-        font-weight: 400;
-        content: '\f002';
-    }
-
     @include medium {
         .site-nav__search {
             margin-bottom: 0;
@@ -287,14 +280,6 @@ export default {
     .site-nav__search {
         display: block;
         margin-bottom: var(--site-nav__margin--small);
-    }
-
-
-    .site-nav__search::before {
-        @include icon;
-        font-family: "Font Awesome 5 Pro";
-        font-weight: 400;
-        content: '\f002';
     }
 
     @include medium {
@@ -493,13 +478,6 @@ export default {
 
     .burger-toggle--large {
         font-size: $site-nav__bar-font-size--small;
-    }
-
-    .burger-toggle__menu-bars::before {
-        @include icon;
-        font-family: "Font Awesome 5 Pro";
-        font-weight: 400;
-        content: "\f0c9";
     }
 
     @include medium {

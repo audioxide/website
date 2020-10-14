@@ -172,19 +172,42 @@ $site-foot__icon-margin: $site-foot__icon-size * 0.25;
   }
 }
 
+@mixin overlayLink {
+  position: static;
+  &:hover {
+    text-decoration: underline;
+  }
+  &:before {
+    bottom: 0;
+    content: '';
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    white-space: nowrap;
+    z-index: 1;
+  }
+}
+
 @mixin postLink {
   .post-link {
     position: relative;
-    display: flex;
     padding: 30px 0;
     font-family: $base-fontstack;
     font-size: $site-content__font--small;
 
-    img {
+    // We have to use a div wrapper because Safari doesn't handle images in flex uniformly
+    .img-wrap {
       flex-grow: 1;
       flex-basis: 0;
       align-self: start;
-      margin-right: 10px;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
     .info {
@@ -193,21 +216,7 @@ $site-foot__icon-margin: $site-foot__icon-size * 0.25;
     }
 
     .overlay-link {
-      position: static;
-      &:hover {
-        text-decoration: underline;
-      }
-      &:before {
-        bottom: 0;
-        content: '';
-        left: 0;
-        overflow: hidden;
-        position: absolute;
-        right: 0;
-        top: 0;
-        white-space: nowrap;
-        z-index: 1;
-      }
+      @include overlayLink;
     }
 
     h4 {
@@ -228,5 +237,15 @@ $site-foot__icon-margin: $site-foot__icon-size * 0.25;
         font-weight: 600;
       }
     }
+  }
+}
+
+@mixin postLinkFlex {
+  .post-link {
+    display: flex;
+  }
+
+  .img-wrap {
+    margin-right: 10px;
   }
 }

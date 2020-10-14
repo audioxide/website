@@ -1,6 +1,8 @@
 <template>
     <div class="post-link review-link">
-        <img v-if="image" :src="post.metadata.featuredimage[`${imageSize}-square`]" />
+        <div class="img-wrap">
+            <img v-if="image" :src="post.metadata.featuredimage[`${imageSize}-square`]" width="300" height="300" />
+        </div>
         <div class="info">
             <h4 v-if="title">
                 <nuxt-link :to="`/${post.metadata.type}/${post.metadata.slug}`" class="overlay-link">
@@ -25,6 +27,7 @@ export default PostLink.extend({
 @import "~assets/styles/variables";
 
 @include postLink;
+@include postLinkFlex;
 
 h4 span {
     display: block;

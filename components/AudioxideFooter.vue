@@ -5,10 +5,10 @@
             <ul class="site-foot_nav">
                 <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--site-logo site-foot_nav-item--middle">
                     <span>Audioxide</span></li>
-                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--facebook site-foot_nav-item--left"><span>Facebook</span></li>
-                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--twitter site-foot_nav-item--left"><span>Twitter</span></li>
-                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--instagram"><span>Instagram</span></li>
-                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--rss"><span>RSS feed</span></li>
+                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--facebook site-foot_nav-item--left"><span>Facebook</span><icon :icon="['fab', 'facebook-f']" /></li>
+                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--twitter site-foot_nav-item--left"><span>Twitter</span><icon :icon="['fab', 'twitter']" /></li>
+                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--instagram"><span>Instagram</span><icon :icon="['fab', 'instagram']" /></li>
+                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--rss"><span>RSS feed</span><icon icon="rss" /></li>
                 <li class="site-foot_nav-item">Bribes</li>
                 <li class="site-foot_nav-item">Newsletter</li>
                 <li class="site-foot_nav-item">Contact</li>
@@ -19,12 +19,15 @@
 </template>
 
 <script>
-    export default {
-        name: "AudioxideFooter",
-        data: () => ({
-            year: new Date().getFullYear(),
-        })
-    }
+import Icon from '~/components/Icon.vue';
+
+export default {
+    name: "AudioxideFooter",
+    components: { Icon },
+    data: () => ({
+        year: new Date().getFullYear(),
+    })
+}
 </script>
 
 <style lang="scss" scoped>
@@ -91,18 +94,6 @@
             & span {
                 display: none;
             }
-            &::before {
-                @include icon;
-                font-family: "Font Awesome 5 Brands";
-                border: 1px solid black;
-                border-radius: 10em;
-                display: block;
-                width: $site-foot__icon-size;
-                height: $site-foot__icon-size;
-                line-height: 1.9em;
-                margin: 0 auto;
-                margin-top: $site-foot__icon-margin;
-            }
         }
         &.site-foot_nav-item--site-logo::before {
             background: black;
@@ -113,20 +104,6 @@
             width: $site-foot__logo-size;
             height: $site-foot__logo-size;
             margin-top: 0;
-        }
-        &.site-foot_nav-item--facebook::before {
-            content: '\f39e';
-        }
-        &.site-foot_nav-item--twitter::before {
-            content: '\f099';
-        }
-        &.site-foot_nav-item--instagram::before {
-            content: '\f16d';
-        }
-        &.site-foot_nav-item--rss::before {
-            font-family: "Font Awesome 5 Pro";
-            font-weight: 900;
-            content: '\f09e';
         }
     }
 </style>

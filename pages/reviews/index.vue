@@ -1,17 +1,17 @@
 <template>
-    <section>
-        <div v-for="(review, key) in reviews" :key="key">
-            <p><nuxt-link :to="`/reviews/${review.metadata.slug}`">{{ review.metadata.artist }} // {{ review.metadata.album }}</nuxt-link></p>
-        </div>
-    </section>
+    <span>
+        <span v-for="(post, key) in reviews" :key="key"><review-link :post="post" /></span>
+    </span>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+import ReviewLink from '~/components/ReviewLink.vue';
 import { metaTitle } from '~/assets/utilities';
 
 export default Vue.extend({
     name: 'ReviewListing',
+    components: { ReviewLink },
     head: () => ({ title: metaTitle('Reviews') }),
     /* async validate({ params: { slug }, store }) {
         // Add in an API endpoint that allows us to check if we have all the reviews

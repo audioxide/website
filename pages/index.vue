@@ -32,6 +32,35 @@
         <article-link v-for="(item, key) in funnyfarm" :key="key" :post="item" :author="false" />
       </div>
     </div>
+    <div class="panel social">
+      <nuxt-link class="random" to="/random">Feed your head</nuxt-link>
+      <h3>Follow Audioxide</h3>
+      <ul class="social-icons">
+        <li>
+          <span class="icon">
+            <icon class="closed" icon="envelope" />
+            <icon class="opened" icon="envelope-open" />
+          </span>
+          <a class="label" href="https://eepurl.com/cox6qr">Newsletter</a>
+        </li>
+        <li>
+          <span class="icon"><icon :icon="['fab', 'facebook-f']" /></span>
+          <a class="label" href="https://www.facebook.com/Audioxide/">Facebook</a>
+        </li>
+        <li>
+          <span class="icon"><icon :icon="['fab', 'twitter']" /></span>
+          <a class="label" href="https://twitter.com/audioxidecom">Twitter</a>
+        </li>
+        <li>
+          <span class="icon"><icon :icon="['fab', 'instagram']" /></span>
+          <a class="label" href="https://www.instagram.com/audioxidecom/">Instagram</a>
+        </li>
+        <li>
+          <span class="icon"><icon icon="rss" /></span>
+          <a class="label" href="/feed">RSS</a>
+        </li>
+      </ul>
+    </div>
   </main>
 </template>
 
@@ -39,10 +68,11 @@
 import Vue from 'vue';
 import ArticleLink from '@/components/ArticleLink.vue';
 import ReviewLink from '@/components/ReviewLink.vue';
+import Icon from '@/components/Icon.vue';
 import { audioxideStructuredData } from '~/assets/utilities';
 
 export default Vue.extend({
-  components: { ArticleLink, ReviewLink },
+  components: { ArticleLink, ReviewLink, Icon },
   head() {
     return {
       script: [{
@@ -76,28 +106,38 @@ export default Vue.extend({
       return this.posts.reviews
         .filter(review => review !== this.leadPost)
         .slice(0, this.getLimit({
-          default: 7,
+          large: 7,
+          medium: 5,
+          default: 3,
         })) as PostListing<Review>;
     },
     articles(): PostListing<Article> {
       return this.posts.articles.slice(0, this.getLimit({
-        default: 3,
+        large: 3,
+        medium: 3,
+        default: 2,
       })) as PostListing<Article>;
     },
     interviews(): PostListing<Article> {
       return this.posts.interviews.slice(0, this.getLimit({
-        default: 4,
-      })) as PostListing<Article>;
-    },
-    funnyfarm(): PostListing<Article> {
-      return this.posts.funnyfarm.slice(0, this.getLimit({
         large: 4,
         medium: 4,
         default: 2,
       })) as PostListing<Article>;
     },
+    funnyfarm(): PostListing<Article> {
+      return this.posts.funnyfarm.slice(0, this.getLimit({
+        large: 4,
+        medium: 3,
+        default: 2,
+      })) as PostListing<Article>;
+    },
     listeningParties(): PostListing<Article> {
-      return [];
+      return this.posts.listeningparties.slice(0, this.getLimit({
+        large: 4,
+        medium: 3,
+        default: 2,
+      })) as PostListing<Article>;
     }
   },
   methods: {
@@ -120,15 +160,24 @@ export default Vue.extend({
   @import "~assets/styles/variables";
 
   main {
-    width: 80%;
+    width: 95%;
     margin: 40px auto;
-    display: grid;
-    grid-template: repeat(5, auto) / repeat(10, 1fr);
-    grid-column-gap: 30px;
-    grid-row-gap: 10px;
+    display: flex;
+    flex-direction: column;
+    @include medium {
+      @supports (display: grid) {
+          width: 80%;
+          margin: 40px auto;
+          display: grid;
+          grid-template: repeat(5, auto) / repeat(10, 1fr);
+          grid-column-gap: 30px;
+          grid-row-gap: 10px;
+      }
+    }
   }
 
   .lead-post {
+    order: 0;
     grid-area: 1 / 4 / 2 / 8;
     margin-bottom: 20px;
     text-align: center;
@@ -153,8 +202,8 @@ export default Vue.extend({
 
   .lead-post, .interviews .post-link {
     display: block;
-    ::v-deep img {
-      width: 100%;
+    ::v-deep .img-wrap {
+      margin-right: 0;
     }
   }
 
@@ -189,16 +238,28 @@ export default Vue.extend({
   }
 
   .reviews {
+    order: 0;
     grid-area: 1 / 1 / 3 / 4;
   }
 
   .articles {
+    order: 2;
     grid-area: 2 / 4 / 3 / 11;
-    padding-left: 20px;
-    ::v-deep img {
-      order: 1;
-      margin-right: 0;
-      margin-left: 10px;
+    @include small {
+      padding-left: 20px;
+      ::v-deep .img-wrap {
+        order: 1;
+        margin-right: 0;
+        margin-left: 10px;
+        @media (min-width: $bp_small) and (max-width: $bp_medium - 1) {
+          align-self: stretch;
+          min-height: 230px;
+          img {
+              height: 100%;
+              object-fit: cover;
+          }
+        }
+      }
     }
     &::before {
       content: "";
@@ -217,22 +278,92 @@ export default Vue.extend({
   }
 
   .interviews {
+    order: 2;
     grid-area: 3 / 1 / 4 / 11;
-    .listing {
-      display: flex;
-      justify-content: space-between;
+    @include small {
+      .listing {
+        display: flex;
+        justify-content: space-between;
+      }
+      .post-link {
+        width: calc(50% - .5em);
+      }
     }
-    .post-link {
-      width: calc(25% - 15px);
+    @include medium {
+      .post-link {
+        width: calc(25% - 1em);
+      }
     }
   }
 
   .listening-parties {
+    order: 2;
     grid-area: 4 / 7 / 5 / 11;
   }
 
   .funnyfarm {
+    order: 2;
     grid-area: 4 / 1 / 5 / 7;
+  }
+
+  .social {
+    order: 1;
+    grid-area: 1 / 8 / 2 / 11;
+    .random {
+      width: 100%;
+      border: 2.5px solid $colour-pink;
+      display: block;
+      border-radius: 1em;
+      text-align: center;
+      padding: 1.2em;
+      font-family: $heading-fontstack;
+      font-size: $site-content__font--large;
+      font-weight: 600;
+      margin-bottom: 1.5em;
+    }
+    .social-icons {
+      margin: 2em 1.5em;
+      li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1em;
+        position: relative;
+        &:hover {
+          .icon [role="img"] {
+            &.opened {
+              display: initial;
+            }
+            &.closed {
+              display: none;
+            }
+          }
+        }
+        .icon {
+          margin-right: 1em;
+          border-radius: 1em;
+          border: 2.5px solid black;
+          font-size: 1em;
+          height: 2em;
+          width: 2em;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          [role="img"] {
+            width: 0.9em;
+            &.opened {
+              display: none;
+              margin-top: -4px;
+            }
+          }
+        }
+        .label {
+          font-family: $heading-fontstack;
+          font-size: $site-content__font;
+          font-weight: 600;
+          @include overlayLink;
+        }
+      }
+    }
   }
 
   /* .listing {
