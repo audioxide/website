@@ -36,6 +36,11 @@ type Author = {
     links?: AuthorLinks,
 }
 
+type Authors = {
+    name: string,
+    authors: Author[],
+}
+
 type ReviewScore = {
     given: number,
     possible: number,
@@ -50,7 +55,7 @@ type ContentItem = {
 }
 
 interface ReviewItem extends ContentItem {
-    author: Author,
+    author: Authors,
     review: string,
     tracks: string[],
     score: ReviewScore,
@@ -69,7 +74,7 @@ interface PostMetadata {
 }
 
 interface ArticleMetadata extends PostMetadata {
-    author: Author,
+    author: Authors,
 }
 
 interface ReviewMetadata extends PostMetadata {

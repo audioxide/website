@@ -50,7 +50,7 @@ export default Vue.extend({
         authors(): (Author | undefined)[] {
             return this.content.map(item => {
                 if (!isObject(item) || !('author' in item)) return undefined;
-                return (item as ReviewItem).author;
+                return (item as ReviewItem).author.authors[0];
             })
         },
         authorName(): (string | null)[] {
