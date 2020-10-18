@@ -14,7 +14,9 @@
             <p class="review-header__authors">
                 <span>Album review by </span>
                 <span v-for="(reviewItem, key) in reviews" :key="`reviewers-${key}`">
-                    <a class="review-header__author" :href="'../authors/' + reviewItem.author.slug">{{reviewItem.author.name}}</a>{{ key !== reviews.length - 1 ? ', ' : ''}}
+                    <a class="review-header__author"
+                        :href="reviewAuthorLinks[key].url"
+                        v-if="reviewAuthorLinks[key]">{{reviewItem.author.name}}</a><span v-else>{{reviewItem.author.name}}</span>{{ key !== reviews.length - 1 ? ', ' : ''}}
                 </span>
             </p>
         </header>
@@ -67,7 +69,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import PostContentBlock from '../../components/PostContentBlock.vue';
-import { audioxideStructuredData, metaTitle, padNum } from '~/assets/utilities';
+import { audioxideStructuredData, metaTitle, padNum, resolveAuthorLink } from '~/assets/utilities';
 import { MetaInfo } from 'vue-meta';
 import formatISO from 'date-fns/formatISO';
 
@@ -134,6 +136,13 @@ export default Vue.extend({
                 reviews.push(review);
             }
             return reviews;
+        },
+        reviewAuthorLinks(): ReturnType<typeof resolveAuthorLink>[] {
+            const links = [];
+            for (let review of this.reviews) {
+                links.push(resolveAuthorLink(review.author.authors[0]));
+            }
+            return links;
         },
         weekStr(): string {
             return padNum(this.review.metadata.week, 7);

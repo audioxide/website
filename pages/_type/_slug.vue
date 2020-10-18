@@ -10,8 +10,11 @@
             <h1 class="article-header__heading">{{ article.metadata.title | unescape }}</h1>
             <h2 class="article-header__summary" v-if="article.metadata.summary">{{ article.metadata.summary || unescape }}</h2>
             <p class="article-header__author" v-if="article.metadata.author">By
-                <a :href="authorLink.url" v-if="authorLink">{{ article.metadata.author.name }}</a>
-                <span v-else>{{ article.metadata.author.name }}</span>
+                <span v-for="(author, key) in article.metadata.author.authors" :key="'author' + key">
+                    <a class="review-header__author"
+                        :href="authorLinks[key].url"
+                        v-if="authorLinks[key]">{{author.name}}</a><span v-else>{{author.name}}</span>{{ key !== authorLinks.length - 1 ? ', ' : ''}}
+                </span>
             </p>
         </header>
         <section class="article-content">
@@ -55,9 +58,9 @@ export default Vue.extend({
         this.article = this.$store.getters['posts/pathLookup'][`${this.type}/${this.slug}`];
     },
     computed: {
-        authorLink() {
-            if (!isObject(this.article.metadata.author)) return;
-            return resolveAuthorLink(this.article.metadata.author);
+        authorLinks(): ReturnType<typeof resolveAuthorLink>[] {
+            if (!isObject(this.article.metadata.author)) return [];
+            return this.article.metadata.author.authors.map(resolveAuthorLink);
         }
     },
 })
