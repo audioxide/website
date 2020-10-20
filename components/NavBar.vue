@@ -1,49 +1,34 @@
 <template>
-    <nav class="site-nav">
-
-        <span
-                class="burger-toggle__label burger-toggle__label--mobile-only burger-toggle--large"
+    <nav class="site-nav" :class="{ 'active': !collapsed }">
+        <!-- Menu/More link -->
+        <span class="menu-toggle"
                 aria-label="Toggle site menu"
                 tabindex="0"
-                data-site-nav-toggle>
-                <icon icon="bars" />
+                @click="collapsed = !collapsed">
+                {{ menuText }}
         </span>
 
-        <div class="menu-wrap"
-             :class="{
-                'menu-wrap--active': !collapsed,
-                'site-nav__menu-wrap--active': !collapsed
-              }">
-            <!-- Search bar -->
-            <form>
+        <!-- Search bar -->
+        <label class="site-nav__search" aria-label="Search site">
+            <input class="site-nav__search-input" type="text" placeholder="Search..." />
+            <icon icon="search" class="search-icon" />
+        </label>
 
-            </form>
-            <label class="site-nav__search" aria-label="Search site">
-                <icon icon="search" />
-                <input class="site-nav__search-input" type="text" />
-            </label>
-
-            <!-- Primary Nav -->
-            <ul class="site-nav__listing">
-                <li v-for="(item, key) in activenav"
-                    :key="key"
-                    class="site-nav__list-item site-nav__list-item--always-show">
-                  <nuxt-link :to="item.link.route">{{ item.link.text }}</nuxt-link>
-                  <ul v-if="!collapsed && 'children' in item" class="site-nav__listing--sub">
-                    <li v-for="(child, cKey) in item.children"
-                        :key="cKey"
-                        class="site-nav__list-item site-nav__list-item--sub">
-                      <nuxt-link :to="child.route">{{ child.text }}</nuxt-link>
-                    </li>
-                  </ul>
+        <!-- Primary Nav -->
+        <ul class="site-nav__listing">
+            <li v-for="(item, key) in activenav"
+                :key="key"
+                class="site-nav__list-item site-nav__list-item--always-show">
+                <nuxt-link :to="item.link.route">{{ item.link.text }}</nuxt-link>
+                <ul v-if="!collapsed && 'children' in item" class="site-nav__listing--sub">
+                <li v-for="(child, cKey) in item.children"
+                    :key="cKey"
+                    class="site-nav__list-item site-nav__list-item--sub">
+                    <nuxt-link :to="child.route">{{ child.text }}</nuxt-link>
                 </li>
-                <li @click="collapsed = !collapsed">
-                    More
-                </li>
-            </ul>
-
-            <hr class="site-nav__divider" />
-        </div>
+                </ul>
+            </li>
+        </ul>
 
         <!-- Logo -->
         <nuxt-link to="/" class="site-nav__logo">
@@ -89,6 +74,13 @@ export default {
     activenav() {
       return this.collapsed ? this.mininav : this.nav;
     },
+    menuText() {
+        const bp = this.$store.state.breakpoint;
+        if (bp === 'base' || bp === 'small') {
+            return 'Menu';
+        }
+        return this.collapsed ? 'More' : 'Close';
+    }
   },
 };
 </script>
@@ -98,56 +90,58 @@ export default {
 
     $nav-vertical-padding: $site-nav__bar-height--small - $site-nav__bar-font-size--small / 2;
     .site-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        min-height: 56px;
         background: black;
-        height: $site-nav__bar-height--small;
         color: white;
-        padding: $nav-vertical-padding 0.5rem;
+        padding: 1rem 0.5rem;
+        a {
+            color: white;
+            text-decoration: none;
+            &:hover {
+                color: darken(white, 10%);
+            }
+        }
     }
 
     @include medium {
         .site-nav {
-            padding: 1.3rem 0 0;
+            padding: 1rem 5vw;
+            // height: $site-nav__bar-height--small;
+            display: flex;
+            justify-content: flex-start;
+            margin: 0 auto;
         }
     }
 
-    .menu-wrap {
-        transition: 0.5s transform ease-in-out;
-        position: absolute;
-        width: $site-nav__menu-width--small;
-        height: 100vh;
-        background: white;
-        transform: translateX(-100%);
-        border-right: 1px solid black;
-        z-index: 1;
-        top: 0;
-        left: 0;
-        padding: $site-nav__margin--small;
-        color: black;
+    @include large {
+        .site-nav {
+            padding: 1rem 15vw;
+        }
+    }
+
+    .site-nav {
+        color: white;
+        font-family: $heading-fontstack;
+        font-size: 1.3rem;
+        z-index: 10;
+    }
+
+    @include medium {
+        .menu-toggle, .site-nav__search {
+            order: 1;
+        }
     }
 
     .menu-wrap--active {
-        transform: none;
-    }
-
-    @include medium {
-        .menu-wrap {
-            transform: none;
-            background: none;
-            position: relative;
-            width: auto;
-            height: auto;
-            border: none;
-            display: flex;
-            justify-content: flex-end;
-            color: white;
-            flex-direction: row-reverse;
-            padding: 0;
-        }
-
-        .menu-wrap--active {
-            background: black;
-            padding-bottom: 1.3rem;
-            margin-top: 2rem;
+        background: black;
+        padding-bottom: 1.3rem;
+        margin-top: 2rem;
+        .site-nav__listing {
+            display: block;
         }
     }
 
@@ -157,273 +151,208 @@ export default {
         }
     }
 
-    .site-nav__search {
+    /* .site-nav {
+        .menu-toggle, .site-nav__listing > .site-nav__list-item > a {
+            transition: 0.25s color ease-in-out;
+        }
+    }
+
+    @include medium {
+        .site-nav:focus-within {
+            .menu-toggle, .site-nav__listing > .site-nav__list-item > a {
+                color: black;
+            }
+        }
+    } */
+
+    .menu-toggle {
         display: block;
-        margin-bottom: $site-nav__margin--small;
+        margin-right: 2.5rem;
+        position: relative;
+        &::after {
+            content: '\25BC';
+            font-size: 0.4em;
+            line-height: 0.3em;
+            transition: 0.5s transform ease-in-out;
+            display: block;
+            position: absolute;
+            right: -1rem;
+            top: 0.7rem;
+        }
     }
 
-    @include medium {
-        .site-nav__search {
-            margin-bottom: 0;
+    .site-nav__listing {
+        display: none;
+        & > .site-nav__list-item {
+            margin-right: 2.5rem;
+            margin-top: 1.5rem;
+            min-width: 33vw;
+            @include small {
+                min-width: auto;
+            }
+            &:last-child {
+                margin-right: 0;
+                @include medium {
+                    margin-right: 2.5rem;
+                }
+            }
+        }
+        @include medium {
+            display: flex;
+            // margin-left: 5vw;
+            & > .site-nav__list-item {
+                margin-top: 0;
+            }
+        }
+        @include large {
+            // margin-left: 15vw;
+        }
+        .site-nav__listing--sub {
+            display: none;
+            flex-direction: column;
+            margin-top: 1em;
+        }
+        .site-nav__list-item--sub {
+            margin-top: .5em;
+        }
+    }
+
+    .site-nav.active {
+        .menu-toggle {
+            &::after {
+                transform: rotate(180deg) translateY(1px);
+            }
+        }
+        /* @include medium {
+            &::after {
+                display: block;
+                background: black;
+                content: '';
+                height: 11vw;
+                width: 100%;
+                position: absolute;
+                bottom: -11vw;
+                z-index: -1;
+                left: 0;
+            }
+        } */
+        .site-nav__listing {
+            display: flex;
+            flex-wrap: wrap;
+            @include small {
+                justify-content: center;
+            }
+        }
+        .site-nav__list-item {
+            display: block;
+        }
+        .site-nav__listing--sub {
+            display: flex;
+        }
+    }
+
+    .site-nav__search {
+        display: none;
+        flex-direction: row-reverse;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1.5rem;
+        margin-bottom: 0;
+        height: 2rem;
+        min-width: 0;
+        .site-nav.active & {
+            display: flex;
+            align-self: baseline;
+        }
+        @include medium {
+            display: flex;
+            justify-content: flex-end;
             margin-top: -0.3rem;
-        }
+            &:focus-within {
+                transition: 0.5s min-width ease-in-out;
+                min-width: calc(100% - (170px + 10vw + 1rem));
+                position: absolute;
+                z-index: 2;
+                left: 5vw;
 
-        .site-nav__search::before {
-            background: white;
-            color: black;
-            padding: 0.5rem;
-            border-radius: 1rem;
-            position: relative;
-            z-index: 1;
+            }
         }
-    }
-
-    .site-nav__search-input {
-        border-bottom: 1px solid #dedede;
-        width: calc(100% - 22px);
-        &:focus {
-            border-bottom-color: black;
-        }
-    }
-
-    @include medium {
-        .site-nav__search-input {
-            width: 0;
-            background: transparent;
-            border: none;
-            border-radius: 1rem;
-            transition: 0.5s width ease-in-out, 0.5s background ease-in-out;
-            padding: 0.5rem;
-            padding-left: 2.2rem;
-            margin-left: -2.2rem;
-            &:focus {
-                background: white;
-                width: 10vw;
+        @include large {
+            &:focus-within {
+                min-width: calc(100% - (170px + 30vw + 1rem));
+                left: 15vw;
             }
         }
     }
-</style>
 
-<style lang="scss" scoped>
-    /*.site-nav {
-    background: black;
-    height: var(--site-nav__bar-height--small);
-    color: white;
-    padding: calc((var(--site-nav__bar-height--small) - var(--site-nav__bar-
-    font-size--small)) / 2) 0.5rem;
-}*/
-
-    /*@media (--bigger-than-medium-viewport) {
-        .site-nav {
-            padding: 0;
-            padding-top: 1.3rem;
-        }
-    }*/
-
-    /*.site-nav__menu-wrap {
-        transition: 0.5s transform ease-in-out;
-        position: absolute;
-        width: var(--site-nav__menu-width--small);
-        height: 100vh;
+    .site-nav__search::before {
         background: white;
-        transform: translateX(-100%);
-        !*transform: translateX(calc(var(--site-nav__menu-width--small) * -1));*!
-        border-right: 1px solid black;
-        z-index: 1;
-        top: 0;
-        left: 0;
-        padding: var(--site-nav__margin--small);
         color: black;
-    }*/
+        padding: 0.5rem;
+        border-radius: 1rem;
+        position: relative;
+        z-index: 1;
+    }
 
-    /*.site-nav__menu-wrap--active {
-        transform: none;
-    }*/
-
-    /*@media (--bigger-than-medium-viewport) {
-        .site-nav__menu-wrap {
-            transform: none;
-            background: none;
-            position: relative;
-            width: auto;
-            height: auto;
-            border: none;
-            display: flex;
-            justify-content: flex-end;
-            color: white;
-            flex-direction: row-reverse;
-            padding: 0;
+    .site-nav__search-input {
+        background-color: transparent;
+        border: none;
+        border-radius: 1rem;
+        padding: 0.5rem;
+        padding-left: 2.2rem;
+        margin-left: -2.2rem;
+        background-color: white;
+        width: 100%;
+        max-width: 500px;
+        & + .search-icon {
+            color: black;
         }
-
-        .site-nav__menu-wrap--active {
-            background: black;
-            padding-bottom: 1.3rem;
-            margin-top: 2rem;
+        @include medium {
+            background-color: transparent;
+            max-width: 0;
+            & + .search-icon {
+                color: white;
+                transition: 0.25s color ease-in-out;
+            }
+            &:focus {
+                transition: 0.5s max-width ease-in-out, 0.25s background-color ease-in-out;
+                background-color: white;
+                max-width: calc(100% - (170px + 10vw));
+                & + .search-icon {
+                    color: black;
+                }
+            }
         }
     }
 
-    @media (--bigger-than-large-viewport) {
-        .site-nav__menu-wrap--active {
-            margin-top: 0;
-        }
-    }*/
+    .site-nav__search .search-icon {
+        margin-left: 0.8rem;
+        margin-right: 0.3rem;
+    }
 
     @import '~assets/styles/variables';
 
-    a {
-        color: white;
-        &:hover {
-            color: darken(white, 10%);
-        }
-    }
-
-    .site-nav__search {
-        display: block;
-        margin-bottom: var(--site-nav__margin--small);
-    }
-
-    @include medium {
-        .site-nav__search {
-            margin-bottom: 0;
-            margin-top: -0.3rem;
-        }
-
-        .site-nav__search::before {
-            background: white;
-            color: black;
-            padding: 0.5rem;
-            border-radius: 1rem;
-            position: relative;
-            z-index: 1;
-        }
-    }
-
-    .site-nav__search-input {
-        border-bottom: 1px solid #dedede;
-        width: calc(100% - 22px);
-        &:focus {
-            border-bottom-color: black;
-        }
-    }
-
-    @include medium {
-        .site-nav__search-input {
-            width: 0;
-            background: transparent;
-            border: none;
-            border-radius: 1rem;
-            transition: 0.5s width ease-in-out, 0.5s background ease-in-out;
-            padding: 0.5rem;
-            padding-left: 2.2rem;
-            margin-left: -2.2rem;
-            &:focus {
-                background: white;
-                width: 10vw;
-            }
-        }
-    }
-
-    .site-nav__divider {
-        display: block;
-        width: 100%;
-        border-width: 0;
-        border-top-width: 3px;
-    }
-
-    @include medium {
-        .site-nav__divider {
-            display: none;
-            margin: 0;
-        }
-    }
-
-    .site-nav__list-item {
-        margin: $site-nav__margin--small 0;
-        font-family: $heading-fontstack;
-        font-size: 1.3rem;
-        & > * {
-            text-decoration: none;
-        }
-    }
-
-    .site-nav__list-item--sub {
-        color: #8e8e8e;
-    }
-
-    .site-nav__list-item--desktop-only {
-        display: none;
-    }
-
-    @include medium {
-        .site-nav__listing:not(.site-nav__listing--sub) {
-            display: flex;
-            padding-left: $site-nav__bar-margin--large;
-        }
-
-        .site-nav__list-item:not(.site-nav__list-item--sub) {
-            display: inline;
-            margin: 0;
-            margin-right: 2.5rem;
-            &:not(.site-nav__list-item--always-show) {
-                display: none;
-            }
-        }
-
-        .site-nav__list-item--sub {
-            margin: 0.5rem 0;
-            font-size: 1.1rem;
-        }
-
-        .site-nav__menu-wrap--active {
-            & .site-nav__listing {
-                & .site-nav__list-item:not(.site-nav__list-item--always-show) {
-                    display: inline;
-                }
-                & .site-nav__listing--sub, & .site-nav__list-item.site-nav__list-item--sub,
-                & .site-nav__list-item:not(.site-nav__list-item--sub) {
-                    display: block;
-                }
-            }
-        }
-
-        .site-nav__listing--sub {
-            display: none;
-            margin-top: 1rem;
-        }
-
-        .site-nav__list-item--desktop-only {
-            display: initial;
-        }
-    }
-
-    @include large {
-        .site-nav__listing:not(.site-nav__listing--sub) {
-            padding-left: $site-nav__bar-margin--x-large;
-        }
-    }
-
     .site-nav__logo {
         text-decoration: none;
-        font-size: $site-nav__bar-font-size--small;
-        float: right;
+        font-size: $site-nav__bar-font-size--x-small;
+        @include small {
+            font-size: $site-nav__bar-font-size--small;
+        }
+        position: absolute;
+        top: 0.5em;
+        right: 0.5em;
         padding-right: calc(#{$site-nav__signet-size--small} + #{$site-nav__signet-gutter--small});
     }
 
     @include medium {
         .site-nav__logo {
-            position: absolute;
-            z-index: 2;
-            top: 1rem;
-            right: $site-nav__bar-margin--large;
-            background: black;
-            padding: 0 1rem 1rem;
+            right: 5vw;
         }
     }
 
     @include large {
         .site-nav__logo {
-            right: $site-nav__bar-margin--x-large;
-            padding: 0 1.5rem 1rem;
+            right: 15vw;
         }
     }
 
@@ -441,48 +370,6 @@ export default {
             top: calc(
               (#{$site-nav__signet-size--small} - #{$site-nav__bar-font-size--small}) / 2 * -1
             );
-        }
-    }
-
-    @include medium {
-        .site-nav__logo-text {
-            &:before {
-                background-image: $logo-wave;
-                background-size: cover;
-                background-position: center;
-                content: '\00a0';
-                display: block;
-                height: $site-nav__signet-size--medium;
-            }
-            &:after {
-                content: none;
-            }
-        }
-    }
-
-    @include large {
-        .site-nav__logo-text:before {
-            height: $site-nav__signet-size--large;
-        }
-    }
-</style>
-
-<style lang="scss" scoped>
-    @import '~assets/styles/variables';
-
-    .burger-toggle__input {
-        /*display: none;*/
-        position: absolute;
-        z-index: 10;
-    }
-
-    .burger-toggle--large {
-        font-size: $site-nav__bar-font-size--small;
-    }
-
-    @include medium {
-        .burger-toggle__label--mobile-only {
-            display: none;
         }
     }
 </style>

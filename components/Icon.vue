@@ -6,7 +6,6 @@
     faEnvelopeOpen,
     faRss,
     faSearch,
-    faBars,
     faBrain,
   } from '@fortawesome/free-solid-svg-icons';
   import {
@@ -24,7 +23,6 @@
     faInstagram,
     faRss,
     faSearch,
-    faBars,
     faBrain,
   });
 
