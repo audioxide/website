@@ -68,6 +68,7 @@ $album-banner__album-width--large: calc(#{$album-banner__album-width-raw--large}
 $site-nav__menu-width--small: 75vw;
 $site-nav__margin--small: 1.5rem;
 $site-nav__bar-height--small: 3.5rem;
+$site-nav__bar-font-size--x-small: $site-nav__bar-height--small / 2.5;
 $site-nav__bar-font-size--small: $site-nav__bar-height--small / 2;
 $site-nav__signet-size--small: $site-nav__bar-font-size--small * 1.3;
 $site-nav__signet-size--medium: calc(#{$album-banner__album-width-raw--medium} * 0.6);
