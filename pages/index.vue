@@ -162,8 +162,6 @@ export default Vue.extend({
   main {
     width: 95%;
     margin: 40px auto;
-    display: flex;
-    flex-direction: column;
     @include medium {
       @supports (display: grid) {
           width: 80%;
@@ -238,12 +236,10 @@ export default Vue.extend({
   }
 
   .reviews {
-    order: 0;
     grid-area: 1 / 1 / 3 / 4;
   }
 
   .articles {
-    order: 2;
     grid-area: 2 / 4 / 3 / 11;
     @include small {
       padding-left: 20px;
@@ -278,7 +274,6 @@ export default Vue.extend({
   }
 
   .interviews {
-    order: 2;
     grid-area: 3 / 1 / 4 / 11;
     @include small {
       .listing {
@@ -297,17 +292,14 @@ export default Vue.extend({
   }
 
   .listening-parties {
-    order: 2;
     grid-area: 4 / 7 / 5 / 11;
   }
 
   .funnyfarm {
-    order: 2;
     grid-area: 4 / 1 / 5 / 7;
   }
 
   .social {
-    order: 1;
     grid-area: 1 / 8 / 2 / 11;
     .random {
       width: 100%;
