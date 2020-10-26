@@ -1,17 +1,16 @@
 <template>
     <footer class="site-foot">
-        <hr class="site-foot_divider">
         <nav>
             <ul class="site-foot_nav">
                 <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--site-logo site-foot_nav-item--middle">
                     <span>Audioxide</span></li>
-                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--facebook site-foot_nav-item--left"><span>Facebook</span><icon :icon="['fab', 'facebook-f']" /></li>
-                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--twitter site-foot_nav-item--left"><span>Twitter</span><icon :icon="['fab', 'twitter']" /></li>
-                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--instagram"><span>Instagram</span><icon :icon="['fab', 'instagram']" /></li>
-                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--rss"><span>RSS feed</span><icon icon="rss" /></li>
-                <li class="site-foot_nav-item">Bribes</li>
-                <li class="site-foot_nav-item">Newsletter</li>
-                <li class="site-foot_nav-item">Contact</li>
+                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--facebook site-foot_nav-item--left"><span>Facebook</span><a href="https://facebook.com/audioxide"><icon :icon="['fab', 'facebook-f']" /></a></li>
+                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--twitter site-foot_nav-item--left"><span>Twitter</span><a href="https://twitter.com/audioxide"><icon :icon="['fab', 'twitter']" /></a></li>
+                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--instagram"><span>Instagram</span><a href="https://instagram.com/audioxidecom"><icon :icon="['fab', 'instagram']" /></a></li>
+                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--rss"><span>RSS feed</span><a href="/feed"><icon icon="rss" /></a></li>
+                <li class="site-foot_nav-item"><a href="/about">About</a></li>
+                <li class="site-foot_nav-item"><a href="https://eepurl.com/cox6qr">Newsletter</a></li>
+                <li class="site-foot_nav-item"><a href="/contact">Contact</a></li>
             </ul>
         </nav>
         <p>&copy; {{ year }}. All rights reserved.</p>
@@ -35,10 +34,11 @@ export default {
 
     .site-foot {
         width: 90%;
-        margin: 0 auto;
+        margin: 40px auto 0;
         position: relative;
         text-align: center;
         font-family: $base-fontstack;
+        @include line-styles("top");
     }
 
     @include small {
@@ -60,8 +60,9 @@ export default {
     }
 
     .site-foot_divider {
+        background: #f5f5f5;
         border: 0;
-        border-top: 3px solid lightgrey;
+        height: 2.5px;
     }
 
     .site-foot_nav {

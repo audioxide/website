@@ -1,18 +1,20 @@
 <template>
-    <span>
-        <span v-for="(post, key) in reviews" :key="key"><review-link :post="post" /></span>
-    </span>
+    <post-listing :linkType="linkType" :posts="reviews" type="reviews" />
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue, { VNode } from 'vue';
+import PostListing from '@/components/PostListing.vue';
 import ReviewLink from '~/components/ReviewLink.vue';
 import { metaTitle } from '~/assets/utilities';
 
 export default Vue.extend({
     name: 'ReviewListing',
-    components: { ReviewLink },
+    components: { PostListing },
     head: () => ({ title: metaTitle('Reviews') }),
+    data: () => ({
+        linkType: ReviewLink,
+    }),
     /* async validate({ params: { slug }, store }) {
         // Add in an API endpoint that allows us to check if we have all the reviews
         // if (!store.state.posts.posts.reviews) {

@@ -1,7 +1,7 @@
 <template>
     <div class="post-link review-link">
         <div class="img-wrap">
-            <img v-if="image" :src="post.metadata.featuredimage[`${imageSize}-square`]" width="300" height="300" />
+            <img v-if="image" :src="post.metadata.featuredimage[`${imageSize}-square`]" loading="lazy" width="300" height="300" />
         </div>
         <div class="info">
             <h4 v-if="title">

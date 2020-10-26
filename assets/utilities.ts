@@ -15,6 +15,22 @@ const isObject = (obj: any): obj is object => typeof obj === 'object' && obj !==
 
 const metaTitle = (str: string) => `${he.decode(str)} // Audioxide`;
 
+type Procedure = (...args: any[]) => void;
+type ThrottledFunction<T extends Procedure> = (...args: Parameters<T>) => void;
+const throttle = <T extends Procedure>(func: T, waitMs: number): ThrottledFunction<T> => {
+    let timeoutUID: number = NaN;
+    type FuncArgs = Parameters<T>;
+    const call = (...args: FuncArgs) => {
+        timeoutUID = NaN;
+        func(...args);
+    };
+    return (...args: FuncArgs) => {
+        if (Number.isNaN(timeoutUID)) {
+            timeoutUID = setTimeout(call, waitMs, ...args);
+        }
+    };
+};
+
 const resolveAuthorLink = (author?: Author) => {
     if (!author || !isObject(author.links)) return null;
     const linkData = author.links[author.links.default];
@@ -26,7 +42,7 @@ const resolveAuthorLink = (author?: Author) => {
             };
         case 'instagram':
             return {
-                text: linkData,
+                text: `@${linkData}`,
                 url: `https://instagram.com/${linkData}`,
             };
         case 'facebook':
@@ -51,8 +67,25 @@ const audioxideStructuredData = () => ({
     '@context': 'http://schema.org',
     '@type': 'Organization',
     name: 'Audioxide',
-    description: 'Independent music webzine. Publishes reviews, articles, interviews and other oddities.',
+    description: 'Independent music webzine. Publishes reviews, articles, interviews, and other oddities.',
     foundingDate: '2015',
+    founder: [
+        {
+            '@type': 'Person',
+            'name': 'André Dack',
+            'sameAs': 'https://twitter.com/andredack'
+        },
+        {
+            '@type': 'Person',
+            'name': 'Andrew Bridge',
+            'sameAs': 'http://www.andrewhbridge.co.uk/'
+        },
+        {
+            '@type': 'Person',
+            'name': 'Frederick O\'Brien',
+            'sameAs': 'https://fredobrien.co.uk'
+        }
+    ],
     url: 'https://audioxide.com',
     logo: 'https://audioxide.com/icon.png',
     sameAs: [
@@ -67,6 +100,7 @@ export {
     isObject,
     toTitleCase,
     metaTitle,
+    throttle,
     resolveAuthorLink,
     audioxideStructuredData,
 }

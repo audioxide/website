@@ -32,6 +32,7 @@ type AuthorLinks = {
 
 type Author = {
     name: string,
+    forename: string,
     slug: string,
     links?: AuthorLinks,
 }
