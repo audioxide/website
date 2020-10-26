@@ -57,7 +57,7 @@
         </li>
         <li>
           <span class="icon"><icon icon="rss" /></span>
-          <a class="label" href="/feed">RSS</a>
+          <a class="label" href="/feed/">RSS</a>
         </li>
       </ul>
     </div>
