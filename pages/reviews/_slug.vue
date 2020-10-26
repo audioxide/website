@@ -1,11 +1,12 @@
 <template>
+    <div>
     <main class="site-content site-content--flex" v-if="review.metadata">
         <header class="review-header" :style="chromeStyles">
             <details class="collapsible">
                 <summary class="collapsible__toggle">
-                    <p class="content-header__date">{{ review.metadata.created | formatDate }}</p>
+                    <p class="review-header__date">{{ review.metadata.created | formatDate }}</p>
                 </summary>
-                <p class="content-header__date">Last modified {{ review.metadata.modified | formatDate }}</p>
+                <p class="review-header__date">Last modified {{ review.metadata.modified | formatDate }}</p>
             </details>
             <h1 class="review-header__heading">
                 <span class="review-header__album" :style="textStyles">{{review.metadata.album}}</span>
@@ -21,8 +22,24 @@
             </p>
         </header>
         <aside class="review-sidebar">
+            <div class="review-sidebar__album-cover-container">
+                <template v-if="review.metadata.totalscore.given > 26">
+                    <img class="review-sidebar__ribbon" src="~assets/img/ribbon-27-plus.png" alt="Platinum Audioxide review ribbon">
+                </template>
+                <template v-if="review.metadata.totalscore.given == 26 || review.metadata.totalscore.given == 25">
+                    <img class="review-sidebar__ribbon" src="~assets/img/ribbon-gold.png" alt="Gold Audioxide review ribbon">
+                </template>
+                <template v-if="review.metadata.totalscore.given == 24 || review.metadata.totalscore.given == 23">
+                    <img class="review-sidebar__ribbon" src="~assets/img/ribbon-silver.png" alt="Silver Audioxide review ribbon">
+                </template>
+                <template v-if="review.metadata.totalscore.given == 22 || review.metadata.totalscore.given == 21">
+                    <img class="review-sidebar__ribbon" src="~assets/img/ribbon-bronze.png" alt="Bronze Audioxide review ribbon">
+                </template>
+            <figure>
             <img class="review-sidebar__album-cover" :src="review.metadata.featuredimage['medium-square']">
             <p class="review-sidebar__album-info">{ { review.featured_media.description } }</p>
+            </figure>
+            </div>
             <div class="review-sidebar__total-score" :style="sidebarStyles">
                 <span class="review-sidebar__score" :style="sidebarTextStyles">
                     {{review.metadata.totalscore.given}}
@@ -52,7 +69,7 @@
             </div>
             <template v-if="review.metadata.artistLink">
             <div class="review-sidebar__artist-link">
-                <p><a :href="review.metadata.artistLink" target="_blank">Support the artist</a></p>
+                <p><a :href="review.metadata.artistLink" target="_blank">Support the artist →</a></p>
             </div>
             </template>
             <p class="review-sidebar__serial">No. {{ weekStr }}</p>
@@ -63,12 +80,15 @@
                 <span v-for="(tag, key) in review.metadata.tags" :key="key" class="tag"><nuxt-link :to="`/tags/${tag}`">{{tag}}</nuxt-link></span>
             </div>
         </section>
+        <newsletter-signup class="newsletter" />
     </main>
+    </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import PostContentBlock from '../../components/PostContentBlock.vue';
+import NewsletterSignup from '../../components/NewsletterSignup.vue';
 import { audioxideStructuredData, metaTitle, padNum, resolveAuthorLink } from '~/assets/utilities';
 import { MetaInfo } from 'vue-meta';
 import formatISO from 'date-fns/formatISO';
@@ -78,7 +98,7 @@ type ColourStyles = { [key: string]: string };
 
 export default Vue.extend({
     name: 'AudioxideReview',
-    components: { PostContentBlock },
+    components: { PostContentBlock, NewsletterSignup },
     data: () => ({
         review: {} as Review,
     }),
@@ -116,6 +136,11 @@ export default Vue.extend({
                         worstRating: 0,
                         bestRating: metadata.totalscore.possible,
                     },
+                    "speakable":
+                        {
+                        "@type": "SpeakableSpecification",
+                        "cssSelector": ["review-header__album", "review-header__artist", "review-sidebar__summary"]
+                        },
                     publisher: audioxideStructuredData(),
                 }
             }]
@@ -174,13 +199,24 @@ export default Vue.extend({
 
     .review-header {
         border-bottom: 5px solid black;
-        padding-bottom: $site-content__spacer--small;
+        padding-top: $site-content__spacer--large;
+        padding-bottom: $site-content__spacer--x-large;
     }
 
-    @include medium {
-        .review-header {
-            width: 100%;
+    .collapsible {
+        text-align: left;
+    }
+
+    .collapsible__toggle {
+        display: inline;
+        padding: 0.5em;
+        &:active, &:focus {
+            outline: none;
         }
+    }
+
+    .review-header__date {
+        @include site-content__subtext;
     }
 
     .review-header__album, .review-header__artist, .review-header__date, .review-header__authors {
@@ -188,11 +224,18 @@ export default Vue.extend({
     }
 
     .review-header__heading {
-        margin-bottom: $site-content__spacer;
+        margin-top: $site-content__spacer--large;
+        margin-bottom: $site-content__spacer--large;
     }
 
-    .review-header__album, .review-header__artist {
+    .review-header__album {
         font-size: $site-content__font--x-large;
+        padding-bottom: 0.1em;
+        display: block;
+    }
+
+    .review-header__artist {
+        font-size: $site-content__font--x-large * 0.9;
         display: block;
     }
 
@@ -201,23 +244,27 @@ export default Vue.extend({
         font-style: italic;
     }
 
-    .review-header__date {
-        @include site-content__subtext;
-    }
-
     .review-header__authors {
         color: $colour-grey;
     }
 
-    @include medium {
-        .review-sidebar {
-            order: 1;
-            width: $review__sidebar-size;
-        }
+    .review-sidebar__album-cover-container {
+        position: relative;
+    }
+
+    .review-sidebar__ribbon {
+        position: absolute;
+        top: -7px;
+        right: 8%;
+        width: 12%;
     }
 
     .review-sidebar__album-cover {
         width: 100%;
+        border-right: 1px solid #dddddd;
+        border-bottom: 1px solid #dddddd;
+        border-left: 1px solid #dddddd;
+
     }
 
     .review-sidebar__album-info {
@@ -246,18 +293,28 @@ export default Vue.extend({
     }
 
     .review-sidebar__tracks, .review-sidebar__artist-link {
-        padding: 10px 20px;
+        padding: 15px 20px;
     }
 
     .review-sidebar__tracks {
-        padding-bottom: 30px;
+        padding-bottom: 25px;
     }
 
     .review-sidebar__artist-link {
         background: white;
         display: block;
         font-family: $heading-fontstack;
-        border: 3px solid $colour-pink;
+        font-weight: 400;
+        font-size: 1em;
+        border: 2px solid $colour-pink;
+        text-decoration: none;
+        position: relative;
+        &:hover {
+            border: 2px solid lighten($colour-pink, 30%);
+        }
+        a {
+            @include overlayLink;
+        }
     }
 
     .review-sidebar__heading, .review-sidebar__total-score {
@@ -320,15 +377,38 @@ export default Vue.extend({
         margin-top: $site-content__spacer--large;
     }
 
+    .tags .tag {
+        @include tag;
+    }
+
+    .tags {
+        padding: 40px 0 30px;
+        clear: both;
+    }
+
+    /* MEDIUM STYLING (TABLET) */
+
     @include medium {
         .review-content {
             width: $site-content__content-size;
             padding-right: $site-content__spacer--xx-large;
         }
+        .review-sidebar, ::v-deep .newsletter {
+            order: 1;
+        }
+        .review-sidebar {
+            width: $review__sidebar-size;
+        }
+        .review-header {
+            width: 100%;
+        }
+        .post-review-content {
+            width: $site-content__content-size * 0.95;
+        }
     }
 
-    .tags .tag {
-        @include tag;
-    }
+    /* LARGE STYLING (TABLET) */
+
+    /* LARGE STYLING (TABLET) */
 
 </style>

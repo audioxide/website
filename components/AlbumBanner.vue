@@ -37,6 +37,7 @@ export default Vue.extend({
         height: 100%;
         display: flex;
         border-bottom: 0.6rem solid black;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.3);
     }
 
     .album-banner__review-link {

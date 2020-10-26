@@ -30,10 +30,6 @@ export default {
 <style lang="scss">
   @import '~assets/styles/reset';
   @import '~assets/styles/variables';
-</style>
-
-<style lang="scss">
-  @import "~assets/styles/variables";
 
   html, body {
     font-size: 16px;
@@ -43,7 +39,7 @@ export default {
     text-decoration: underline;
     color: $colour-pink;
     &:hover {
-      color: lighten($colour-pink, 10%);
+      color: lighten($colour-pink, 30%);
     }
   }
 

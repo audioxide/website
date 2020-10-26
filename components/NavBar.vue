@@ -214,6 +214,13 @@ export default {
         }
         .site-nav__list-item--sub {
             margin-top: .5em;
+            font-size: 0.9em;
+            a {
+                color: $colour-grey--light;
+                &:hover {
+                    color: lighten($colour-grey--light, 30%);
+                }
+            }
         }
     }
 
@@ -349,13 +356,11 @@ export default {
             right: 5vw;
         }
     }
-
     @include large {
         .site-nav__logo {
             right: 15vw;
         }
     }
-
     .site-nav__logo-text {
         @include logo;
         position: relative;

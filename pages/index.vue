@@ -20,14 +20,14 @@
       </div>
     </div>
     <div class="panel listening-parties">
-      <h3>Listening Parties (<nuxt-link to="interviews">See all<span class="sr-only">listening parties</span></nuxt-link>)</h3>
+      <h3>Listening Parties (<nuxt-link to="listeningparties">See all<span class="sr-only">listening parties</span></nuxt-link>)</h3>
       <div class="listing">
         <review-link v-for="(item, key) in listeningParties" :key="key"
                     :post="item" image-size="xsmall" :author="false" />
       </div>
     </div>
     <div class="panel funnyfarm">
-      <h3>Funnyfarm (<nuxt-link to="interviews">See all<span class="sr-only">funnyfarm articles</span></nuxt-link>)</h3>
+      <h3>Funnyfarm (<nuxt-link to="funnyfarm">See all<span class="sr-only">funnyfarm articles</span></nuxt-link>)</h3>
       <div class="listing">
         <article-link v-for="(item, key) in funnyfarm" :key="key" :post="item" :author="false" />
       </div>
@@ -45,15 +45,15 @@
         </li>
         <li>
           <span class="icon"><icon :icon="['fab', 'facebook-f']" /></span>
-          <a class="label" href="https://www.facebook.com/Audioxide/">Facebook</a>
+          <a class="label" href="https://www.facebook.com/audioxide">Facebook</a>
         </li>
         <li>
           <span class="icon"><icon :icon="['fab', 'twitter']" /></span>
-          <a class="label" href="https://twitter.com/audioxidecom">Twitter</a>
+          <a class="label" href="https://twitter.com/audioxide">Twitter</a>
         </li>
         <li>
           <span class="icon"><icon :icon="['fab', 'instagram']" /></span>
-          <a class="label" href="https://www.instagram.com/audioxidecom/">Instagram</a>
+          <a class="label" href="https://www.instagram.com/audioxidecom">Insta</a>
         </li>
         <li>
           <span class="icon"><icon icon="rss" /></span>
@@ -160,11 +160,12 @@ export default Vue.extend({
   @import "~assets/styles/variables";
 
   main {
-    width: 95%;
+    width: 90%;
     margin: 40px auto;
     @include medium {
       @supports (display: grid) {
           width: 80%;
+          padding-top: 1em;
           margin: 40px auto;
           display: grid;
           grid-template: repeat(5, auto) / repeat(10, 1fr);
@@ -180,7 +181,7 @@ export default Vue.extend({
     margin-bottom: 20px;
     text-align: center;
     margin-bottom: 30px;
-    border: 3px solid $colour-grey--light;
+    border: $line-width solid $line-colour;
     border-radius: 15px;
     padding-top: 0;
     ::v-deep {
@@ -242,7 +243,6 @@ export default Vue.extend({
   .articles {
     grid-area: 2 / 4 / 3 / 11;
     @include small {
-      padding-left: 20px;
       ::v-deep .img-wrap {
         order: 1;
         margin-right: 0;
@@ -257,15 +257,18 @@ export default Vue.extend({
         }
       }
     }
-    &::before {
-      content: "";
-      height: 80%;
-      width: 3px;
-      display: block;
-      background-color: $colour-grey--light;
-      position: absolute;
-      top: 10%;
-      left: -6px;
+    @include medium {
+      padding-left: 20px;
+      &::before {
+        content: "";
+        height: 80%;
+        width: 2.5px;
+        display: block;
+        background-color: $colour-grey--lighter;
+        position: absolute;
+        top: 10%;
+        left: -5px;
+      }
     }
   }
 
@@ -303,15 +306,18 @@ export default Vue.extend({
     grid-area: 1 / 8 / 2 / 11;
     .random {
       width: 100%;
-      border: 2.5px solid $colour-pink;
+      border: 2px solid $colour-pink;
       display: block;
-      border-radius: 1em;
+      border-radius: 0.6em;
       text-align: center;
       padding: 1.2em;
       font-family: $heading-fontstack;
       font-size: $site-content__font--large;
       font-weight: 600;
       margin-bottom: 1.5em;
+      &:hover {
+        border: 2px solid lighten($colour-pink, 30%);;
+      }
     }
     .social-icons {
       margin: 2em 1.5em;

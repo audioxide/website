@@ -23,12 +23,14 @@
                 <span v-for="(tag, key) in article.metadata.tags" :key="key" class="tag"><nuxt-link :to="`/tags/${tag}`">{{tag}}</nuxt-link></span>
             </div>
         </section>
+        <newsletter-signup />
     </main>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import PostContentBlock from '../../components/PostContentBlock.vue';
+import NewsletterSignup from '../../components/NewsletterSignup.vue';
 import { resolveAuthorLink, isObject, metaTitle, toTitleCase } from '../../assets/utilities';
 
 type PostColours = [string, string, string];
@@ -36,7 +38,7 @@ type ColourStyles = { [key: string]: string };
 
 export default Vue.extend({
     name: 'AudioxideArticle',
-    components: { PostContentBlock },
+    components: { PostContentBlock, NewsletterSignup },
     data: () => ({
         article: {} as Article,
         type: 'articles',
@@ -64,19 +66,17 @@ export default Vue.extend({
         }
     },
 })
+
 </script>
 
 <style lang="scss" scoped>
     @import "~assets/styles/variables";
 
-    .article-header {
-        padding-bottom: $site-content__spacer--small;
-    }
+    /* DEFAULT STYLING (MOBILE-FIRST) */
 
-    @include medium {
-        .article-header {
-            width: 100%;
-        }
+    .article-header {
+        margin-top: $site-content__spacer--x-large;
+        padding-bottom: $site-content__spacer--small;
     }
 
     .collapsible {
@@ -91,32 +91,88 @@ export default Vue.extend({
         }
     }
 
-    .article-header__heading, .article-header__date, .article-header__author {
+    .article-header__date {
+        @include site-content__subtext;
+    }
+
+    .article-header__heading, .article-header__summary, .article-header__date, .article-header__author {
         font-family: $heading-fontstack;
         text-align: center;
     }
 
     .article-header__heading {
-        font-size: $site-content__font--x-large;
+        font-size: 2em;
+        font-weight: 600;
         margin-bottom: $site-content__spacer;
-        width: 75%;
+        width: 95%;
         margin: auto;
     }
 
-    .article-header__date {
-        @include site-content__subtext;
+    .article-header__summary {
+        padding-top: $site-content__spacer--large;
+        padding-bottom: $site-content__spacer--large;
+        font-size: 1.1em;
+        line-height: 1.1;
+        color: $colour-grey;
+        margin: auto;
+        width: 95%;
     }
 
     .article-header__author {
         color: $colour-grey;
+        margin-bottom: $site-content__spacer--large;
     }
 
     .article-content {
         margin-top: $site-content__spacer--large;
+        width: 95%;
+        margin: auto;
+    }
+
+    .tags {
+        padding-top: 40px;
+        padding-bottom: $site-content__spacer--large;
     }
 
     .tags .tag {
         @include tag;
+    }
+
+    /* Medium styling (TABLET) */
+
+    @include medium {
+        .article-header {
+            width: 100%;
+        }
+    }
+
+    /* Large styling (DESKTOP) */
+
+    @include large {
+
+        .article-header__heading {
+        font-size: 2.5em;
+        width: 67%;
+        }
+
+        .article-header__summary {
+        font-size: 1.2em;
+        width: 67%;
+        }
+
+        .article-content {
+            width: 100%;
+        }
+
+        .tags {
+            width: 67%;
+            margin: auto;
+        }
+
+        .newsletter-container {
+            width: 67%;
+        }
+
     }
 
 </style>

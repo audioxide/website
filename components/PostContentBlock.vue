@@ -2,7 +2,9 @@
     <article>
         <section v-for="(item, key) in content" :key="key">
             <h2 class="author" v-if="authorName[key]">{{authorName[key]}}</h2>
+            <!--
             <p class="author-social" v-if="authorLink[key]"><a :href="authorLink[key].url">{{ authorLink[key].text }}</a></p>
+            -->
             <post-content :content="contentHTML[key]" :decorate="decorate" />
             <p class="score" v-if="item.score">
                 <span class="given" :style="textHighlight">{{item.score.score}}</span>
@@ -54,7 +56,7 @@ export default Vue.extend({
             })
         },
         authorName(): (string | null)[] {
-            return this.authors.map(item => item ? item.name : null);
+            return this.authors.map(item => item ? item.forename : null);
         },
         authorLink(): (AuthorLink | null)[] {
             return this.authors.map(author => resolveAuthorLink(author));
@@ -77,13 +79,16 @@ export default Vue.extend({
 
     .author,
     .author-social,
-    .score {
+    .score,
+    .track-prefix {
         font-family: $heading-fontstack;
     }
 
     .author {
         font-weight: bold;
         font-size: $site-content__font--large;
+        margin-top: $site-content__spacer;
+        margin-bottom: $site-content__spacer--large;
     }
 
     .author-social {
@@ -93,6 +98,9 @@ export default Vue.extend({
 
     .track-wrapper {
         display: flex;
+        flex-wrap: wrap;
+        margin-top: $site-content__spacer--x-large;
+        margin-bottom: $site-content__spacer--x-large;
     }
 
     .track-prefix, .track {
@@ -124,7 +132,7 @@ export default Vue.extend({
         font-size: 1.7em;
         width: 82px;
         height: 82px;
-        border: 2.5px $colour-grey--light solid;
+        border: $line-width solid $line-colour;
         border-radius: 2em;
     }
 
@@ -137,7 +145,10 @@ export default Vue.extend({
     }
 
     .divider {
+        @include hr-line-styles;
         width: 75%;
+        margin-top: $site-content__spacer--x-large;
+        margin-bottom: $site-content__spacer--x-large;
     }
 
 </style>

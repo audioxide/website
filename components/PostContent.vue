@@ -62,6 +62,8 @@ export default Vue.extend({
 <style lang="scss" scoped>
     @import "~assets/styles/variables";
 
+    /* Default styling (MOBILE) */
+
     .content {
         margin: $site-content__spacer--large 0;
         font-family: $base-fontstack;
@@ -81,8 +83,10 @@ export default Vue.extend({
 
             h2, h3, h4 {
                 font-family: $heading-fontstack;
-                font-weight: bold;
+                font-weight: 500;
+                font-size: 1.7em;
                 margin: $site-content__spacer--x-large auto 0;
+                padding-bottom: 20px;
             }
             h2 + h3, h3 + h4 {
                 margin-top: $site-content__spacer--small;
@@ -97,13 +101,40 @@ export default Vue.extend({
             }
             blockquote {
                 margin: 0 auto;
-                border-left: 5px solid $colour-grey--light;
+                border-left: 5px solid $colour-grey--lighter;
                 padding-left: 20px;
             }
             p, blockquote {
                 & + p, & + blockquote, & + h2, & + h3, & + h4 {
-                    margin-top: $site-content__spacer--x-large;
+                    margin-top: $site-content__spacer--large;
                 }
+            }
+            figure {
+                margin-bottom: $site-content__spacer--x-large;
+                color: $colour-grey;
+            }
+            figure img {
+                border-radius: 15px;
+            }
+            figcaption {
+                text-align: right;
+                padding-right: 15px;
+                font-size: $site-content__font--small;
+            }
+            hr {
+                @include hr-line-styles;
+                margin-top: $site-content__spacer--x-large;
+                margin-bottom: $site-content__spacer--x-large;
+            }
+            ul {
+                list-style-type: disc;
+                margin: 0 auto;
+                margin-top: $site-content__spacer--x-large;
+                margin-bottom: $site-content__spacer--x-large;
+                padding-left: 20px;
+            }
+            li {
+                padding-bottom: 0.5em;
             }
         }
         &:after {
@@ -114,26 +145,36 @@ export default Vue.extend({
     }
 
     .decorate.content ::v-deep {
-        & > {
-            p, img, h2, h3, h4, blockquote {
-                width: 67%;
-            }
-        }
+
         & > p:first-of-type:first-letter {
             font-size: $site-content__font--xx-large;
             float: left;
             line-height: 0.85em;
-        }
-        /* & > p, & > img, & > h2, & > h3, & > blockquote {
-            width: 67%;
-        } */
-        & .pull-right {
-            float: right;
-            margin-right: -25%;
-        }
-        & .pull-left {
-            float: left;
-            margin-left: -25%;
+            }
+
+    }
+
+    /* Medium styling (TABLET) */
+
+    /* Large styling (DESKTOP) */
+
+    @include medium {
+        .decorate.content ::v-deep {
+            & > {
+                p, img, h2, h3, h4, blockquote, ul, hr {
+                    width: 67%;
+                }
+            }
+
+            & .pull-right {
+                float: right;
+                margin-right: -25%;
+            }
+            & .pull-left {
+                float: left;
+                margin-left: -25%;
+            }
         }
     }
+
 </style>

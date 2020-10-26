@@ -36,7 +36,8 @@ $heading-fontstack: 'Source Sans Pro', sans-serif;
 $logo-fontstack: AllRoundGothic-Medium, sans-serif;
 
 /* Colours */
-$colour-grey--light: #f5f5f5;
+$colour-grey--lighter: #f5f5f5;
+$colour-grey--light:  #8e8e8e;
 $colour-grey: #767676;
 $colour-grey--dark: #686868;
 $colour-pink: #f01d4f;
@@ -86,7 +87,7 @@ $site-content__width--large: $content-width--large * $site-content__underhang;
 $site-content__width--x-large: $content-width--x-large * $site-content__underhang;
 $site-content__font--xx-large: 5rem;
 $site-content__font--x-large: 3rem;
-$site-content__font--large: 1.5rem;
+$site-content__font--large: 1.3rem;
 $site-content__font--section-heading: 1.1rem;
 $site-content__font: 1rem;
 $site-content__font--small: 0.9rem;
@@ -142,6 +143,18 @@ $site-foot__icon-size: 2em;
 $site-foot__logo-size: $site-foot__icon-size * 1.5;
 $site-foot__icon-margin: $site-foot__icon-size * 0.25;
 
+/* line-styles */
+$line-colour: $colour-grey--lighter;
+$line-width: 2.5px;
+@mixin line-styles($side: 'bottom') {
+  #{"border-" + $side}: $line-width solid $line-colour;
+}
+@mixin hr-line-styles() {
+  background: $line-colour;
+  border: 0;
+  height: $line-width;
+}
+
 @mixin icon {
   display: inline-block;
   font-style: normal;
@@ -157,19 +170,22 @@ $site-foot__icon-margin: $site-foot__icon-size * 0.25;
 
 @mixin tag {
   display: inline-block;
+  position: relative;
   font-family: $heading-fontstack;
-  background: $colour-grey--light;
+  background: $colour-grey--lighter;
   padding: 0.5em 1em;
   margin-right: 0.5em;
+  margin-bottom: 0.5em;
   border-radius: 0.5em;
   color: $colour-grey--dark;
-  transition: 0.25s background ease-in-out, 0.25s color ease-in-out;
+  transition: 0.25s background-color ease-in-out, 0.25s color ease-in-out;
   &:hover, &:focus {
-    background: $colour-grey--dark;
-    color: $colour-grey--light;
+    background-color: $colour-grey--dark;
+    color: $colour-grey--lighter;
   }
   a {
     text-decoration: none;
+    @include overlayLink;
   }
 }
 
@@ -200,7 +216,7 @@ $site-foot__icon-margin: $site-foot__icon-size * 0.25;
 
     // We have to use a div wrapper because Safari doesn't handle images in flex uniformly
     .img-wrap {
-      flex-grow: 1;
+      flex-grow: 2;
       flex-basis: 0;
       align-self: start;
     }
@@ -212,7 +228,7 @@ $site-foot__icon-margin: $site-foot__icon-size * 0.25;
     }
 
     .info {
-      flex-grow: 2;
+      flex-grow: 3;
       flex-basis: 0;
     }
 
