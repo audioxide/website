@@ -12,6 +12,12 @@
   force = true
 
 [[redirects]]
+  from = "/feed/*"
+  to = "https://stoic-galileo-1d5a50.netlify.app/feed/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
