@@ -1,25 +1,22 @@
 <script lang="ts">
 import Vue from 'vue'
 import Icon from '@/components/Icon.vue';
+import { rand } from '~/assets/utilities';
 
 export default Vue.extend({
     name: 'RandomPost',
     asyncData({ params: { type }, store }) {
-        if (!('pages' in store.state.types) || !('postTypes' in store.state.types)) {
+        if (!('postTotal' in store.state.types)) {
             return store.dispatch('getTypes');
         }
         return Promise.resolve();
     },
     render: (h) => h(Icon, { props: { icon: 'brain' }, class: 'random-icon' }),
     async created() {
-        const types = this.$store.state.types as { [key: string]: string[] };
-        const slugs = types.postTypes;
-        const typeInd = Math.floor(Math.random() * slugs.length);
-        const typeSlug = slugs[typeInd];
-        await this.$store.dispatch('posts/getPostType', typeSlug);
-        const posts = this.$store.state.posts.posts[typeSlug];
-        const postInd = Math.floor(Math.random() * posts.length);
-        const post = posts[postInd];
+        const totalPosts = this.$store.state.types.postTotal;
+        const postInd = rand(0, totalPosts - 1);
+        await this.$store.dispatch('posts/getIndexedPost', postInd);
+        const post = this.$store.getters['posts/byIndex'][postInd];
         this.$router.replace(`${post.metadata.type}/${post.metadata.slug}`);
     }
 });

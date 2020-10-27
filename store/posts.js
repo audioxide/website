@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { latest, posts, post, tag } from '../api';
+import { latest, posts, post, tag, indexedPost } from '../api';
 
 const loaded = new Set();
 
@@ -51,16 +51,21 @@ export const state = () => ({
 });
 
 export const getters = {
-    pathLookup: ({ posts }) => Object.values(posts).reduce((acc, grouping) => {
-        grouping.forEach(post => {
-            acc[`${post.metadata.type}/${post.metadata.slug}`] = post;
-        });
+    byIndex: ({ posts }) => Object.values(posts)
+        .reduce((acc, grouping) => {
+            grouping.forEach(post => {
+                acc[post.metadata.id] = post;
+            });
+            return acc;
+        }, []),
+    byTag: ({ tags }, { byIndex }) => tags.reduce((acc, tag) => {
+        acc[tag] = byIndex.filter(post => post.metadata.tags.includes(tag));
         return acc;
     }, {}),
-    byTag: ({ posts, tags }) => tags.reduce((acc, key) => Object.assign(
-        acc,
-        { [key]: Object.values(posts).reduce((acc, typeList) => acc.concat(typeList.filter(post => post.metadata.tags.includes(key))), []) }
-    ), {}),
+    pathLookup: (_, { byIndex }) => byIndex.reduce((acc, post) => {
+        acc[`${post.metadata.type}/${post.metadata.slug}`] = post;
+        return acc;
+    }, {}),
     latestPost: ({ posts }) => Object.values(posts).reduce((latest, [post]) => !latest || new Date(post.metadata.created) > new Date(latest.metadata.created) ? post : latest, undefined),
 };
 
@@ -120,6 +125,20 @@ export const actions = {
         loaded.add(id);
         try {
             commit('setPost', await post(type, slug));
+        } catch {
+            loaded.delete(id);
+        }
+    },
+    async getIndexedPost({ commit }, index) {
+        const id = `indexedPost/${index}`;
+        if (loaded.has(id)) return;
+        loaded.add(id);
+        try {
+            const post = await indexedPost(index);
+            commit('setPost', post);
+            // Flag the appropriate getPost call to ensure no double loads
+            const { type, slug } = post.metadata;
+            loaded.add(`post/${type}/${slug}`);
         } catch {
             loaded.delete(id);
         }
