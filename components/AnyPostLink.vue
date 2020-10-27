@@ -1,5 +1,5 @@
 <script lang="ts">
-import Vue, { VNode } from 'vue';
+import Vue, { VNode, PropType } from 'vue';
 import PostLink from '@/components/PostLink.vue';
 import ArticleLink from '@/components/ArticleLink.vue';
 import ReviewLink from '@/components/ReviewLink.vue';
@@ -8,6 +8,9 @@ const ALBUM_TYPES = ['reviews'];
 
 export default PostLink.extend({
     name: 'AnyPostLink',
+    props: {
+        imageFormat: { type: String as PropType<ImageSizeAspectRatios> },
+    },
     render(h): VNode {
         const opts = { props: this.$props };
         const type = this.post.metadata.type;

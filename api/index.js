@@ -44,6 +44,8 @@ const posts = (type) => getListing(`${type}.json`);
 
 const post = (type, slug) => getSingle(`posts/${type}-${slug}.json`);
 
+const indexedPost = (index) => getSingle(`posts/indexed/${index}.json`);
+
 const page = (slug) => getSingle(`pages/${slug}.json`);
 
 const tags = () => getGrouping('tags.json');
@@ -57,6 +59,7 @@ export {
     latest,
     posts,
     post,
+    indexedPost,
     page,
     tags,
     tag,
