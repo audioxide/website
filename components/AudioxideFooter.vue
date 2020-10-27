@@ -13,7 +13,7 @@
                 <li class="site-foot_nav-item"><a href="/contact">Contact</a></li>
             </ul>
         </nav>
-        <p>&copy; {{ year }}. All rights reserved.</p>
+        <p>&copy; 2015-{{ year }}. All rights reserved.</p>
     </footer>
 </template>
 
@@ -59,15 +59,10 @@ export default {
         }
     }
 
-    .site-foot_divider {
-        background: #f5f5f5;
-        border: 0;
-        height: 2.5px;
-    }
-
     .site-foot_nav {
         display: flex;
         flex-wrap: wrap;
+        align-items: center;
         width: 90%;
         margin: calc(#{$site-foot__icon-size} * 0.75) auto;
     }
@@ -92,6 +87,22 @@ export default {
             width: 20%;
             font-size: 1.3em;
             margin-top: 0;
+            a {
+                $transitionMs: 0.25s;
+                transition: $transitionMs color ease-in-out,
+                            $transitionMs background-color ease-in-out;
+                color: black;
+                border: $line-width solid black;
+                border-radius: 2rem;
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+                line-height: 38px;
+                &:hover {
+                    color: $colour-pink;
+                    background-color: black;
+                }
+            }
             & span {
                 display: none;
             }
@@ -105,6 +116,8 @@ export default {
             width: $site-foot__logo-size;
             height: $site-foot__logo-size;
             margin-top: 0;
+            display: block;
+            border-radius: 2rem;
         }
     }
 </style>

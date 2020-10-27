@@ -94,6 +94,7 @@ interface ReviewMetadata extends PostMetadata {
 interface Post {
     metadata: PostMetadata,
     content: (string | ContentItem)[],
+    related?: [Post, Post, Post, Post],
 }
 
 interface Article extends Post {

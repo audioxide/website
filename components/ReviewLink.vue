@@ -1,7 +1,7 @@
 <template>
     <div class="post-link review-link">
-        <div class="img-wrap">
-            <img v-if="image" :src="post.metadata.featuredimage[`${imageSize}-square`]" loading="lazy" width="300" height="300" />
+        <div class="img-wrap" :style="{ borderColor: post.metadata.colours[0] }">
+            <img v-if="image" :src="post.metadata.featuredimage[`${imageSize}-${imageFormat}`]" loading="lazy" width="300" height="300" />
         </div>
         <div class="info">
             <h4 v-if="title">
@@ -16,10 +16,14 @@
 </template>
 
 <script lang="ts">
+import { PropType } from 'vue';
 import PostLink from './PostLink.vue';
 
 export default PostLink.extend({
     name: 'ReviewLink',
+    props: {
+        imageFormat: { type: String as PropType<ImageSizeAspectRatios>, default: 'square' },
+    }
 });
 </script>
 
@@ -31,6 +35,10 @@ export default PostLink.extend({
 
 h4 span {
     display: block;
+}
+
+.img-wrap {
+    border: $line-width solid black;
 }
 
 .album {
