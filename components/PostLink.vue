@@ -5,6 +5,7 @@ export default Vue.extend({
     props: {
         post: { type: Object as PropType<Post>, required: true },
         imageSize: { type: String as PropType<ImageSizeResolutions>, default: 'small' },
+        imageFormat: { type: String as PropType<ImageSizeAspectRatios>, default: 'standard' },
         image: { type: Boolean, default: true },
         title: { type: Boolean, default: true },
         blurb: { type: Boolean, default: true },

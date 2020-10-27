@@ -20,10 +20,10 @@
       </div>
     </div>
     <div class="panel listening-parties">
-      <h3>Listening Parties (<nuxt-link to="listeningparties">See all<span class="sr-only">listening parties</span></nuxt-link>)</h3>
+      <h3>Listening Parties (<nuxt-link to="listening-parties">See all<span class="sr-only">listening parties</span></nuxt-link>)</h3>
       <div class="listing">
-        <review-link v-for="(item, key) in listeningParties" :key="key"
-                    :post="item" image-size="xsmall" :author="false" />
+        <article-link v-for="(item, key) in listeningParties" :key="key"
+                    :post="item" image-size="xsmall" image-format="square" :author="false" />
       </div>
     </div>
     <div class="panel funnyfarm">
@@ -133,7 +133,7 @@ export default Vue.extend({
       })) as PostListing<Article>;
     },
     listeningParties(): PostListing<Article> {
-      return this.posts.listeningparties.slice(0, this.getLimit({
+      return this.posts['listening-parties'].slice(0, this.getLimit({
         large: 4,
         medium: 3,
         default: 2,
@@ -175,6 +175,17 @@ export default Vue.extend({
     }
   }
 
+  .reviews, .listening-parties {
+    ::v-deep {
+      h4 {
+        font-size: $site-content__font;
+      }
+      p {
+        font-size: 1em;
+      }
+    }
+  }
+
   .lead-post {
     order: 0;
     grid-area: 1 / 4 / 2 / 8;
@@ -185,10 +196,14 @@ export default Vue.extend({
     border-radius: 15px;
     padding-top: 0;
     ::v-deep {
+      .img-wrap {
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+      }
       img {
         margin: 0;
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
+        border-top-left-radius: 9px;
+        border-top-right-radius: 9px;
       }
       .info {
         padding: 30px;
@@ -212,27 +227,7 @@ export default Vue.extend({
     overflow: hidden;
     flex-wrap: wrap;
     & > h3 {
-      font-family: $section-fontstack;
-      font-size: $site-content__font--section-heading;
-      // font-variant: small-caps;
-      font-weight: 500;
-      font-style: italic;
-      width: 100%;
-      // text-align: center;
-      position: relative;
-      border-top: 3px solid #f5f5f5;
-      border-bottom: 3px solid #f5f5f5;
-      text-align: center;
-      padding: 18px 10px;
-      // margin-bottom: 1.5em;
-      /* &::after {
-        width: 5%;
-        height: 1px;
-        background-color: black;
-        content: '';
-        display: block;
-        margin: .75em 0 1.5em;
-      } */
+      @include section-heading;
     }
   }
 
@@ -316,7 +311,7 @@ export default Vue.extend({
       font-weight: 600;
       margin-bottom: 1.5em;
       &:hover {
-        border: 2px solid lighten($colour-pink, 30%);;
+        border: 2px solid lighten($colour-pink, 30%);
       }
     }
     .social-icons {

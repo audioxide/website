@@ -81,6 +81,7 @@
             </div>
         </section>
         <newsletter-signup class="newsletter" />
+        <related-posts class="related" v-if="review.related" :posts="review.related" />
     </main>
     </div>
 </template>
@@ -89,6 +90,7 @@
 import Vue from 'vue';
 import PostContentBlock from '../../components/PostContentBlock.vue';
 import NewsletterSignup from '../../components/NewsletterSignup.vue';
+import RelatedPosts from '@/components/RelatedPosts.vue';
 import { audioxideStructuredData, metaTitle, padNum, resolveAuthorLink } from '~/assets/utilities';
 import { MetaInfo } from 'vue-meta';
 import formatISO from 'date-fns/formatISO';
@@ -98,7 +100,7 @@ type ColourStyles = { [key: string]: string };
 
 export default Vue.extend({
     name: 'AudioxideReview',
-    components: { PostContentBlock, NewsletterSignup },
+    components: { PostContentBlock, NewsletterSignup, RelatedPosts },
     data: () => ({
         review: {} as Review,
     }),
@@ -261,10 +263,8 @@ export default Vue.extend({
 
     .review-sidebar__album-cover {
         width: 100%;
-        border-right: 1px solid #dddddd;
-        border-bottom: 1px solid #dddddd;
-        border-left: 1px solid #dddddd;
-
+        border: 1px solid #dddddd;
+        border-top: 0;
     }
 
     .review-sidebar__album-info {
@@ -393,7 +393,7 @@ export default Vue.extend({
             width: $site-content__content-size;
             padding-right: $site-content__spacer--xx-large;
         }
-        .review-sidebar, ::v-deep .newsletter {
+        .review-sidebar, ::v-deep .newsletter, ::v-deep .related {
             order: 1;
         }
         .review-sidebar {

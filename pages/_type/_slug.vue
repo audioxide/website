@@ -24,6 +24,7 @@
             </div>
         </section>
         <newsletter-signup />
+        <related-posts v-if="article.related" :posts="article.related" />
     </main>
 </template>
 
@@ -31,6 +32,7 @@
 import Vue from 'vue';
 import PostContentBlock from '../../components/PostContentBlock.vue';
 import NewsletterSignup from '../../components/NewsletterSignup.vue';
+import RelatedPosts from '@/components/RelatedPosts.vue';
 import { resolveAuthorLink, isObject, metaTitle, toTitleCase } from '../../assets/utilities';
 
 type PostColours = [string, string, string];
@@ -38,7 +40,7 @@ type ColourStyles = { [key: string]: string };
 
 export default Vue.extend({
     name: 'AudioxideArticle',
-    components: { PostContentBlock, NewsletterSignup },
+    components: { PostContentBlock, NewsletterSignup, RelatedPosts },
     data: () => ({
         article: {} as Article,
         type: 'articles',
