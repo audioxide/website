@@ -66,7 +66,7 @@ export const getters = {
         acc[`${post.metadata.type}/${post.metadata.slug}`] = post;
         return acc;
     }, {}),
-    latestPost: (_, { byIndex }) => byIndex.reverse(),
+    latestPost: (_, { byIndex }) => byIndex[byIndex.length - 1],
 };
 
 const getterId = 'posts/pathLookup';
