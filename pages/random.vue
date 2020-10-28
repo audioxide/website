@@ -17,7 +17,7 @@ export default Vue.extend({
         const postInd = rand(0, totalPosts - 1);
         await this.$store.dispatch('posts/getIndexedPost', postInd);
         const post = this.$store.getters['posts/byIndex'][postInd];
-        this.$router.replace(`${post.metadata.type}/${post.metadata.slug}`);
+        this.$router.replace(`/${post.metadata.type}/${post.metadata.slug}`);
     }
 });
 </script>
