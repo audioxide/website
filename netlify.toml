@@ -18,6 +18,22 @@
   force = true
 
 [[redirects]]
+  from = "/listeningparties/*"
+  to = "/listening-parties/:splat"
+
+[[redirects]]
+  from = "/articles/some-spotify-and-the-strange-new-world-of-music-consumption"
+  to = "/articles/soma-spotify-and-the-strange-new-world-of-music-consumption"
+
+[[redirects]]
+  from = "/reviews/adventures-of-a-reluctant-superhero-chali-2nakrafty-kuts"
+  to = "/reviews/chali-2na-krafty-kuts-adventures-of-a-reluctant-superhero"
+
+[[redirects]]
+  from = "/reviews/review-heaven-upside-down-marilyn-manson"
+  to = "/reviews/marilyn-manson-heaven-upside-down"
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
