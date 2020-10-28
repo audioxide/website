@@ -66,7 +66,7 @@ export const getters = {
         acc[`${post.metadata.type}/${post.metadata.slug}`] = post;
         return acc;
     }, {}),
-    latestPost: ({ posts }) => Object.values(posts).reduce((latest, [post]) => !latest || new Date(post.metadata.created) > new Date(latest.metadata.created) ? post : latest, undefined),
+    latestPost: (_, { byIndex }) => byIndex.reverse(),
 };
 
 const getterId = 'posts/pathLookup';
