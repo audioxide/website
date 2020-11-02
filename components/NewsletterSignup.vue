@@ -1,6 +1,6 @@
 <template functional>
     <div class="newsletter-signup-container" :class="data.staticClass || ''">
-        <p>Get monthly roundups straight to your inbox. <a href="https://eepurl.com/cox6qr" target="_blank">Sign up for our newsletter.</a></p>
+        <p>Get monthly roundups straight to your inbox. <a href="https://eepurl.com/cox6qr" target="_blank" rel="noopener">Sign up for our newsletter.</a></p>
     </div>
 </template>
 
@@ -13,7 +13,7 @@
         font-weight: bold;
         text-align: center;
         color: black;
-        width: 95%;
+        width: 100%;
         margin: auto;
         padding: 1em;
         border: $line-width solid $line-colour;

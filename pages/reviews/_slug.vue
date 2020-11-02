@@ -1,7 +1,9 @@
 <template>
-    <div>
     <main class="site-content site-content--flex" v-if="review.metadata">
         <header class="review-header" :style="chromeStyles">
+            <template v-if="review.metadata.week < 15">
+                <p class="review-header__disclaimer">Our early reviews are threadbare to say the least. In the spirit of remembering where we came from, we've left them as they were.</p>
+            </template>
             <details class="collapsible">
                 <summary class="collapsible__toggle">
                     <p class="review-header__date">{{ review.metadata.created | formatDate }}</p>
@@ -36,8 +38,8 @@
                     <img class="review-sidebar__ribbon" src="~assets/img/ribbon-bronze.png" alt="Bronze Audioxide review ribbon">
                 </template>
             <figure>
-            <img class="review-sidebar__album-cover" :src="review.metadata.featuredimage['medium-square']">
-            <p class="review-sidebar__album-info">{ { review.featured_media.description } }</p>
+            <img class="review-sidebar__album-cover" :alt="coverAlt" :src="review.metadata.featuredimage['medium-square']">
+            <figcaption class="review-sidebar__album-info">{ { review.featured_media.description } }</figcaption>
             </figure>
             </div>
             <div class="review-sidebar__total-score" :style="sidebarStyles">
@@ -69,7 +71,7 @@
             </div>
             <template v-if="review.metadata.artistLink">
             <div class="review-sidebar__artist-link">
-                <p><a :href="review.metadata.artistLink" target="_blank">Support the artist →</a></p>
+                <p><a :href="review.metadata.artistLink" target="_blank" rel="noopener">Support the artist →</a></p>
             </div>
             </template>
             <p class="review-sidebar__serial">No. {{ weekStr }}</p>
@@ -83,7 +85,6 @@
         <newsletter-signup class="newsletter" />
         <related-posts class="related" v-if="review.related" :posts="review.related" />
     </main>
-    </div>
 </template>
 
 <script lang="ts">
@@ -91,7 +92,7 @@ import Vue from 'vue';
 import PostContentBlock from '../../components/PostContentBlock.vue';
 import NewsletterSignup from '../../components/NewsletterSignup.vue';
 import RelatedPosts from '@/components/RelatedPosts.vue';
-import { audioxideStructuredData, metaTitle, padNum, resolveAuthorLink } from '~/assets/utilities';
+import { albumCoverAlt, audioxideStructuredData, metaTitle, padNum, resolveAuthorLink } from '~/assets/utilities';
 import { MetaInfo } from 'vue-meta';
 import formatISO from 'date-fns/formatISO';
 
@@ -191,6 +192,9 @@ export default Vue.extend({
         },
         sidebarHighlightStyles(): ColourStyles {
             return { color: this.colours[2] };
+        },
+        coverAlt(): string {
+            return albumCoverAlt(this.review);
         }
     }
 })
@@ -221,13 +225,24 @@ export default Vue.extend({
         @include site-content__subtext;
     }
 
-    .review-header__album, .review-header__artist, .review-header__date, .review-header__authors {
+    .review-header__album, .review-header__artist, .review-header__date, .review-header__authors, .review-header__disclaimer {
         font-family: $heading-fontstack;
     }
 
     .review-header__heading {
         margin-top: $site-content__spacer--large;
         margin-bottom: $site-content__spacer--large;
+    }
+
+    .review-header__disclaimer {
+        color: black;
+        background-color: #FFE501;
+        padding: 0.9em;
+        font-weight: 600;
+        border-radius: 5px;
+        margin-top: $site-content__spacer--large;
+        margin-bottom: $site-content__spacer--large;
+        display: inline-block
     }
 
     .review-header__album {
@@ -248,6 +263,7 @@ export default Vue.extend({
 
     .review-header__authors {
         color: $colour-grey;
+        margin-top: $site-content__spacer--x-large;
     }
 
     .review-sidebar__album-cover-container {
@@ -307,13 +323,13 @@ export default Vue.extend({
         font-weight: 400;
         font-size: 1em;
         border: 2px solid $colour-pink;
-        text-decoration: none;
         position: relative;
         &:hover {
             border: 2px solid lighten($colour-pink, 30%);
         }
         a {
             @include overlayLink;
+            text-decoration: none;
         }
     }
 

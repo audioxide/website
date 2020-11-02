@@ -13,7 +13,7 @@
                 <li class="site-foot_nav-item"><a href="/contact">Contact</a></li>
             </ul>
         </nav>
-        <p>&copy; 2015-{{ year }}. All rights reserved.</p>
+        <p class="copyright-jargon">&copy; 2015-{{ year }}. All rights reserved.</p>
     </footer>
 </template>
 
@@ -33,11 +33,13 @@ export default {
     @import "~assets/styles/variables";
 
     .site-foot {
+        @include site-content__subtext;
+        font-family: $heading-fontstack;
         width: 90%;
         margin: 40px auto 0;
         position: relative;
         text-align: center;
-        font-family: $base-fontstack;
+        padding-bottom: 3em;
         @include line-styles("top");
     }
 
@@ -119,5 +121,7 @@ export default {
             display: block;
             border-radius: 2rem;
         }
+    
     }
+
 </style>
