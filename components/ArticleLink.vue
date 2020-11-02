@@ -1,7 +1,7 @@
 <template>
     <div class="post-link">
         <div class="img-wrap">
-            <img v-if="image" :src="post.metadata.featuredimage[`${imageSize}-${imageFormat}`]" loading="lazy" width="300" height="200" />
+            <img v-if="image" :src="post.metadata.featuredimage[`${imageSize}-${imageFormat}`]" :alt="post.metadata.featuredimageAlt" loading="lazy" width="300" height="200" />
         </div>
         <div class="info">
             <h4 v-if="title"><nuxt-link :to="`/${post.metadata.type}/${post.metadata.slug}`" class="overlay-link">{{ post.metadata.title | unescape }}</nuxt-link></h4>

@@ -43,16 +43,17 @@ const nav = [
     {
         link: { text: 'Reviews', route: '/reviews' },
         children: [
-            { text: '27 Club', route: '/27-club' },
-            { text: 'Scoring', route: '/scoring' },
-            { text: 'Stats', route: '/stats' },
+            { text: 'Scoring System', route: '/scoring-system' },
+            { text: 'The 27+ Club', route: '/tags/27-plus-club' }
         ],
     },
     {
         link: { text: 'Articles', route: '/articles' },
         children: [
-            { text: 'Game Music', route: '/game-music' },
-            { text: 'Rankings', route: '/rankings' }
+            { text: 'Rankings', route: '/tags/rankings' },
+            { text: 'The Music of Games', route: '/tags/the-music-of-games' },
+            { text: 'Listening Parties', route: '/listening-parties'},
+            { text: 'Funnyfarm', route: '/funnyfarm'}
         ]
     },
     { link: { text: 'Interviews', route: '/interviews' } },
@@ -217,7 +218,7 @@ export default Vue.extend({
         }
         .site-nav__list-item--sub {
             margin-top: .5em;
-            font-size: 0.9em;
+            font-size: 0.8em;
             a {
                 color: $colour-grey--light;
                 &:hover {

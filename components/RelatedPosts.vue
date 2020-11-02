@@ -29,7 +29,7 @@ export default Vue.extend({
 @import '~assets/styles/variables';
 
 .related-posts {
-    padding-top: 50px;
+    padding-top: 30px;
 }
 
 h3 {

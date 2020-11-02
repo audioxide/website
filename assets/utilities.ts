@@ -20,6 +20,8 @@ const isObject = (obj: any): obj is object => typeof obj === 'object' && obj !==
 
 const metaTitle = (str: string) => `${he.decode(str)} // Audioxide`;
 
+const albumCoverAlt = (review: Review) => `Album artwork of "${review.metadata.album}" by ${review.metadata.artist}`;
+
 type Procedure = (...args: any[]) => void;
 type ThrottledFunction<T extends Procedure> = (...args: Parameters<T>) => void;
 const throttle = <T extends Procedure>(func: T, waitMs: number): ThrottledFunction<T> => {
@@ -106,6 +108,7 @@ export {
     isObject,
     toTitleCase,
     metaTitle,
+    albumCoverAlt,
     throttle,
     resolveAuthorLink,
     audioxideStructuredData,
