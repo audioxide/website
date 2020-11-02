@@ -23,19 +23,7 @@ export default Vue.extend({
 </script>
 
 <style>
-    @keyframes pulse {
-        0% {
-            opacity: 1;
-        }
-
-        50% {
-            opacity: 0.25;
-        }
-
-        to {
-            opacity: 1;
-        }
-    }
+    @import "~assets/styles/animations.scss";
 
     .random-icon {
         font-size: 10em;

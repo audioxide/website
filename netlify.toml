@@ -1,9 +1,15 @@
 [build]
   publish = "dist/"
-  command = "sed -i \"s|SITE_URL|${URL}|g\" netlify.toml && export API_URL=$URL/api && npm run build"
+  command = "sed -i \"s|SITE_URL|${URL}|g\" netlify.toml && export API_URL=$URL/api && export SEARCH_URL=$SEARCH_URL && npm run build"
 
 [context.deploy-preview]
-  command = "sed -i \"s|SITE_URL|${DEPLOY_PRIME_URL}|g\" netlify.toml && export API_URL=$DEPLOY_PRIME_URL/api && npm run build"
+  command = "sed -i \"s|SITE_URL|${DEPLOY_PRIME_URL}|g\" netlify.toml && export API_URL=$DEPLOY_PRIME_URL/api && export SEARCH_URL=$SEARCH_URL && npm run build"
+
+[[redirects]]
+  from = "/api/search"
+  to = "https://stoic-galileo-1d5a50.netlify.app/.netlify/functions/search"
+  status = 200
+  force = true
 
 [[redirects]]
   from = "/api/*"
