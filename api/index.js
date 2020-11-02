@@ -1,6 +1,7 @@
 import parseISO from 'date-fns/parseISO';
 
 const APIURL = process.env.apiUrl;
+const SEARCHURL = process.env.searchUrl;
 
 const processPost = (post) => {
     if (typeof post !== 'object'
@@ -54,6 +55,8 @@ const tag = (slug) => getListing(`tags/${slug}.json`);
 
 const types = () => getData('types.json');
 
+const search = (term) => fetch(`${SEARCHURL}?term=${term}`).then(r => r.json());
+
 export {
     banner,
     latest,
@@ -64,4 +67,5 @@ export {
     tags,
     tag,
     types,
+    search,
 }

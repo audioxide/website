@@ -5,6 +5,7 @@ export default {
   */
   env: {
     apiUrl: `${process.env.API_URL || 'http://localhost:8888'}/`,
+    searchUrl: process.env.SEARCH_URL || 'http://localhost:8889/search',
   },
   /*
    ** Headers of the page

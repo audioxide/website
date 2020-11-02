@@ -9,22 +9,19 @@
         </span>
 
         <!-- Search bar -->
-        <label class="site-nav__search" aria-label="Search site">
-            <input class="site-nav__search-input" type="text" placeholder="Search..." />
-            <icon icon="search" class="search-icon" />
-        </label>
+        <search-bar class="search-bar" />
 
         <!-- Primary Nav -->
         <ul class="site-nav__listing">
             <li v-for="(item, key) in activenav"
                 :key="key"
                 class="site-nav__list-item site-nav__list-item--always-show">
-                <nuxt-link :to="item.link.route">{{ item.link.text }}</nuxt-link>
+                <nuxt-link :to="item.link.route" @click.native="collapsed = true">{{ item.link.text }}</nuxt-link>
                 <ul v-if="!collapsed && 'children' in item" class="site-nav__listing--sub">
                 <li v-for="(child, cKey) in item.children"
                     :key="cKey"
                     class="site-nav__list-item site-nav__list-item--sub">
-                    <nuxt-link :to="child.route">{{ child.text }}</nuxt-link>
+                    <nuxt-link :to="child.route" @click.native="collapsed = true">{{ child.text }}</nuxt-link>
                 </li>
                 </ul>
             </li>
@@ -38,7 +35,10 @@
     </nav>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue';
+import SearchBar from '@/components/SearchBar.vue';
+
 const nav = [
     {
         link: { text: 'Reviews', route: '/reviews' },
@@ -60,29 +60,32 @@ const nav = [
     { link: { text: 'Contact', route: '/contact' } },
 ];
 
-export default {
-  name: 'NavBar',
-  data: () => ({
-    nav,
-    cutoff: 3,
-    collapsed: true,
-  }),
-  computed: {
-    mininav() {
-      return this.nav.slice(0, this.cutoff);
-    },
-    activenav() {
-      return this.collapsed ? this.mininav : this.nav;
-    },
-    menuText() {
-        const bp = this.$store.state.breakpoint;
-        if (bp === 'base' || bp === 'small') {
-            return 'Menu';
+type NavConfig = typeof nav;
+
+export default Vue.extend({
+    name: 'NavBar',
+    components: { SearchBar },
+    data: () => ({
+        nav,
+        cutoff: 3,
+        collapsed: true,
+    }),
+    computed: {
+        mininav(): NavConfig {
+        return this.nav.slice(0, this.cutoff);
+        },
+        activenav(): NavConfig {
+        return this.collapsed ? this.mininav : this.nav;
+        },
+        menuText(): String {
+            const bp = this.$store.state.breakpoint;
+            if (bp === 'base' || bp === 'small') {
+                return 'Menu';
+            }
+            return this.collapsed ? 'More' : 'Close';
         }
-        return this.collapsed ? 'More' : 'Close';
-    }
-  },
-};
+    },
+});
 </script>
 
 <style scoped lang="scss">
@@ -131,7 +134,7 @@ export default {
     }
 
     @include medium {
-        .menu-toggle, .site-nav__search {
+        .menu-toggle, .search-bar {
             order: 1;
         }
     }
@@ -258,83 +261,20 @@ export default {
         }
     }
 
-    .site-nav__search {
+    .search-bar {
         display: none;
-        flex-direction: row-reverse;
-        justify-content: center;
-        align-items: center;
-        margin-top: 1.5rem;
-        margin-bottom: 0;
-        height: 2rem;
-        min-width: 0;
         .site-nav.active & {
-            display: flex;
-            align-self: baseline;
-        }
-        @include medium {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: -0.3rem;
-            &:focus-within {
-                transition: 0.5s min-width ease-in-out;
-                min-width: calc(100% - (170px + 10vw + 1rem));
-                position: absolute;
-                z-index: 2;
-                left: 5vw;
-
-            }
-        }
-        @include large {
-            &:focus-within {
-                min-width: calc(100% - (170px + 30vw + 1rem));
-                left: 15vw;
-            }
+            display: block;
         }
     }
 
-    .site-nav__search::before {
-        background: white;
-        color: black;
-        padding: 0.5rem;
-        border-radius: 1rem;
-        position: relative;
-        z-index: 1;
-    }
-
-    .site-nav__search-input {
-        background-color: transparent;
-        border: none;
-        border-radius: 1rem;
-        padding: 0.5rem;
-        padding-left: 2.2rem;
-        margin-left: -2.2rem;
-        background-color: white;
-        width: 100%;
-        max-width: 500px;
-        & + .search-icon {
-            color: black;
-        }
-        @include medium {
-            background-color: transparent;
-            max-width: 0;
-            & + .search-icon {
-                color: white;
-                transition: 0.25s color ease-in-out;
-            }
-            &:focus {
-                transition: 0.5s max-width ease-in-out, 0.25s background-color ease-in-out;
-                background-color: white;
-                max-width: calc(100% - (170px + 10vw));
-                & + .search-icon {
-                    color: black;
-                }
+    @include medium {
+        .search-bar {
+            display: block;
+            .site-nav.active & {
+                display: none;
             }
         }
-    }
-
-    .site-nav__search .search-icon {
-        margin-left: 0.8rem;
-        margin-right: 0.3rem;
     }
 
     @import '~assets/styles/variables';
