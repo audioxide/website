@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Audioxide site implemented with Nuxt.js",
   "author": "Andrew Bridge",
+  "license": "AGPL-3.0-or-later",
   "private": true,
   "scripts": {
     "dev": "nuxt-ts",
