@@ -24,7 +24,7 @@
             </p>
         </header>
         <aside class="review-sidebar">
-            <div class="review-sidebar__album-cover-container">
+            <figure class="review-sidebar__album-cover-container">
                 <template v-if="review.metadata.totalscore.given > 26">
                     <img class="review-sidebar__ribbon" src="~assets/img/ribbon-27-plus.png" alt="Platinum Audioxide review ribbon">
                 </template>
@@ -37,11 +37,12 @@
                 <template v-if="review.metadata.totalscore.given == 22 || review.metadata.totalscore.given == 21">
                     <img class="review-sidebar__ribbon" src="~assets/img/ribbon-bronze.png" alt="Bronze Audioxide review ribbon">
                 </template>
-            <figure>
-            <img class="review-sidebar__album-cover" :alt="coverAlt" :src="review.metadata.featuredimage['medium-square']">
-            <figcaption class="review-sidebar__album-info">{ { review.featured_media.description } }</figcaption>
+                <img class="review-sidebar__album-cover" :alt="coverAlt" :src="review.metadata.featuredimage['medium-square']">
+                <template v-if="review.metadata.artworkcredit">
+                    <figcaption class="review-sidebar__album-info">{{review.metadata.artworkcredit}} [<a :href="review.metadata.artworkcreditsource">Source</a>]</figcaption>
+                    <icon class="review-sidebar__info-icon" icon="info-circle" />
+                </template>
             </figure>
-            </div>
             <div class="review-sidebar__total-score" :style="sidebarStyles">
                 <span class="review-sidebar__score" :style="sidebarTextStyles">
                     {{review.metadata.totalscore.given}}
@@ -89,8 +90,9 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import PostContentBlock from '../../components/PostContentBlock.vue';
-import NewsletterSignup from '../../components/NewsletterSignup.vue';
+import PostContentBlock from '@/components/PostContentBlock.vue';
+import NewsletterSignup from '@/components/NewsletterSignup.vue';
+import Icon from '@/components/Icon.vue';
 import RelatedPosts from '@/components/RelatedPosts.vue';
 import { albumCoverAlt, audioxideStructuredData, metaTitle, padNum, resolveAuthorLink } from '~/assets/utilities';
 import { MetaInfo } from 'vue-meta';
@@ -101,7 +103,7 @@ type ColourStyles = { [key: string]: string };
 
 export default Vue.extend({
     name: 'AudioxideReview',
-    components: { PostContentBlock, NewsletterSignup, RelatedPosts },
+    components: { Icon, PostContentBlock, NewsletterSignup, RelatedPosts },
     data: () => ({
         review: {} as Review,
     }),
@@ -284,7 +286,26 @@ export default Vue.extend({
     }
 
     .review-sidebar__album-info {
-        display: none;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 1em;
+        color: white;
+        background-color: black;
+        opacity: 0.7;
+        position: absolute;
+        bottom: 3px;
+        left: 0;
+        padding: 1em 4em 1em 1em;
+        line-height: 1.1;
+    }
+
+    .review-sidebar__info-icon {
+        color: lightgray;
+        margin: 1em;
+        width: 1.5em;
+        height: 1.5em;
+        position: absolute;
+        bottom: 0;
+        right: 0;
     }
 
     .review-sidebar__total-score, .review-sidebar__tracks {

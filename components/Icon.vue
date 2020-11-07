@@ -8,6 +8,7 @@
     faSearch,
     faBrain,
     faHourglass,
+    faInfoCircle,
   } from '@fortawesome/free-solid-svg-icons';
   import {
     faFacebookF,
@@ -26,6 +27,7 @@
     faSearch,
     faBrain,
     faHourglass,
+    faInfoCircle,
   });
 
   export default Vue.component('icon', FontAwesomeIcon);
