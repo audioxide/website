@@ -1,25 +1,31 @@
 [build]
   publish = "dist/"
-  command = "sed -i \"s|SITE_URL|${URL}|g\" netlify.toml && export API_URL=$URL/api && export SEARCH_URL=$SEARCH_URL && yarn && yarn setup && yarn build"
+  command = "sed -i \"s|SITE_URL|${URL}|g\" netlify.toml && sed -i \"s|EXT_API_URL|${GAGA_API_URL}|g\" netlify.toml && export API_URL=$URL/api && export SEARCH_URL=$SEARCH_URL && yarn setup && yarn build"
+
+[context.beta]
+  command = "sed -i \"s|SITE_URL|${DEPLOY_PRIME_URL}|g\" netlify.toml && sed -i \"s|EXT_API_URL|${BETA_API_URL}|g\" netlify.toml && export API_URL=$DEPLOY_PRIME_URL/api && export SEARCH_URL=$SEARCH_URL && yarn setup && yarn build"
+
+[context.alpha]
+  command = "sed -i \"s|SITE_URL|${DEPLOY_PRIME_URL}|g\" netlify.toml && sed -i \"s|EXT_API_URL|${ALPHA_API_URL}|g\" netlify.toml && export API_URL=$DEPLOY_PRIME_URL/api && export SEARCH_URL=$SEARCH_URL && yarn setup && yarn build"
 
 [context.deploy-preview]
-  command = "sed -i \"s|SITE_URL|${DEPLOY_PRIME_URL}|g\" netlify.toml && export API_URL=$DEPLOY_PRIME_URL/api && export SEARCH_URL=$SEARCH_URL && yarn && yarn setup && yarn build"
+  command = "sed -i \"s|SITE_URL|${DEPLOY_PRIME_URL}|g\" netlify.toml && sed -i \"s|EXT_API_URL|${ALPHA_API_URL}|g\" netlify.toml && export API_URL=$DEPLOY_PRIME_URL/api && export SEARCH_URL=$SEARCH_URL && yarn setup && yarn build"
 
 [[redirects]]
   from = "/api/search"
-  to = "https://stoic-galileo-1d5a50.netlify.app/.netlify/functions/search"
+  to = "EXT_API_URL/.netlify/functions/search"
   status = 200
   force = true
 
 [[redirects]]
   from = "/api/*"
-  to = "https://stoic-galileo-1d5a50.netlify.app/:splat"
+  to = "EXT_API_URL/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "/feed/*"
-  to = "https://stoic-galileo-1d5a50.netlify.app/feed/:splat"
+  to = "EXT_API_URL/feed/:splat"
   status = 200
   force = true
 
