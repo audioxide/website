@@ -6,6 +6,7 @@
   "license": "AGPL-3.0-or-later",
   "private": true,
   "scripts": {
+    "setup": "node setup.js",
     "dev": "nuxt-ts",
     "build": "nuxt-ts build",
     "generate": "nuxt-ts generate",
