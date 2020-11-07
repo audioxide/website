@@ -88,3 +88,7 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# Differently licensed assets
+assets/img
+assets/webfonts
