@@ -1,9 +1,9 @@
 [build]
   publish = "dist/"
-  command = "sed -i \"s|SITE_URL|${URL}|g\" netlify.toml && export API_URL=$URL/api && export SEARCH_URL=$SEARCH_URL && echo \"\n//npm.pkg.github.com/:_authToken=$GITHUB_REGISTRY_TOKEN\" >> .npmrc && yarn && yarn setup && yarn build"
+  command = "sed -i \"s|SITE_URL|${URL}|g\" netlify.toml && export API_URL=$URL/api && export SEARCH_URL=$SEARCH_URL && yarn && yarn setup && yarn build"
 
 [context.deploy-preview]
-  command = "sed -i \"s|SITE_URL|${DEPLOY_PRIME_URL}|g\" netlify.toml && export API_URL=$DEPLOY_PRIME_URL/api && export SEARCH_URL=$SEARCH_URL && echo \"\n//npm.pkg.github.com/:_authToken=$GITHUB_REGISTRY_TOKEN\" >> .npmrc && yarn && yarn setup && yarn build"
+  command = "sed -i \"s|SITE_URL|${DEPLOY_PRIME_URL}|g\" netlify.toml && export API_URL=$DEPLOY_PRIME_URL/api && export SEARCH_URL=$SEARCH_URL && yarn && yarn setup && yarn build"
 
 [[redirects]]
   from = "/api/search"
