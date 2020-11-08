@@ -79,7 +79,7 @@
         <section class="review-content">
             <post-content-block :content="review.content" :colours="colours" />
             <div class="tags">
-                <span v-for="(tag, key) in review.metadata.tags" :key="key" class="tag"><nuxt-link :to="`/tags/${tag}`">{{tag}}</nuxt-link></span>
+                <span v-for="(tag, key) in review.metadata.tags" :key="key" class="tag"><nuxt-link :to="`/tags/${tag.replace(/ /g, '-')}`">{{tag}}</nuxt-link></span>
             </div>
         </section>
         <newsletter-signup class="newsletter" />

@@ -7,9 +7,7 @@ import Vue from 'vue';
 import PostListing from '@/components/PostListing.vue';
 import AnyPostLink from '@/components/AnyPostLink.vue';
 
-type ContentTypes = { pages: string[], postTypes: string[] };
-const isPost = (type: string, types: ContentTypes) => types.postTypes.includes(type);
-const isPage = (type: string, types: ContentTypes) => types.pages.includes(type);
+const tagFromParam = (tagParam: string) => tagParam.replace(/-/g, ' ');
 
 export default Vue.extend({
     name: 'TagListing',
@@ -20,11 +18,12 @@ export default Vue.extend({
         linkType: AnyPostLink,
     }),
     asyncData({ params: { tag }, store }) {
-        return store.dispatch('posts/getPostTag', tag);
+        return store.dispatch('posts/getPostTag', tagFromParam(tag));
     },
     created() {
-        this.title = `Posts tagged "${this.$route.params.tag}"`;
-        this.posts = this.$store.getters['posts/byTag'][this.$route.params.tag];
+        const tag = tagFromParam(this.$route.params.tag);
+        this.title = `Posts tagged "${tag}"`;
+        this.posts = this.$store.getters['posts/byTag'][tag];
     },
 });
 </script>
