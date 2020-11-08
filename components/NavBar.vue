@@ -92,13 +92,12 @@ export default Vue.extend({
 <style scoped lang="scss">
     @import '~assets/styles/variables.scss';
 
-    $nav-vertical-padding: $site-nav__bar-height--small - $site-nav__bar-font-size--small / 2;
     .site-nav {
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
-        min-height: 56px;
+        min-height: $site-nav__bar-height;
         background: black;
         color: white;
         padding: 1rem 0.5rem;
@@ -114,7 +113,6 @@ export default Vue.extend({
     @include medium {
         .site-nav {
             padding: 1rem 5vw;
-            // height: $site-nav__bar-height--small;
             display: flex;
             justify-content: flex-start;
             margin: 0 auto;
@@ -170,9 +168,15 @@ export default Vue.extend({
     } */
 
     .menu-toggle {
-        display: block;
+        display: inline-block;
         margin-right: 2.5rem;
         position: relative;
+        @include medium {
+            .active & {
+                // Audioxide logo width so no overlapping occurs
+                margin-right: calc(2.5rem + 172px);
+            }
+        }
         &::after {
             content: '\25BC';
             font-size: 0.4em;
@@ -193,6 +197,12 @@ export default Vue.extend({
             min-width: 33vw;
             @include small {
                 min-width: auto;
+            }
+            @include medium {
+                margin-right: 1.5rem;
+            }
+            @include large {
+                margin-right: 2.5rem;
             }
             &:last-child {
                 margin-right: 0;
@@ -266,6 +276,10 @@ export default Vue.extend({
         display: none;
         .site-nav.active & {
             display: block;
+            margin-top: 1rem;
+        }
+        @include medium {
+            margin-top: -0.3rem;
         }
     }
 
