@@ -20,7 +20,7 @@
         <section class="article-content">
             <post-content-block :content="article.content" :decorate="true" />
             <div class="tags">
-                <span v-for="(tag, key) in article.metadata.tags" :key="key" class="tag"><nuxt-link :to="`/tags/${tag}`">{{tag}}</nuxt-link></span>
+                <span v-for="(tag, key) in article.metadata.tags" :key="key" class="tag"><nuxt-link :to="`/tags/${tag.replace(/ /g, '-')}`">{{tag}}</nuxt-link></span>
             </div>
         </section>
         <newsletter-signup />
