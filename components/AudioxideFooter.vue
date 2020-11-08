@@ -63,6 +63,7 @@ export default {
 
     .site-foot_nav {
         display: flex;
+        justify-content: space-between;
         flex-wrap: wrap;
         align-items: center;
         width: 90%;
@@ -109,19 +110,25 @@ export default {
                 display: none;
             }
         }
-        &.site-foot_nav-item--site-logo::before {
-            background: black;
-            background-image: $logo-wave;
-            background-size: cover;
-            background-position: center;
-            content: '\00a0';
-            width: $site-foot__logo-size;
-            height: $site-foot__logo-size;
-            margin-top: 0;
-            display: block;
-            border-radius: 2rem;
+        &.site-foot_nav-item--site-logo {
+            max-width: 56px;
+            &::before {
+                background: black;
+                background-image: $logo-wave;
+                background-size: cover;
+                background-position: center;
+                content: '\00a0';
+                width: 100%;
+                height: 0;
+                margin: 0 auto;
+                max-width: 56px;
+                max-height: 56px;
+                padding-bottom: 100%;
+                display: block;
+                border-radius: 2rem;
+            }
         }
-    
+
     }
 
 </style>
