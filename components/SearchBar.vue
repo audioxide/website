@@ -3,7 +3,7 @@
         <span class="input-wrapper">
             <span class="search-icon">
                 <icon icon="search" class="initial" :class="{ active: !isLoading }" />
-                <icon icon="hourglass" class="loading" :class="{ active: isLoading }" />
+                <icon :icon="['fad', 'spinner-third']" spin class="loading" :class="{ active: isLoading }" />
             </span>
             <input class="search-input"
                    type="text"
@@ -14,11 +14,11 @@
         <ul class="search-results" v-if="isActive && isEmpty">
             <li><ul class="listing"><li>No results found.</li></ul></li>
         </ul>
-        <ul class="search-results" v-else-if="isActive" @click.capture="unfocus">
+        <ul class="search-results" v-else-if="isActive">
             <li v-for="(listing, key) in results" :key="key"><span class="heading">{{ key }}</span>
                 <ul class="listing" :class="{ pills: key === 'tags' }">
                     <li v-for="(item, listingKey) in listing" :key="listingKey">
-                        <nuxt-link :to="item.route">{{ item.title }}</nuxt-link>
+                        <nuxt-link tabindex="0" :to="item.route">{{ item.title }}</nuxt-link>
                     </li>
                 </ul>
             </li>
@@ -50,6 +50,11 @@ const throttledSearch = throttle(async (ctx) => {
 export default Vue.extend({
     name: 'SearchBar',
     data: () => ({ results: {}, term: '', isLoading: false }),
+    created() {
+        // Wait until after the route has loaded to defocus
+        // Safari removes the listing too early so links don't fire
+        this.$router.afterEach(() => this.unfocus());
+    },
     computed: {
         isEmpty() {
             for (let key in this.results) {
@@ -78,7 +83,6 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
     @import '~assets/styles/variables.scss';
-    @import "~assets/styles/animations.scss";
 
     .search-bar {
         background-color: white;
@@ -112,14 +116,11 @@ export default Vue.extend({
         & > * {
             position: absolute;
             top: 20%;
-            transition: 0.25s transform ease-in-out;
-            transform: scale(0);
+            transition: 0.25s opacity ease-in-out;
+            opacity: 0;
         }
         .active {
-            transform: scale(1);
-        }
-        .loading {
-            animation: 1s linear infinite both pulse;
+            opacity: 1;
         }
     }
 

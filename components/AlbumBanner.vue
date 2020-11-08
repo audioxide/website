@@ -51,6 +51,14 @@ export default Vue.extend({
 
     .album-banner__art-wrapper {
         position: relative;
+        max-height: 200px;
+        height: calc(100vw / 4);
+        @include small {
+            height: calc(100vw / 6);
+        }
+        @include medium {
+            height: calc(100vw / 11);
+        }
         @media (max-width: $bp_small - .1) {
             &:nth-child(4) ~ .album-banner__art-wrapper {
                 display: none;
