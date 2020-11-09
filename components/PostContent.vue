@@ -28,8 +28,10 @@ export default Vue.extend({
                 this.handler({ preventDefault, target: elm.parentNode });
                 return;
             }
-            const url = (elm as HTMLAnchorElement).href;
-            let host, pathname;
+            const anchorElement = elm as HTMLAnchorElement;
+            const rawHref = anchorElement.getAttribute('href');
+            const url = anchorElement.href;
+            let host: string, pathname: string;
             if (window.URL && window.URL.prototype && ('href' in window.URL.prototype)) {
                 ({host, pathname} = new URL(url));
             } else {
@@ -40,7 +42,12 @@ export default Vue.extend({
                 host = result[4];
                 pathname = result[5];
             }
-            if (host === window.location.host) {
+            // Ensure anything on the current or audioxide domain passes except anchor
+            const isInternal = host === window.location.host
+                || host.endsWith('.audioxide.com')
+                || url.startsWith('https://audioxide.com');
+            const isAnchor = rawHref && rawHref.startsWith('#');
+            if (isInternal && !isAnchor) {
                 evt.preventDefault();
                 this.$router.push(pathname);
             }
