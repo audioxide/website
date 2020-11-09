@@ -49,6 +49,25 @@ export default Vue.extend({
     head() {
         const metadata = this.article.metadata;
         if (metadata) {
+
+            pageMeta.meta = [
+                { name: "description", content: metadata.blurb },
+
+                { property: "og:title", content: metadata.title },
+                { property: "og:description", content: metadata.blurb },
+                { property: "og:type", content: "article" },
+                { property: "og:url", content: `/${metadata.type}/${metadata.slug}` },
+                { property: "og:image:url", content: metadata.featuredimage },
+                { property: "og:image:alt", content: metadata.featuredimageAlt },
+                { property: "og:site_name", content: "Audioxide" },
+
+                { property: "twitter:title", content: metadata.title },
+                { property: "twitter:description", content: metadata.blurb },
+                { property: "twitter:image", content: metadata.featuredimage },
+                { property: "twitter:image:alt", content: metadata.featuredimageAlt },
+                { property: "twitter:card", content:"summary_large_image" }
+            ],
+
             return { title: metaTitle(metadata.title) };
         }
         return { title: metaTitle(toTitleCase(this.slug, '-')) };
