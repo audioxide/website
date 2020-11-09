@@ -77,10 +77,9 @@ export default Vue.extend({
                     '@type': 'Article',
                     articleBody: post.content,
                     datePublished: formatISO(metadata.created, { representation: 'date' }),
-                    author: this.reviews.map(review => ({
-                        '@type': 'Person',
-                        name: article.author.name,
-                    })),
+                    author: metadata.author.authors.map(author => ({ 
+                        '@type': 'Person', name: author.name 
+                        })),
                     publisher: audioxideStructuredData(),
                 }
             }]

@@ -137,10 +137,9 @@ export default Vue.extend({
                     '@type': 'Review',
                     reviewBody: metadata.summary || metadata.blurb || '',
                     datePublished: formatISO(metadata.created, { representation: 'date' }),
-                    author: this.reviews.map(review => ({
-                        '@type': 'Person',
-                        name: review.author.name,
-                    })),
+                    author: metadata.author.authors.map(author => ({ 
+                        '@type': 'Person', name: author.name 
+                        })),
                     itemReviewed: {
                         '@type': 'MusicAlbum',
                         'name': metadata.album,
