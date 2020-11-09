@@ -48,7 +48,9 @@ export default Vue.extend({
     }),
     head() {
         const metadata = this.article.metadata;
-        if (metadata) {
+        const pageMeta: MetaInfo = { 
+            
+            title: metaTitle(`Review${albumArtist}`) 
 
             pageMeta.meta = [
                 { name: "description", content: metadata.blurb },
@@ -59,15 +61,31 @@ export default Vue.extend({
                 { property: "og:url", content: `/${metadata.type}/${metadata.slug}` },
                 { property: "og:image:url", content: metadata.featuredimage },
                 { property: "og:image:alt", content: metadata.featuredimageAlt },
-                { property: "og:site_name", content: "Audioxide" },
 
                 { property: "twitter:title", content: metadata.title },
                 { property: "twitter:description", content: metadata.blurb },
                 { property: "twitter:image", content: metadata.featuredimage },
                 { property: "twitter:image:alt", content: metadata.featuredimageAlt },
-                { property: "twitter:card", content:"summary_large_image" }
-            ],
+            ]
+        }
 
+        if (metadata) 
+            pageMeta.script = [{
+                type: 'application/ld+json',
+                json: {
+                    '@context': 'http://schema.org',
+                    '@type': 'Article',
+                    articleBody: post.content,
+                    datePublished: formatISO(metadata.created, { representation: 'date' }),
+                    author: this.reviews.map(review => ({
+                        '@type': 'Person',
+                        name: article.author.name,
+                    })),
+                    publisher: audioxideStructuredData(),
+                }
+            }]
+
+            return pageMeta;
             return { title: metaTitle(metadata.title) };
         }
         return { title: metaTitle(toTitleCase(this.slug, '-')) };

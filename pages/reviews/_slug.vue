@@ -108,10 +108,10 @@ export default Vue.extend({
     head() {
         const metadata = this.review.metadata;
         const albumArtist = metadata ? `: ${metadata.album} // ${metadata.artist}` : '';
-        const pageMeta: MetaInfo = { title: metaTitle(`Review${albumArtist}`) };
-
-        if (metadata) {
-
+        const pageMeta: MetaInfo = { 
+            
+            title: metaTitle(`Review${albumArtist}`) 
+            
             pageMeta.meta = [
                 { name: "description", content: metadata.blurb },
 
@@ -121,15 +121,15 @@ export default Vue.extend({
                 { property: "og:url", content: `/${metadata.type}/${metadata.slug}` },
                 { property: "og:image:url", content: metadata.featuredimage },
                 { property: "og:image:alt", content: `Album artwork of ${metadata.album} by ${metadata.artist}.` },
-                { property: "og:site_name", content: "Audioxide" },
 
                 { property: "twitter:title", content: `Review: ${metadata.album} // ${metadata.artist}` },
                 { property: "twitter:description", content: `'${metadata.pullquote}.` },
                 { property: "twitter:image", content: metadata.featuredimage },
                 { property: "twitter:image:alt", content: `Album artwork of ${metadata.album} by ${metadata.artist}.` },
-                { property: "twitter:card", content:"summary_large_image" }
-            ],
+            ]
+        }
 
+        if (metadata) 
             pageMeta.script = [{
                 type: 'application/ld+json',
                 json: {
@@ -167,8 +167,8 @@ export default Vue.extend({
                     publisher: audioxideStructuredData(),
                 }
             }]
-        }
         return pageMeta;
+        }
     },
     asyncData({ params: { slug }, store }) {
         return store.dispatch('posts/getPost', { type: 'reviews', slug });

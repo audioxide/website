@@ -24,7 +24,16 @@ Vue.filter('formatDate', date => {
 export default {
   name: 'AudioxideApp',
   components: { AudioxideHeader, AudioxideFooter },
-};
+  head() {
+      return {
+        meta: [
+          { property: "og:site_name", content: "Audioxide" },
+          { property: "twitter:card", content: "summary_large_image" },
+          { name: "monetization", content: "$ilp.uphold.com/G7U2HWjBghge" }
+        ]
+      }
+    }
+}
 </script>
 
 <style lang="scss">
