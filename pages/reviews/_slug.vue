@@ -109,7 +109,27 @@ export default Vue.extend({
         const metadata = this.review.metadata;
         const albumArtist = metadata ? `: ${metadata.album} // ${metadata.artist}` : '';
         const pageMeta: MetaInfo = { title: metaTitle(`Review${albumArtist}`) };
+
         if (metadata) {
+
+            pageMeta.meta = [
+                { name: "description", content: metadata.blurb },
+
+                { property: "og:title", content: `Review: ${metadata.album} // ${metadata.artist}` },
+                { property: "og:description", content: metadata.blurb },
+                { property: "og:type", content: "article" },
+                { property: "og:url", content: "TBD" },
+                { property: "og:image:url", content: metadata.featuredimage },
+                { property: "og:image:alt", content: `Album artwork of ${metadata.album} by ${metadata.artist}.` },
+                { property: "og:site_name", content: "Audioxide" },
+
+                { property: "twitter:title", content: `Review: ${metadata.album} // ${metadata.artist}` },
+                { property: "twitter:description", content: `'${metadata.pullquote}.` },
+                { property: "twitter:image", content: metadata.featuredimage },
+                { property: "twitter:image:alt", content: `Album artwork of ${metadata.album} by ${metadata.artist}.` },
+                { property: "twitter:card", content:"summary_large_image" }
+            ],
+
             pageMeta.script = [{
                 type: 'application/ld+json',
                 json: {
