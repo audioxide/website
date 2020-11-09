@@ -118,7 +118,7 @@ export default Vue.extend({
                 { property: "og:title", content: `Review: ${metadata.album} // ${metadata.artist}` },
                 { property: "og:description", content: metadata.blurb },
                 { property: "og:type", content: "article" },
-                { property: "og:url", content: "TBD" },
+                { property: "og:url", content: `/${metadata.type}/${metadata.slug}` },
                 { property: "og:image:url", content: metadata.featuredimage },
                 { property: "og:image:alt", content: `Album artwork of ${metadata.album} by ${metadata.artist}.` },
                 { property: "og:site_name", content: "Audioxide" },
