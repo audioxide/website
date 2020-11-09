@@ -7,13 +7,15 @@
     faRss,
     faSearch,
     faBrain,
-    faHourglass,
   } from '@fortawesome/free-solid-svg-icons';
   import {
     faFacebookF,
     faTwitter,
     faInstagram,
   } from '@fortawesome/free-brands-svg-icons';
+  import {
+    faSpinnerThird,
+  } from '@audioxide/licensed-assets/js/@fortawesome/pro-duotone-svg-icons';
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
   library.add({
@@ -25,7 +27,7 @@
     faRss,
     faSearch,
     faBrain,
-    faHourglass,
+    faSpinnerThird,
   });
 
   export default Vue.component('icon', FontAwesomeIcon);

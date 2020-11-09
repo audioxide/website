@@ -15,8 +15,10 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  @import '~assets/styles/variables.scss';
+
   header {
-    padding-top: 56px;
+    padding-top: $site-nav__bar-height;
   }
 </style>
