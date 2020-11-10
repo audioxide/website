@@ -7,7 +7,7 @@
         </header>
         <section class="post-content">
             <slot :post="post">
-                <post-content :content="post.content" :decorate="true" />
+                <post-content-block :content="post.content" :decorate="true" />
             </slot>
         </section>
     </main>
@@ -15,11 +15,11 @@
 
 <script lang="ts">
 import Vue, { PropType } from 'vue';
-import PostContent from './PostContent.vue';
+import PostContentBlock from './PostContentBlock.vue';
 
 export default Vue.extend({
     name: 'PostSingle',
-    components: { PostContent },
+    components: { PostContentBlock },
     props: {
         post: { type: Object as PropType<Post>, required: true },
     },
