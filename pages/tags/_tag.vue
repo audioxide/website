@@ -25,6 +25,13 @@ export default Vue.extend({
         this.title = `Posts tagged "${tag}"`;
         this.posts = this.$store.getters['posts/byTag'][tag];
     },
+    head() {
+      return {
+        meta: [
+          { name: "robots", content: "noindex" }
+        ]
+      }
+    },
 });
 </script>
 
