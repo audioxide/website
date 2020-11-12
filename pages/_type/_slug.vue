@@ -33,7 +33,9 @@ import Vue from 'vue';
 import PostContentBlock from '../../components/PostContentBlock.vue';
 import NewsletterSignup from '../../components/NewsletterSignup.vue';
 import RelatedPosts from '@/components/RelatedPosts.vue';
-import { resolveAuthorLink, isObject, metaTitle, toTitleCase } from '../../assets/utilities';
+import { MetaInfo } from 'vue-meta';
+import { formatISO } from 'date-fns';
+import { resolveAuthorLink, isObject, metaTitle, toTitleCase, audioxideStructuredData } from '../../assets/utilities';
 
 type PostColours = [string, string, string];
 type ColourStyles = { [key: string]: string };
@@ -48,46 +50,56 @@ export default Vue.extend({
     }),
     head() {
         const metadata = this.article.metadata;
-        const pageMeta: MetaInfo = { 
-            
-            title: metaTitle(`Review${albumArtist}`) 
+        const pageMeta: MetaInfo = {
+            title: metaTitle(toTitleCase(this.slug, '-')),
+        };
 
-            pageMeta.meta = [
-                { name: "description", content: metadata.blurb },
+        pageMeta.meta = [
+            { property: "og:type", content: "article" },
+        ];
 
-                { property: "og:title", content: metadata.title },
-                { property: "og:description", content: metadata.blurb },
-                { property: "og:type", content: "article" },
-                { property: "og:url", content: `/${metadata.type}/${metadata.slug}` },
-                { property: "og:image:url", content: metadata.featuredimage },
-                { property: "og:image:alt", content: metadata.featuredimageAlt },
+        if (metadata) {
+            pageMeta.title = metadata.title;
 
-                { property: "twitter:title", content: metadata.title },
-                { property: "twitter:description", content: metadata.blurb },
-                { property: "twitter:image", content: metadata.featuredimage },
-                { property: "twitter:image:alt", content: metadata.featuredimageAlt },
-            ]
-        }
+            pageMeta.meta.push(
+                { property: 'og:title', content: metadata.title },
+                { property: 'twitter:title', content: metadata.title },
+            );
 
-        if (metadata) 
+            if (metadata.blurb) {
+                pageMeta.meta.push(
+                    { name: "description", content: metadata.blurb },
+                    { property: "og:description", content: metadata.blurb },
+                    { property: "twitter:description", content: metadata.blurb },
+                );
+            }
+
+            if (metadata.featuredimage) {
+                const image = metadata.featuredimage["medium-standard"];
+                pageMeta.meta.push(
+                    { property: "og:image:url", content: image },
+                    { property: "og:image:alt", content: metadata.featuredimageAlt },
+                    { property: "twitter:image", content: image },
+                    { property: "twitter:image:alt", content: metadata.featuredimageAlt },
+                );
+            }
+
             pageMeta.script = [{
                 type: 'application/ld+json',
                 json: {
                     '@context': 'http://schema.org',
                     '@type': 'Article',
-                    articleBody: post.content,
+                    headline: metadata.title,
+                    description: metadata.summary || metadata.blurb || '',
                     datePublished: formatISO(metadata.created, { representation: 'date' }),
-                    author: metadata.author.authors.map(author => ({ 
-                        '@type': 'Person', name: author.name 
+                    author: metadata.author.authors.map(author => ({
+                        '@type': 'Person', name: author.name
                         })),
                     publisher: audioxideStructuredData(),
                 }
-            }]
-
-            return pageMeta;
-            return { title: metaTitle(metadata.title) };
+            }];
         }
-        return { title: metaTitle(toTitleCase(this.slug, '-')) };
+        return pageMeta;
     },
     asyncData({ params: { type, slug }, store }) {
         return store.dispatch('posts/getPost', { type, slug });

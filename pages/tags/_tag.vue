@@ -28,7 +28,7 @@ export default Vue.extend({
     head() {
       return {
         meta: [
-          { name: "robots", content: "noindex" }
+          { name: "robots", content: "noindex,follow" }
         ]
       }
     },

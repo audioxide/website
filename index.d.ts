@@ -68,6 +68,7 @@ interface PostMetadata {
     slug: string,
     title: string,
     type: string,
+    author: Authors,
     summary?: string,
     blurb?: string,
     featuredimage?: ImageSizesObj,
@@ -75,7 +76,7 @@ interface PostMetadata {
 }
 
 interface ArticleMetadata extends PostMetadata {
-    author: Authors,
+    featuredimageAlt: string
 }
 
 interface ReviewMetadata extends PostMetadata {

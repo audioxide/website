@@ -27,9 +27,7 @@ export default {
   head() {
       return {
         meta: [
-          { property: "og:site_name", content: "Audioxide" },
-          { property: "twitter:card", content: "summary_large_image" },
-          { name: "monetization", content: "$ilp.uphold.com/G7U2HWjBghge" }
+          { property: "og:url", content: `https://audioxide.com${this.$route.path}` },
         ]
       }
     }

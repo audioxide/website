@@ -80,7 +80,8 @@ export default Vue.extend({
         json: audioxideStructuredData(),
       }],
       meta: [
-          { name: "google-site-verification", content: "aAaGDXrBixmXjHGSOVCBJexlPGi6VtPyX_WOSLhcKFs" }
+          { name: "google-site-verification", content: "aAaGDXrBixmXjHGSOVCBJexlPGi6VtPyX_WOSLhcKFs" },
+          { name: 'p:domain_verify', content: 'd1fcf92cdd3b4392d1c76473f6ccae89' },
         ]
     };
   },

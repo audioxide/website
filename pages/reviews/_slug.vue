@@ -108,38 +108,50 @@ export default Vue.extend({
     head() {
         const metadata = this.review.metadata;
         const albumArtist = metadata ? `: ${metadata.album} // ${metadata.artist}` : '';
-        const pageMeta: MetaInfo = { 
-            
-            title: metaTitle(`Review${albumArtist}`) 
-            
-            pageMeta.meta = [
-                { name: "description", content: metadata.blurb },
+        const title = metaTitle(`Review${albumArtist}`);
+        const imgAlt = this.coverAlt;
+        const pageMeta: MetaInfo = { title };
 
-                { property: "og:title", content: `Review: ${metadata.album} // ${metadata.artist}` },
-                { property: "og:description", content: metadata.blurb },
-                { property: "og:type", content: "article" },
-                { property: "og:url", content: `/${metadata.type}/${metadata.slug}` },
-                { property: "og:image:url", content: metadata.featuredimage },
-                { property: "og:image:alt", content: `Album artwork of ${metadata.album} by ${metadata.artist}.` },
+        pageMeta.meta = [
+            { property: "og:title", content: title },
+            { property: "og:type", content: "article" },
+            { property: "og:image:alt", content: imgAlt },
+            { property: "twitter:title", content: title },
+            { property: "twitter:image:alt", content: imgAlt },
+        ]
 
-                { property: "twitter:title", content: `Review: ${metadata.album} // ${metadata.artist}` },
+        if (metadata) {
+            pageMeta.meta.push(
                 { property: "twitter:description", content: `'${metadata.pullquote}.` },
-                { property: "twitter:image", content: metadata.featuredimage },
-                { property: "twitter:image:alt", content: `Album artwork of ${metadata.album} by ${metadata.artist}.` },
-            ]
-        }
+            );
 
-        if (metadata) 
+            if (metadata.blurb) {
+                pageMeta.meta.push(
+                    { name: "description", content: metadata.blurb },
+                    { property: "og:description", content: metadata.blurb },
+                );
+            }
+
+            if (metadata.featuredimage) {
+                const image = metadata.featuredimage["medium-square"];
+                pageMeta.meta.push(
+                    { property: "og:image:url", content: image },
+                    { property: "twitter:image", content: image },
+                );
+            }
+
+
             pageMeta.script = [{
                 type: 'application/ld+json',
                 json: {
                     '@context': 'http://schema.org',
                     '@type': 'Review',
-                    reviewBody: metadata.summary || metadata.blurb || '',
+                    headline: title,
+                    description: metadata.summary || metadata.blurb || '',
                     datePublished: formatISO(metadata.created, { representation: 'date' }),
-                    author: metadata.author.authors.map(author => ({ 
-                        '@type': 'Person', name: author.name 
-                        })),
+                    author: metadata.author.authors.map(author => ({
+                        '@type': 'Person', name: author.name
+                    })),
                     itemReviewed: {
                         '@type': 'MusicAlbum',
                         'name': metadata.album,
@@ -165,9 +177,9 @@ export default Vue.extend({
                         },
                     publisher: audioxideStructuredData(),
                 }
-            }]
-        return pageMeta;
+            }];
         }
+        return pageMeta;
     },
     asyncData({ params: { slug }, store }) {
         return store.dispatch('posts/getPost', { type: 'reviews', slug });
