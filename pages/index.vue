@@ -79,6 +79,9 @@ export default Vue.extend({
         type: 'application/ld+json',
         json: audioxideStructuredData(),
       }],
+      meta: [
+          { name: "google-site-verification", content: "aAaGDXrBixmXjHGSOVCBJexlPGi6VtPyX_WOSLhcKFs" }
+        ]
     };
   },
   asyncData({ store }) {
