@@ -4,10 +4,10 @@
             <ul class="site-foot_nav">
                 <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--site-logo site-foot_nav-item--middle">
                     <span>Audioxide</span></li>
-                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--facebook site-foot_nav-item--left"><span>Facebook</span><a href="https://facebook.com/audioxide"><icon :icon="['fab', 'facebook-f']" /></a></li>
-                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--twitter site-foot_nav-item--left"><span>Twitter</span><a href="https://twitter.com/audioxide"><icon :icon="['fab', 'twitter']" /></a></li>
-                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--instagram"><span>Instagram</span><a href="https://instagram.com/audioxidecom"><icon :icon="['fab', 'instagram']" /></a></li>
-                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--rss"><span>RSS feed</span><a href="/feed"><icon icon="rss" /></a></li>
+                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--facebook site-foot_nav-item--left"><span>Facebook</span><a href="https://facebook.com/audioxide" aria-label="Facebook"><icon :icon="['fab', 'facebook-f']" /></a></li>
+                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--twitter site-foot_nav-item--left"><span>Twitter</span><a href="https://twitter.com/audioxide" aria-label="Twitter"><icon :icon="['fab', 'twitter']" /></a></li>
+                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--instagram"><span>Instagram</span><a href="https://instagram.com/audioxidecom" aria-label="Instagram"><icon :icon="['fab', 'instagram']" /></a></li>
+                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--rss"><span>RSS feed</span><a href="/feed" aria-label="RSS feed"><icon icon="rss" /></a></li>
                 <li class="site-foot_nav-item"><a href="/about">About</a></li>
                 <li class="site-foot_nav-item"><a href="https://eepurl.com/cox6qr">Newsletter</a></li>
                 <li class="site-foot_nav-item"><a href="/contact">Contact</a></li>
