@@ -1,3 +1,4 @@
+const generateRoutes = require('./generateRoutes');
 const {
   SITE_NAME,
   SITE_URL,
@@ -7,7 +8,10 @@ const {
 } = require('./assets/siteConstants');
 
 export default {
-  mode: 'spa',
+  target: 'static',
+  ssr: false,
+  modern: 'client',
+  generate: { routes: generateRoutes },
   /*
   ** Environment defaults
   */
