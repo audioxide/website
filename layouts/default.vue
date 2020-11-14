@@ -10,6 +10,7 @@
 import Vue from 'vue';
 import AudioxideHeader from '../components/AudioxideHeader.vue';
 import AudioxideFooter from '../components/AudioxideFooter.vue';
+import { SITE_URL } from '../assets/siteConstants';
 import { padNum } from '../assets/utilities';
 
 Vue.filter('unescape', str => str.replace(/&#(\d+);/g, (match, dec) => String.fromCharCode(dec)));
@@ -27,7 +28,7 @@ export default {
   head() {
       return {
         meta: [
-          { property: "og:url", content: `https://audioxide.com${this.$route.path}` },
+          { vmid:"og:url", property: "og:url", content: SITE_URL + this.$route.path },
         ]
       }
     }

@@ -1,3 +1,11 @@
+const {
+  SITE_NAME,
+  SITE_URL,
+  SITE_DESCRIPTION,
+  TWITTER_HANDLE,
+  RSS_URL,
+} = require('@/assets/siteConstants');
+
 export default {
   mode: 'spa',
   /*
@@ -11,7 +19,7 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: 'Audioxide',
+    title: SITE_NAME,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -19,30 +27,27 @@ export default {
       { name: 'theme-color', content: '#121212' },
       { name: 'monetization', content: '$ilp.uphold.com/G7U2HWjBghge' },
       { name: 'fb:app_id', content: '950609285023482' },
-      {
-        hid: 'description',
-        name: 'description',
-        content: process.env.npm_package_description || ''
-      },
-      { property: 'og:site_name', content: 'Audioxide' },
-      { property: 'og:url', content: 'https://audioxide.com/' },
-      { property: 'og:image', content: '' }, // TODO: Add sharer image
-      { property: 'og:image:secure_url', content: '' }, // TODO: Add sharer image
-      { property: 'og:type', content: 'website' },
-      { property: 'og:title', content: 'Audioxide' },
-      { property: 'og:description', content: '' }, // TODO: Canonicalise meta description
-      { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:site', content: '@audioxide' },
-      { name: 'twitter:title', content: 'Audioxide' },
-      { name: 'twitter:image', content: '' }, // TODO: Add sharer image
-      { name: 'twitter:description', content: '' }, // TODO: Canonicalise meta description
+      { property: 'og:site_name', content: SITE_NAME },
+      // All entries below are changed by other components
+      { vmid: 'description', name: 'description', content: SITE_DESCRIPTION },
+      { vmid: 'og:url', property: 'og:url', content: `${SITE_URL}/` },
+      { vmid: 'og:image', property: 'og:image', content: '' }, // TODO: Add sharer image
+      { vmid: 'og:image', property: 'og:image:secure_url', content: '' }, // TODO: Add sharer image
+      { vmid: 'og:type', property: 'og:type', content: 'website' },
+      { vmid: 'og:title', property: 'og:title', content: SITE_NAME },
+      { vmid: 'og:description', property: 'og:description', content: SITE_DESCRIPTION },
+      { vmid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
+      { vmid: 'twitter:site', name: 'twitter:site', content: `@${TWITTER_HANDLE}` },
+      { vmid: 'twitter:title', name: 'twitter:title', content: SITE_NAME },
+      { vmid: 'twitter:image', name: 'twitter:image', content: '' }, // TODO: Add sharer image
+      { vmid: 'twitter:description', name: 'twitter:description', content: SITE_DESCRIPTION },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'icon', type: 'image/png', href: '/favicon.png' },
       { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' }, // TODO: Add apple-touch-icon
-      { rel: 'canonical', href: 'https://audioxide.com' },
-      { rel: 'alternative', type: 'application/rss+xml', title: 'Audioxide // Feed', href: 'https://audioxide.com/feed/' }
+      { rel: 'canonical', href: SITE_URL },
+      { rel: 'alternative', type: 'application/rss+xml', title: 'Audioxide // Feed', href: RSS_URL }
       // { rel: 'alternative', type: 'application/json+oembed', href: 'json oembed url' },
       // { rel: 'alternative', type: 'application/xml+oembed', href: 'xml oembed url' },
       // { rel: 'shortlink', type: 'text/html', href: 'shorturl' },

@@ -113,30 +113,35 @@ export default Vue.extend({
         const pageMeta: MetaInfo = { title };
 
         pageMeta.meta = [
-            { property: "og:title", content: title },
-            { property: "og:type", content: "article" },
-            { property: "og:image:alt", content: imgAlt },
-            { property: "twitter:title", content: title },
-            { property: "twitter:image:alt", content: imgAlt },
+            { vmid: "og:title", property: "og:title", content: title },
+            { vmid: "og:type", property: "og:type", content: "article" },
+            { vmid: "og:image:alt", property: "og:image:alt", content: imgAlt },
+            { vmid: "twitter:title", property: "twitter:title", content: title },
+            { vmid: "twitter:image:alt", property: "twitter:image:alt", content: imgAlt },
         ]
 
         if (metadata) {
+            const datePublished = formatISO(metadata.created, { representation: 'date' });
+            const dateModified = formatISO(metadata.modified, { representation: 'date' });
+
             pageMeta.meta.push(
-                { property: "twitter:description", content: `'${metadata.pullquote}.` },
+                { vmid: "twitter:description", property: "twitter:description", content: `'${metadata.pullquote}.` },
+                { vmid: "article:published_time", property: "article:published_time", content: datePublished },
+                { vmid: "article:modified_time", property: "article:modified_time", content: dateModified },
             );
 
             if (metadata.blurb) {
                 pageMeta.meta.push(
-                    { name: "description", content: metadata.blurb },
-                    { property: "og:description", content: metadata.blurb },
+                    { vmid: "description", name: "description", content: metadata.blurb },
+                    { vmid: "og:description", property: "og:description", content: metadata.blurb },
                 );
             }
 
             if (metadata.featuredimage) {
                 const image = metadata.featuredimage["medium-square"];
                 pageMeta.meta.push(
-                    { property: "og:image:url", content: image },
-                    { property: "twitter:image", content: image },
+                    { vmid: "og:image:url", property: "og:image:url", content: image },
+                    { vmid: "twitter:image", property: "twitter:image", content: image },
                 );
             }
 
@@ -148,7 +153,8 @@ export default Vue.extend({
                     '@type': 'Review',
                     headline: title,
                     description: metadata.summary || metadata.blurb || '',
-                    datePublished: formatISO(metadata.created, { representation: 'date' }),
+                    datePublished,
+                    dateModified,
                     author: metadata.author.authors.map(author => ({
                         '@type': 'Person', name: author.name
                     })),

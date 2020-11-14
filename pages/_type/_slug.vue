@@ -55,32 +55,37 @@ export default Vue.extend({
         };
 
         pageMeta.meta = [
-            { property: "og:type", content: "article" },
+            { vmid: "og:type", property: "og:type", content: "article" },
         ];
 
         if (metadata) {
+            const datePublished = formatISO(metadata.created, { representation: 'date' });
+            const dateModified = formatISO(metadata.modified, { representation: 'date' });
+
             pageMeta.title = metadata.title;
 
             pageMeta.meta.push(
-                { property: 'og:title', content: metadata.title },
-                { property: 'twitter:title', content: metadata.title },
+                { vmid: 'og:title', property: 'og:title', content: metadata.title },
+                { vmid: 'twitter:title', property: 'twitter:title', content: metadata.title },
+                { vmid: "article:published_time", property: "article:published_time", content: datePublished },
+                { vmid: "article:modified_time", property: "article:modified_time", content: dateModified },
             );
 
             if (metadata.blurb) {
                 pageMeta.meta.push(
-                    { name: "description", content: metadata.blurb },
-                    { property: "og:description", content: metadata.blurb },
-                    { property: "twitter:description", content: metadata.blurb },
+                    { vmid: "description", name: "description", content: metadata.blurb },
+                    { vmid: "og:description", property: "og:description", content: metadata.blurb },
+                    { vmid: "twitter:description", property: "twitter:description", content: metadata.blurb },
                 );
             }
 
             if (metadata.featuredimage) {
                 const image = metadata.featuredimage["medium-standard"];
                 pageMeta.meta.push(
-                    { property: "og:image:url", content: image },
-                    { property: "og:image:alt", content: metadata.featuredimageAlt },
-                    { property: "twitter:image", content: image },
-                    { property: "twitter:image:alt", content: metadata.featuredimageAlt },
+                    { vmid: "og:image:url", property: "og:image:url", content: image },
+                    { vmid: "og:image:alt", property: "og:image:alt", content: metadata.featuredimageAlt },
+                    { vmid: "twitter:image", property: "twitter:image", content: image },
+                    { vmid: "twitter:image:alt", property: "twitter:image:alt", content: metadata.featuredimageAlt },
                 );
             }
 
@@ -91,7 +96,8 @@ export default Vue.extend({
                     '@type': 'Article',
                     headline: metadata.title,
                     description: metadata.summary || metadata.blurb || '',
-                    datePublished: formatISO(metadata.created, { representation: 'date' }),
+                    datePublished,
+                    dateModified,
                     author: metadata.author.authors.map(author => ({
                         '@type': 'Person', name: author.name
                         })),
