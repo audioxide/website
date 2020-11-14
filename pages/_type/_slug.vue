@@ -55,7 +55,7 @@ export default Vue.extend({
         };
 
         pageMeta.meta = [
-            { vmid: "og:type", property: "og:type", content: "article" },
+            { hid: "og:type", property: "og:type", content: "article" },
         ];
 
         if (metadata) {
@@ -65,27 +65,27 @@ export default Vue.extend({
             pageMeta.title = metadata.title;
 
             pageMeta.meta.push(
-                { vmid: 'og:title', property: 'og:title', content: metadata.title },
-                { vmid: 'twitter:title', property: 'twitter:title', content: metadata.title },
-                { vmid: "article:published_time", property: "article:published_time", content: datePublished },
-                { vmid: "article:modified_time", property: "article:modified_time", content: dateModified },
+                { hid: 'og:title', property: 'og:title', content: metadata.title },
+                { hid: 'twitter:title', property: 'twitter:title', content: metadata.title },
+                { hid: "article:published_time", property: "article:published_time", content: datePublished },
+                { hid: "article:modified_time", property: "article:modified_time", content: dateModified },
             );
 
             if (metadata.blurb) {
                 pageMeta.meta.push(
-                    { vmid: "description", name: "description", content: metadata.blurb },
-                    { vmid: "og:description", property: "og:description", content: metadata.blurb },
-                    { vmid: "twitter:description", property: "twitter:description", content: metadata.blurb },
+                    { hid: "description", name: "description", content: metadata.blurb },
+                    { hid: "og:description", property: "og:description", content: metadata.blurb },
+                    { hid: "twitter:description", property: "twitter:description", content: metadata.blurb },
                 );
             }
 
             if (metadata.featuredimage) {
                 const image = metadata.featuredimage["medium-standard"];
                 pageMeta.meta.push(
-                    { vmid: "og:image:url", property: "og:image:url", content: image },
-                    { vmid: "og:image:alt", property: "og:image:alt", content: metadata.featuredimageAlt },
-                    { vmid: "twitter:image", property: "twitter:image", content: image },
-                    { vmid: "twitter:image:alt", property: "twitter:image:alt", content: metadata.featuredimageAlt },
+                    { hid: "og:image", property: "og:image", content: image },
+                    { hid: "og:image:alt", property: "og:image:alt", content: metadata.featuredimageAlt },
+                    { hid: "twitter:image", property: "twitter:image", content: image },
+                    { hid: "twitter:image:alt", property: "twitter:image:alt", content: metadata.featuredimageAlt },
                 );
             }
 

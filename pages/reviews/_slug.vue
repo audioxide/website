@@ -113,11 +113,11 @@ export default Vue.extend({
         const pageMeta: MetaInfo = { title };
 
         pageMeta.meta = [
-            { vmid: "og:title", property: "og:title", content: title },
-            { vmid: "og:type", property: "og:type", content: "article" },
-            { vmid: "og:image:alt", property: "og:image:alt", content: imgAlt },
-            { vmid: "twitter:title", property: "twitter:title", content: title },
-            { vmid: "twitter:image:alt", property: "twitter:image:alt", content: imgAlt },
+            { hid: "og:title", property: "og:title", content: title },
+            { hid: "og:type", property: "og:type", content: "article" },
+            { hid: "og:image:alt", property: "og:image:alt", content: imgAlt },
+            { hid: "twitter:title", property: "twitter:title", content: title },
+            { hid: "twitter:image:alt", property: "twitter:image:alt", content: imgAlt },
         ]
 
         if (metadata) {
@@ -125,23 +125,23 @@ export default Vue.extend({
             const dateModified = formatISO(metadata.modified, { representation: 'date' });
 
             pageMeta.meta.push(
-                { vmid: "twitter:description", property: "twitter:description", content: `'${metadata.pullquote}.` },
-                { vmid: "article:published_time", property: "article:published_time", content: datePublished },
-                { vmid: "article:modified_time", property: "article:modified_time", content: dateModified },
+                { hid: "twitter:description", property: "twitter:description", content: `'${metadata.pullquote}.` },
+                { hid: "article:published_time", property: "article:published_time", content: datePublished },
+                { hid: "article:modified_time", property: "article:modified_time", content: dateModified },
             );
 
             if (metadata.blurb) {
                 pageMeta.meta.push(
-                    { vmid: "description", name: "description", content: metadata.blurb },
-                    { vmid: "og:description", property: "og:description", content: metadata.blurb },
+                    { hid: "description", name: "description", content: metadata.blurb },
+                    { hid: "og:description", property: "og:description", content: metadata.blurb },
                 );
             }
 
             if (metadata.featuredimage) {
                 const image = metadata.featuredimage["medium-square"];
                 pageMeta.meta.push(
-                    { vmid: "og:image:url", property: "og:image:url", content: image },
-                    { vmid: "twitter:image", property: "twitter:image", content: image },
+                    { hid: "og:image", property: "og:image", content: image },
+                    { hid: "twitter:image", property: "twitter:image", content: image },
                 );
             }
 

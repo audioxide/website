@@ -29,18 +29,17 @@ export default {
       { name: 'fb:app_id', content: '950609285023482' },
       { property: 'og:site_name', content: SITE_NAME },
       // All entries below are changed by other components
-      { vmid: 'description', name: 'description', content: SITE_DESCRIPTION },
-      { vmid: 'og:url', property: 'og:url', content: `${SITE_URL}/` },
-      { vmid: 'og:image', property: 'og:image', content: '' }, // TODO: Add sharer image
-      { vmid: 'og:image', property: 'og:image:secure_url', content: '' }, // TODO: Add sharer image
-      { vmid: 'og:type', property: 'og:type', content: 'website' },
-      { vmid: 'og:title', property: 'og:title', content: SITE_NAME },
-      { vmid: 'og:description', property: 'og:description', content: SITE_DESCRIPTION },
-      { vmid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
-      { vmid: 'twitter:site', name: 'twitter:site', content: `@${TWITTER_HANDLE}` },
-      { vmid: 'twitter:title', name: 'twitter:title', content: SITE_NAME },
-      { vmid: 'twitter:image', name: 'twitter:image', content: '' }, // TODO: Add sharer image
-      { vmid: 'twitter:description', name: 'twitter:description', content: SITE_DESCRIPTION },
+      { hid: 'description', name: 'description', content: SITE_DESCRIPTION },
+      { hid: 'og:url', property: 'og:url', content: `${SITE_URL}/` },
+      { hid: 'og:image', property: 'og:image', content: '' }, // TODO: Add sharer image
+      { hid: 'og:type', property: 'og:type', content: 'website' },
+      { hid: 'og:title', property: 'og:title', content: SITE_NAME },
+      { hid: 'og:description', property: 'og:description', content: SITE_DESCRIPTION },
+      { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
+      { hid: 'twitter:site', name: 'twitter:site', content: `@${TWITTER_HANDLE}` },
+      { hid: 'twitter:title', name: 'twitter:title', content: SITE_NAME },
+      { hid: 'twitter:image', name: 'twitter:image', content: '' }, // TODO: Add sharer image
+      { hid: 'twitter:description', name: 'twitter:description', content: SITE_DESCRIPTION },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

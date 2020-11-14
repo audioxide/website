@@ -28,7 +28,7 @@ export default {
   head() {
       return {
         meta: [
-          { vmid:"og:url", property: "og:url", content: SITE_URL + this.$route.path },
+          { hid:"og:url", property: "og:url", content: SITE_URL + this.$route.path },
         ]
       }
     }
