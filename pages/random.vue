@@ -27,7 +27,7 @@ export default Vue.extend({
 
     .random-icon {
         font-size: 10em;
-        margin: 40px auto;
+        margin: 80px auto;
         display: block;
         animation: 1s linear infinite both pulse;
     }

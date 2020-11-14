@@ -4,27 +4,29 @@
             <ul class="site-foot_nav">
                 <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--site-logo site-foot_nav-item--middle">
                     <span>Audioxide</span></li>
-                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--facebook site-foot_nav-item--left"><span>Facebook</span><a href="https://facebook.com/audioxide"><icon :icon="['fab', 'facebook-f']" /></a></li>
-                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--twitter site-foot_nav-item--left"><span>Twitter</span><a href="https://twitter.com/audioxide"><icon :icon="['fab', 'twitter']" /></a></li>
-                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--instagram"><span>Instagram</span><a href="https://instagram.com/audioxidecom"><icon :icon="['fab', 'instagram']" /></a></li>
-                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--rss"><span>RSS feed</span><a href="/feed"><icon icon="rss" /></a></li>
-                <li class="site-foot_nav-item"><a href="/about">About</a></li>
-                <li class="site-foot_nav-item"><a href="https://eepurl.com/cox6qr">Newsletter</a></li>
-                <li class="site-foot_nav-item"><a href="/contact">Contact</a></li>
+                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--facebook site-foot_nav-item--left"><span>Facebook</span><a :href="FACEBOOK_URL" aria-label="Facebook"><icon :icon="['fab', 'facebook-f']" /></a></li>
+                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--twitter site-foot_nav-item--left"><span>Twitter</span><a :href="TWITTER_URL" aria-label="Twitter"><icon :icon="['fab', 'twitter']" /></a></li>
+                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--instagram"><span>Instagram</span><a :href="INSTAGRAM_URL" aria-label="Instagram"><icon :icon="['fab', 'instagram']" /></a></li>
+                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--rss"><span>RSS feed</span><a :href="RSS_BASE" aria-label="RSS feed"><icon icon="rss" /></a></li>
+                <li class="site-foot_nav-item"><nuxt-link to="/about">About</nuxt-link></li>
+                <li class="site-foot_nav-item"><a :href="NEWSLETTER_URL">Newsletter</a></li>
+                <li class="site-foot_nav-item"><nuxt-link to="/contact">Contact</nuxt-link></li>
             </ul>
         </nav>
-        <p class="copyright-jargon">&copy; 2015-{{ year }}. All rights reserved.</p>
+        <p class="copyright-jargon">&copy; {{ SITE_FOUNDING_YEAR }}-{{ year }}. All rights reserved.</p>
     </footer>
 </template>
 
 <script>
 import Icon from '~/components/Icon.vue';
+import * as SITE_CONSTANTS from '@/assets/siteConstants';
 
 export default {
     name: "AudioxideFooter",
     components: { Icon },
     data: () => ({
         year: new Date().getFullYear(),
+        ...SITE_CONSTANTS,
     })
 }
 </script>

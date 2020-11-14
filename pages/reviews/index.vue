@@ -11,7 +11,17 @@ import { metaTitle } from '~/assets/utilities';
 export default Vue.extend({
     name: 'ReviewListing',
     components: { PostListing },
-    head: () => ({ title: metaTitle('Reviews') }),
+    head: () => ({
+        title: metaTitle('Reviews'),
+        link: [
+            {
+                rel: 'alternative',
+                type: 'application/rss+xml',
+                title: metaTitle('Reviews'),
+                href: 'https://audioxide.com/feed/reviews/',
+            },
+        ],
+    }),
     data: () => ({
         linkType: ReviewLink,
     }),

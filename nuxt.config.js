@@ -1,3 +1,11 @@
+const {
+  SITE_NAME,
+  SITE_URL,
+  SITE_DESCRIPTION,
+  TWITTER_HANDLE,
+  RSS_URL,
+} = require('./assets/siteConstants');
+
 export default {
   mode: 'spa',
   /*
@@ -11,17 +19,61 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: 'Audioxide',
+    title: SITE_NAME,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {
-        hid: 'description',
-        name: 'description',
-        content: process.env.npm_package_description || ''
-      }
+      { name: 'msapplication-TileColor', content: '#121212'},
+      { name: 'msapplication-TileImage', content: '/ms-icon-144x144.png' },
+      { name: 'theme-color', content: '#121212' },
+      { name: 'monetization', content: '$ilp.uphold.com/G7U2HWjBghge' },
+      { name: 'fb:app_id', content: '950609285023482' },
+      { property: 'og:site_name', content: SITE_NAME },
+      // All entries below are changed by other components
+      { hid: 'description', name: 'description', content: SITE_DESCRIPTION },
+      { hid: 'og:url', property: 'og:url', content: `${SITE_URL}/` },
+      { hid: 'og:image-standard', property: 'og:image', content: `/social-tile-3-2.png` },
+      { hid: 'og:image-standard:type', property: 'og:image:type', content: 'image/png' },
+      { hid: 'og:image-standard:width', property: 'og:image:width', content: '1200' },
+      { hid: 'og:image-standard:height', property: 'og:image:height', content: '800' },
+      { hid: 'og:image-standard:alt', property: 'og:image:alt', content: 'Audioxide branded social tile' },
+      { hid: 'og:image-square', property: 'og:image', content: `/social-tile-1-1.png` },
+      { hid: 'og:image-square:type', property: 'og:image:type', content: 'image/png' },
+      { hid: 'og:image-square:width', property: 'og:image:width', content: '600' },
+      { hid: 'og:image-square:height', property: 'og:image:height', content: '600' },
+      { hid: 'og:image-square:alt', property: 'og:image:alt', content: 'Audioxide branded social tile' },
+      { hid: 'og:type', property: 'og:type', content: 'website' },
+      { hid: 'og:title', property: 'og:title', content: SITE_NAME },
+      { hid: 'og:description', property: 'og:description', content: SITE_DESCRIPTION },
+      { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
+      { hid: 'twitter:site', name: 'twitter:site', content: `@${TWITTER_HANDLE}` },
+      { hid: 'twitter:title', name: 'twitter:title', content: SITE_NAME },
+      { hid: 'twitter:image', name: 'twitter:image', content: `/social-tile-2-1.png` },
+      { hid: 'twitter:description', name: 'twitter:description', content: SITE_DESCRIPTION },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [
+      { rel: 'manifest', href: '/manifest.json' },
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/png', sizes: '192x192',  href: '/android-icon-192x192.png' },
+      { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
+      { rel: 'icon', type: 'image/png', sizes: '96x96', href: '/favicon-96x96.png' },
+      { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
+      { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+      { rel: 'apple-touch-icon', sizes:'57x57', href: '/apple-icon-57x57.png' },
+      { rel: 'apple-touch-icon', sizes:'60x60', href: '/apple-icon-60x60.png' },
+      { rel: 'apple-touch-icon', sizes:'72x72', href: '/apple-icon-72x72.png' },
+      { rel: 'apple-touch-icon', sizes:'76x76', href: '/apple-icon-76x76.png' },
+      { rel: 'apple-touch-icon', sizes:'114x114', href: '/apple-icon-114x114.png' },
+      { rel: 'apple-touch-icon', sizes:'120x120', href: '/apple-icon-120x120.png' },
+      { rel: 'apple-touch-icon', sizes:'144x144', href: '/apple-icon-144x144.png' },
+      { rel: 'apple-touch-icon', sizes:'152x152', href: '/apple-icon-152x152.png' },
+      { rel: 'apple-touch-icon', sizes:'180x180', href: '/apple-icon-180x180.png' },
+      { rel: 'canonical', href: SITE_URL },
+      { rel: 'alternative', type: 'application/rss+xml', title: 'Audioxide // Feed', href: RSS_URL }
+      // { rel: 'alternative', type: 'application/json+oembed', href: 'json oembed url' },
+      // { rel: 'alternative', type: 'application/xml+oembed', href: 'xml oembed url' },
+      // { rel: 'shortlink', type: 'text/html', href: 'shorturl' },
+    ]
   },
   /*
    ** Customize the progress-bar color

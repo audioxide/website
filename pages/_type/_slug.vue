@@ -33,7 +33,9 @@ import Vue from 'vue';
 import PostContentBlock from '../../components/PostContentBlock.vue';
 import NewsletterSignup from '../../components/NewsletterSignup.vue';
 import RelatedPosts from '@/components/RelatedPosts.vue';
-import { resolveAuthorLink, isObject, metaTitle, toTitleCase } from '../../assets/utilities';
+import { MetaInfo } from 'vue-meta';
+import { formatISO } from 'date-fns';
+import { resolveAuthorLink, isObject, metaTitle, toTitleCase, audioxideStructuredData } from '../../assets/utilities';
 
 type PostColours = [string, string, string];
 type ColourStyles = { [key: string]: string };
@@ -48,10 +50,70 @@ export default Vue.extend({
     }),
     head() {
         const metadata = this.article.metadata;
+        const pageMeta: MetaInfo = {
+            title: metaTitle(toTitleCase(this.slug, '-')),
+        };
+
+        pageMeta.meta = [
+            { hid: "og:type", property: "og:type", content: "article" },
+        ];
+
         if (metadata) {
-            return { title: metaTitle(metadata.title) };
+            const datePublished = formatISO(metadata.created, { representation: 'date' });
+            const dateModified = formatISO(metadata.modified, { representation: 'date' });
+
+            pageMeta.title = metadata.title;
+
+            pageMeta.meta.push(
+                { hid: 'og:title', property: 'og:title', content: metadata.title },
+                { hid: 'twitter:title', property: 'twitter:title', content: metadata.title },
+                { hid: "article:published_time", property: "article:published_time", content: datePublished },
+                { hid: "article:modified_time", property: "article:modified_time", content: dateModified },
+            );
+
+            if (metadata.blurb) {
+                pageMeta.meta.push(
+                    { hid: "description", name: "description", content: metadata.blurb },
+                    { hid: "og:description", property: "og:description", content: metadata.blurb },
+                    { hid: "twitter:description", property: "twitter:description", content: metadata.blurb },
+                );
+            }
+
+            if (metadata.featuredimage) {
+                const imageStandard = metadata.featuredimage["medium-standard"];
+                const imageSquare = metadata.featuredimage["medium-square"];
+                const imgAlt = metadata.featuredimageAlt;
+                pageMeta.meta.push(
+                    { hid: "og:image-standard", property: "og:image", content: imageStandard },
+                    { hid: "og:image-standard:alt", property: "og:image:alt", content: imgAlt },
+                    { hid: 'og:image-standard:width', property: 'og:image:width', content: '600' },
+                    { hid: 'og:image-standard:height', property: 'og:image:height', content: '400' },
+                    { hid: "og:image-square", property: "og:image", content: imageSquare },
+                    { hid: "og:image-square:alt", property: "og:image:alt", content: imgAlt },
+                    { hid: 'og:image-square:width', property: 'og:image:width', content: '600' },
+                    { hid: 'og:image-square:height', property: 'og:image:height', content: '600' },
+                    { hid: "twitter:image", property: "twitter:image", content: imageStandard },
+                    { hid: "twitter:image:alt", property: "twitter:image:alt", content: imgAlt },
+                );
+            }
+
+            pageMeta.script = [{
+                type: 'application/ld+json',
+                json: {
+                    '@context': 'http://schema.org',
+                    '@type': 'Article',
+                    headline: metadata.title,
+                    description: metadata.summary || metadata.blurb || '',
+                    datePublished,
+                    dateModified,
+                    author: metadata.author.authors.map(author => ({
+                        '@type': 'Person', name: author.name
+                        })),
+                    publisher: audioxideStructuredData(),
+                }
+            }];
         }
-        return { title: metaTitle(toTitleCase(this.slug, '-')) };
+        return pageMeta;
     },
     asyncData({ params: { type, slug }, store }) {
         return store.dispatch('posts/getPost', { type, slug });

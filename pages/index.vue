@@ -41,23 +41,23 @@
             <icon class="closed" icon="envelope" />
             <icon class="opened" icon="envelope-open" />
           </span>
-          <a class="label" href="https://eepurl.com/cox6qr">Newsletter</a>
+          <a class="label" :href="NEWSLETTER_URL">Newsletter</a>
         </li>
         <li>
           <span class="icon"><icon :icon="['fab', 'facebook-f']" /></span>
-          <a class="label" href="https://www.facebook.com/audioxide">Facebook</a>
+          <a class="label" :href="FACEBOOK_URL">Facebook</a>
         </li>
         <li>
           <span class="icon"><icon :icon="['fab', 'twitter']" /></span>
-          <a class="label" href="https://twitter.com/audioxide">Twitter</a>
+          <a class="label" :href="TWITTER_URL">Twitter</a>
         </li>
         <li>
           <span class="icon"><icon :icon="['fab', 'instagram']" /></span>
-          <a class="label" href="https://www.instagram.com/audioxidecom">Insta</a>
+          <a class="label" :href="INSTAGRAM_URL">Insta</a>
         </li>
         <li>
           <span class="icon"><icon icon="rss" /></span>
-          <a class="label" href="/feed/">RSS</a>
+          <a class="label" :href="RSS_BASE">RSS</a>
         </li>
       </ul>
     </div>
@@ -69,16 +69,22 @@ import Vue from 'vue';
 import ArticleLink from '@/components/ArticleLink.vue';
 import ReviewLink from '@/components/ReviewLink.vue';
 import Icon from '@/components/Icon.vue';
-import { audioxideStructuredData } from '~/assets/utilities';
+import { audioxideStructuredData } from '@/assets/utilities';
+import * as SITE_CONSTANTS from '@/assets/siteConstants';
 
 export default Vue.extend({
   components: { ArticleLink, ReviewLink, Icon },
+  data: () => SITE_CONSTANTS,
   head() {
     return {
       script: [{
         type: 'application/ld+json',
         json: audioxideStructuredData(),
       }],
+      meta: [
+          { name: "google-site-verification", content: "aAaGDXrBixmXjHGSOVCBJexlPGi6VtPyX_WOSLhcKFs" },
+          { name: 'p:domain_verify', content: 'd1fcf92cdd3b4392d1c76473f6ccae89' },
+        ]
     };
   },
   asyncData({ store }) {

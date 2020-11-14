@@ -1,4 +1,13 @@
 import he from 'he';
+import {
+    SITE_DESCRIPTION,
+    TWITTER_URL,
+    FACEBOOK_URL,
+    INSTAGRAM_URL,
+    SITE_URL,
+    SITE_NAME,
+    SITE_FOUNDING_YEAR,
+} from './siteConstants';
 
 const rand = (
     min: number,
@@ -20,7 +29,7 @@ const isObject = (obj: any): obj is object => typeof obj === 'object' && obj !==
 
 const metaTitle = (str: string) => `${he.decode(str)} // Audioxide`;
 
-const albumCoverAlt = (review: Review) => `Album artwork of "${review.metadata.album}" by ${review.metadata.artist}`;
+const albumCoverAlt = (review: Review) => `Album artwork of '${review.metadata.album}' by ${review.metadata.artist}`;
 
 type Procedure = (...args: any[]) => void;
 type ThrottledFunction<T extends Procedure> = (...args: Parameters<T>) => void;
@@ -73,9 +82,9 @@ const resolveAuthorLink = (author?: Author) => {
 const audioxideStructuredData = () => ({
     '@context': 'http://schema.org',
     '@type': 'Organization',
-    name: 'Audioxide',
-    description: 'Independent music webzine. Publishes reviews, articles, interviews, and other oddities.',
-    foundingDate: '2015',
+    name: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    foundingDate: SITE_FOUNDING_YEAR.toString(),
     founder: [
         {
             '@type': 'Person',
@@ -93,13 +102,9 @@ const audioxideStructuredData = () => ({
             'sameAs': 'https://fredobrien.co.uk'
         }
     ],
-    url: 'https://audioxide.com',
-    logo: 'https://audioxide.com/icon.png',
-    sameAs: [
-        'https://facebook.com/audioxide',
-        'https://twitter.com/audioxide',
-        'https://instagram.com/audioxidecom',
-    ],
+    url: SITE_URL,
+    logo: `${SITE_URL}/icon.png`,
+    sameAs: [ FACEBOOK_URL, TWITTER_URL, INSTAGRAM_URL ],
 });
 
 export {
