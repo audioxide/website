@@ -138,10 +138,19 @@ export default Vue.extend({
             }
 
             if (metadata.featuredimage) {
-                const image = metadata.featuredimage["medium-square"];
+                const imageStandard = metadata.featuredimage["medium-standard"];
+                const imageSquare = metadata.featuredimage["medium-square"];
                 pageMeta.meta.push(
-                    { hid: "og:image", property: "og:image", content: image },
-                    { hid: "twitter:image", property: "twitter:image", content: image },
+                    { hid: "og:image-standard", property: "og:image", content: imageStandard },
+                    { hid: "og:image-standard:alt", property: "og:image:alt", content: imgAlt },
+                    { hid: 'og:image-standard:width', property: 'og:image:width', content: '600' },
+                    { hid: 'og:image-standard:height', property: 'og:image:height', content: '400' },
+                    { hid: "og:image-square", property: "og:image", content: imageSquare },
+                    { hid: "og:image-square:alt", property: "og:image:alt", content: imgAlt },
+                    { hid: 'og:image-square:width', property: 'og:image:width', content: '600' },
+                    { hid: 'og:image-square:height', property: 'og:image:height', content: '600' },
+                    { hid: "twitter:image", property: "twitter:image", content: imageSquare },
+                    { hid: "twitter:image:alt", property: "twitter:image:alt", content: imgAlt },
                 );
             }
 
