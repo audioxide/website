@@ -4,7 +4,7 @@ const {
   SITE_DESCRIPTION,
   TWITTER_HANDLE,
   RSS_URL,
-} = require('@/assets/siteConstants');
+} = require('./assets/siteConstants');
 
 export default {
   mode: 'spa',
