@@ -1,15 +1,15 @@
 [build]
   publish = "dist/"
-  command = "export EXT_API_URL=$GAGA_API_URL && sed -i \"s|SITE_URL|${URL}|g\" netlify.toml && sed -i \"s|EXT_API_URL|${EXT_API_URL}|g\" netlify.toml && export API_URL=$URL/api && export SEARCH_URL=$EXT_API_URL/search && yarn setup && yarn build"
+  command = "export SITE_URL=$URL && export EXT_API_URL=$GAGA_API_URL && sed -i \"s|SITE_URL|${URL}|g\" netlify.toml && sed -i \"s|EXT_API_URL|${EXT_API_URL}|g\" netlify.toml && export API_URL=$SITE_URL/api && export SEARCH_URL=$EXT_API_URL/search && yarn setup && yarn build"
 
 [context.beta]
-  command = "export EXT_API_URL=$BETA_API_URL && sed -i \"s|SITE_URL|${DEPLOY_PRIME_URL}|g\" netlify.toml && sed -i \"s|EXT_API_URL|${EXT_API_URL}|g\" netlify.toml && export API_URL=$DEPLOY_PRIME_URL/api && export SEARCH_URL=$EXT_API_URL/search && yarn setup && yarn build"
+  command = "export SITE_URL=$DEPLOY_PRIME_URL && export EXT_API_URL=$BETA_API_URL && sed -i \"s|SITE_URL|${DEPLOY_PRIME_URL}|g\" netlify.toml && sed -i \"s|EXT_API_URL|${EXT_API_URL}|g\" netlify.toml && export API_URL=$SITE_URL/api && export SEARCH_URL=$EXT_API_URL/search && yarn setup && yarn build"
 
 [context.alpha]
-  command = "export EXT_API_URL=$ALPHA_API_URL && sed -i \"s|SITE_URL|${DEPLOY_PRIME_URL}|g\" netlify.toml && sed -i \"s|EXT_API_URL|${EXT_API_URL}|g\" netlify.toml && export API_URL=$DEPLOY_PRIME_URL/api && export SEARCH_URL=$EXT_API_URL/search && yarn setup && yarn build"
+  command = "export SITE_URL=$DEPLOY_PRIME_URL && export EXT_API_URL=$ALPHA_API_URL && sed -i \"s|SITE_URL|${DEPLOY_PRIME_URL}|g\" netlify.toml && sed -i \"s|EXT_API_URL|${EXT_API_URL}|g\" netlify.toml && export API_URL=$SITE_URL/api && export SEARCH_URL=$EXT_API_URL/search && yarn setup && yarn build"
 
 [context.deploy-preview]
-  command = "export EXT_API_URL=$ALPHA_API_URL && sed -i \"s|SITE_URL|${DEPLOY_PRIME_URL}|g\" netlify.toml && sed -i \"s|EXT_API_URL|${EXT_API_URL}|g\" netlify.toml && export API_URL=$DEPLOY_PRIME_URL/api && export SEARCH_URL=$EXT_API_URL/search && yarn setup && yarn build"
+  command = "export SITE_URL=$DEPLOY_PRIME_URL && export EXT_API_URL=$ALPHA_API_URL && sed -i \"s|SITE_URL|${DEPLOY_PRIME_URL}|g\" netlify.toml && sed -i \"s|EXT_API_URL|${EXT_API_URL}|g\" netlify.toml && export API_URL=$SITE_URL/api && export SEARCH_URL=$EXT_API_URL/search && yarn setup && yarn build"
 
 [[redirects]]
   from = "/api/search"
