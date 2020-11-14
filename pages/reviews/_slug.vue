@@ -108,18 +108,64 @@ export default Vue.extend({
     head() {
         const metadata = this.review.metadata;
         const albumArtist = metadata ? `: ${metadata.album} // ${metadata.artist}` : '';
-        const pageMeta: MetaInfo = { title: metaTitle(`Review${albumArtist}`) };
+        const title = metaTitle(`Review${albumArtist}`);
+        const imgAlt = this.coverAlt;
+        const pageMeta: MetaInfo = { title };
+
+        pageMeta.meta = [
+            { hid: "og:title", property: "og:title", content: title },
+            { hid: "og:type", property: "og:type", content: "article" },
+            { hid: "og:image:alt", property: "og:image:alt", content: imgAlt },
+            { hid: "twitter:title", property: "twitter:title", content: title },
+            { hid: "twitter:image:alt", property: "twitter:image:alt", content: imgAlt },
+        ]
+
         if (metadata) {
+            const datePublished = formatISO(metadata.created, { representation: 'date' });
+            const dateModified = formatISO(metadata.modified, { representation: 'date' });
+
+            pageMeta.meta.push(
+                { hid: "twitter:description", property: "twitter:description", content: `'${metadata.pullquote}.` },
+                { hid: "article:published_time", property: "article:published_time", content: datePublished },
+                { hid: "article:modified_time", property: "article:modified_time", content: dateModified },
+            );
+
+            if (metadata.blurb) {
+                pageMeta.meta.push(
+                    { hid: "description", name: "description", content: metadata.blurb },
+                    { hid: "og:description", property: "og:description", content: metadata.blurb },
+                );
+            }
+
+            if (metadata.featuredimage) {
+                const imageStandard = metadata.featuredimage["medium-standard"];
+                const imageSquare = metadata.featuredimage["medium-square"];
+                pageMeta.meta.push(
+                    { hid: "og:image-standard", property: "og:image", content: imageStandard },
+                    { hid: "og:image-standard:alt", property: "og:image:alt", content: imgAlt },
+                    { hid: 'og:image-standard:width', property: 'og:image:width', content: '600' },
+                    { hid: 'og:image-standard:height', property: 'og:image:height', content: '400' },
+                    { hid: "og:image-square", property: "og:image", content: imageSquare },
+                    { hid: "og:image-square:alt", property: "og:image:alt", content: imgAlt },
+                    { hid: 'og:image-square:width', property: 'og:image:width', content: '600' },
+                    { hid: 'og:image-square:height', property: 'og:image:height', content: '600' },
+                    { hid: "twitter:image", property: "twitter:image", content: imageSquare },
+                    { hid: "twitter:image:alt", property: "twitter:image:alt", content: imgAlt },
+                );
+            }
+
+
             pageMeta.script = [{
                 type: 'application/ld+json',
                 json: {
                     '@context': 'http://schema.org',
                     '@type': 'Review',
-                    reviewBody: metadata.summary || metadata.blurb || '',
-                    datePublished: formatISO(metadata.created, { representation: 'date' }),
-                    author: this.reviews.map(review => ({
-                        '@type': 'Person',
-                        name: review.author.name,
+                    headline: title,
+                    description: metadata.summary || metadata.blurb || '',
+                    datePublished,
+                    dateModified,
+                    author: metadata.author.authors.map(author => ({
+                        '@type': 'Person', name: author.name
                     })),
                     itemReviewed: {
                         '@type': 'MusicAlbum',
@@ -146,7 +192,7 @@ export default Vue.extend({
                         },
                     publisher: audioxideStructuredData(),
                 }
-            }]
+            }];
         }
         return pageMeta;
     },

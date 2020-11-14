@@ -15,6 +15,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import he from 'he';
+import { MetaInfo } from 'vue-meta';
 import PostSingle from '@/components/PostSingle.vue';
 import PostListing from '@/components/PostListing.vue';
 import ArticleLink from '@/components/ArticleLink.vue';
@@ -35,16 +36,27 @@ export default Vue.extend({
   }),
   head() {
     let title = '';
+    const metaData: MetaInfo = {};
+    metaData.link = [];
     switch (this.type) {
       case 'page':
         const page = this.pageData as Post;
-        title = he.decode(page.metadata.title);
+        metaData.title = he.decode(page.metadata.title);
         break;
       case 'post':
-        title = toTitleCase(this.slug, '-');
+        const title = toTitleCase(this.slug, '-');
+        metaData.title = title;
+        metaData.link.push(
+          {
+            rel: 'alternative',
+            type: 'application/rss+xml',
+            title: title,
+            href: `https://audioxide.com/feed/${this.slug}/`,
+          },
+        );
         break;
     }
-    return { title: metaTitle(title) };
+    return metaData;
   },
   async validate({ params: { type }, store }) {
     if (

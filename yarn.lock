@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@audioxide/brand@0.1.0":
-  version "0.1.0"
-  resolved "https://npm.pkg.github.com/download/@audioxide/brand/0.1.0/6c0bc6b7d1bbddaf929c8e3d40ded544bfc4716e67c41520fdf4e140df721045#0ce2a92dd438ea11b03b150d503a6654e3ba7a91"
-  integrity sha512-3aWinpzWlXoSkHaLHmcmmCRCM9lgizzZ25yHmrvar65SHClSd4LCyXhNr/nv6NQejJ8Gy03Eaa2w7P5/hAgr6w==
+"@audioxide/brand@^0.3.0":
+  version "0.3.0"
+  resolved "https://npm.pkg.github.com/download/@audioxide/brand/0.3.0/4201ba81d6ee60dbed7fad0bb792dae4acc19def04ba4738e1c57f50b3e84b13#1b6360101f51d8f8f261e67e772076042d701c85"
+  integrity sha512-0Du+K0TDWE461D9YTjlOtngqFogjdd1m7NLf7gDMARLNgUvI4hOqvz2r0n0nwg7zLmzAuFEUFV26ayvbwrMJFA==
 
 "@audioxide/licensed-assets@0.2.0":
   version "0.2.0"

@@ -10,6 +10,7 @@
 import Vue from 'vue';
 import AudioxideHeader from '../components/AudioxideHeader.vue';
 import AudioxideFooter from '../components/AudioxideFooter.vue';
+import { SITE_URL } from '../assets/siteConstants';
 import { padNum } from '../assets/utilities';
 
 Vue.filter('unescape', str => str.replace(/&#(\d+);/g, (match, dec) => String.fromCharCode(dec)));
@@ -24,7 +25,14 @@ Vue.filter('formatDate', date => {
 export default {
   name: 'AudioxideApp',
   components: { AudioxideHeader, AudioxideFooter },
-};
+  head() {
+      return {
+        meta: [
+          { hid:"og:url", property: "og:url", content: SITE_URL + this.$route.path },
+        ]
+      }
+    }
+}
 </script>
 
 <style lang="scss">
