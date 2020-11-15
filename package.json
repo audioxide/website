@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@audioxide/brand": "^0.4.0",
-    "@audioxide/licensed-assets": "^0.3.1",
+    "@audioxide/licensed-assets": "^0.3.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-brands-svg-icons": "^5.15.1",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
