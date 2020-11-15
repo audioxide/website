@@ -1,4 +1,3 @@
-const fs = require('fs');
 const fetchPonyfill = require('fetch-ponyfill');
 const { fetch } = fetchPonyfill();
 
