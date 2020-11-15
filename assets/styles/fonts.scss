@@ -1,0 +1,512 @@
+@import '~assets/webfonts/allroundgothic_medium_macroman/stylesheet.css';
+
+@font-face {
+    font-family: 'Spectral SC';
+    src: url('../webfonts/Spectral_SC/SpectralSC-ExtraBold.eot');
+    src: local('Spectral SC ExtraBold'), local('SpectralSC-ExtraBold'),
+        url('../webfonts/Spectral_SC/SpectralSC-ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Spectral_SC/SpectralSC-ExtraBold.woff2') format('woff2'),
+        url('../webfonts/Spectral_SC/SpectralSC-ExtraBold.woff') format('woff'),
+        url('../webfonts/Spectral_SC/SpectralSC-ExtraBold.svg#SpectralSC-ExtraBold') format('svg');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Spectral SC';
+    src: url('../webfonts/Spectral_SC/SpectralSC-Regular.eot');
+    src: local('Spectral SC Regular'), local('SpectralSC-Regular'),
+        url('../webfonts/Spectral_SC/SpectralSC-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Spectral_SC/SpectralSC-Regular.woff2') format('woff2'),
+        url('../webfonts/Spectral_SC/SpectralSC-Regular.woff') format('woff'),
+        url('../webfonts/Spectral_SC/SpectralSC-Regular.svg#SpectralSC-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Spectral SC';
+    src: url('../webfonts/Spectral_SC/SpectralSC-BoldItalic.eot');
+    src: local('Spectral SC Bold Italic'), local('SpectralSC-BoldItalic'),
+        url('../webfonts/Spectral_SC/SpectralSC-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Spectral_SC/SpectralSC-BoldItalic.woff2') format('woff2'),
+        url('../webfonts/Spectral_SC/SpectralSC-BoldItalic.woff') format('woff'),
+        url('../webfonts/Spectral_SC/SpectralSC-BoldItalic.svg#SpectralSC-BoldItalic') format('svg');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Spectral SC';
+    src: url('../webfonts/Spectral_SC/SpectralSC-Medium.eot');
+    src: local('Spectral SC Medium'), local('SpectralSC-Medium'),
+        url('../webfonts/Spectral_SC/SpectralSC-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Spectral_SC/SpectralSC-Medium.woff2') format('woff2'),
+        url('../webfonts/Spectral_SC/SpectralSC-Medium.woff') format('woff'),
+        url('../webfonts/Spectral_SC/SpectralSC-Medium.svg#SpectralSC-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Spectral SC';
+    src: url('../webfonts/Spectral_SC/SpectralSC-SemiBoldItalic.eot');
+    src: local('Spectral SC SemiBold Italic'), local('SpectralSC-SemiBoldItalic'),
+        url('../webfonts/Spectral_SC/SpectralSC-SemiBoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Spectral_SC/SpectralSC-SemiBoldItalic.woff2') format('woff2'),
+        url('../webfonts/Spectral_SC/SpectralSC-SemiBoldItalic.woff') format('woff'),
+        url('../webfonts/Spectral_SC/SpectralSC-SemiBoldItalic.svg#SpectralSC-SemiBoldItalic') format('svg');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Spectral SC';
+    src: url('../webfonts/Spectral_SC/SpectralSC-Bold.eot');
+    src: local('Spectral SC Bold'), local('SpectralSC-Bold'),
+        url('../webfonts/Spectral_SC/SpectralSC-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Spectral_SC/SpectralSC-Bold.woff2') format('woff2'),
+        url('../webfonts/Spectral_SC/SpectralSC-Bold.woff') format('woff'),
+        url('../webfonts/Spectral_SC/SpectralSC-Bold.svg#SpectralSC-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Spectral SC';
+    src: url('../webfonts/Spectral_SC/SpectralSC-MediumItalic.eot');
+    src: local('Spectral SC Medium Italic'), local('SpectralSC-MediumItalic'),
+        url('../webfonts/Spectral_SC/SpectralSC-MediumItalic.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Spectral_SC/SpectralSC-MediumItalic.woff2') format('woff2'),
+        url('../webfonts/Spectral_SC/SpectralSC-MediumItalic.woff') format('woff'),
+        url('../webfonts/Spectral_SC/SpectralSC-MediumItalic.svg#SpectralSC-MediumItalic') format('svg');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Spectral SC';
+    src: url('../webfonts/Spectral_SC/SpectralSC-Italic.eot');
+    src: local('Spectral SC Italic'), local('SpectralSC-Italic'),
+        url('../webfonts/Spectral_SC/SpectralSC-Italic.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Spectral_SC/SpectralSC-Italic.woff2') format('woff2'),
+        url('../webfonts/Spectral_SC/SpectralSC-Italic.woff') format('woff'),
+        url('../webfonts/Spectral_SC/SpectralSC-Italic.svg#SpectralSC-Italic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Spectral SC';
+    src: url('../webfonts/Spectral_SC/SpectralSC-ExtraBoldItalic.eot');
+    src: local('Spectral SC ExtraBold Italic'), local('SpectralSC-ExtraBoldItalic'),
+        url('../webfonts/Spectral_SC/SpectralSC-ExtraBoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Spectral_SC/SpectralSC-ExtraBoldItalic.woff2') format('woff2'),
+        url('../webfonts/Spectral_SC/SpectralSC-ExtraBoldItalic.woff') format('woff'),
+        url('../webfonts/Spectral_SC/SpectralSC-ExtraBoldItalic.svg#SpectralSC-ExtraBoldItalic') format('svg');
+    font-weight: 800;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Spectral SC';
+    src: url('../webfonts/Spectral_SC/SpectralSC-SemiBold.eot');
+    src: local('Spectral SC SemiBold'), local('SpectralSC-SemiBold'),
+        url('../webfonts/Spectral_SC/SpectralSC-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Spectral_SC/SpectralSC-SemiBold.woff2') format('woff2'),
+        url('../webfonts/Spectral_SC/SpectralSC-SemiBold.woff') format('woff'),
+        url('../webfonts/Spectral_SC/SpectralSC-SemiBold.svg#SpectralSC-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Spectral SC';
+    src: url('../webfonts/Spectral_SC/SpectralSC-Light.eot');
+    src: local('Spectral SC Light'), local('SpectralSC-Light'),
+        url('../webfonts/Spectral_SC/SpectralSC-Light.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Spectral_SC/SpectralSC-Light.woff2') format('woff2'),
+        url('../webfonts/Spectral_SC/SpectralSC-Light.woff') format('woff'),
+        url('../webfonts/Spectral_SC/SpectralSC-Light.svg#SpectralSC-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Spectral SC';
+    src: url('../webfonts/Spectral_SC/SpectralSC-LightItalic.eot');
+    src: local('Spectral SC Light Italic'), local('SpectralSC-LightItalic'),
+        url('../webfonts/Spectral_SC/SpectralSC-LightItalic.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Spectral_SC/SpectralSC-LightItalic.woff2') format('woff2'),
+        url('../webfonts/Spectral_SC/SpectralSC-LightItalic.woff') format('woff'),
+        url('../webfonts/Spectral_SC/SpectralSC-LightItalic.svg#SpectralSC-LightItalic') format('svg');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Spectral SC';
+    src: url('../webfonts/Spectral_SC/SpectralSC-ExtraLight.eot');
+    src: local('Spectral SC ExtraLight'), local('SpectralSC-ExtraLight'),
+        url('../webfonts/Spectral_SC/SpectralSC-ExtraLight.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Spectral_SC/SpectralSC-ExtraLight.woff2') format('woff2'),
+        url('../webfonts/Spectral_SC/SpectralSC-ExtraLight.woff') format('woff'),
+        url('../webfonts/Spectral_SC/SpectralSC-ExtraLight.svg#SpectralSC-ExtraLight') format('svg');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Spectral SC';
+    src: url('../webfonts/Spectral_SC/SpectralSC-ExtraLightItalic.eot');
+    src: local('Spectral SC ExtraLight Italic'), local('SpectralSC-ExtraLightItalic'),
+        url('../webfonts/Spectral_SC/SpectralSC-ExtraLightItalic.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Spectral_SC/SpectralSC-ExtraLightItalic.woff2') format('woff2'),
+        url('../webfonts/Spectral_SC/SpectralSC-ExtraLightItalic.woff') format('woff'),
+        url('../webfonts/Spectral_SC/SpectralSC-ExtraLightItalic.svg#SpectralSC-ExtraLightItalic') format('svg');
+    font-weight: 200;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Spectral';
+    src: url('../webfonts/Spectral/Spectral-SemiBold.eot');
+    src: local('Spectral SemiBold'), local('Spectral-SemiBold'),
+        url('../webfonts/Spectral/Spectral-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Spectral/Spectral-SemiBold.woff2') format('woff2'),
+        url('../webfonts/Spectral/Spectral-SemiBold.woff') format('woff'),
+        url('../webfonts/Spectral/Spectral-SemiBold.svg#Spectral-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Spectral';
+    src: url('../webfonts/Spectral/Spectral-SemiBoldItalic.eot');
+    src: local('Spectral SemiBold Italic'), local('Spectral-SemiBoldItalic'),
+        url('../webfonts/Spectral/Spectral-SemiBoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Spectral/Spectral-SemiBoldItalic.woff2') format('woff2'),
+        url('../webfonts/Spectral/Spectral-SemiBoldItalic.woff') format('woff'),
+        url('../webfonts/Spectral/Spectral-SemiBoldItalic.svg#Spectral-SemiBoldItalic') format('svg');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Spectral';
+    src: url('../webfonts/Spectral/Spectral-BoldItalic.eot');
+    src: local('Spectral Bold Italic'), local('Spectral-BoldItalic'),
+        url('../webfonts/Spectral/Spectral-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Spectral/Spectral-BoldItalic.woff2') format('woff2'),
+        url('../webfonts/Spectral/Spectral-BoldItalic.woff') format('woff'),
+        url('../webfonts/Spectral/Spectral-BoldItalic.svg#Spectral-BoldItalic') format('svg');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Spectral';
+    src: url('../webfonts/Spectral/Spectral-Bold.eot');
+    src: local('Spectral Bold'), local('Spectral-Bold'),
+        url('../webfonts/Spectral/Spectral-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Spectral/Spectral-Bold.woff2') format('woff2'),
+        url('../webfonts/Spectral/Spectral-Bold.woff') format('woff'),
+        url('../webfonts/Spectral/Spectral-Bold.svg#Spectral-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Spectral';
+    src: url('../webfonts/Spectral/Spectral-ExtraBoldItalic.eot');
+    src: local('Spectral ExtraBold Italic'), local('Spectral-ExtraBoldItalic'),
+        url('../webfonts/Spectral/Spectral-ExtraBoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Spectral/Spectral-ExtraBoldItalic.woff2') format('woff2'),
+        url('../webfonts/Spectral/Spectral-ExtraBoldItalic.woff') format('woff'),
+        url('../webfonts/Spectral/Spectral-ExtraBoldItalic.svg#Spectral-ExtraBoldItalic') format('svg');
+    font-weight: 800;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Spectral';
+    src: url('../webfonts/Spectral/Spectral-ExtraBold.eot');
+    src: local('Spectral ExtraBold'), local('Spectral-ExtraBold'),
+        url('../webfonts/Spectral/Spectral-ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Spectral/Spectral-ExtraBold.woff2') format('woff2'),
+        url('../webfonts/Spectral/Spectral-ExtraBold.woff') format('woff'),
+        url('../webfonts/Spectral/Spectral-ExtraBold.svg#Spectral-ExtraBold') format('svg');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Spectral';
+    src: url('../webfonts/Spectral/Spectral-Light.eot');
+    src: local('Spectral Light'), local('Spectral-Light'),
+        url('../webfonts/Spectral/Spectral-Light.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Spectral/Spectral-Light.woff2') format('woff2'),
+        url('../webfonts/Spectral/Spectral-Light.woff') format('woff'),
+        url('../webfonts/Spectral/Spectral-Light.svg#Spectral-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Spectral';
+    src: url('../webfonts/Spectral/Spectral-Italic.eot');
+    src: local('Spectral Italic'), local('Spectral-Italic'),
+        url('../webfonts/Spectral/Spectral-Italic.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Spectral/Spectral-Italic.woff2') format('woff2'),
+        url('../webfonts/Spectral/Spectral-Italic.woff') format('woff'),
+        url('../webfonts/Spectral/Spectral-Italic.svg#Spectral-Italic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Spectral';
+    src: url('../webfonts/Spectral/Spectral-Medium.eot');
+    src: local('Spectral Medium'), local('Spectral-Medium'),
+        url('../webfonts/Spectral/Spectral-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Spectral/Spectral-Medium.woff2') format('woff2'),
+        url('../webfonts/Spectral/Spectral-Medium.woff') format('woff'),
+        url('../webfonts/Spectral/Spectral-Medium.svg#Spectral-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Spectral';
+    src: url('../webfonts/Spectral/Spectral-Regular.eot');
+    src: local('Spectral Regular'), local('Spectral-Regular'),
+        url('../webfonts/Spectral/Spectral-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Spectral/Spectral-Regular.woff2') format('woff2'),
+        url('../webfonts/Spectral/Spectral-Regular.woff') format('woff'),
+        url('../webfonts/Spectral/Spectral-Regular.svg#Spectral-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Spectral';
+    src: url('../webfonts/Spectral/Spectral-ExtraLightItalic.eot');
+    src: local('Spectral ExtraLight Italic'), local('Spectral-ExtraLightItalic'),
+        url('../webfonts/Spectral/Spectral-ExtraLightItalic.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Spectral/Spectral-ExtraLightItalic.woff2') format('woff2'),
+        url('../webfonts/Spectral/Spectral-ExtraLightItalic.woff') format('woff'),
+        url('../webfonts/Spectral/Spectral-ExtraLightItalic.svg#Spectral-ExtraLightItalic') format('svg');
+    font-weight: 200;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Spectral';
+    src: url('../webfonts/Spectral/Spectral-LightItalic.eot');
+    src: local('Spectral Light Italic'), local('Spectral-LightItalic'),
+        url('../webfonts/Spectral/Spectral-LightItalic.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Spectral/Spectral-LightItalic.woff2') format('woff2'),
+        url('../webfonts/Spectral/Spectral-LightItalic.woff') format('woff'),
+        url('../webfonts/Spectral/Spectral-LightItalic.svg#Spectral-LightItalic') format('svg');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Spectral';
+    src: url('../webfonts/Spectral/Spectral-MediumItalic.eot');
+    src: local('Spectral Medium Italic'), local('Spectral-MediumItalic'),
+        url('../webfonts/Spectral/Spectral-MediumItalic.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Spectral/Spectral-MediumItalic.woff2') format('woff2'),
+        url('../webfonts/Spectral/Spectral-MediumItalic.woff') format('woff'),
+        url('../webfonts/Spectral/Spectral-MediumItalic.svg#Spectral-MediumItalic') format('svg');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Spectral';
+    src: url('../webfonts/Spectral/Spectral-ExtraLight.eot');
+    src: local('Spectral ExtraLight'), local('Spectral-ExtraLight'),
+        url('../webfonts/Spectral/Spectral-ExtraLight.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Spectral/Spectral-ExtraLight.woff2') format('woff2'),
+        url('../webfonts/Spectral/Spectral-ExtraLight.woff') format('woff'),
+        url('../webfonts/Spectral/Spectral-ExtraLight.svg#Spectral-ExtraLight') format('svg');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../webfonts/Source_Sans_Pro/SourceSansPro-Black.eot');
+    src: url('../webfonts/Source_Sans_Pro/SourceSansPro-Black.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-Black.woff2') format('woff2'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-Black.woff') format('woff'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-Black.svg#SourceSansPro-Black') format('svg');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../webfonts/Source_Sans_Pro/SourceSansPro-BoldItalic.eot');
+    src: url('../webfonts/Source_Sans_Pro/SourceSansPro-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-BoldItalic.woff2') format('woff2'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-BoldItalic.woff') format('woff'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-BoldItalic.svg#SourceSansPro-BoldItalic') format('svg');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../webfonts/Source_Sans_Pro/SourceSansPro-BlackItalic.eot');
+    src: url('../webfonts/Source_Sans_Pro/SourceSansPro-BlackItalic.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-BlackItalic.woff2') format('woff2'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-BlackItalic.woff') format('woff'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-BlackItalic.svg#SourceSansPro-BlackItalic') format('svg');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../webfonts/Source_Sans_Pro/SourceSansPro-Regular.eot');
+    src: url('../webfonts/Source_Sans_Pro/SourceSansPro-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-Regular.woff2') format('woff2'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-Regular.woff') format('woff'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-Regular.svg#SourceSansPro-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../webfonts/Source_Sans_Pro/SourceSansPro-SemiBoldItalic.eot');
+    src: url('../webfonts/Source_Sans_Pro/SourceSansPro-SemiBoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-SemiBoldItalic.woff2') format('woff2'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-SemiBoldItalic.woff') format('woff'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-SemiBoldItalic.svg#SourceSansPro-SemiBoldItalic') format('svg');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../webfonts/Source_Sans_Pro/SourceSansPro-ExtraLightItalic.eot');
+    src: url('../webfonts/Source_Sans_Pro/SourceSansPro-ExtraLightItalic.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-ExtraLightItalic.woff2') format('woff2'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-ExtraLightItalic.woff') format('woff'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-ExtraLightItalic.svg#SourceSansPro-ExtraLightItalic') format('svg');
+    font-weight: 200;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../webfonts/Source_Sans_Pro/SourceSansPro-Bold.eot');
+    src: url('../webfonts/Source_Sans_Pro/SourceSansPro-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-Bold.woff2') format('woff2'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-Bold.woff') format('woff'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-Bold.svg#SourceSansPro-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../webfonts/Source_Sans_Pro/SourceSansPro-Light.eot');
+    src: url('../webfonts/Source_Sans_Pro/SourceSansPro-Light.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-Light.woff2') format('woff2'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-Light.woff') format('woff'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-Light.svg#SourceSansPro-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../webfonts/Source_Sans_Pro/SourceSansPro-LightItalic.eot');
+    src: url('../webfonts/Source_Sans_Pro/SourceSansPro-LightItalic.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-LightItalic.woff2') format('woff2'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-LightItalic.woff') format('woff'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-LightItalic.svg#SourceSansPro-LightItalic') format('svg');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../webfonts/Source_Sans_Pro/SourceSansPro-ExtraLight.eot');
+    src: url('../webfonts/Source_Sans_Pro/SourceSansPro-ExtraLight.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-ExtraLight.woff2') format('woff2'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-ExtraLight.woff') format('woff'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-ExtraLight.svg#SourceSansPro-ExtraLight') format('svg');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../webfonts/Source_Sans_Pro/SourceSansPro-Italic.eot');
+    src: url('../webfonts/Source_Sans_Pro/SourceSansPro-Italic.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-Italic.woff2') format('woff2'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-Italic.woff') format('woff'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-Italic.svg#SourceSansPro-Italic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../webfonts/Source_Sans_Pro/SourceSansPro-SemiBold.eot');
+    src: url('../webfonts/Source_Sans_Pro/SourceSansPro-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-SemiBold.woff2') format('woff2'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-SemiBold.woff') format('woff'),
+        url('../webfonts/Source_Sans_Pro/SourceSansPro-SemiBold.svg#SourceSansPro-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
