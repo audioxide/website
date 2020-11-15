@@ -2,7 +2,8 @@ const fs = require('fs');
 const fetchPonyfill = require('fetch-ponyfill');
 const { fetch } = fetchPonyfill();
 
-const getData = (route) => fetch(`${process.env.API_URL}/${route}.json`).then(r => r.json());
+// This is only run on servers and run before proxy redirects are implemented. Use the real API url
+const getData = (route) => fetch(`${process.env.EXT_API_URL}/${route}.json`).then(r => r.json());
 
 module.exports = async () => {
     const routes = [];
