@@ -92,11 +92,5 @@ sw.*
 # Differently licensed assets
 assets/img
 assets/webfonts
-static/icon.png
 static/favicon.ico
-static/favicon-*.png
-static/apple-icon.png
-static/apple-icon-*.png
-static/android-icon-*.png
-static/ms-icon-*.png
-static/social-tile-*.png
+static/*.png

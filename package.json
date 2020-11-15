@@ -15,7 +15,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@audioxide/brand": "^0.3.0",
+    "@audioxide/brand": "^0.4.0",
     "@audioxide/licensed-assets": "0.2.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-brands-svg-icons": "^5.15.1",

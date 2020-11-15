@@ -26,7 +26,7 @@ const brandPngsDep = getBrandDepPath('png');
 fse.readdirSync(brandPngsDep).forEach(item => {
     if (item.startsWith('ribbon-')) {
         fse.copySync(getPath(brandPngsDep, item), getPath(imgDir, item));
-    } else if (item.startsWith('social-tile')) {
+    } else if (item.startsWith('social-tile') || item.startsWith('full-logo')) {
         fse.copySync(getPath(brandPngsDep, item), getPath(staticDir, item));
     }
 });

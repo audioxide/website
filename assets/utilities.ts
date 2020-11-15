@@ -103,7 +103,7 @@ const audioxideStructuredData = () => ({
         }
     ],
     url: SITE_URL,
-    logo: `${SITE_URL}/icon.png`,
+    logo: `${SITE_URL}/full-logo-black-on-white.png`,
     sameAs: [ FACEBOOK_URL, TWITTER_URL, INSTAGRAM_URL ],
 });
 
