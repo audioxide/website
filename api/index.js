@@ -1,4 +1,7 @@
+import fetchPonyfill from 'fetch-ponyfill';
 import parseISO from 'date-fns/parseISO';
+
+const { fetch } = fetchPonyfill();
 
 const APIURL = process.env.apiUrl;
 const SEARCHURL = process.env.searchUrl;

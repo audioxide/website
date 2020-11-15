@@ -38,6 +38,8 @@ export default {
 <style lang="scss">
   @import '~assets/styles/reset';
   @import '~assets/styles/variables';
+  @import '~assets/webfonts/allroundgothic_medium_macroman/stylesheet.css';
+  @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,600;1,400;1,600&family=Spectral+SC:ital,wght@0,500;1,500&family=Spectral:ital,wght@0,200;0,400;0,600;1,200;1,400;1,600&display=swap');
 
   html, body {
     font-size: 16px;

@@ -1,13 +1,14 @@
-import fetchPonyfill from 'fetch-ponyfill';
+const fs = require('fs');
+const fetchPonyfill = require('fetch-ponyfill');
 const { fetch } = fetchPonyfill();
 
-const getData = (route) => fetch(process.env.API_URL + route + '.json').then(r => r.json());
+const getData = (route) => fetch(`${process.env.API_URL}/${route}.json`).then(r => r.json());
 
-export default () => {
+module.exports = async () => {
     const routes = [];
     const types = await getData('types');
     types.pages.forEach(route => routes.push(`/${route}`));
-    return Promise.all(
+    await Promise.all(
         types.postTypes
             .map(type => getData(type)
                 .then(posts => posts
@@ -15,4 +16,5 @@ export default () => {
                 ),
             ),
     );
+    return routes;
 }

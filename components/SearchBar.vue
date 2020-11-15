@@ -73,6 +73,7 @@ export default Vue.extend({
     },
     methods: {
         unfocus() {
+            if (process.server) return;
             const elm = this.$refs.searchInput as HTMLElement;
             elm.focus();
             elm.blur();
