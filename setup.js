@@ -6,8 +6,8 @@ const getDepPath = (...paths) => getPath('./node_modules/@audioxide', ...paths);
 const getBrandDepPath = (...paths) => getDepPath('brand/assets', ...paths);
 
 fse.copySync(
-    getDepPath('licensed-assets/webfonts/allroundgothic_medium_macroman'),
-    getPath('assets/webfonts/allroundgothic_medium_macroman'),
+    getDepPath('licensed-assets/webfonts'),
+    getPath('assets/webfonts'),
 );
 
 const imgDir = getPath('assets/img');

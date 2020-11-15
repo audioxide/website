@@ -7,10 +7,10 @@
   resolved "https://npm.pkg.github.com/download/@audioxide/brand/0.4.0/ab79a5a8feb6f43d4fb9d8fa7b15272a457de97201161a5f2af0e482024d0393#d14181c12156076e7f2213100b54746b93eb8933"
   integrity sha512-NICdNdcotvcvHaXT4/qCudX+kO4TJg/afMqXfi2dmGUvJrBfcTTd5/dE5ROlG6SKXK516wTdldkVkHPh5UoAYw==
 
-"@audioxide/licensed-assets@0.2.0":
-  version "0.2.0"
-  resolved "https://npm.pkg.github.com/download/@audioxide/licensed-assets/0.2.0/6b38d497bf7e51ccc3bb8c968860058a0b4e3dd4a41667b4e2750baf9ca6b236#d31de1782087b652213ebd47047fa84a2d5f0fd4"
-  integrity sha512-UxR35ty1ce+hYsa06obfinoCzs8Rc9sVeRmTc7RSaXUs9SGk0zDMLCdfJYU9/08MhzYILCeZAr9uzz+ZoDYVrQ==
+"@audioxide/licensed-assets@^0.3.1":
+  version "0.3.1"
+  resolved "https://npm.pkg.github.com/download/@audioxide/licensed-assets/0.3.1/e9a24f080850fd04310664da613a5fd74ff1884caf5a4dcdcd33bfbe3b0dd783#c6450da7b38c72f110b065e5b8ce410525257b35"
+  integrity sha512-qOA+Lbw1ZZ8MLrTuJ6f8tfHMsLCQl/Zr9l9oyrlS4oaM5YTza8rOc27TjgwcNNxHoNUo6i3lnVChSspqRA2VLQ==
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.8.3":
   version "7.8.3"
