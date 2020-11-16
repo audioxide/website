@@ -192,7 +192,7 @@ export default Vue.extend({
     }
   }
 
-  .lead-post {
+  .lead-post.post-link {
     order: 0;
     grid-area: 1 / 4 / 2 / 8;
     margin-bottom: 20px;
@@ -220,7 +220,7 @@ export default Vue.extend({
     }
   }
 
-  .lead-post, .interviews .post-link {
+  .lead-post.post-link, .interviews .post-link {
     display: block;
     ::v-deep .img-wrap {
       margin-right: 0;

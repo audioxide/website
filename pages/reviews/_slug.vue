@@ -38,7 +38,7 @@
                     <img class="review-sidebar__ribbon" src="~assets/img/ribbon-bronze.png" alt="Bronze Audioxide review ribbon">
                 </template>
             <figure>
-            <img class="review-sidebar__album-cover" :alt="coverAlt" :src="review.metadata.featuredimage['medium-square']">
+            <img class="review-sidebar__album-cover" :alt="coverAlt" :src="review.metadata.featuredimage['medium-square']" :style="sidebarStyles" width="600" height="600" />
             <figcaption class="review-sidebar__album-info">{ { review.featured_media.description } }</figcaption>
             </figure>
             </div>
@@ -324,7 +324,9 @@ export default Vue.extend({
     }
 
     .review-sidebar__album-cover {
+        display: block;
         width: 100%;
+        height: auto;
         border: 1px solid #dddddd;
         border-top: 0;
     }
