@@ -28,10 +28,10 @@ export default {
   head() {
       return {
         meta: [
-          { hid:"og:url", property: "og:url", content: SITE_URL + this.$route.path },
+          { hid: "og:url", property: "og:url", content: SITE_URL + this.$route.path },
         ],
         link: [
-          { rel: 'canonical', href: SITE_URL + this.$route.path },
+          { hid: "canonical", rel: "canonical", href: SITE_URL + this.$route.path },
         ]
       }
     }

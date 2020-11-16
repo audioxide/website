@@ -72,7 +72,6 @@ export default {
       { rel: 'apple-touch-icon', sizes:'144x144', href: '/apple-icon-144x144.png' },
       { rel: 'apple-touch-icon', sizes:'152x152', href: '/apple-icon-152x152.png' },
       { rel: 'apple-touch-icon', sizes:'180x180', href: '/apple-icon-180x180.png' },
-      { rel: 'canonical', href: SITE_URL },
       { rel: 'alternative', type: 'application/rss+xml', title: 'Audioxide // Feed', href: RSS_URL }
       // { rel: 'alternative', type: 'application/json+oembed', href: 'json oembed url' },
       // { rel: 'alternative', type: 'application/xml+oembed', href: 'xml oembed url' },
