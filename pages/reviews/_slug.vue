@@ -125,7 +125,7 @@ export default Vue.extend({
             const dateModified = formatISO(metadata.modified, { representation: 'date' });
 
             pageMeta.meta.push(
-                { hid: "twitter:description", property: "twitter:description", content: `'${metadata.pullquote}.` },
+                { hid: "twitter:description", property: "twitter:description", content: `'${metadata.pullquote}.'` },
                 { hid: "article:published_time", property: "article:published_time", content: datePublished },
                 { hid: "article:modified_time", property: "article:modified_time", content: dateModified },
             );
