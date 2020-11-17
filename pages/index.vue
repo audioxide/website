@@ -182,7 +182,7 @@ export default Vue.extend({
   }
 
   .reviews, .listening-parties {
-    ::v-deep {
+    .post-link ::v-deep {
       h4 {
         font-size: $site-content__font;
       }

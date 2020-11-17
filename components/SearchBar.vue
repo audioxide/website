@@ -109,11 +109,12 @@ export default Vue.extend({
 
     .input-wrapper {
         display: flex;
-        align-items: center;
     }
 
     .search-icon {
         width: 20.8px;
+        position: relative;
+        margin-top: .4em;
         & > * {
             position: absolute;
             top: 20%;
