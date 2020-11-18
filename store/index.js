@@ -5,6 +5,7 @@ export const strict = false;
 
 export const plugins = [
     store => {
+        if (process.server) return;
         const setBreakpoint = () => {
             const currentBp = store.state.breakpoint;
             let newBp = 'base';

@@ -2,15 +2,15 @@
 # yarn lockfile v1
 
 
-"@audioxide/brand@^0.3.0":
-  version "0.3.0"
-  resolved "https://npm.pkg.github.com/download/@audioxide/brand/0.3.0/4201ba81d6ee60dbed7fad0bb792dae4acc19def04ba4738e1c57f50b3e84b13#1b6360101f51d8f8f261e67e772076042d701c85"
-  integrity sha512-0Du+K0TDWE461D9YTjlOtngqFogjdd1m7NLf7gDMARLNgUvI4hOqvz2r0n0nwg7zLmzAuFEUFV26ayvbwrMJFA==
+"@audioxide/brand@^0.4.0":
+  version "0.4.0"
+  resolved "https://npm.pkg.github.com/download/@audioxide/brand/0.4.0/ab79a5a8feb6f43d4fb9d8fa7b15272a457de97201161a5f2af0e482024d0393#d14181c12156076e7f2213100b54746b93eb8933"
+  integrity sha512-NICdNdcotvcvHaXT4/qCudX+kO4TJg/afMqXfi2dmGUvJrBfcTTd5/dE5ROlG6SKXK516wTdldkVkHPh5UoAYw==
 
-"@audioxide/licensed-assets@0.2.0":
-  version "0.2.0"
-  resolved "https://npm.pkg.github.com/download/@audioxide/licensed-assets/0.2.0/6b38d497bf7e51ccc3bb8c968860058a0b4e3dd4a41667b4e2750baf9ca6b236#d31de1782087b652213ebd47047fa84a2d5f0fd4"
-  integrity sha512-UxR35ty1ce+hYsa06obfinoCzs8Rc9sVeRmTc7RSaXUs9SGk0zDMLCdfJYU9/08MhzYILCeZAr9uzz+ZoDYVrQ==
+"@audioxide/licensed-assets@^0.3.2":
+  version "0.3.2"
+  resolved "https://npm.pkg.github.com/download/@audioxide/licensed-assets/0.3.2/13b5d84b00b2c63410789d06529c7d85369068ef3eaf2eb07de5076a89b8b48a#9cc33b7b03444aaafa3649b261ed4e53293f3dcc"
+  integrity sha512-835DqL2El/GnyJJwPsvc0Vx0Oc6hcVXW6BBwM0pFhACCyoD36F808xv0c/GzUw1yezRhHktzW6g/zvskwKsVAQ==
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.8.3":
   version "7.8.3"
@@ -4703,6 +4703,13 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "2.1.1"
 
+fetch-ponyfill@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/fetch-ponyfill/-/fetch-ponyfill-7.0.0.tgz#5a53db6fc8c3e1901476f3e9b7b146a30a412594"
+  integrity sha512-ynRMX7w11EcG3sJSYTT2N6EUl0QsqWbyW3Xw5+DuLeA2uo/yhssb7JqnjamGQaHBUo/AOUsmTz6zeUX3cPvZsQ==
+  dependencies:
+    node-fetch "~2.6.1"
+
 figgy-pudding@^3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/figgy-pudding/-/figgy-pudding-3.5.1.tgz#862470112901c727a0e495a80744bd5baa1d6790"
@@ -7350,6 +7357,11 @@ node-fetch@^2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
   integrity sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==
+
+node-fetch@~2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
+  integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
 
 node-gyp@^3.8.0:
   version "3.8.0"

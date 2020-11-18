@@ -28,7 +28,10 @@ export default {
   head() {
       return {
         meta: [
-          { hid:"og:url", property: "og:url", content: SITE_URL + this.$route.path },
+          { hid: "og:url", property: "og:url", content: SITE_URL + this.$route.path },
+        ],
+        link: [
+          { hid: "canonical", rel: "canonical", href: SITE_URL + this.$route.path },
         ]
       }
     }
@@ -37,10 +40,26 @@ export default {
 
 <style lang="scss">
   @import '~assets/styles/reset';
+  @import '~assets/styles/fonts';
   @import '~assets/styles/variables';
 
   html, body {
     font-size: 16px;
+    scrollbar-width: thin;
+    scrollbar-color: darkgrey white;
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+        border: 1px lightgrey solid;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: darkgrey;
+        border: 0;
+        outline: 0;
+        border-radius:1em;
+    }
   }
 
   a {

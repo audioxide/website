@@ -1,6 +1,10 @@
+import fetchPonyfill from 'fetch-ponyfill';
 import parseISO from 'date-fns/parseISO';
 
-const APIURL = process.env.apiUrl;
+const { fetch } = fetchPonyfill();
+
+// If we're running on servers, we don't need to use the proxied URL
+const APIURL = process.server ? `${process.env.EXT_API_URL}/` : process.env.apiUrl;
 const SEARCHURL = process.env.searchUrl;
 
 const processPost = (post) => {
