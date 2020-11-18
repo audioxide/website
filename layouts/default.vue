@@ -45,6 +45,21 @@ export default {
 
   html, body {
     font-size: 16px;
+    scrollbar-width: thin;
+    scrollbar-color: darkgrey white;
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+        border: 1px lightgrey solid;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: darkgrey;
+        border: 0;
+        outline: 0;
+        border-radius:1em;
+    }
   }
 
   a {
