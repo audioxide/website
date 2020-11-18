@@ -94,16 +94,16 @@ const audioxideStructuredData = () => ({
         {
             '@type': 'Person',
             'name': 'Andrew Bridge',
-            'sameAs': 'http://www.andrewhbridge.co.uk/'
+            'sameAs': 'http://www.andrewhbridge.co.uk'
         },
         {
             '@type': 'Person',
             'name': 'Frederick O\'Brien',
-            'sameAs': 'https://fredobrien.co.uk'
+            'sameAs': 'https://frederickobrien.com'
         }
     ],
     url: SITE_URL,
-    logo: `${SITE_URL}/icon.png`,
+    logo: `${SITE_URL}/full-logo-black-on-white.png`,
     sameAs: [ FACEBOOK_URL, TWITTER_URL, INSTAGRAM_URL ],
 });
 

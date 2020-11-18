@@ -73,6 +73,7 @@ export default Vue.extend({
     },
     methods: {
         unfocus() {
+            if (process.server) return;
             const elm = this.$refs.searchInput as HTMLElement;
             elm.focus();
             elm.blur();
@@ -108,14 +109,14 @@ export default Vue.extend({
 
     .input-wrapper {
         display: flex;
-        align-items: center;
     }
 
     .search-icon {
         width: 20.8px;
+        position: relative;
+        margin-top: .4em;
         & > * {
             position: absolute;
-            top: 20%;
             transition: 0.25s opacity ease-in-out;
             opacity: 0;
         }
@@ -148,8 +149,22 @@ export default Vue.extend({
         border-bottom-right-radius: 1em;
         max-height: 80vh;
         width: 100%;
-        overflow: scroll;
         border: 2.5px solid $colour-grey--lighter;
+        overflow-y: scroll;
+        scrollbar-width: thin;
+        scrollbar-color: darkgrey transparent;
+        &::-webkit-scrollbar {
+            width: 7px;
+        }
+        &::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: darkgrey;
+            border: 0;
+            outline: 0;
+            border-radius:1em;
+        }
     }
 
     .search-results .heading {

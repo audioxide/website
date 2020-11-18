@@ -15,8 +15,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "@audioxide/brand": "^0.3.0",
-    "@audioxide/licensed-assets": "0.2.0",
+    "@audioxide/brand": "^0.4.0",
+    "@audioxide/licensed-assets": "^0.3.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-brands-svg-icons": "^5.15.1",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
@@ -26,6 +26,7 @@
     "@nuxtjs/pwa": "^3.0.0-0",
     "@types/he": "^1.1.1",
     "date-fns": "^2.16.1",
+    "fetch-ponyfill": "^7.0.0",
     "he": "^1.2.0",
     "nuxt": "^2.0.0",
     "wpapi": "^1.2.1"

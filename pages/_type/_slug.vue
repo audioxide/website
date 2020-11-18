@@ -33,7 +33,7 @@ import Vue from 'vue';
 import PostContentBlock from '../../components/PostContentBlock.vue';
 import NewsletterSignup from '../../components/NewsletterSignup.vue';
 import RelatedPosts from '@/components/RelatedPosts.vue';
-import { MetaInfo } from 'vue-meta';
+import { MetaInfo, ScriptPropertyJson } from 'vue-meta';
 import { formatISO } from 'date-fns';
 import { resolveAuthorLink, isObject, metaTitle, toTitleCase, audioxideStructuredData } from '../../assets/utilities';
 
@@ -106,12 +106,16 @@ export default Vue.extend({
                     description: metadata.summary || metadata.blurb || '',
                     datePublished,
                     dateModified,
-                    author: metadata.author.authors.map(author => ({
-                        '@type': 'Person', name: author.name
-                        })),
                     publisher: audioxideStructuredData(),
-                }
+                },
             }];
+
+            if (metadata.author) {
+                // Posts have the potential to not have an author (though this is incorrect)
+                pageMeta.script[0].json.author = metadata.author.authors.map(author => ({
+                    '@type': 'Person', name: author.name
+                }));
+            }
         }
         return pageMeta;
     },
