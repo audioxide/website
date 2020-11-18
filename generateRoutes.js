@@ -10,7 +10,7 @@ module.exports = async () => {
     types.pages.forEach(route => routes.push(`/${route}`));
     await Promise.all(
         types.postTypes
-            .map(type => getData(type)
+            .map(type => routes.push(`/${type}`) && getData(type)
                 .then(posts => posts
                     .forEach(({ metadata: { type, slug } }) => routes.push(`/${type}/${slug}`)),
                 ),
