@@ -104,7 +104,7 @@ export default Vue.extend({
                     '@type': 'Article',
                     headline: metadata.title,
                     description: metadata.summary || metadata.blurb || '',
-                    image: metadata.featuredimage,
+                    image: metadata.featuredimage["medium-standard"],
                     datePublished,
                     dateModified,
                     publisher: audioxideStructuredData(),
