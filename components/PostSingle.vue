@@ -45,6 +45,8 @@ export default Vue.extend({
         margin-bottom: $site-content__spacer;
         width: 75%;
         margin: auto;
+        margin-top: 1em;
+        text-align: center;
     }
 
     .post-content {
