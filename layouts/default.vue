@@ -26,15 +26,15 @@ export default {
   name: 'AudioxideApp',
   components: { AudioxideHeader, AudioxideFooter },
   head() {
-      return {
-        meta: [
-          { hid: "og:url", property: "og:url", content: SITE_URL + this.$route.path },
-        ],
-        link: [
-          { hid: "canonical", rel: "canonical", href: SITE_URL + this.$route.path },
-        ]
-      }
+    return {
+      meta: [
+        { hid: "og:url", property: "og:url", content: SITE_URL + this.$route.path },
+      ],
+      link: [
+        { hid: "canonical", rel: "canonical", href: SITE_URL + this.$route.path },
+      ]
     }
+  },
 }
 </script>
 
