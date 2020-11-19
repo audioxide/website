@@ -142,7 +142,7 @@ $site-foot__icon-margin: $site-foot__icon-size * 0.25;
 
 /* line-styles */
 $line-colour: $colour-grey--lighter;
-$line-width: 2.5px;
+$line-width: 2px;
 @mixin line-styles($side: 'bottom') {
   #{"border-" + $side}: $line-width solid $line-colour;
 }
