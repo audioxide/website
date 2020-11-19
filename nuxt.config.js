@@ -1,4 +1,8 @@
-const generateRoutes = require('./generateRoutes');
+const fs = require('fs');
+const path = require('path');
+const SitemapPlugin = require("sitemap-webpack-plugin").default;
+const CopyPlugin = require("copy-webpack-plugin");
+
 const {
   SITE_NAME,
   SITE_URL,
@@ -7,11 +11,42 @@ const {
   RSS_URL,
 } = require('./assets/siteConstants');
 
+const routes = fs.existsSync('./routes.json') ? JSON.parse(fs.readFileSync('./routes.json')) : [];
+
+const routeDepth = (urlPath) => urlPath.replace(/[^/]+/g, '').length;
+
+const routePriority = (urlPath) => {
+  if (urlPath === '/') return 1;
+  const depth = routeDepth(urlPath);
+  // Posts are two levels deep and more important than listings and pages
+  let priority = 1 - (1 - depth * 0.4);
+  // Reviews get a priority boost
+  if (urlPath.startsWith('/reviews')) {
+    priority += 0.1;
+  }
+  // Ensure priorities stay within bounds
+  return Math.max(priority, 0.1);
+};
+
+const routeChangeFrequency = (urlPath) => {
+  // The homepage may change several times a week
+  if (urlPath === '/') return 'daily';
+  const depth = routeDepth(urlPath);
+  switch (depth) {
+    case 1:
+      // Listings likely change each week
+      return 'weekly';
+    case 2:
+      // Once a post is published we don't expect it to change
+      return 'never';
+  }
+};
+
 export default {
   target: 'static',
   ssr: false,
   modern: 'client',
-  generate: { routes: generateRoutes },
+  generate: { routes },
   /*
   ** Environment defaults
   */
@@ -113,6 +148,17 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    extend(config, ctx) {},
+    plugins: [
+      new SitemapPlugin({
+        base: SITE_URL,
+        paths: routes.map(urlPath => ({
+          path: urlPath,
+          lastMod: true,
+          priority: routePriority(urlPath),
+          changefreq: routeChangeFrequency(urlPath),
+        })),
+      })
+    ]
   }
 }
