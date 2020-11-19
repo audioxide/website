@@ -111,6 +111,9 @@ export default {
       // { rel: 'alternative', type: 'application/json+oembed', href: 'json oembed url' },
       // { rel: 'alternative', type: 'application/xml+oembed', href: 'xml oembed url' },
       // { rel: 'shortlink', type: 'text/html', href: 'shorturl' },
+    ],
+    script: [
+      { "data-goatcounter": "https://audioxide.goatcounter.com/count", async: true, src: "//gc.zgo.at/count.js" },
     ]
   },
   /*
@@ -124,7 +127,9 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [
+    { src: '~plugins/goatcounter.js', mode: 'client' }
+  ],
   /*
    ** Nuxt.js dev-modules
    */
