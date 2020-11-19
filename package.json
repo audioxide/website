@@ -9,7 +9,7 @@
     "setup": "node setup.js",
     "dev": "nuxt-ts",
     "build": "nuxt-ts build",
-    "generate": "nuxt-ts generate",
+    "generate": "nuxt-ts generate && cp dist/_nuxt/sitemap.* dist",
     "start": "nuxt-ts start",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "test": "jest"
@@ -25,10 +25,12 @@
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/pwa": "^3.0.0-0",
     "@types/he": "^1.1.1",
+    "copy-webpack-plugin": "^6.3.1",
     "date-fns": "^2.16.1",
     "fetch-ponyfill": "^7.0.0",
     "he": "^1.2.0",
     "nuxt": "^2.0.0",
+    "sitemap-webpack-plugin": "^1.0.0",
     "wpapi": "^1.2.1"
   },
   "devDependencies": {
