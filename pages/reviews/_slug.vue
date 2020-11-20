@@ -327,8 +327,7 @@ export default Vue.extend({
         display: block;
         width: 100%;
         height: auto;
-        border: 1px solid #dddddd;
-        border-top: 0;
+        outline: 1px solid #dddddd;
     }
 
     .review-sidebar__album-info {
