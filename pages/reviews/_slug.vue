@@ -315,6 +315,8 @@ export default Vue.extend({
 
     .review-sidebar__album-cover-container {
         position: relative;
+        outline: 1px solid #dddddd;
+        z-index: 1;
     }
 
     .review-sidebar__ribbon {
@@ -329,8 +331,6 @@ export default Vue.extend({
         display: block;
         width: 100%;
         height: auto;
-        outline: 1px solid #dddddd;
-        z-index: 1;
     }
 
     .review-sidebar__album-info {
@@ -473,8 +473,6 @@ export default Vue.extend({
         }
     }
 
-    /* LARGE STYLING (TABLET) */
-
-    /* LARGE STYLING (TABLET) */
+    /* LARGE STYLING (DESKTOP) */
 
 </style>
