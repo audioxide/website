@@ -253,6 +253,7 @@ export default Vue.extend({
         border-bottom: 5px solid black;
         padding-top: $site-content__spacer--large;
         padding-bottom: $site-content__spacer--x-large;
+        z-index: 2;
     }
 
     .collapsible {
@@ -328,6 +329,7 @@ export default Vue.extend({
         width: 100%;
         height: auto;
         outline: 1px solid #dddddd;
+        z-index: 1;
     }
 
     .review-sidebar__album-info {
