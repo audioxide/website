@@ -317,11 +317,12 @@ export default Vue.extend({
         position: relative;
         outline: 1px solid #dddddd;
         z-index: 1;
+        margin-top: -1px;
     }
 
     .review-sidebar__ribbon {
         position: absolute;
-        z-index: 2;
+        z-index: 3;
         top: -7px;
         right: 8%;
         width: 12%;
