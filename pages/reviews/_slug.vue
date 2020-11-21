@@ -253,6 +253,7 @@ export default Vue.extend({
         border-bottom: 5px solid black;
         padding-top: $site-content__spacer--large;
         padding-bottom: $site-content__spacer--x-large;
+        margin-bottom: -1px;
         z-index: 2;
     }
 
@@ -315,9 +316,6 @@ export default Vue.extend({
 
     .review-sidebar__album-cover-container {
         position: relative;
-        outline: 1px solid #dddddd;
-        z-index: 1;
-        margin-top: -1px;
     }
 
     .review-sidebar__ribbon {
@@ -332,6 +330,8 @@ export default Vue.extend({
         display: block;
         width: 100%;
         height: auto;
+        outline: 1px solid #dddddd;
+        z-index: 1;
     }
 
     .review-sidebar__album-info {
