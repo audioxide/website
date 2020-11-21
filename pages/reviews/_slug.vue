@@ -194,7 +194,8 @@ export default Vue.extend({
                         "cssSelector": ["review-header__album", "review-header__artist", "review-sidebar__summary"]
                         },
                     publisher: audioxideStructuredData(),
-                    '@type': 'BreadcrumbList',
+                    breadcrumb: {
+                        '@type': 'BreadcrumbList',
                         'itemListElement': [{
                             '@type': 'ListItem',
                             'position': 1,
@@ -206,6 +207,7 @@ export default Vue.extend({
                             'name': metadata.album,
                             'item': 'https://audioxide.com/' + this.$route.path
                         }],
+                    }
                 }
             }];
         }
