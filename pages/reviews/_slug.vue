@@ -97,7 +97,6 @@ import NewsletterSignup from '../../components/NewsletterSignup.vue';
 import RelatedPosts from '@/components/RelatedPosts.vue';
 import { albumCoverAlt, audioxideStructuredData, metaTitle, padNum, resolveAuthorLink } from '~/assets/utilities';
 import { MetaInfo } from 'vue-meta';
-import { SITE_URL } from '../assets/siteConstants.js';
 import formatISO from 'date-fns/formatISO';
 
 type PostColours = [string, string, string];
@@ -205,7 +204,7 @@ export default Vue.extend({
                             '@type': 'ListItem',
                             'position': 2,
                             'name': metadata.album,
-                            'item': SITE_URL + this.$route.path
+                            'item': 'https://audioxide.com/' + this.$route.path
                         }],
                 }
             }];
