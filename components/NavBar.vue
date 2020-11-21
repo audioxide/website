@@ -57,8 +57,6 @@ const nav = [
         ]
     },
     { link: { text: 'Interviews', route: '/interviews' } },
-    { link: { text: 'About', route: '/about' } },
-    { link: { text: 'Contact', route: '/contact' } },
 ];
 
 type NavConfig = typeof nav;
