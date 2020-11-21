@@ -39,7 +39,9 @@
                 </template>
             <figure>
             <img class="review-sidebar__album-cover" :alt="coverAlt" :src="review.metadata.featuredimage['medium-square']" :style="sidebarStyles" width="600" height="600" />
-            <figcaption class="review-sidebar__album-info">{ { review.featured_media.description } }</figcaption>
+            <template v-if="review.metadata.artworkCredit">
+                <figcaption class="review-sidebar__album-info">{{ review.metadata.artworkCredit }} [<a :href="review.metadata.artworkCreditSource">SOURCE</a>]</figcaption>
+            </template>
             </figure>
             </div>
             <div class="review-sidebar__total-score" :style="sidebarStyles">
