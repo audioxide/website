@@ -337,7 +337,17 @@ export default Vue.extend({
     }
 
     .review-sidebar__album-info {
-        display: none;
+        font-family: 'Source Sans Pro', sans-serif;
+        position: absolute;
+        bottom:0;
+        left:0;
+        // display: none;
+        padding: 5% 20% 5% 5%;
+        opacity: 0.7;
+        color: white;
+        background-color: black;
+        line-height: 1.3;
+        font-size: 1em;
     }
 
     .review-sidebar__total-score, .review-sidebar__tracks {
