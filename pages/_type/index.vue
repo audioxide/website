@@ -41,16 +41,16 @@ export default Vue.extend({
     switch (this.type) {
       case 'page':
         const page = this.pageData as Post;
-        metaData.title = he.decode(page.metadata.title);
+        metaData.title = metaTitle(page.metadata.title);
         break;
       case 'post':
-        const title = toTitleCase(this.slug, '-');
+        const title = metaTitle(toTitleCase(this.slug, '-'));
         metaData.title = title;
         metaData.link.push(
           {
             rel: 'alternative',
             type: 'application/rss+xml',
-            title: title,
+            title,
             href: `https://audioxide.com/feed/${this.slug}/`,
           },
         );
