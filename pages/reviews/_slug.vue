@@ -191,6 +191,30 @@ export default Vue.extend({
                         "cssSelector": ["review-header__album", "review-header__artist", "review-sidebar__summary"]
                         },
                     publisher: audioxideStructuredData(),
+                    breadcrumb: {
+                        '@type': 'BreadcrumbList',
+                        'itemListElement': 
+                        [
+                            {
+                            '@type': 'ListItem',
+                            'position': 1,
+                            'item':
+                                {
+                                '@id': 'https://audioxide.com/reviews/',
+                                'name': 'Reviews'
+                                }
+                            },
+                            {
+                            '@type': 'ListItem',
+                            'position': 2,
+                            'item':
+                                {
+                                '@id': 'https://audioxide.com' + this.$route.path,
+                                'name': metadata.album
+                                }
+                            }
+                        ],
+                    }
                 }
             }];
         }

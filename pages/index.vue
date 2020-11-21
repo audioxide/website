@@ -2,7 +2,7 @@
   <main>
     <component :is="leadComponent" :post="leadPost" class="lead-post" />
     <div class="panel reviews">
-      <h3>Reviews (<nuxt-link to="reviews">See all<span class="sr-only">reviews</span></nuxt-link>)</h3>
+      <h3>Album Reviews (<nuxt-link to="reviews">See all<span class="sr-only">reviews</span></nuxt-link>)</h3>
       <div class="listing">
         <review-link v-for="(item, key) in reviews" :key="key" :post="item" image-size="xsmall" />
       </div>
