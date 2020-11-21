@@ -201,7 +201,7 @@ export default Vue.extend({
                             'item':
                                 {
                                 '@id': 'https://audioxide.com/reviews/',
-                                'name': 'Reviews'
+                                'name': 'Album Reviews'
                                 }
                             },
                             {
