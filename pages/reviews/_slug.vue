@@ -97,7 +97,7 @@ import NewsletterSignup from '../../components/NewsletterSignup.vue';
 import RelatedPosts from '@/components/RelatedPosts.vue';
 import { albumCoverAlt, audioxideStructuredData, metaTitle, padNum, resolveAuthorLink } from '~/assets/utilities';
 import { MetaInfo } from 'vue-meta';
-import { SITE_URL } from '../assets/siteConstants';
+import { SITE_URL } from '../assets/siteConstants.js';
 import formatISO from 'date-fns/formatISO';
 
 type PostColours = [string, string, string];
