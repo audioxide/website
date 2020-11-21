@@ -196,17 +196,27 @@ export default Vue.extend({
                     publisher: audioxideStructuredData(),
                     breadcrumb: {
                         '@type': 'BreadcrumbList',
-                        'itemListElement': [{
+                        'itemListElement': 
+                        [
+                            {
                             '@type': 'ListItem',
                             'position': 1,
-                            'name': 'Reviews',
-                            'item': 'https://audioxide.com/reviews/'
-                        },{
+                            'item':
+                                {
+                                '@id': 'https://audioxide.com/reviews/',
+                                'name': 'Reviews'
+                                }
+                            },
+                            {
                             '@type': 'ListItem',
                             'position': 2,
-                            'name': metadata.album,
-                            'item': 'https://audioxide.com/' + this.$route.path
-                        }],
+                            'item':
+                                {
+                                '@id': 'https://audioxide.com' + this.$route.path,
+                                'name': metadata.album
+                                }
+                            }
+                        ],
                     }
                 }
             }];
