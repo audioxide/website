@@ -97,6 +97,7 @@ import NewsletterSignup from '../../components/NewsletterSignup.vue';
 import RelatedPosts from '@/components/RelatedPosts.vue';
 import { albumCoverAlt, audioxideStructuredData, metaTitle, padNum, resolveAuthorLink } from '~/assets/utilities';
 import { MetaInfo } from 'vue-meta';
+import { SITE_URL } from '../assets/siteConstants';
 import formatISO from 'date-fns/formatISO';
 
 type PostColours = [string, string, string];
@@ -194,6 +195,18 @@ export default Vue.extend({
                         "cssSelector": ["review-header__album", "review-header__artist", "review-sidebar__summary"]
                         },
                     publisher: audioxideStructuredData(),
+                    '@type': 'BreadcrumbList',
+                        'itemListElement': [{
+                            '@type': 'ListItem',
+                            'position': 1,
+                            'name': 'Reviews',
+                            'item': 'https://audioxide.com/reviews/'
+                        },{
+                            '@type': 'ListItem',
+                            'position': 2,
+                            'name': metadata.album,
+                            'item': SITE_URL + this.$route.path
+                        }],
                 }
             }];
         }
