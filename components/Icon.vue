@@ -7,6 +7,7 @@
     faRss,
     faSearch,
     faBrain,
+    faInfoCircle,
   } from '@fortawesome/free-solid-svg-icons';
   import {
     faFacebookF,
@@ -27,6 +28,7 @@
     faRss,
     faSearch,
     faBrain,
+    faInfoCircle,
     faSpinnerThird,
   });
 
