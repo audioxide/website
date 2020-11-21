@@ -40,7 +40,7 @@
             <figure>
             <img class="review-sidebar__album-cover" :alt="coverAlt" :src="review.metadata.featuredimage['medium-square']" :style="sidebarStyles" width="600" height="600" />
             <template v-if="review.metadata.artworkCredit">
-                <figcaption class="review-sidebar__album-info">{{ review.metadata.artworkCredit }} [<a :href="review.metadata.artworkCreditSource">SOURCE</a>]</figcaption>
+                <figcaption class="review-sidebar__album-info">{{ review.metadata.artworkCredit }} [<a :href="review.metadata.artworkCreditSource" target="_blank" rel="noopener">Source</a>]</figcaption>
             </template>
             </figure>
             </div>
@@ -343,11 +343,11 @@ export default Vue.extend({
         left:0;
         // display: none;
         padding: 5% 20% 5% 5%;
-        opacity: 0.7;
+        opacity: 0.6;
         color: white;
         background-color: black;
         line-height: 1.3;
-        font-size: 1em;
+        font-size: 0.9em;
     }
 
     .review-sidebar__total-score, .review-sidebar__tracks {
