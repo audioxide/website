@@ -77,7 +77,17 @@ const resolveAuthorLink = (author?: Author) => {
                 url: linkData,
             };
     }
-}
+};
+
+const authorDivider = (key: number, length: number) => {
+    if (key === length - 1) {
+        return '';
+    }
+    if (key === length - 2) {
+        return ' & ';
+    }
+    return ', ';
+};
 
 const audioxideStructuredData = () => ({
     '@context': 'http://schema.org',
@@ -116,5 +126,6 @@ export {
     albumCoverAlt,
     throttle,
     resolveAuthorLink,
+    authorDivider,
     audioxideStructuredData,
 }

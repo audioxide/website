@@ -19,7 +19,7 @@
                 <span v-for="(reviewItem, key) in reviews" :key="`reviewers-${key}`">
                     <a class="review-header__author"
                         :href="reviewAuthorLinks[key].url"
-                        v-if="reviewAuthorLinks[key]">{{reviewItem.author.name}}</a><span v-else>{{reviewItem.author.name}}</span>{{ key !== reviews.length - 1 ? ', ' : ''}}
+                        v-if="reviewAuthorLinks[key]">{{reviewItem.author.name}}</a><span v-else>{{reviewItem.author.name}}</span>{{ authorDivider(key, reviews.length) }}
                 </span>
             </p>
         </header>
@@ -95,7 +95,7 @@ import Vue from 'vue';
 import PostContentBlock from '../../components/PostContentBlock.vue';
 import NewsletterSignup from '../../components/NewsletterSignup.vue';
 import RelatedPosts from '@/components/RelatedPosts.vue';
-import { albumCoverAlt, audioxideStructuredData, metaTitle, padNum, resolveAuthorLink } from '~/assets/utilities';
+import { albumCoverAlt, audioxideStructuredData, metaTitle, padNum, resolveAuthorLink, authorDivider } from '~/assets/utilities';
 import { MetaInfo } from 'vue-meta';
 import formatISO from 'date-fns/formatISO';
 
@@ -196,7 +196,7 @@ export default Vue.extend({
                     publisher: audioxideStructuredData(),
                     breadcrumb: {
                         '@type': 'BreadcrumbList',
-                        'itemListElement': 
+                        'itemListElement':
                         [
                             {
                             '@type': 'ListItem',
@@ -269,6 +269,9 @@ export default Vue.extend({
         coverAlt(): string {
             return albumCoverAlt(this.review);
         }
+    },
+    methods: {
+        authorDivider,
     }
 })
 </script>
