@@ -6,22 +6,40 @@
 import Vue, { VNode } from 'vue';
 import PostListing from '@/components/PostListing.vue';
 import ReviewLink from '~/components/ReviewLink.vue';
-import { metaTitle } from '~/assets/utilities';
+import { audioxideStructuredData, generateBreadcrumbs, metaTitle } from '~/assets/utilities';
 
 export default Vue.extend({
     name: 'ReviewListing',
     components: { PostListing },
-    head: () => ({
-        title: metaTitle('Reviews'),
-        link: [
-            {
-                rel: 'alternative',
-                type: 'application/rss+xml',
-                title: metaTitle('Reviews'),
-                href: 'https://audioxide.com/feed/reviews/',
-            },
-        ],
-    }),
+    head() {
+        return {
+            title: metaTitle('Reviews'),
+            link: [
+                {
+                    rel: 'alternative',
+                    type: 'application/rss+xml',
+                    title: metaTitle('Reviews'),
+                    href: 'https://audioxide.com/feed/reviews/',
+                },
+            ],
+            script: [
+                {
+                    type: 'application/ld+json',
+                    json: {
+                        '@context': 'http://schema.org',
+                        '@type': 'CollectionPage',
+                        name: 'Reviews',
+                        "speakable": {
+                            "@type": "SpeakableSpecification",
+                            "cssSelector": [".post-listing h2", ".post-link .info"]
+                        },
+                        publisher: audioxideStructuredData(),
+                        breadcrumb: generateBreadcrumbs(this.$route),
+                    }
+                },
+            ]
+        };
+    },
     data: () => ({
         linkType: ReviewLink,
     }),

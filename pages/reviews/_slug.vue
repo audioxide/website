@@ -92,7 +92,7 @@ import Vue from 'vue';
 import PostContentBlock from '../../components/PostContentBlock.vue';
 import NewsletterSignup from '../../components/NewsletterSignup.vue';
 import RelatedPosts from '@/components/RelatedPosts.vue';
-import { albumCoverAlt, audioxideStructuredData, metaTitle, padNum, resolveAuthorLink } from '~/assets/utilities';
+import { albumCoverAlt, audioxideStructuredData, generateBreadcrumbs, metaTitle, padNum, resolveAuthorLink } from '~/assets/utilities';
 import { MetaInfo } from 'vue-meta';
 import formatISO from 'date-fns/formatISO';
 
@@ -107,8 +107,8 @@ export default Vue.extend({
     }),
     head() {
         const metadata = this.review.metadata;
-        const albumArtist = metadata ? `: ${metadata.album} // ${metadata.artist}` : '';
-        const title = metaTitle(`Review${albumArtist}`);
+        const albumArtist = metadata ? `${metadata.album} // ${metadata.artist}` : '';
+        const title = metaTitle(`Review${albumArtist && ': ' + albumArtist}`);
         const imgAlt = this.coverAlt;
         const pageMeta: MetaInfo = { title };
 
@@ -188,33 +188,10 @@ export default Vue.extend({
                     "speakable":
                         {
                         "@type": "SpeakableSpecification",
-                        "cssSelector": ["review-header__album", "review-header__artist", "review-sidebar__summary"]
+                        "cssSelector": [".review-header__album", ".review-header__artist", ".review-sidebar__summary"]
                         },
                     publisher: audioxideStructuredData(),
-                    breadcrumb: {
-                        '@type': 'BreadcrumbList',
-                        'itemListElement': 
-                        [
-                            {
-                            '@type': 'ListItem',
-                            'position': 1,
-                            'item':
-                                {
-                                '@id': 'https://audioxide.com/reviews/',
-                                'name': 'Album Reviews'
-                                }
-                            },
-                            {
-                            '@type': 'ListItem',
-                            'position': 2,
-                            'item':
-                                {
-                                '@id': 'https://audioxide.com' + this.$route.path,
-                                'name': metadata.album
-                                }
-                            }
-                        ],
-                    }
+                    breadcrumb: generateBreadcrumbs(this.$route, ["Album Reviews", albumArtist]),
                 }
             }];
         }

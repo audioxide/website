@@ -1,3 +1,4 @@
+import { Route } from 'vue-router';
 import he from 'he';
 import {
     SITE_DESCRIPTION,
@@ -107,6 +108,16 @@ const audioxideStructuredData = () => ({
     sameAs: [ FACEBOOK_URL, TWITTER_URL, INSTAGRAM_URL ],
 });
 
+const generateBreadcrumbs = (route: Route, titles: Array<string | null> = []) => ({
+    '@type': 'BreadcrumbList',
+    'itemListElement': route.path.substr(1).split('/').map((part, ind, arr) => ({
+        '@type': 'ListItem',
+        position: ind + 1,
+        item: 'https://audioxide.com/' + arr.slice(0, ind + 1).join('/'),
+        name: titles[ind] || toTitleCase(part, '-'),
+    })),
+});
+
 export {
     rand,
     padNum,
@@ -117,4 +128,5 @@ export {
     throttle,
     resolveAuthorLink,
     audioxideStructuredData,
+    generateBreadcrumbs,
 }

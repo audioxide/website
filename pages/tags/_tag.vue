@@ -6,6 +6,7 @@
 import Vue from 'vue';
 import PostListing from '@/components/PostListing.vue';
 import AnyPostLink from '@/components/AnyPostLink.vue';
+import { audioxideStructuredData, generateBreadcrumbs } from '~/assets/utilities';
 
 const tagFromParam = (tagParam: string) => tagParam.replace(/-/g, ' ');
 
@@ -28,7 +29,23 @@ export default Vue.extend({
     head() {
       return {
         meta: [
-          { name: "robots", content: "noindex,follow" }
+          { name: "robots", content: "noindex,follow" },
+        ],
+        script: [
+            {
+                type: 'application/ld+json',
+                json: {
+                    '@context': 'http://schema.org',
+                    '@type': 'CollectionPage',
+                    name: this.title,
+                    "speakable": {
+                        "@type": "SpeakableSpecification",
+                        "cssSelector": [".post-listing h2", ".post-link .info"]
+                    },
+                    publisher: audioxideStructuredData(),
+                    breadcrumb: generateBreadcrumbs(this.$route, [null, this.title]),
+                }
+            },
         ]
       }
     },
