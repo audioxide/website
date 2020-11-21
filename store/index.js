@@ -21,6 +21,7 @@ export const plugins = [
                 store.commit('setBreakpoint', newBp);
             }
         };
+        window.onNuxtReady(setBreakpoint);
         window.addEventListener('DOMContentLoaded', setBreakpoint);
         window.addEventListener('resize', setBreakpoint);
     },
