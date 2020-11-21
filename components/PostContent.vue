@@ -128,6 +128,9 @@ export default Vue.extend({
                 padding-right: 15px;
                 font-size: $site-content__font--small;
             }
+            .article-album-image {
+                outline: 1px solid #dddddd;
+            }
             hr {
                 @include hr-line-styles;
                 margin-top: $site-content__spacer--x-large;
