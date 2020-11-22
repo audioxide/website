@@ -162,6 +162,7 @@ export default Vue.extend({
                     '@type': 'Review',
                     headline: title,
                     description: metadata.summary || metadata.blurb || '',
+                    reviewBody: this.review.content,
                     datePublished,
                     dateModified,
                     author: metadata.author.authors.map(author => ({
