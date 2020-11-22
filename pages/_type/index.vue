@@ -19,13 +19,23 @@ import { MetaInfo } from 'vue-meta';
 import PostSingle from '@/components/PostSingle.vue';
 import PostListing from '@/components/PostListing.vue';
 import ArticleLink from '@/components/ArticleLink.vue';
-import { metaTitle, toTitleCase } from '~/assets/utilities';
+import { audioxideStructuredData, generateBreadcrumbs, metaTitle, toTitleCase } from '~/assets/utilities';
 
 type ContentTypes = { pages: string[]; postTypes: string[] }
 const isPost = (type: string, types: ContentTypes) =>
   types.postTypes.includes(type);
 const isPage = (type: string, types: ContentTypes) =>
   types.pages.includes(type);
+const ldJsonType = (slug: string) => {
+  switch(slug) {
+    case 'about':
+      return 'AboutPage';
+    case 'contact':
+      return 'ContactPage';
+    default:
+      return 'WebPage';
+  }
+};
 
 export default Vue.extend({
   name: 'ArticleListing',
@@ -38,10 +48,27 @@ export default Vue.extend({
     let title = '';
     const metaData: MetaInfo = {};
     metaData.link = [];
+    metaData.script = [];
     switch (this.type) {
       case 'page':
         const page = this.pageData as Post;
         metaData.title = he.decode(page.metadata.title);
+        metaData.script.push(
+          {
+              type: 'application/ld+json',
+              json: {
+                  '@context': 'http://schema.org',
+                  '@type': ldJsonType(this.slug),
+                  name: he.decode(page.metadata.title),
+                  "speakable": {
+                      "@type": "SpeakableSpecification",
+                      "cssSelector": [".site-content .post-header__heading", ".site-content .post-content"]
+                  },
+                  publisher: audioxideStructuredData(),
+                  breadcrumb: generateBreadcrumbs(this.$route),
+              }
+          },
+        );
         break;
       case 'post':
         const title = toTitleCase(this.slug, '-');
@@ -52,6 +79,22 @@ export default Vue.extend({
             type: 'application/rss+xml',
             title: title,
             href: `https://audioxide.com/feed/${this.slug}/`,
+          },
+        );
+        metaData.script.push(
+          {
+              type: 'application/ld+json',
+              json: {
+                  '@context': 'http://schema.org',
+                  '@type': 'CollectionPage',
+                  name: title,
+                  "speakable": {
+                      "@type": "SpeakableSpecification",
+                      "cssSelector": [".post-listing h2", ".post-link .info"]
+                  },
+                  publisher: audioxideStructuredData(),
+                  breadcrumb: generateBreadcrumbs(this.$route),
+              }
           },
         );
         break;
