@@ -6,7 +6,7 @@
 import Vue from 'vue';
 import PostListing from '@/components/PostListing.vue';
 import AnyPostLink from '@/components/AnyPostLink.vue';
-import { metaTitle } from '~/assets/utilities';
+import { audioxideStructuredData, generateBreadcrumbs, metaTitle } from '~/assets/utilities';
 
 const tagFromParam = (tagParam: string) => tagParam.replace(/-/g, ' ');
 
@@ -27,13 +27,29 @@ export default Vue.extend({
         this.posts = this.$store.getters['posts/byTag'][tag];
     },
     head() {
-        const { title } = this;
-        return {
-            title: metaTitle(title),
-            meta: [
-            { name: "robots", content: "noindex,follow" }
-            ]
-        }
+      const { title } = this;
+      return {
+        title: metaTitle(title),
+        meta: [
+          { name: "robots", content: "noindex,follow" },
+        ],
+        script: [
+            {
+                type: 'application/ld+json',
+                json: {
+                    '@context': 'http://schema.org',
+                    '@type': 'CollectionPage',
+                    name: this.title,
+                    "speakable": {
+                        "@type": "SpeakableSpecification",
+                        "cssSelector": [".post-listing h2", ".post-link .info"]
+                    },
+                    publisher: audioxideStructuredData(),
+                    breadcrumb: generateBreadcrumbs(this.$route, [null, this.title]),
+                }
+            },
+        ]
+      }
     },
 });
 </script>

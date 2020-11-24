@@ -35,7 +35,7 @@ import NewsletterSignup from '../../components/NewsletterSignup.vue';
 import RelatedPosts from '@/components/RelatedPosts.vue';
 import { MetaInfo, ScriptPropertyJson } from 'vue-meta';
 import { formatISO } from 'date-fns';
-import { resolveAuthorLink, isObject, metaTitle, toTitleCase, audioxideStructuredData } from '../../assets/utilities';
+import { resolveAuthorLink, isObject, metaTitle, toTitleCase, audioxideStructuredData, generateBreadcrumbs } from '../../assets/utilities';
 
 type PostColours = [string, string, string];
 type ColourStyles = { [key: string]: string };
@@ -104,9 +104,19 @@ export default Vue.extend({
                     '@type': 'Article',
                     headline: metadata.title,
                     description: metadata.summary || metadata.blurb || '',
+                    image: (metadata.featuredimage || {})['medium-standard'] || '',
                     datePublished,
                     dateModified,
+                    "speakable": {
+                        "@type": "SpeakableSpecification",
+                        "cssSelector": [
+                            ".site-content .article-header__heading",
+                            ".site-content .article-header__summary",
+                            ".site-content .article-content",
+                        ],
+                    },
                     publisher: audioxideStructuredData(),
+                    breadcrumb: generateBreadcrumbs(this.$route, [null, metadata.title]),
                 },
             }];
 

@@ -1,6 +1,6 @@
 const SITE_URL=process.env.SITE_URL || 'https://audioxide.com';
 const SITE_NAME='Audioxide';
-const SITE_DESCRIPTION='Independent music webzine. Publishes reviews, articles, interviews, and other oddities.';
+const SITE_DESCRIPTION='Three friends reviewing an album a week. Also publish articles, interviews, and other oddities when then mood takes them.';
 const SITE_FOUNDING_YEAR=2015;
 
 // Content channels

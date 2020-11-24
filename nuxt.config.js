@@ -11,7 +11,7 @@ const {
   RSS_URL,
 } = require('./assets/siteConstants');
 
-const routes = fs.existsSync('./routes.json') ? JSON.parse(fs.readFileSync('./routes.json')) : [];
+const routes = fs.existsSync('./routes.json') ? JSON.parse(fs.readFileSync('./routes.json')) : ['/'];
 
 const routeDepth = (urlPath) => urlPath.replace(/[^/]+/g, '').length;
 
