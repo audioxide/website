@@ -62,7 +62,7 @@ export default Vue.extend({
             const datePublished = formatISO(metadata.created, { representation: 'date' });
             const dateModified = formatISO(metadata.modified, { representation: 'date' });
 
-            pageMeta.title = metadata.title;
+            pageMeta.title = metaTitle(metadata.title);
 
             pageMeta.meta.push(
                 { hid: 'og:title', property: 'og:title', content: metadata.title },

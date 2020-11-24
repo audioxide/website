@@ -52,14 +52,15 @@ export default Vue.extend({
     switch (this.type) {
       case 'page':
         const page = this.pageData as Post;
-        metaData.title = he.decode(page.metadata.title);
+        title = he.decode(page.metadata.title);
+        metaData.title = metaTitle(title);
         metaData.script.push(
           {
               type: 'application/ld+json',
               json: {
                   '@context': 'http://schema.org',
                   '@type': ldJsonType(this.slug),
-                  name: he.decode(page.metadata.title),
+                  name: title,
                   "speakable": {
                       "@type": "SpeakableSpecification",
                       "cssSelector": [".site-content .post-header__heading", ".site-content .post-content"]
@@ -71,13 +72,13 @@ export default Vue.extend({
         );
         break;
       case 'post':
-        const title = toTitleCase(this.slug, '-');
-        metaData.title = title;
+        title = toTitleCase(this.slug, '-');
+        metaData.title = metaTitle(title);
         metaData.link.push(
           {
             rel: 'alternative',
             type: 'application/rss+xml',
-            title: title,
+            title: metaData.title,
             href: `https://audioxide.com/feed/${this.slug}/`,
           },
         );
