@@ -110,7 +110,7 @@ export default Vue.extend({
     },
     reviews(): PostListing<Review> {
       return this.posts.reviews
-        .filter(review => review !== this.leadPost)
+        .filter(post => post !== this.leadPost)
         .slice(0, this.getLimit({
           large: 7,
           medium: 5,
@@ -118,32 +118,40 @@ export default Vue.extend({
         })) as PostListing<Review>;
     },
     articles(): PostListing<Article> {
-      return this.posts.articles.slice(0, this.getLimit({
-        large: 3,
-        medium: 3,
-        default: 2,
-      })) as PostListing<Article>;
+      return this.posts.articles
+        .filter(post => post !== this.leadPost)
+        .slice(0, this.getLimit({
+          large: 3,
+          medium: 3,
+          default: 2,
+        })) as PostListing<Article>;
     },
     interviews(): PostListing<Article> {
-      return this.posts.interviews.slice(0, this.getLimit({
-        large: 4,
-        medium: 4,
-        default: 2,
-      })) as PostListing<Article>;
+      return this.posts.interviews
+        .filter(post => post !== this.leadPost)
+        .slice(0, this.getLimit({
+          large: 4,
+          medium: 4,
+          default: 2,
+        })) as PostListing<Article>;
     },
     funnyfarm(): PostListing<Article> {
-      return this.posts.funnyfarm.slice(0, this.getLimit({
-        large: 4,
-        medium: 3,
-        default: 2,
-      })) as PostListing<Article>;
+      return this.posts.funnyfarm
+        .filter(post => post !== this.leadPost)
+        .slice(0, this.getLimit({
+          large: 4,
+          medium: 3,
+          default: 2,
+        })) as PostListing<Article>;
     },
     listeningParties(): PostListing<Article> {
-      return this.posts['listening-parties'].slice(0, this.getLimit({
-        large: 4,
-        medium: 3,
-        default: 2,
-      })) as PostListing<Article>;
+      return this.posts['listening-parties']
+        .filter(post => post !== this.leadPost)
+        .slice(0, this.getLimit({
+          large: 4,
+          medium: 3,
+          default: 2,
+        })) as PostListing<Article>;
     }
   },
   methods: {
