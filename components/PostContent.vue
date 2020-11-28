@@ -132,7 +132,6 @@ export default Vue.extend({
                 position: relative;
                 padding-bottom: 56.25%; /* 16:9 */
                 height: 0;
-                margin: auto;
             }
             .video-container iframe {
                 position: absolute;
@@ -181,7 +180,7 @@ export default Vue.extend({
     @include medium {
         .decorate.content ::v-deep {
             & > {
-                p, img, h2, h3, h4, blockquote, ul, hr, .video-container {
+                p, img, h2, h3, h4, blockquote, ul, hr {
                     width: 67%;
                 }
             }
