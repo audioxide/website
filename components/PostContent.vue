@@ -180,7 +180,7 @@ export default Vue.extend({
     @include medium {
         .decorate.content ::v-deep {
             & > {
-                p, img, h2, h3, h4, blockquote, ul, hr {
+                p, img, h2, h3, h4, blockquote, ul, hr, .video-container {
                     width: 67%;
                 }
             }
