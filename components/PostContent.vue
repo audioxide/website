@@ -185,6 +185,11 @@ export default Vue.extend({
                 }
             }
 
+            &. .video-container {
+                width: 67%;
+                margin: auto;
+            }
+
             & .pull-right {
                 float: right;
                 margin-right: -25%;
