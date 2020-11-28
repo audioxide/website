@@ -183,11 +183,10 @@ export default Vue.extend({
                 p, img, h2, h3, h4, blockquote, ul, hr {
                     width: 67%;
                 }
-            }
-
-            & .video-container {
+                .video-container {
                 width: 67%;
                 margin: auto;
+            }
             }
 
             & .pull-right {
