@@ -128,6 +128,18 @@ export default Vue.extend({
                 padding-right: 15px;
                 font-size: $site-content__font--small;
             }
+            .video-container {
+                position: relative;
+                padding-bottom: 56.25%; /* 16:9 */
+                height: 0;
+            }
+            .video-container iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
             hr {
                 @include hr-line-styles;
                 margin-top: $site-content__spacer--x-large;
