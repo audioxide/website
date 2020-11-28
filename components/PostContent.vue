@@ -185,7 +185,7 @@ export default Vue.extend({
                 }
             }
 
-            &. .video-container {
+            & .video-container {
                 width: 67%;
                 margin: auto;
             }
