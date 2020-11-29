@@ -36,7 +36,7 @@ h3 {
     @include section-heading;
 }
 
-.post-item {
+.listing .post-item {
     display: flex;
     ::v-deep {
         @include postLinkFlex;
@@ -48,21 +48,20 @@ h3 {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-    }
-
-    .post-item {
-        width: calc(50% - 1em);
-        display: block;
-        ::v-deep {
-            .img-wrap {
-                margin-right: 0;
+        .post-item {
+            width: calc(50% - 1em);
+            display: block;
+            ::v-deep {
+                .img-wrap {
+                    margin-right: 0;
+                }
             }
         }
     }
 }
 
 @include medium {
-    .post-item {
+    .listing .post-item {
         width: calc(25% - 1em);
         ::v-deep {
             h4 {

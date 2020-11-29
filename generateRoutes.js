@@ -9,10 +9,11 @@ const getData = (route) => fetch(`${process.env.EXT_API_URL}/${route}.json`).the
 const cacheFilePath = path.resolve(__dirname, './routes.json');
 
 module.exports = async () => {
-    const routes = ['/'];
-    const types = await getData('types');
-    types.pages.forEach(route => routes.push(`/${route}`));
     if (fs.existsSync(cacheFilePath)) return JSON.parse(await fs.promises.readFile(cacheFilePath));
+    const routes = ['/'];
+    const [types, tags] = await Promise.all([getData('types'), getData('tags')]);
+    types.pages.forEach(route => routes.push(`/${route}`));
+    tags.forEach(tag => routes.push(`/tags/${tag.replace(/ /g, '-')}`));
     await Promise.all(
         types.postTypes
             .map(type => routes.push(`/${type}`) && getData(type)

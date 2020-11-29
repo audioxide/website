@@ -1,15 +1,9 @@
 [build]
   publish = "dist/"
-  command = "export SITE_URL=$URL && export EXT_API_URL=$GAGA_API_URL && sed -i \"s|SITE_URL|${URL}|g\" netlify.toml && sed -i \"s|EXT_API_URL|${EXT_API_URL}|g\" netlify.toml && export API_URL=$SITE_URL/api && export SEARCH_URL=$EXT_API_URL/search && yarn setup && yarn generate"
-
-[context.beta]
-  command = "export SITE_URL=$DEPLOY_PRIME_URL && export EXT_API_URL=$BETA_API_URL && sed -i \"s|SITE_URL|${DEPLOY_PRIME_URL}|g\" netlify.toml && sed -i \"s|EXT_API_URL|${EXT_API_URL}|g\" netlify.toml && export API_URL=$SITE_URL/api && export SEARCH_URL=$EXT_API_URL/search && yarn setup && yarn generate"
-
-[context.alpha]
-  command = "export SITE_URL=$DEPLOY_PRIME_URL && export EXT_API_URL=$ALPHA_API_URL && sed -i \"s|SITE_URL|${DEPLOY_PRIME_URL}|g\" netlify.toml && sed -i \"s|EXT_API_URL|${EXT_API_URL}|g\" netlify.toml && export API_URL=$SITE_URL/api && export SEARCH_URL=$EXT_API_URL/search && yarn setup && yarn generate"
+  command = "export SITE_URL=$URL && export EXT_API_URL=$PROD_API_URL && sed -i \"s|SITE_URL|${URL}|g\" netlify.toml && sed -i \"s|EXT_API_URL|${EXT_API_URL}|g\" netlify.toml && export API_URL=$SITE_URL/api && export SEARCH_URL=$EXT_API_URL/search && yarn setup && yarn generate"
 
 [context.deploy-preview]
-  command = "export SITE_URL=$DEPLOY_PRIME_URL && export EXT_API_URL=$ALPHA_API_URL && sed -i \"s|SITE_URL|${DEPLOY_PRIME_URL}|g\" netlify.toml && sed -i \"s|EXT_API_URL|${EXT_API_URL}|g\" netlify.toml && export API_URL=$SITE_URL/api && export SEARCH_URL=$EXT_API_URL/search && yarn setup && yarn generate"
+  command = "export SITE_URL=$DEPLOY_PRIME_URL && export EXT_API_URL=$DP_API_URL && sed -i \"s|SITE_URL|${DEPLOY_PRIME_URL}|g\" netlify.toml && sed -i \"s|EXT_API_URL|${EXT_API_URL}|g\" netlify.toml && export API_URL=$SITE_URL/api && export SEARCH_URL=$EXT_API_URL/search && yarn setup && yarn generate"
 
 [[redirects]]
   from = "/api/search"
