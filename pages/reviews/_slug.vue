@@ -40,8 +40,8 @@
             <figure>
             <img class="review-sidebar__album-cover" :alt="coverAlt" :src="review.metadata.featuredimage['medium-square']" :style="sidebarStyles" width="600" height="600" />
             <template v-if="review.metadata.artworkCredit">
-                <figcaption id="review-sidebar__artwork-info">{{ review.metadata.artworkCredit }} [<a :href="review.metadata.artworkCreditSource" target="_blank" rel="noopener">Source</a>]</figcaption>
-                <span class="review-sidebar__artwork-info-icon"><icon onclick="artworkToggle()" icon="info-circle" /></span>
+                <figcaption id="review-sidebar__artwork-info">The album artwork of <i>{{ review.metadata.album }}<i/> by {{ review.metadata.artist }} {{ review.metadata.artworkCredit }} [<a :href="review.metadata.artworkCreditSource" target="_blank" rel="noopener">Source</a>]</figcaption>
+                <span class="review-sidebar__artwork-info-icon"><icon @click="toggleArtworkCredit" icon="info-circle" /></span>
             </template>
             </figure>
             </div>
@@ -101,6 +101,24 @@ import formatISO from 'date-fns/formatISO';
 
 type PostColours = [string, string, string];
 type ColourStyles = { [key: string]: string };
+
+Vue.createApp({
+  data() {
+    return {
+      name: 'Vue.js'
+    }
+  },
+  methods: {
+    toggleArtworkCredit(event) {
+      const artToggle = document.getElementById("artwork-description");
+        if (artToggle.style.display === "none") {
+            artToggle.style.display = "block";
+        } else {
+            artToggle.style.display = "none";
+        }
+    }
+  }
+}).mount('.review-sidebar__artwork-info-icon')
 
 export default Vue.extend({
     name: 'AudioxideReview',
@@ -369,7 +387,7 @@ export default Vue.extend({
         position: absolute;
         bottom:0;
         left:0;
-        // display: none;
+        display: none;
         padding: 5% 20% 5% 5%;
         opacity: 0.8;
         color: white;
