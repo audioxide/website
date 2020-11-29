@@ -102,24 +102,6 @@ import formatISO from 'date-fns/formatISO';
 type PostColours = [string, string, string];
 type ColourStyles = { [key: string]: string };
 
-Vue.createApp({
-  data() {
-    return {
-      name: 'Vue.js'
-    }
-  },
-  methods: {
-    toggleArtworkCredit(event) {
-      const artToggle = document.getElementById("artwork-description");
-        if (artToggle.style.display === "none") {
-            artToggle.style.display = "block";
-        } else {
-            artToggle.style.display = "none";
-        }
-    }
-  }
-}).mount('.review-sidebar__artwork-info-icon')
-
 export default Vue.extend({
     name: 'AudioxideReview',
     components: { PostContentBlock, NewsletterSignup, RelatedPosts },
@@ -387,7 +369,7 @@ export default Vue.extend({
         position: absolute;
         bottom:0;
         left:0;
-        display: none;
+        // display: none;
         padding: 5% 20% 5% 5%;
         opacity: 0.8;
         color: white;
