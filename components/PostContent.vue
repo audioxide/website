@@ -128,6 +128,9 @@ export default Vue.extend({
                 padding-right: 15px;
                 font-size: $site-content__font--small;
             }
+            .article-album-image {
+                border: 1px solid #dddddd;
+            }
             .video-container {
                 position: relative;
                 padding-bottom: 56.25%; /* 16:9 */
