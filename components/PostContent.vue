@@ -135,6 +135,8 @@ export default Vue.extend({
                 position: relative;
                 padding-bottom: 56.25%; /* 16:9 */
                 height: 0;
+                margin-top: $site-content__spacer--large;
+                margin-bottom: $site-content__spacer--large;
             }
             .video-container iframe {
                 position: absolute;
