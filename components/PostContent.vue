@@ -140,7 +140,8 @@ export default Vue.extend({
                 height: 0;
                 margin-top: $site-content__spacer--x-large;
                 margin-bottom: $site-content__spacer--x-large;
-                margin: 0 auto;
+                margin-left: auto;
+                margin-right: auto;
             }
             .video-container iframe {
                 position: absolute;
