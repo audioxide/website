@@ -3,9 +3,9 @@
 
 
 "@audioxide/brand@^0.4.0":
-  version "0.4.0"
-  resolved "https://npm.pkg.github.com/download/@audioxide/brand/0.4.0/ab79a5a8feb6f43d4fb9d8fa7b15272a457de97201161a5f2af0e482024d0393#d14181c12156076e7f2213100b54746b93eb8933"
-  integrity sha512-NICdNdcotvcvHaXT4/qCudX+kO4TJg/afMqXfi2dmGUvJrBfcTTd5/dE5ROlG6SKXK516wTdldkVkHPh5UoAYw==
+  version "0.4.1"
+  resolved "https://npm.pkg.github.com/download/@audioxide/brand/0.4.1/99947736881fe22636937a26ac5d962a84970a39596196129be0cda5286180ed#287f51d08810631c89b000df0fc8452893c7ab7b"
+  integrity sha512-g+0XGWoADsyzHb+yclgmn1hIOOhHVFS7+IK5SX9CjA85vOwabi6vLkT2tNpZr/fB4lgX87GHtABBsXWDgyHjBA==
 
 "@audioxide/licensed-assets@^0.3.2":
   version "0.3.2"
