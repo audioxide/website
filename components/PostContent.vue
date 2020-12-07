@@ -132,11 +132,14 @@ export default Vue.extend({
                 border: 1px solid #dddddd;
             }
             .video-container {
+                @include medium {
+                    padding-bottom: 37.6875%;
+                }
                 position: relative;
                 padding-bottom: 56.25%; /* 16:9 */
                 height: 0;
-                margin-top: $site-content__spacer--large;
-                margin-bottom: $site-content__spacer--large;
+                margin-top: $site-content__spacer--x-large;
+                margin-bottom: $site-content__spacer--x-large;
                 margin: 0 auto;
             }
             .video-container iframe {
