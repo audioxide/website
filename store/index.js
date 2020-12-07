@@ -30,7 +30,7 @@ export const plugins = [
 export const state = () => ({
     types: {},
     pages: {},
-    banner: {},
+    banner: [],
     breakpoint: 'base',
 });
 
@@ -50,6 +50,9 @@ export const mutations = {
 };
 
 export const actions = {
+    async nuxtServerInit({ dispatch }) {
+        await dispatch('getBannerData');
+    },
     async getBannerData({ commit }) {
         commit('setBannerData', await banner());
     },

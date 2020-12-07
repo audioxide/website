@@ -14,13 +14,6 @@ import Vue from 'vue';
 
 export default Vue.extend({
     name: 'AlbumBanner',
-    async created() {
-        // Add in an API endpoint that allows us to check if we have all the reviews
-        // if (!store.state.posts.posts.reviews) {
-            await this.$store.dispatch('getBannerData');
-        // }
-        return true;
-    },
     computed: {
         bannerData(): PostListing<Review> {
             return this.$store.state.banner;
@@ -52,13 +45,14 @@ export default Vue.extend({
 
     .album-banner__art-wrapper {
         position: relative;
-        max-height: 200px;
-        height: calc(100vw / 4);
+        display: block;
+        height: 100%;
+        width: calc(100% / 4);
         @include small {
-            height: calc(100vw / 6);
+            width: calc(100% / 6);
         }
         @include medium {
-            height: calc(100vw / 11);
+            width: calc(100% / 11);
         }
         @media (max-width: $bp_small - .1) {
             &:nth-child(4) ~ .album-banner__art-wrapper {
