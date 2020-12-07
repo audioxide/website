@@ -8,9 +8,10 @@
                 <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--twitter site-foot_nav-item--left"><span>Twitter</span><a :href="TWITTER_URL" aria-label="Twitter"><icon :icon="['fab', 'twitter']" /></a></li>
                 <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--instagram"><span>Instagram</span><a :href="INSTAGRAM_URL" aria-label="Instagram"><icon :icon="['fab', 'instagram']" /></a></li>
                 <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--rss"><span>RSS feed</span><a :href="RSS_BASE" aria-label="RSS feed"><icon icon="rss" /></a></li>
-                <li class="site-foot_nav-item"><nuxt-link to="/about">About</nuxt-link></li>
+                <li class="site-foot_nav-item"><nuxt-link to="/about/">About</nuxt-link></li>
                 <li class="site-foot_nav-item"><a :href="NEWSLETTER_URL">Newsletter</a></li>
-                <li class="site-foot_nav-item"><nuxt-link to="/contact">Contact</nuxt-link></li>
+                <li class="site-foot_nav-item"><nuxt-link to="/privacy/">Privacy</nuxt-link></li>
+                <li class="site-foot_nav-item"><nuxt-link to="/contact/">Contact</nuxt-link></li>
             </ul>
         </nav>
         <p class="copyright-jargon">&copy; {{ SITE_FOUNDING_YEAR }}-{{ year }}. All rights reserved.</p>
@@ -80,7 +81,7 @@ export default {
 
     .site-foot_nav-item {
         order: 2;
-        width: calc(100% / 3);
+        width: calc(100% / 4);
         margin-top: 1em;
         &.site-foot_nav-item--middle {
             order: 1;

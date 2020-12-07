@@ -128,6 +128,28 @@ export default Vue.extend({
                 padding-right: 15px;
                 font-size: $site-content__font--small;
             }
+            .article-album-image {
+                border: 1px solid #dddddd;
+            }
+            .video-container {
+                @include medium {
+                    padding-bottom: 37.6875%;
+                }
+                position: relative;
+                padding-bottom: 56.25%; /* 16:9 */
+                height: 0;
+                margin-top: $site-content__spacer--x-large;
+                margin-bottom: $site-content__spacer--x-large;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .video-container iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
             hr {
                 @include hr-line-styles;
                 margin-top: $site-content__spacer--x-large;
@@ -168,7 +190,7 @@ export default Vue.extend({
     @include medium {
         .decorate.content ::v-deep {
             & > {
-                p, img, h2, h3, h4, blockquote, ul, hr {
+                p, img, h2, h3, h4, blockquote, ul, hr, .video-container {
                     width: 67%;
                 }
             }
