@@ -13,7 +13,7 @@
                 <span v-for="(author, key) in article.metadata.author.authors" :key="'author' + key">
                     <a class="review-header__author"
                         :href="authorLinks[key].url"
-                        v-if="authorLinks[key]">{{author.name}}</a><span v-else>{{author.name}}</span>{{ key !== authorLinks.length - 1 ? ', ' : ''}}
+                        v-if="authorLinks[key]">{{author.name}}</a><span v-else>{{author.name}}</span>{{ authorDivider(key, authorLinks.length) }}
                 </span>
             </p>
         </header>
@@ -35,7 +35,7 @@ import NewsletterSignup from '../../components/NewsletterSignup.vue';
 import RelatedPosts from '@/components/RelatedPosts.vue';
 import { MetaInfo, ScriptPropertyJson } from 'vue-meta';
 import { formatISO } from 'date-fns';
-import { resolveAuthorLink, isObject, metaTitle, toTitleCase, audioxideStructuredData, generateBreadcrumbs } from '../../assets/utilities';
+import { resolveAuthorLink, isObject, metaTitle, toTitleCase, audioxideStructuredData, generateBreadcrumbs, authorDivider } from '../../assets/utilities';
 
 type PostColours = [string, string, string];
 type ColourStyles = { [key: string]: string };
@@ -143,6 +143,9 @@ export default Vue.extend({
             return this.article.metadata.author.authors.map(resolveAuthorLink);
         }
     },
+    methods: {
+        authorDivider,
+    }
 })
 
 </script>
@@ -198,7 +201,9 @@ export default Vue.extend({
 
     .article-header__author {
         color: $colour-grey;
-        margin-bottom: $site-content__spacer--large;
+        padding-bottom: $site-content__spacer--large;
+        margin: auto;
+        width: 95%;
     }
 
     .article-content {
@@ -229,13 +234,17 @@ export default Vue.extend({
     @include large {
 
         .article-header__heading {
-        font-size: 2.5em;
-        width: 67%;
+            font-size: 2.5em;
+            width: 67%;
         }
 
         .article-header__summary {
-        font-size: 1.2em;
-        width: 67%;
+            font-size: 1.2em;
+            width: 67%;
+        }
+
+        .article-header__author {
+            width: 67%;
         }
 
         .article-content {
