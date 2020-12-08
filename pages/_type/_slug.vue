@@ -35,11 +35,7 @@ import NewsletterSignup from '../../components/NewsletterSignup.vue';
 import RelatedPosts from '@/components/RelatedPosts.vue';
 import { MetaInfo, ScriptPropertyJson } from 'vue-meta';
 import { formatISO } from 'date-fns';
-<<<<<<< HEAD
-import { resolveAuthorLink, isObject, metaTitle, toTitleCase, audioxideStructuredData, generateBreadcrumbs } from '../../assets/utilities';
-=======
-import { resolveAuthorLink, isObject, metaTitle, toTitleCase, audioxideStructuredData, authorDivider } from '../../assets/utilities';
->>>>>>> eb1958c... Add ampersand in multi author posts
+import { resolveAuthorLink, isObject, metaTitle, toTitleCase, audioxideStructuredData, generateBreadcrumbs, authorDivider } from '../../assets/utilities';
 
 type PostColours = [string, string, string];
 type ColourStyles = { [key: string]: string };

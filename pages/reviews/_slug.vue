@@ -92,11 +92,7 @@ import Vue from 'vue';
 import PostContentBlock from '../../components/PostContentBlock.vue';
 import NewsletterSignup from '../../components/NewsletterSignup.vue';
 import RelatedPosts from '@/components/RelatedPosts.vue';
-<<<<<<< HEAD
-import { albumCoverAlt, audioxideStructuredData, generateBreadcrumbs, metaTitle, padNum, resolveAuthorLink } from '~/assets/utilities';
-=======
-import { albumCoverAlt, audioxideStructuredData, metaTitle, padNum, resolveAuthorLink, authorDivider } from '~/assets/utilities';
->>>>>>> eb1958c... Add ampersand in multi author posts
+import { albumCoverAlt, audioxideStructuredData, generateBreadcrumbs, metaTitle, padNum, resolveAuthorLink, authorDivider  } from '~/assets/utilities';
 import { MetaInfo } from 'vue-meta';
 import formatISO from 'date-fns/formatISO';
 
@@ -195,34 +191,7 @@ export default Vue.extend({
                         "cssSelector": [".review-header__album", ".review-header__artist", ".review-sidebar__summary"]
                         },
                     publisher: audioxideStructuredData(),
-<<<<<<< HEAD
                     breadcrumb: generateBreadcrumbs(this.$route, ["Album Reviews", albumArtist]),
-=======
-                    breadcrumb: {
-                        '@type': 'BreadcrumbList',
-                        'itemListElement':
-                        [
-                            {
-                            '@type': 'ListItem',
-                            'position': 1,
-                            'item':
-                                {
-                                '@id': 'https://audioxide.com/reviews/',
-                                'name': 'Reviews'
-                                }
-                            },
-                            {
-                            '@type': 'ListItem',
-                            'position': 2,
-                            'item':
-                                {
-                                '@id': 'https://audioxide.com' + this.$route.path,
-                                'name': metadata.album
-                                }
-                            }
-                        ],
-                    }
->>>>>>> eb1958c... Add ampersand in multi author posts
                 }
             }];
         }
