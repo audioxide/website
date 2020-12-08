@@ -201,7 +201,9 @@ export default Vue.extend({
 
     .article-header__author {
         color: $colour-grey;
-        margin-bottom: $site-content__spacer--large;
+        padding-bottom: $site-content__spacer--large;
+        margin: auto;
+        width: 95%;
     }
 
     .article-content {
@@ -232,13 +234,17 @@ export default Vue.extend({
     @include large {
 
         .article-header__heading {
-        font-size: 2.5em;
-        width: 67%;
+            font-size: 2.5em;
+            width: 67%;
         }
 
         .article-header__summary {
-        font-size: 1.2em;
-        width: 67%;
+            font-size: 1.2em;
+            width: 67%;
+        }
+
+        .article-header__author {
+            width: 67%;
         }
 
         .article-content {
