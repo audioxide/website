@@ -85,7 +85,7 @@ const authorDivider = (key: number, length: number) => {
         return '';
     }
     if (key === length - 2) {
-        return ' & ';
+        return ', and ';
     }
     return ', ';
 };
