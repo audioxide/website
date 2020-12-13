@@ -39,7 +39,10 @@
                 </template>
             <figure>
             <img class="review-sidebar__album-cover" :alt="coverAlt" :src="review.metadata.featuredimage['medium-square']" :style="sidebarStyles" width="600" height="600" />
-            <figcaption class="review-sidebar__album-info">{ { review.featured_media.description } }</figcaption>
+                <template v-if="review.metadata.artworkCredit">
+                <figcaption class="review-sidebar__artwork-info">The album artwork of <i>{{ review.metadata.album }}<i/> by {{ review.metadata.artist }} {{ review.metadata.artworkCredit }} [<a :href="review.metadata.artworkCreditSource" target="_blank" rel="noopener">Source</a>]</figcaption>
+                <span class="review-sidebar__artwork-info-icon"><icon @click="toggleArtworkCredit" icon="info-circle" /></span>
+            </template>
             </figure>
             </div>
             <div class="review-sidebar__total-score" :style="sidebarStyles">
@@ -335,8 +338,28 @@ export default Vue.extend({
         border-top: 0;
     }
 
-    .review-sidebar__album-info {
-        display: none;
+    .review-sidebar__artwork-info {
+        font-family: 'Source Sans Pro', sans-serif;
+        position: absolute;
+        bottom:0;
+        left:0;
+        // display: none;
+        padding: 5% 20% 5% 5%;
+        opacity: 0.8;
+        color: white;
+        background-color: black;
+        line-height: 1.3;
+        font-size: 0.9em;
+    }
+
+    .review-sidebar__artwork-info-icon {
+        color: lightgray;
+        margin: 1em;
+        width: 2em;
+        height: 2em;
+        position: absolute;
+        bottom: 0;
+        right: 0;
     }
 
     .review-sidebar__total-score, .review-sidebar__tracks {
