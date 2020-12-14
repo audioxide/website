@@ -28,7 +28,7 @@
     faRss,
     faSearch,
     faBrain,
-    faInfoCircle
+    faInfoCircle,
     faSpinnerThird,
   });
 
