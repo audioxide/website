@@ -352,6 +352,10 @@ export default Vue.extend({
         font-size: 0.9em;
     }
 
+    .review-sidebar__artwork-info i {
+        font-style: italic;
+    }
+
     .review-sidebar__artwork-info-icon {
         color: lightgray;
         margin: 1em;
