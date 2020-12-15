@@ -139,7 +139,7 @@ const generateBreadcrumbs = (route: Route, titles: Array<string | null> = []) =>
 });
 
 const toggleArtworkCredit = () => {
-    const artToggle = document.getElementById("review-sidebar__artwork-info");
+    const artToggle = document.getElementById("review-sidebar__artwork-info")!;
         if (artToggle.style.display === "none") {
             artToggle.style.display = "block";
         } else {
