@@ -81,6 +81,7 @@ label {
 .prompt {
   display: inline-block;
   margin-right: 10px;
+  padding-bottom: 20px;
 }
 
 .mc-field-group {
@@ -91,6 +92,7 @@ label {
 .required-email {
   background-color: #f5f5f5;
   border-radius: 0.3em;
+  padding: 8px;
 }
 
 .clear {
