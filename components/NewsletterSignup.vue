@@ -10,15 +10,18 @@
       novalidate
     >
       <div id="mc_embed_signup_scroll">
-        <h2>Sign up for monthly roundups.</h2>
+        <div class="prompt">
+        <span>Sign up for monthly roundups.</span>
+        </div>
         <div class="mc-field-group">
           <label for="mce-EMAIL">Email Address </label>
           <input
             type="email"
             value=""
             name="EMAIL"
-            class="required email"
+            class="required-email"
             id="mce-EMAIL"
+            placeholder="Email address"
           />
         </div>
         <div id="mce-responses" class="clear">
@@ -70,4 +73,40 @@
   border: $line-width solid $line-colour;
   border-radius: 15px;
 }
+
+label {
+  display: none;
+}
+
+.prompt {
+  float: left;
+  margin-right: 10px;
+}
+
+.mc-field-group {
+  float: left;
+  margin-right: 10px;
+}
+
+.required-email {
+  background-color: #f5f5f5;
+  border-radius: 0.3em;
+}
+
+.clear {
+  float: left;
+}
+
+.button {
+  border: 2px solid $colour-pink;
+  border-radius: 0.3em;
+  color: $colour-pink;
+  background-color: white;
+}
+
+.button:hover {
+  color:lighten($colour-pink, 30%);
+  border: 2px solid lighten($colour-pink, 30%);
+}
+
 </style>
