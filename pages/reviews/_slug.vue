@@ -360,7 +360,7 @@ export default Vue.extend({
 
     .review-sidebar__artwork-info-icon {
         color: gray;
-        margin: 12%;
+        margin: 8%;
         width: 8%;
         height: 8%;
         position: absolute;
@@ -370,6 +370,7 @@ export default Vue.extend({
 
     .review-sidebar__artwork-info-icon:hover {
         color: lightgray;
+        cursor: pointer;
     }
 
     .review-sidebar__total-score, .review-sidebar__tracks {
