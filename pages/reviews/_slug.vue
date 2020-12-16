@@ -360,9 +360,9 @@ export default Vue.extend({
 
     .review-sidebar__artwork-info-icon {
         color: gray;
-        margin: 8%;
-        width: 12%;
-        height: 12%;
+        margin: 12%;
+        width: 8%;
+        height: 8%;
         position: absolute;
         bottom: 0;
         right: 0;
