@@ -13,6 +13,7 @@
         <div class="prompt">
         <span>Sign up for monthly roundups.</span>
         </div>
+        <div class="signup">
         <div class="mc-field-group">
           <label for="mce-EMAIL">Email Address </label>
           <input
@@ -55,6 +56,7 @@
           />
         </div>
       </div>
+      </div>
     </form>
   </div>
 </template>
@@ -84,6 +86,10 @@ label {
   padding-bottom: 20px;
 }
 
+.signup {
+  display: inline-block;
+}
+
 .mc-field-group {
   display: inline-block;
   margin-right: 10px;
@@ -109,6 +115,7 @@ label {
 .button:hover {
   color:lighten($colour-pink, 30%);
   border: 2px solid lighten($colour-pink, 30%);
+  cursor: pointer;
 }
 
 </style>
