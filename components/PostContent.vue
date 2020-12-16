@@ -150,6 +150,9 @@ export default Vue.extend({
                 width: 100%;
                 height: 100%;
             }
+            .block-gap {
+                margin-top: 4em;
+            }
             hr {
                 @include hr-line-styles;
                 margin-top: $site-content__spacer--x-large;
