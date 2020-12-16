@@ -346,7 +346,7 @@ export default Vue.extend({
         left:0;
         display: none;
         padding: 5% 20% 5% 5%;
-        opacity: 0.8;
+        opacity: 0.75;
         color: white;
         background-color: black;
         line-height: 1.3;
