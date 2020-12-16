@@ -351,6 +351,7 @@ export default Vue.extend({
         background-color: black;
         line-height: 1.3;
         font-size: 0.9em;
+        margin: 1px;
     }
 
     .review-sidebar__artwork-info i {
@@ -359,9 +360,9 @@ export default Vue.extend({
 
     .review-sidebar__artwork-info-icon {
         color: gray;
-        margin: 1em;
-        width: 2em;
-        height: 2em;
+        margin: 8%;
+        width: 12%;
+        height: 12%;
         position: absolute;
         bottom: 0;
         right: 0;
