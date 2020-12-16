@@ -79,12 +79,12 @@ label {
 }
 
 .prompt {
-  float: left;
+  display: inline-block;
   margin-right: 10px;
 }
 
 .mc-field-group {
-  float: left;
+  display: inline-block;
   margin-right: 10px;
 }
 
@@ -94,7 +94,7 @@ label {
 }
 
 .clear {
-  float: left;
+  display: inline-block;
 }
 
 .button {
