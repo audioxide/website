@@ -52,7 +52,7 @@
             value="Subscribe"
             name="subscribe"
             id="mc-embedded-subscribe"
-            class="button"
+            class="newsletter-button"
           />
         </div>
       </div>
@@ -83,36 +83,41 @@ label {
 .prompt {
   display: inline-block;
   margin-right: 10px;
-  padding-bottom: 20px;
+  padding: 10px 0px;
 }
 
 .signup {
   display: inline-block;
+  padding: 10px 0px;
 }
 
 .mc-field-group {
   display: inline-block;
-  margin-right: 10px;
 }
 
 .required-email {
   background-color: #f5f5f5;
-  border-radius: 0.3em;
+  border-top-left-radius: 0.4em;
+  border-bottom-left-radius: 0.4em;
   padding: 8px;
+  width: 250px;
 }
 
 .clear {
   display: inline-block;
 }
 
-.button {
+.newsletter-button {
   border: 2px solid $colour-pink;
-  border-radius: 0.3em;
+  border-top-right-radius: 0.4em;
+  border-bottom-right-radius: 0.4em;
   color: $colour-pink;
   background-color: white;
+  padding: 6px 10px;
+  margin-left: -15px;
 }
 
-.button:hover {
+.newsletter-button:hover {
   color:lighten($colour-pink, 30%);
   border: 2px solid lighten($colour-pink, 30%);
   cursor: pointer;
