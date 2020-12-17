@@ -2,6 +2,7 @@ import { Route } from 'vue-router';
 import he from 'he';
 import {
     SITE_DESCRIPTION,
+    GITHUB_URL,
     TWITTER_URL,
     FACEBOOK_URL,
     INSTAGRAM_URL,
@@ -115,7 +116,7 @@ const audioxideStructuredData = () => ({
     ],
     url: SITE_URL,
     logo: `${SITE_URL}/full-logo-black-on-white.png`,
-    sameAs: [ FACEBOOK_URL, TWITTER_URL, INSTAGRAM_URL ],
+    sameAs: [ FACEBOOK_URL, TWITTER_URL, INSTAGRAM_URL, GITHUB_URL ],
 });
 
 const generateBreadcrumbs = (route: Route, titles: Array<string | null> = []) => ({
