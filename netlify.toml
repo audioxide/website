@@ -40,6 +40,14 @@
   to = "/reviews/marilyn-manson-heaven-upside-down"
 
 [[redirects]]
+  from = "/wp-content/uploads/2019/01/Soma-Spotify-main-image.png"
+  to = "/articles/soma-spotify-and-the-brave-new-world-of-music-consumption"
+
+[[redirects]]
+  from = "/wp-content/uploads/2017/08/vault-boy-shadow-1024x910.jpg"
+  to = "/articles/world-on-fire-the-music-of-fallout-3/"
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
