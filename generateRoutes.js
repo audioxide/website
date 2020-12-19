@@ -13,10 +13,10 @@ module.exports = async () => {
     const routes = ['/'];
     const [types, tags] = await Promise.all([getData('types'), getData('tags')]);
     types.pages.forEach(route => routes.push(`/${route}/`));
-    tags.forEach(tag => routes.push(`/tags/${tag.replace(/ /g, '-')}`));
+    tags.forEach(tag => routes.push(`/tags/${tag.replace(/ /g, '-')}/`));
     await Promise.all(
         types.postTypes
-            .map(type => routes.push(`/${type}`) && getData(type)
+            .map(type => routes.push(`/${type}/`) && getData(type)
                 .then(posts => posts
                     .forEach(({ metadata: { type, slug } }) => routes.push(`/${type}/${slug}/`)),
                 ),

@@ -157,7 +157,7 @@ export default {
     plugins: [
       new SitemapPlugin({
         base: SITE_URL,
-        paths: routes.map(urlPath => ({
+        paths: routes.filter(urlPath => !urlPath.startsWith('/tags/')).map(urlPath => ({
           path: urlPath,
           lastMod: true,
           priority: routePriority(urlPath),
