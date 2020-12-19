@@ -135,7 +135,10 @@ export default Vue.extend({
     async created() {
         this.type = this.$route.params.type;
         this.slug = this.$route.params.slug;
-        this.article = this.$store.getters['posts/pathLookup'][`${this.type}/${this.slug}`];
+        const articleData = this.$store.getters['posts/pathLookup'][`${this.type}/${this.slug}`];
+        if (isObject(articleData)) {
+            this.article = articleData as Article;
+        }
     },
     computed: {
         authorLinks(): ReturnType<typeof resolveAuthorLink>[] {

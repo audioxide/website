@@ -4,7 +4,7 @@
             <img v-if="image" :src="post.metadata.featuredimage[`${imageSize}-${imageFormat}`]" :alt="post.metadata.featuredimageAlt" loading="lazy" width="300" height="200" />
         </div>
         <div class="info">
-            <h4 v-if="title"><nuxt-link :to="`/${post.metadata.type}/${post.metadata.slug}`" class="overlay-link">{{ post.metadata.title | unescape }}</nuxt-link></h4>
+            <h4 v-if="title"><nuxt-link :to="`/${post.metadata.type}/${post.metadata.slug}/`" class="overlay-link">{{ post.metadata.title | unescape }}</nuxt-link></h4>
             <p v-if="blurb">{{ post.metadata.blurb }}</p>
             <p v-if="author && post.metadata.author" class="author">By <span class="name">{{ post.metadata.author.name }}</span></p>
         </div>

@@ -21,6 +21,16 @@ const padNum = (
     character = '0',
 ) => number.toString().padStart(length, character);
 
+const splitUrl = (url: string) => {
+    if (url.startsWith('/')) {
+        url = url.substr(1);
+    }
+    if (url.endsWith('/')) {
+        url = url.substr(0, url.length - 1);
+    }
+    return url.split('/');
+}
+
 const toTitleCase = (str: string, divisor = ' ') => str
     .split(divisor)
     .map(word => word[0].toUpperCase() + word.substr(1))
@@ -120,7 +130,7 @@ const audioxideStructuredData = () => ({
 
 const generateBreadcrumbs = (route: Route, titles: Array<string | null> = []) => ({
     '@type': 'BreadcrumbList',
-    'itemListElement': route.path.substr(1).split('/').map((part, ind, arr) => ({
+    'itemListElement': splitUrl(route.path).map((part, ind, arr) => ({
         '@type': 'ListItem',
         position: ind + 1,
         item: 'https://audioxide.com/' + arr.slice(0, ind + 1).join('/'),
