@@ -138,15 +138,6 @@ const generateBreadcrumbs = (route: Route, titles: Array<string | null> = []) =>
     })),
 });
 
-const toggleArtworkCredit = () => {
-    const artToggle = document.getElementById("review-sidebar__artwork-info")!;
-        if (!artToggle.style.display || artToggle.style.display === "none") {
-            artToggle.style.display = "block";
-        } else {
-            artToggle.style.display = "none";
-        }
-}; 
-
 export {
     rand,
     padNum,
@@ -159,5 +150,4 @@ export {
     authorDivider,
     audioxideStructuredData,
     generateBreadcrumbs,
-    toggleArtworkCredit,
 }
