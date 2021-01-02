@@ -1,6 +1,6 @@
 const SITE_URL=process.env.SITE_URL || 'https://audioxide.com';
 const SITE_NAME='Audioxide';
-const SITE_DESCRIPTION='Three friends reviewing an album a week. Also publish articles, interviews, and other oddities when then mood takes them.';
+const SITE_DESCRIPTION='Three friends reviewing an album a week. Also publish articles, interviews, listening parties, and other oddities when the mood takes them.';
 const SITE_FOUNDING_YEAR=2015;
 
 // Content channels
