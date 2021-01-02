@@ -96,8 +96,8 @@ const audioxideStructuredData = () => ({
     '@type': 'WebSite',
     name: SITE_NAME,
     description: SITE_DESCRIPTION,
-    foundingDate: SITE_FOUNDING_YEAR.toString(),
-    founder: [
+    copyrightYear: SITE_FOUNDING_YEAR,
+    creator: [
         {
             '@type': 'Person',
             'name': 'André Dack',
@@ -115,7 +115,6 @@ const audioxideStructuredData = () => ({
         }
     ],
     url: SITE_URL,
-    logo: `${SITE_URL}/full-logo-black-on-white.png`,
     sameAs: [ FACEBOOK_URL, TWITTER_URL, INSTAGRAM_URL, GITHUB_URL ],
     isAccessibleForFree: true,
 });
