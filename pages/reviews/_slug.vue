@@ -40,7 +40,7 @@
             <figure>
                 <img class="review-sidebar__album-cover" :alt="coverAlt" :src="review.metadata.featuredimage['medium-square']" :style="sidebarStyles" width="600" height="600" />
                 <template v-if="review.metadata.artworkCredit">
-                    <figcaption class="review-sidebar__artwork-info" v-if="showCredit">The album artwork of <i>{{ review.metadata.album }}</i> by {{ review.metadata.artist }} {{ review.metadata.artworkCredit }}<template v-if="review.metadata.artworkCreditSource"> [<a :href="review.metadata.artworkCreditSource" target="_blank" rel="noopener">Source</a>]</template>
+                    <figcaption class="review-sidebar__artwork-info" v-if="showCredit">The album artwork of <span class="album">{{ review.metadata.album }}</span> by {{ review.metadata.artist }} {{ review.metadata.artworkCredit }}<template v-if="review.metadata.artworkCreditSource"> [<a :href="review.metadata.artworkCreditSource" target="_blank" rel="noopener">Source</a>]</template>
                     </figcaption>
                     <icon class="review-sidebar__artwork-info-icon" @click="showCredit = !showCredit" icon="info-circle" />
                 </template>
@@ -96,7 +96,7 @@ import Vue from 'vue';
 import PostContentBlock from '../../components/PostContentBlock.vue';
 import NewsletterSignup from '../../components/NewsletterSignup.vue';
 import RelatedPosts from '@/components/RelatedPosts.vue';
-import { albumCoverAlt, audioxideStructuredData, generateBreadcrumbs, metaTitle, padNum, resolveAuthorLink, authorDivider  } from '~/assets/utilities';
+import { albumCoverAlt, audioxideStructuredData, generateBreadcrumbs, metaTitle, padNum, resolveAuthorLink, authorDivider } from '~/assets/utilities';
 import { MetaInfo } from 'vue-meta';
 import formatISO from 'date-fns/formatISO';
 
@@ -356,7 +356,7 @@ export default Vue.extend({
         overflow-y: scroll;
     }
 
-    .review-sidebar__artwork-info i {
+    .review-sidebar__artwork-info .album {
         font-style: italic;
     }
 
