@@ -352,8 +352,6 @@ export default Vue.extend({
         line-height: 1.3;
         font-size: 0.9em;
         margin: 1px;
-        max-height: 100%;
-        overflow-y: scroll;
     }
 
     .review-sidebar__artwork-info .album {
