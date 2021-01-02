@@ -38,8 +38,12 @@
                     <img class="review-sidebar__ribbon" src="~assets/img/ribbon-bronze.png" alt="Bronze Audioxide review ribbon">
                 </template>
             <figure>
-            <img class="review-sidebar__album-cover" :alt="coverAlt" :src="review.metadata.featuredimage['medium-square']" :style="sidebarStyles" width="600" height="600" />
-            <figcaption class="review-sidebar__album-info">{ { review.featured_media.description } }</figcaption>
+                <img class="review-sidebar__album-cover" :alt="coverAlt" :src="review.metadata.featuredimage['medium-square']" :style="sidebarStyles" width="600" height="600" />
+                <template v-if="review.metadata.artworkCredit">
+                    <figcaption class="review-sidebar__artwork-info" v-if="showCredit">The album artwork of <span class="album">{{ review.metadata.album }}</span> by {{ review.metadata.artist }} {{ review.metadata.artworkCredit }}<template v-if="review.metadata.artworkCreditSource"> [<a :href="review.metadata.artworkCreditSource" target="_blank" rel="noopener">Source</a>]</template>
+                    </figcaption>
+                    <icon class="review-sidebar__artwork-info-icon" @click="showCredit = !showCredit" icon="info-circle" />
+                </template>
             </figure>
             </div>
             <div class="review-sidebar__total-score" :style="sidebarStyles">
@@ -92,7 +96,7 @@ import Vue from 'vue';
 import PostContentBlock from '../../components/PostContentBlock.vue';
 import NewsletterSignup from '../../components/NewsletterSignup.vue';
 import RelatedPosts from '@/components/RelatedPosts.vue';
-import { albumCoverAlt, audioxideStructuredData, generateBreadcrumbs, metaTitle, padNum, resolveAuthorLink, authorDivider  } from '~/assets/utilities';
+import { albumCoverAlt, audioxideStructuredData, generateBreadcrumbs, metaTitle, padNum, resolveAuthorLink, authorDivider } from '~/assets/utilities';
 import { MetaInfo } from 'vue-meta';
 import formatISO from 'date-fns/formatISO';
 
@@ -104,6 +108,7 @@ export default Vue.extend({
     components: { PostContentBlock, NewsletterSignup, RelatedPosts },
     data: () => ({
         review: {} as Review,
+        showCredit: false,
     }),
     head() {
         const metadata = this.review.metadata;
@@ -335,8 +340,37 @@ export default Vue.extend({
         border-top: 0;
     }
 
-    .review-sidebar__album-info {
-        display: none;
+    .review-sidebar__artwork-info {
+        font-family: 'Source Sans Pro', sans-serif;
+        position: absolute;
+        bottom:0;
+        left:0;
+        padding: 5% 20% 5% 5%;
+        opacity: 0.75;
+        color: white;
+        background-color: black;
+        line-height: 1.3;
+        font-size: 0.9em;
+        margin: 1px;
+    }
+
+    .review-sidebar__artwork-info .album {
+        font-style: italic;
+    }
+
+    .review-sidebar__artwork-info-icon {
+        color: gray;
+        margin: 8%;
+        width: 8%;
+        height: 8%;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+
+    .review-sidebar__artwork-info-icon:hover {
+        color: lightgray;
+        cursor: pointer;
     }
 
     .review-sidebar__total-score, .review-sidebar__tracks {
