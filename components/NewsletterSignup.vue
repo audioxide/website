@@ -11,7 +11,7 @@
     >
       <div id="mc_embed_signup_scroll">
         <div class="prompt">
-        <span>Sign up for monthly roundups.</span>
+        <span>Receive our monthly roundups.</span>
         </div>
         <div class="signup">
         <div class="mc-field-group">
