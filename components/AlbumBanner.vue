@@ -14,6 +14,9 @@ import Vue from 'vue';
 
 export default Vue.extend({
     name: 'AlbumBanner',
+    async fetch() {
+        await this.$store.dispatch('getBannerData');
+    },
     computed: {
         bannerData(): PostListing<Review> {
             return this.$store.state.banner;
