@@ -24,10 +24,6 @@ export const plugins = [
         window.onNuxtReady(setBreakpoint);
         window.addEventListener('DOMContentLoaded', setBreakpoint);
         window.addEventListener('resize', setBreakpoint);
-    },
-    store => {
-        if (!process.server) return;
-        store.dispatch('getBannerData');
     }
 ]
 
