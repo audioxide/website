@@ -128,6 +128,12 @@ export default Vue.extend({
                 padding-right: 15px;
                 font-size: $site-content__font--small;
             }
+            table {
+                margin-top: $site-content__spacer--x-large;
+                margin-bottom: $site-content__spacer--x-large;
+                margin-left: auto;
+                margin-right: auto;
+            }
             .article-album-image {
                 border: 1px solid #dddddd;
             }
@@ -193,7 +199,7 @@ export default Vue.extend({
     @include medium {
         .decorate.content ::v-deep {
             & > {
-                p, img, h2, h3, h4, blockquote, ul, hr, .video-container {
+                p, img, h2, h3, h4, blockquote, ul, table, hr, .video-container {
                     width: 67%;
                 }
             }
