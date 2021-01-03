@@ -2,6 +2,7 @@ import { Route } from 'vue-router';
 import he from 'he';
 import {
     SITE_DESCRIPTION,
+    GITHUB_URL,
     TWITTER_URL,
     FACEBOOK_URL,
     INSTAGRAM_URL,
@@ -102,11 +103,11 @@ const authorDivider = (key: number, length: number) => {
 
 const audioxideStructuredData = () => ({
     '@context': 'http://schema.org',
-    '@type': 'Organization',
+    '@type': 'WebSite',
     name: SITE_NAME,
     description: SITE_DESCRIPTION,
-    foundingDate: SITE_FOUNDING_YEAR.toString(),
-    founder: [
+    copyrightYear: SITE_FOUNDING_YEAR,
+    creator: [
         {
             '@type': 'Person',
             'name': 'André Dack',
@@ -115,7 +116,7 @@ const audioxideStructuredData = () => ({
         {
             '@type': 'Person',
             'name': 'Andrew Bridge',
-            'sameAs': 'http://www.andrewhbridge.co.uk'
+            'sameAs': 'https://www.andrewhbridge.co.uk'
         },
         {
             '@type': 'Person',
@@ -124,8 +125,8 @@ const audioxideStructuredData = () => ({
         }
     ],
     url: SITE_URL,
-    logo: `${SITE_URL}/full-logo-black-on-white.png`,
-    sameAs: [ FACEBOOK_URL, TWITTER_URL, INSTAGRAM_URL ],
+    sameAs: [ FACEBOOK_URL, TWITTER_URL, INSTAGRAM_URL, GITHUB_URL ],
+    isAccessibleForFree: true,
 });
 
 const generateBreadcrumbs = (route: Route, titles: Array<string | null> = []) => ({

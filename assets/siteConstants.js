@@ -1,12 +1,13 @@
 const SITE_URL=process.env.SITE_URL || 'https://audioxide.com';
 const SITE_NAME='Audioxide';
-const SITE_DESCRIPTION='Three friends reviewing an album a week. Also publish articles, interviews, and other oddities when then mood takes them.';
+const SITE_DESCRIPTION='Three friends reviewing an album a week. Also publish articles, interviews, listening parties, and other oddities when the mood takes them.';
 const SITE_FOUNDING_YEAR=2015;
 
 // Content channels
 const RSS_BASE='/feed';
 const RSS_URL=SITE_URL + RSS_BASE;
 const NEWSLETTER_URL='https://eepurl.com/cox6qr';
+const GITHUB_URL='https://github.com/audioxide';
 
 // Social media
 const TWITTER_HANDLE='audioxide';
@@ -24,6 +25,7 @@ export {
     RSS_BASE,
     RSS_URL,
     NEWSLETTER_URL,
+    GITHUB_URL,
     TWITTER_HANDLE,
     TWITTER_URL,
     FACEBOOK_HANDLE,
