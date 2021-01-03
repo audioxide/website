@@ -133,6 +133,11 @@ export default Vue.extend({
                 margin-bottom: $site-content__spacer--x-large;
                 margin-left: auto;
                 margin-right: auto;
+                td, th {
+                    border: 1px solid $colour-grey;
+                    padding: 0.5rem;
+                    text-align: left;
+                }
             }
             .article-album-image {
                 border: 1px solid #dddddd;
