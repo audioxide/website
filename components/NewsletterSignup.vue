@@ -15,7 +15,6 @@
         </div>
         <div class="signup">
         <div class="mc-field-group">
-          <label for="mce-EMAIL">Email Address </label>
           <input
             type="email"
             value=""
@@ -24,6 +23,7 @@
             id="mce-EMAIL"
             placeholder="Email address"
           />
+          <label for="mce-EMAIL">Email Address</label>
         </div>
         <div id="mce-responses" class="clear">
           <div
