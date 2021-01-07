@@ -4,14 +4,9 @@
     </main>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue';
 import NewReleaseScoreDistribution from '@/components/data-viz/NewReleaseScoreDistribution.vue';
-
-export default {
-  name: 'AudioxideHeader',
-  components: { NavBar, AlbumBanner },
-};
 
 </script>
 
