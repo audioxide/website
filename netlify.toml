@@ -4,9 +4,6 @@
 
 [context.deploy-preview]
   command = "export SITE_URL=$DEPLOY_PRIME_URL && export EXT_API_URL=$DP_API_URL && sed -i \"s|SITE_URL|${DEPLOY_PRIME_URL}|g\" netlify.toml && sed -i \"s|EXT_API_URL|${EXT_API_URL}|g\" netlify.toml && export API_URL=$SITE_URL/api && export SEARCH_URL=$EXT_API_URL/search && yarn setup && yarn generate"
-  
-[context.branch-deploy]
-  command = "sed -i \"s|SITE_URL|${SITE_URL}|g\" netlify.toml && sed -i \"s|EXT_API_URL|${EXT_API_URL}|g\" netlify.toml && export API_URL=$SITE_URL/api && export SEARCH_URL=$EXT_API_URL/search && yarn setup && yarn generate"
 
 [[redirects]]
   from = "/api/search"
