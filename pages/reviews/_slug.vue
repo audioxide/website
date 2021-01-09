@@ -359,7 +359,8 @@ export default Vue.extend({
     }
 
     .review-sidebar__artwork-info-icon {
-        color: gray;
+        --fa-primary-color: gray;
+        --fa-secondary-color: white;
         margin: 8%;
         width: 8%;
         height: 8%;

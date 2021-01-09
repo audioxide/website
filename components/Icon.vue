@@ -7,7 +7,6 @@
     faRss,
     faSearch,
     faBrain,
-    faInfoCircle,
   } from '@fortawesome/free-solid-svg-icons';
   import {
     faFacebookF,
@@ -16,6 +15,7 @@
   } from '@fortawesome/free-brands-svg-icons';
   import {
     faSpinnerThird,
+    faInfoCircle,
   } from '@audioxide/licensed-assets/js/@fortawesome/pro-duotone-svg-icons';
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
