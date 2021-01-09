@@ -42,7 +42,7 @@
                 <template v-if="review.metadata.artworkCredit">
                     <figcaption class="review-sidebar__artwork-info" v-if="showCredit">The album artwork of <span class="album">{{ review.metadata.album }}</span> by {{ review.metadata.artist }} {{ review.metadata.artworkCredit }}<template v-if="review.metadata.artworkCreditSource"> [<a :href="review.metadata.artworkCreditSource" target="_blank" rel="noopener">Source</a>]</template>
                     </figcaption>
-                    <icon class="review-sidebar__artwork-info-icon" @click="showCredit = !showCredit" icon="info-circle" />
+                    <icon class="review-sidebar__artwork-info-icon" @click="showCredit = !showCredit" icon="fad info-circle" />
                 </template>
             </figure>
             </div>
