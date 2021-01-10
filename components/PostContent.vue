@@ -129,6 +129,7 @@ export default Vue.extend({
                 font-size: $site-content__font--small;
             }
             table {
+                font-family: $heading-fontstack;
                 margin-top: $site-content__spacer--x-large;
                 margin-bottom: $site-content__spacer--x-large;
                 margin-left: auto;
