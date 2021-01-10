@@ -165,6 +165,9 @@ export default Vue.extend({
                 width: 100%;
                 height: 100%;
             }
+            .gif-container {
+                margin: $site-content__spacer--x-large auto;
+            }
             .block-gap {
                 margin-top: 4em;
             }
