@@ -129,6 +129,7 @@ export default Vue.extend({
                 font-size: $site-content__font--small;
             }
             table {
+                font-family: $heading-fontstack;
                 margin-top: $site-content__spacer--x-large;
                 margin-bottom: $site-content__spacer--x-large;
                 margin-left: auto;
@@ -138,6 +139,9 @@ export default Vue.extend({
                     padding: 0.5rem;
                     text-align: left;
                 }
+            }
+            .table-container {
+                overflow-x: auto;
             }
             .article-album-image {
                 border: 1px solid #dddddd;
@@ -204,7 +208,7 @@ export default Vue.extend({
     @include medium {
         .decorate.content ::v-deep {
             & > {
-                p, img, h2, h3, h4, blockquote, ul, table, hr, .video-container {
+                p, img, h2, h3, h4, blockquote, ul, table, hr, .video-container, .gif-container {
                     width: 67%;
                 }
             }
