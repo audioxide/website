@@ -139,6 +139,9 @@ export default Vue.extend({
                     text-align: left;
                 }
             }
+            .table-container {
+                overflow-x: auto;
+            }
             .article-album-image {
                 border: 1px solid #dddddd;
             }
