@@ -208,7 +208,7 @@ export default Vue.extend({
     @include medium {
         .decorate.content ::v-deep {
             & > {
-                p, img, h2, h3, h4, blockquote, ul, table, hr, .video-container {
+                p, img, h2, h3, h4, blockquote, ul, table, hr, .video-container, .gif-container {
                     width: 67%;
                 }
             }
