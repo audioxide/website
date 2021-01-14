@@ -42,7 +42,7 @@
                 <template v-if="review.metadata.artworkCredit">
                     <figcaption class="review-sidebar__artwork-info" v-if="showCredit">The album artwork of <span class="album">{{ review.metadata.album }}</span> by {{ review.metadata.artist }} {{ review.metadata.artworkCredit }}<template v-if="review.metadata.artworkCreditSource"> [<a :href="review.metadata.artworkCreditSource" target="_blank" rel="noopener">Source</a>]</template>
                     </figcaption>
-                    <icon class="review-sidebar__artwork-info-icon" @click="showCredit = !showCredit" icon="fad info-circle" />
+                    <icon class="review-sidebar__artwork-info-icon" @click="showCredit = !showCredit" :icon="['fad', 'info-circle']" />
                 </template>
             </figure>
             </div>
@@ -328,7 +328,7 @@ export default Vue.extend({
     .review-sidebar__ribbon {
         position: absolute;
         top: -7px;
-        right: 8%;
+        right: 6%;
         width: 12%;
     }
 
@@ -346,7 +346,7 @@ export default Vue.extend({
         bottom:0;
         left:0;
         padding: 5% 20% 5% 5%;
-        opacity: 0.75;
+        opacity: 0.80;
         color: white;
         background-color: black;
         line-height: 1.3;
@@ -359,8 +359,8 @@ export default Vue.extend({
     }
 
     .review-sidebar__artwork-info-icon {
-        --fa-primary-color: gray;
-        --fa-secondary-color: white;
+        --fa-primary-color: #f5f5f5;
+        --fa-secondary-color: black;
         margin: 8%;
         width: 8%;
         height: 8%;
