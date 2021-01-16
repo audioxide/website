@@ -12,8 +12,11 @@ export default PostLink.extend({
         imageFormat: { type: String as PropType<ImageSizeAspectRatios> },
     },
     render(h): VNode {
-        const opts = { props: this.$props };
+        const opts = { props: { ...this.$props } };
         const type = this.post.metadata.type;
+        if (type === 'listening-parties' && typeof this.$props !== 'string') {
+            opts.props.imageFormat = 'square';
+        }
         return ALBUM_TYPES.includes(type) ? h(ReviewLink, opts) : h(ArticleLink, opts);
     },
 });
