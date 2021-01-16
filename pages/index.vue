@@ -1,6 +1,6 @@
 <template>
   <main>
-    <component :is="leadComponent" :post="leadPost" class="lead-post" />
+    <any-post-link :post="leadPost" class="lead-post" />
     <div class="panel reviews">
       <h3>Album Reviews (<nuxt-link to="/reviews/">See all<span class="sr-only">reviews</span></nuxt-link>)</h3>
       <div class="listing">
@@ -71,9 +71,10 @@ import ReviewLink from '@/components/ReviewLink.vue';
 import Icon from '@/components/Icon.vue';
 import { audioxideStructuredData } from '@/assets/utilities';
 import * as SITE_CONSTANTS from '@/assets/siteConstants';
+import AnyPostLink from '~/components/AnyPostLink.vue';
 
 export default Vue.extend({
-  components: { ArticleLink, ReviewLink, Icon },
+  components: { ArticleLink, ReviewLink, Icon, AnyPostLink },
   data: () => SITE_CONSTANTS,
   head() {
     return {
@@ -98,15 +99,6 @@ export default Vue.extend({
     },
     leadPost(): Post {
       return this.$store.getters['posts/latestPost'];
-    },
-    leadComponent() {
-      switch(this.leadPost.metadata.type) {
-        case 'reviews':
-        case 'listening-parties':
-          return ReviewLink;
-        default:
-          return ArticleLink;
-      }
     },
     reviews(): PostListing<Review> {
       return this.posts.reviews
