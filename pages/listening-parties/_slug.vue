@@ -275,12 +275,17 @@ export default Vue.extend({
     }
 
     .article-content ::v-deep .content p.message {
-        background: #668cc1;
         width: 30%;
         margin-left: 16.5%;
         padding: .5em .75em;
         border-radius: 1em;
         font-family: Source Sans Pro,sans-serif;
+        a {
+            color: white;
+            &:hover, &:focus, &:active {
+                color: #ffe6e6;
+            }
+        }
     }
 
     .article-content ::v-deep .content p.message.speaker-0 {
@@ -302,7 +307,7 @@ export default Vue.extend({
     }
 
     .article-content ::v-deep .content p.message.speaker-1 {
-        background: #668cc1;
+        background: #9f5168;
         color: white;
         margin-left: auto;
         margin-right: 16.5%;
