@@ -274,6 +274,16 @@ export default Vue.extend({
         line-height: inherit;
     }
 
+    .article-content ::v-deep .content > h2 {
+        text-align: center;
+        padding-top: 1.5em;
+    }
+
+    .article-content ::v-deep .content p.speaker-name {
+        font-family: Source Sans Pro,sans-serif;
+        font-size: 0.9em;
+    }
+
     .article-content ::v-deep .content p.message {
         width: 30%;
         margin-left: 16.5%;
