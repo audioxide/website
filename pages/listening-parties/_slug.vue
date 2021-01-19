@@ -268,6 +268,12 @@ export default Vue.extend({
 </style>
 
 <style lang="scss" scoped>
+    .article-content ::v-deep .content > h2 ~ p:first-of-type::first-letter {
+        font-size: inherit;
+        float: none;
+        line-height: inherit;
+    }
+
     .article-content ::v-deep .content p.message {
         background: #668cc1;
         width: 30%;
@@ -282,12 +288,17 @@ export default Vue.extend({
         color: black;
     }
 
-    .article-content ::v-deep content p.speaker-name {
-        font-weight: bold;
+    .article-content ::v-deep .content p.speaker-name + p.message {
+        margin-top: 0;
+    }
+
+    .article-content ::v-deep .content p.speaker-name.speaker-0 {
+        padding-left: 0.75em;
     }
 
     .article-content ::v-deep .content p.speaker-name.speaker-1 {
         text-align: right;
+        padding-right: 0.75em;
     }
 
     .article-content ::v-deep .content p.message.speaker-1 {
