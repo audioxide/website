@@ -215,7 +215,7 @@ export default Vue.extend({
         padding: 30px;
       }
       h4 {
-        font-size: $site-content__font--large;
+        font-size: 1.5rem;
       }
     }
   }
