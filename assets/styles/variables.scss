@@ -94,6 +94,28 @@ $site-content__spacer--large: 1em;
 $site-content__spacer: 0.5em;
 $site-content__spacer--small: 0.25em;
 
+/* Listening parties config */
+$listening-party__speaker-name-font: $heading-fontstack;
+$listening-party__speaker-name-size: 0.9em;
+$listening-party__message-font: $heading-fontstack;
+$listening-party__message-width: 90%;
+$listening-party__message-width--small: 55%;
+$listening-party__message-width--medium: 35%;
+$listening-party__message-width--large: 30%;
+$listening-party__message-curve: 1em;
+$listening-party__message-vertical-padding: 0.5em;
+$listening-party__message-horizontal-padding: 0.75em;
+$listening-party__message-margin: 0;
+$listening-party__message-margin--medium: 16.5%;
+$listening-party__message-background--speaker0: lightgrey;
+$listening-party__message-colour--speaker0: black;
+$listening-party__message-link-colour--speaker0: #800e29;
+$listening-party__message-link-hover-colour--speaker0: lighten($listening-party__message-link-colour--speaker0, 10%);
+$listening-party__message-background--speaker1: #9f5168;
+$listening-party__message-colour--speaker1: white;
+$listening-party__message-link-colour--speaker1: white;
+$listening-party__message-link-hover-colour--speaker1: #ffe6e6;
+
 @mixin site-content__subtext {
   font-size: $site-content__font--small;
   color: $colour-grey;

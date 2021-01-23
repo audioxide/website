@@ -1,5 +1,5 @@
 <template>
-    <main class="site-content site-content--flex" v-if="review.metadata">
+    <main class="site-content site-content--flex review-content" v-if="review.metadata">
         <header class="review-header" :style="chromeStyles">
             <template v-if="review.metadata.week < 15">
                 <p class="review-header__disclaimer">Our early reviews are threadbare to say the least. In the spirit of remembering where we came from, we've left them as they were.</p>
