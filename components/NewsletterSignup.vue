@@ -23,7 +23,7 @@
             id="mce-EMAIL"
             placeholder="Email address"
           />
-          <label for="mce-EMAIL">Email Address</label>
+          <label for="EMAIL">Email Address</label>
         </div>
         <div id="mce-responses" class="clear">
           <div
