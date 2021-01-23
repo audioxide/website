@@ -359,6 +359,7 @@ export default Vue.extend({
     }
 
     .review-sidebar__artwork-info-icon {
+        color: grey; // fallback where CSS vars aren't supported
         --fa-primary-color: #f5f5f5;
         --fa-secondary-color: black;
         margin: 8%;
