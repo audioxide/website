@@ -1,5 +1,5 @@
 <template>
-    <main class="site-content site-content--flex" v-if="article.metadata">
+    <main class="site-content site-content--flex article-content" v-if="article.metadata">
         <header class="article-header">
             <details class="collapsible">
                 <summary class="collapsible__toggle">
@@ -133,8 +133,13 @@ export default Vue.extend({
         return store.dispatch('posts/getPost', { type, slug });
     },
     async created() {
-        this.type = this.$route.params.type;
-        this.slug = this.$route.params.slug;
+        const { type, slug } = this.$route.params;
+        if (type) {
+            this.type = type;
+        }
+        if (slug) {
+            this.slug = slug;
+        }
         const articleData = this.$store.getters['posts/pathLookup'][`${this.type}/${this.slug}`];
         if (isObject(articleData)) {
             this.article = articleData as Article;
@@ -153,116 +158,119 @@ export default Vue.extend({
 
 </script>
 
-<style lang="scss" scoped>
+<!-- Note that these styles are NOT scoped to allow template inheritance -->
+<style lang="scss">
     @import "~assets/styles/variables";
 
-    /* DEFAULT STYLING (MOBILE-FIRST) */
+    // Because these styles aren't scoped, we namespace them manually
+    main.site-content.article-content {
+        /* DEFAULT STYLING (MOBILE-FIRST) */
 
-    .article-header {
-        margin-top: $site-content__spacer--x-large;
-        padding-bottom: $site-content__spacer--small;
-    }
-
-    .collapsible {
-        text-align: center;
-    }
-
-    .collapsible__toggle {
-        display: inline;
-        padding: 0.5em;
-        &:active, &:focus {
-            outline: none;
-        }
-    }
-
-    .article-header__date {
-        @include site-content__subtext;
-    }
-
-    .article-header__heading, .article-header__summary, .article-header__date, .article-header__author {
-        font-family: $heading-fontstack;
-        text-align: center;
-    }
-
-    .article-header__heading {
-        font-size: 2em;
-        font-weight: 600;
-        margin-bottom: $site-content__spacer;
-        width: 95%;
-        margin: auto;
-    }
-
-    .article-header__summary {
-        padding-top: $site-content__spacer--large;
-        padding-bottom: $site-content__spacer--large;
-        font-size: 1.1em;
-        line-height: 1.1;
-        color: $colour-grey;
-        margin: auto;
-        width: 95%;
-    }
-
-    .article-header__author {
-        color: $colour-grey;
-        padding-bottom: $site-content__spacer--large;
-        margin: auto;
-        width: 95%;
-    }
-
-    .article-content {
-        margin-top: $site-content__spacer--large;
-        width: 95%;
-        margin: auto;
-    }
-
-    .tags {
-        padding-top: 40px;
-        padding-bottom: $site-content__spacer--large;
-    }
-
-    .tags .tag {
-        @include tag;
-    }
-
-    /* Medium styling (TABLET) */
-
-    @include medium {
         .article-header {
-            width: 100%;
+            margin-top: $site-content__spacer--x-large;
+            padding-bottom: $site-content__spacer--small;
         }
-    }
 
-    /* Large styling (DESKTOP) */
+        .collapsible {
+            text-align: center;
+        }
 
-    @include large {
+        .collapsible__toggle {
+            display: inline;
+            padding: 0.5em;
+            &:active, &:focus {
+                outline: none;
+            }
+        }
+
+        .article-header__date {
+            @include site-content__subtext;
+        }
+
+        .article-header__heading, .article-header__summary, .article-header__date, .article-header__author {
+            font-family: $heading-fontstack;
+            text-align: center;
+        }
 
         .article-header__heading {
-            font-size: 2.5em;
-            width: 67%;
-        }
-
-        .article-header__summary {
-            font-size: 1.2em;
-            width: 67%;
-        }
-
-        .article-header__author {
-            width: 67%;
-        }
-
-        .article-content {
-            width: 100%;
-        }
-
-        .tags {
-            width: 67%;
+            font-size: 2em;
+            font-weight: 600;
+            margin-bottom: $site-content__spacer;
+            width: 95%;
             margin: auto;
         }
 
-        .newsletter-container {
-            width: 67%;
+        .article-header__summary {
+            padding-top: $site-content__spacer--large;
+            padding-bottom: $site-content__spacer--large;
+            font-size: 1.1em;
+            line-height: 1.1;
+            color: $colour-grey;
+            margin: auto;
+            width: 95%;
         }
 
-    }
+        .article-header__author {
+            color: $colour-grey;
+            padding-bottom: $site-content__spacer--large;
+            margin: auto;
+            width: 95%;
+        }
 
+        .article-content {
+            margin-top: $site-content__spacer--large;
+            width: 95%;
+            margin: auto;
+        }
+
+        .tags {
+            padding-top: 40px;
+            padding-bottom: $site-content__spacer--large;
+        }
+
+        .tags .tag {
+            @include tag;
+        }
+
+        /* Medium styling (TABLET) */
+
+        @include medium {
+            .article-header {
+                width: 100%;
+            }
+        }
+
+        /* Large styling (DESKTOP) */
+
+        @include large {
+
+            .article-header__heading {
+                font-size: 2.5em;
+                width: 67%;
+            }
+
+            .article-header__summary {
+                font-size: 1.2em;
+                width: 67%;
+            }
+
+            .article-header__author {
+                width: 67%;
+            }
+
+            .article-content {
+                width: 100%;
+            }
+
+            .tags {
+                width: 67%;
+                margin: auto;
+            }
+
+            .newsletter-container {
+                width: 67%;
+            }
+
+        }
+    }
 </style>

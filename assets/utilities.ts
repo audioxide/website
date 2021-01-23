@@ -95,6 +95,9 @@ const authorDivider = (key: number, length: number) => {
     if (key === length - 1) {
         return '';
     }
+    if (key === length - 2 && length === 2) {
+        return ' and '; // No oxford comma between two authors
+    }
     if (key === length - 2) {
         return ', and ';
     }
