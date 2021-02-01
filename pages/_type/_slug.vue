@@ -33,7 +33,7 @@ import Vue from 'vue';
 import PostContentBlock from '../../components/PostContentBlock.vue';
 import NewsletterSignup from '../../components/NewsletterSignup.vue';
 import RelatedPosts from '@/components/RelatedPosts.vue';
-import { MetaInfo, ScriptPropertyJson } from 'vue-meta';
+import { MetaInfo } from 'vue-meta';
 import { formatISO } from 'date-fns';
 import { resolveAuthorLink, isObject, metaTitle, toTitleCase, audioxideStructuredData, generateBreadcrumbs, authorDivider } from '../../assets/utilities';
 
