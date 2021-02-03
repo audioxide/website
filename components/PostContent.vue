@@ -140,6 +140,9 @@ export default Vue.extend({
                     padding: 0.5rem;
                     text-align: left;
                 }
+                tr {
+                    line-height: 1.3;
+                }
             }
             .table-container {
                 overflow-x: auto;
