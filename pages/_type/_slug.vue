@@ -145,6 +145,25 @@ export default Vue.extend({
             this.article = articleData as Article;
         }
     },
+    mounted() {
+        if ('metadata' in this.article) {
+            const doc = this.$el.ownerDocument;
+            if (!doc) return;
+            this.article.metadata.components.scripts.forEach(customTag => {
+                // TODO: Check if the script has already been loaded
+                const elm = doc.createElement('script');
+                elm.src = `${process.env.apiUrl}/components/${customTag}/component.js`;
+                doc.head.appendChild(elm);
+            });
+            this.article.metadata.components.styles.forEach(customTag => {
+                // TODO: Check if the script has already been loaded
+                const elm = doc.createElement('link');
+                elm.href = `${process.env.apiUrl}/components/${customTag}/static.css`;
+                elm.rel = 'stylesheet';
+                doc.head.appendChild(elm);
+            });
+        }
+    },
     computed: {
         authorLinks(): ReturnType<typeof resolveAuthorLink>[] {
             if (!isObject(this.article.metadata.author)) return [];
