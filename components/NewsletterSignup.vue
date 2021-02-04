@@ -11,7 +11,7 @@
     >
       <div id="mc_embed_signup_scroll">
         <div class="prompt">
-        <span>Receive our monthly roundups.</span>
+        <span>Music is best shared, don’t you think? Sign up for monthly roundups of what we’ve been listening to.</span>
         </div>
         <div class="signup">
         <div class="mc-field-group">
