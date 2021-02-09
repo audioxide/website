@@ -35,7 +35,16 @@ import NewsletterSignup from '../../components/NewsletterSignup.vue';
 import RelatedPosts from '@/components/RelatedPosts.vue';
 import { MetaInfo } from 'vue-meta';
 import { formatISO } from 'date-fns';
-import { resolveAuthorLink, isObject, metaTitle, toTitleCase, audioxideStructuredData, generateBreadcrumbs, authorDivider } from '../../assets/utilities';
+import {
+    resolveAuthorLink,
+    isObject,
+    metaTitle,
+    toTitleCase,
+    audioxideStructuredData,
+    generateBreadcrumbs,
+    authorDivider,
+    injectRichMediaComponentAssets,
+} from '../../assets/utilities';
 
 type PostColours = [string, string, string];
 type ColourStyles = { [key: string]: string };
@@ -126,6 +135,8 @@ export default Vue.extend({
                     '@type': 'Person', name: author.name
                 }));
             }
+
+            injectRichMediaComponentAssets(pageMeta, metadata.components);
         }
         return pageMeta;
     },
@@ -143,25 +154,6 @@ export default Vue.extend({
         const articleData = this.$store.getters['posts/pathLookup'][`${this.type}/${this.slug}`];
         if (isObject(articleData)) {
             this.article = articleData as Article;
-        }
-    },
-    mounted() {
-        if ('metadata' in this.article) {
-            const doc = this.$el.ownerDocument;
-            if (!doc) return;
-            this.article.metadata.components.scripts.forEach(customTag => {
-                // TODO: Check if the script has already been loaded
-                const elm = doc.createElement('script');
-                elm.src = `${process.env.apiUrl}/components/${customTag}/component.js`;
-                doc.head.appendChild(elm);
-            });
-            this.article.metadata.components.styles.forEach(customTag => {
-                // TODO: Check if the script has already been loaded
-                const elm = doc.createElement('link');
-                elm.href = `${process.env.apiUrl}/components/${customTag}/static.css`;
-                elm.rel = 'stylesheet';
-                doc.head.appendChild(elm);
-            });
         }
     },
     computed: {
