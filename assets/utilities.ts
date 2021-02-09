@@ -144,13 +144,15 @@ const generateBreadcrumbs = (route: Route, titles: Array<string | null> = []) =>
 });
 
 const injectRichMediaComponentAssets = (metadata: MetaInfo, components: ComponentsInfo) => {
+    const url = `${process.env.apiUrl}components/`;
+
     if (!Array.isArray(metadata.script)) {
         metadata.script = [];
     }
     const scripts = metadata.script;
     components.scripts.forEach(customTag => scripts.push({
         hid: `${customTag}-js`,
-        src: `${process.env.apiUrl}/components/${customTag}/component.js`,
+        src: `${url + customTag}/component.js`,
     }));
 
     if (!Array.isArray(metadata.link)) {
@@ -160,7 +162,7 @@ const injectRichMediaComponentAssets = (metadata: MetaInfo, components: Componen
     components.scripts.forEach(customTag => links.push({
         hid: `${customTag}-css`,
         rel: 'stylesheet',
-        href: `${process.env.apiUrl}/components/${customTag}/static.css`,
+        href: `${url + customTag}/static.css`,
     }));
 }
 
