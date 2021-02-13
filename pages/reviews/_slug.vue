@@ -217,19 +217,6 @@ export default Vue.extend({
     },
     async created() {
         this.review = this.$store.getters['posts/pathLookup'][`reviews/${this.$route.params.slug}`];
-        /* this.review.metadata.components.scripts.forEach(customTag => {
-            // TODO: Check if the script has already been loaded
-            const elm = window.document.createElement('script');
-            elm.src = `${process.env.apiUrl}/components/${customTag}/component.js`;
-            window.document.head.appendChild(elm);
-        });
-        this.review.metadata.components.styles.forEach(customTag => {
-            // TODO: Check if the script has already been loaded
-            const elm = window.document.createElement('link');
-            elm.href = `${process.env.apiUrl}/components/${customTag}/static.css`;
-            elm.rel = 'stylesheet';
-            window.document.head.appendChild(elm);
-        }); */
     },
     computed: {
         reviews(): ReviewItem[] {
