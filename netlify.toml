@@ -49,8 +49,8 @@
 
 [[redirects]]
   from = "/*"
-  to = "/articles/world-on-fire-the-music-of-fallout-3/"
-  status = 200
+  to = "/404/"
+  status = 404
 
 [[headers]]
   for = "/api/*"
