@@ -146,7 +146,7 @@ export default Vue.extend({
             .article-album-image {
                 border: 1px solid #dddddd;
             }
-            .video-container {
+            youtube-video {
                 @include medium {
                     padding-bottom: 37.6875%;
                 }
@@ -157,13 +157,6 @@ export default Vue.extend({
                 margin-bottom: $site-content__spacer--x-large;
                 margin-left: auto;
                 margin-right: auto;
-            }
-            .video-container iframe {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
             }
             .gif-container {
                 margin: $site-content__spacer--x-large auto;
@@ -211,7 +204,7 @@ export default Vue.extend({
     @include medium {
         .decorate.content ::v-deep {
             & > {
-                p, img, h2, h3, h4, blockquote, ul, table, hr, .video-container, .gif-container {
+                p, img, h2, h3, h4, blockquote, ul, table, hr, youtube-video, .gif-container {
                     width: 67%;
                 }
             }

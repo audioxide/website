@@ -19,7 +19,13 @@ import { MetaInfo } from 'vue-meta';
 import PostSingle from '@/components/PostSingle.vue';
 import PostListing from '@/components/PostListing.vue';
 import ArticleLink from '@/components/ArticleLink.vue';
-import { audioxideStructuredData, generateBreadcrumbs, metaTitle, toTitleCase } from '~/assets/utilities';
+import {
+  audioxideStructuredData,
+  generateBreadcrumbs,
+  injectRichMediaComponentAssets,
+  metaTitle,
+  toTitleCase,
+} from '~/assets/utilities';
 
 type ContentTypes = { pages: string[]; postTypes: string[] }
 const isPost = (type: string, types: ContentTypes) =>
@@ -70,6 +76,7 @@ export default Vue.extend({
               }
           },
         );
+        injectRichMediaComponentAssets(metaData, page.metadata.components);
         break;
       case 'post':
         title = toTitleCase(this.slug, '-');
