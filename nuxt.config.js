@@ -53,6 +53,7 @@ export default {
   env: {
     apiUrl: `${process.env.API_URL || 'http://localhost:8888'}/`,
     searchUrl: process.env.SEARCH_URL || 'http://localhost:8889/search',
+    isProduction: process.env.NETLIFY === 'true' && process.env.CONTEXT === 'production',
   },
   /*
    ** Headers of the page
