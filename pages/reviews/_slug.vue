@@ -360,6 +360,7 @@ export default Vue.extend({
 
     .review-sidebar_artwork-source-link {
         text-decoration: none;
+        white-space: nowrap;
         font-weight: bold;
     }
 
