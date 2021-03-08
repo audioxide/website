@@ -5,9 +5,10 @@ export default ({ app }) => {
         if (process.env.isProduction !== true) {
             console.log(`Count pageview for '${to.fullPath}'`);
         } else if (typeof window.goatcounter.count === 'function') {
-            window.goatcounter.count({
-                path: to.fullPath,
-            });
+            // TODO: Nasty temporary hack to wait for title change, improve
+            setTimeout(() => window.goatcounter.count({
+                    path: to.fullPath,
+                }), 1000);
         }
     });
 }
