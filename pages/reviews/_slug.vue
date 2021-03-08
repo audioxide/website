@@ -40,7 +40,7 @@
             <figure>
                 <img class="review-sidebar__album-cover" :alt="coverAlt" :src="review.metadata.featuredimage['medium-square']" :style="sidebarStyles" width="600" height="600" />
                 <template v-if="review.metadata.artworkCredit">
-                    <figcaption class="review-sidebar__artwork-info" v-if="showCredit">The album artwork of <span class="album">{{ review.metadata.album }}</span> by {{ review.metadata.artist }} {{ review.metadata.artworkCredit }} <template v-if="review.metadata.artworkCreditSource"><a :href="review.metadata.artworkCreditSource" target="_blank" rel="noopener" aria-label="Source link"><strong>Source </strong><icon :icon="['fa', 'external-link-alt']" /></a></template>
+                    <figcaption class="review-sidebar__artwork-info" v-if="showCredit">The album artwork of <span class="album">{{ review.metadata.album }}</span> by {{ review.metadata.artist }} {{ review.metadata.artworkCredit }} <template v-if="review.metadata.artworkCreditSource"><a :href="review.metadata.artworkCreditSource" class="review-sidebar_artwork-source-link" target="_blank" rel="noopener" aria-label="Source link">Source <icon :icon="['fa', 'external-link-alt']" /></a></template>
                     </figcaption>
                     <icon class="review-sidebar__artwork-info-icon" @click="showCredit = !showCredit" :icon="['fad', 'info-circle']" />
                 </template>
@@ -356,6 +356,11 @@ export default Vue.extend({
 
     .review-sidebar__artwork-info .album {
         font-style: italic;
+    }
+
+    .review-sidebar_artwork-source-link {
+        text-decoration: none;
+        font-weight: bold;
     }
 
     .review-sidebar__artwork-info-icon {
