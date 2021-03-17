@@ -55,6 +55,11 @@ type ContentItem = {
     body?: string,
 }
 
+type ComponentsInfo = {
+    scripts: string[],
+    styles: string[],
+}
+
 interface ReviewItem extends ContentItem {
     author: Authors,
     review: string,
@@ -73,6 +78,7 @@ interface PostMetadata {
     blurb?: string,
     featuredimage?: ImageSizesObj,
     tags?: string[],
+    components: ComponentsInfo,
 }
 
 interface ArticleMetadata extends PostMetadata {

@@ -33,9 +33,18 @@ import Vue from 'vue';
 import PostContentBlock from '../../components/PostContentBlock.vue';
 import NewsletterSignup from '../../components/NewsletterSignup.vue';
 import RelatedPosts from '@/components/RelatedPosts.vue';
-import { MetaInfo, ScriptPropertyJson } from 'vue-meta';
+import { MetaInfo } from 'vue-meta';
 import { formatISO } from 'date-fns';
-import { resolveAuthorLink, isObject, metaTitle, toTitleCase, audioxideStructuredData, generateBreadcrumbs, authorDivider } from '../../assets/utilities';
+import {
+    resolveAuthorLink,
+    isObject,
+    metaTitle,
+    toTitleCase,
+    audioxideStructuredData,
+    generateBreadcrumbs,
+    authorDivider,
+    injectRichMediaComponentAssets,
+} from '../../assets/utilities';
 
 type PostColours = [string, string, string];
 type ColourStyles = { [key: string]: string };
@@ -126,6 +135,8 @@ export default Vue.extend({
                     '@type': 'Person', name: author.name
                 }));
             }
+
+            injectRichMediaComponentAssets(pageMeta, metadata.components);
         }
         return pageMeta;
     },

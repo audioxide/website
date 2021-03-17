@@ -96,7 +96,16 @@ import Vue from 'vue';
 import PostContentBlock from '../../components/PostContentBlock.vue';
 import NewsletterSignup from '../../components/NewsletterSignup.vue';
 import RelatedPosts from '@/components/RelatedPosts.vue';
-import { albumCoverAlt, audioxideStructuredData, generateBreadcrumbs, metaTitle, padNum, resolveAuthorLink, authorDivider } from '~/assets/utilities';
+import {
+    albumCoverAlt,
+    audioxideStructuredData,
+    generateBreadcrumbs,
+    metaTitle,
+    padNum,
+    resolveAuthorLink,
+    authorDivider,
+    injectRichMediaComponentAssets,
+} from '~/assets/utilities';
 import { MetaInfo } from 'vue-meta';
 import formatISO from 'date-fns/formatISO';
 
@@ -159,6 +168,7 @@ export default Vue.extend({
                 );
             }
 
+            injectRichMediaComponentAssets(pageMeta, metadata.components);
 
             pageMeta.script = [{
                 type: 'application/ld+json',

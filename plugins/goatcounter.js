@@ -1,13 +1,19 @@
 export default ({ app }) => {
     window.goatcounter = { no_onload: true };
-
-    if (process.env.NETLIFY !== 'true' || process.env.CONTEXT !== 'production') return;
+    let timeoutUID;
 
     app.router.afterEach((to, from) => {
-        if (typeof window.goatcounter.count === 'function') {
-            window.goatcounter.count({
-                path: to.fullPath,
-            });
+        if (process.env.isProduction !== true) {
+            console.log(`Count pageview for '${to.fullPath}'`);
+        } else if (typeof window.goatcounter.count === 'function') {
+            // TODO: Nasty temporary hack to wait for title change, improve
+            if (typeof timeoutUID === 'number') clearTimeout(timeoutUID);
+            timeoutUID = setTimeout(() => {
+                timeoutUID = null;
+                window.goatcounter.count({
+                    path: to.fullPath,
+                });
+            }, 1000);
         }
     });
 }

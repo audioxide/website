@@ -98,7 +98,7 @@ export default Vue.extend({
         max-width: 500px;
         @include medium {
             margin: 0;
-            width: 26vw;
+            width: 25vw;
             max-width: 100%;
         }
         &.active:focus-within {

@@ -1,4 +1,5 @@
 import { Route } from 'vue-router';
+import { MetaInfo } from 'vue-meta';
 import he from 'he';
 import {
     SITE_DESCRIPTION,
@@ -142,6 +143,29 @@ const generateBreadcrumbs = (route: Route, titles: Array<string | null> = []) =>
     })),
 });
 
+const injectRichMediaComponentAssets = (metadata: MetaInfo, components: ComponentsInfo) => {
+    const url = `${process.env.apiUrl}components/`;
+
+    if (!Array.isArray(metadata.script)) {
+        metadata.script = [];
+    }
+    const scripts = metadata.script;
+    components.scripts.forEach(customTag => scripts.push({
+        hid: `${customTag}-js`,
+        src: `${url + customTag}/component.js`,
+    }));
+
+    if (!Array.isArray(metadata.link)) {
+        metadata.link = [];
+    }
+    const links = metadata.link;
+    components.scripts.forEach(customTag => links.push({
+        hid: `${customTag}-css`,
+        rel: 'stylesheet',
+        href: `${url + customTag}/static.css`,
+    }));
+}
+
 export {
     rand,
     padNum,
@@ -154,4 +178,5 @@ export {
     authorDivider,
     audioxideStructuredData,
     generateBreadcrumbs,
+    injectRichMediaComponentAssets,
 }
