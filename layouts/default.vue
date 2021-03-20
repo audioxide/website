@@ -29,6 +29,7 @@ export default {
     return {
       meta: [
         { hid: "og:url", property: "og:url", content: SITE_URL + this.$route.path },
+        { hid: "theme-color", color: "#292929" },
       ],
       link: [
         { hid: "canonical", rel: "canonical", href: SITE_URL + this.$route.path },
