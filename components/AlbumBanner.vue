@@ -76,7 +76,7 @@ export default Vue.extend({
         background: rgba(0,0,0,0.6);
         color: white;
         font-family: $logo-fontstack;
-        font-size: 4vw;
+        font-size: 7vw;
         text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
         0px 8px 13px rgba(0,0,0,0.1),
         0px 18px 23px rgba(0,0,0,0.1);
@@ -84,11 +84,11 @@ export default Vue.extend({
         transition: 0.25s opacity ease-in-out;
         @include small {
             line-height: 17vw;
-            font-size: 2.5vw;
+            font-size: 4vw;
         }
         @include medium {
             line-height: 10vw;
-            font-size: 4vw;
+            font-size: 3vw;
         }
     }
 
