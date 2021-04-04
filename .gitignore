@@ -95,3 +95,4 @@ assets/img
 assets/webfonts
 static/favicon.ico
 static/*.png
+.vscode/settings.json
