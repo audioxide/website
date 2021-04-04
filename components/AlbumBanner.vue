@@ -88,7 +88,7 @@ export default Vue.extend({
         }
         @include medium {
             line-height: 10vw;
-            font-size: 3vw;
+            font-size: 2.5vw;
         }
     }
 
