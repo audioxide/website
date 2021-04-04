@@ -126,6 +126,7 @@ export default Vue.extend({
             figcaption {
                 text-align: right;
                 padding-right: 15px;
+                font-family: $heading-fontstack;
                 font-size: $site-content__font--small;
             }
             table {
