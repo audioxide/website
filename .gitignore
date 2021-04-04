@@ -96,3 +96,5 @@ assets/webfonts
 static/favicon.ico
 static/*.png
 .vscode/settings.json
+.metals/metals.h2.db
+.metals/metals.lock.db
