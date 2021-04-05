@@ -2,7 +2,7 @@
     <div class="album-banner">
         <div class="album-banner__art-wrapper" v-for="(album, key) in bannerData" :key="key">
             <nuxt-link :to="`/reviews/${album.slug}/`" class="album-banner__review-link">
-                <span class="album-banner__score">{{ album.score }}</span>
+                <span class="album-banner__score">{{ album.score }}/30</span>
                 <img class="album-banner__album-art" :src="album.image" :alt="`Album cover for ${album.artist} - ${album.album}`" width="300" height="300">
             </nuxt-link>
         </div>
@@ -76,7 +76,7 @@ export default Vue.extend({
         background: rgba(0,0,0,0.6);
         color: white;
         font-family: $logo-fontstack;
-        font-size: 17vw;
+        font-size: 7vw;
         text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
         0px 8px 13px rgba(0,0,0,0.1),
         0px 18px 23px rgba(0,0,0,0.1);
@@ -84,11 +84,11 @@ export default Vue.extend({
         transition: 0.25s opacity ease-in-out;
         @include small {
             line-height: 17vw;
-            font-size: 10vw;
+            font-size: 4vw;
         }
         @include medium {
             line-height: 10vw;
-            font-size: 7vw;
+            font-size: 2.5vw;
         }
     }
 
