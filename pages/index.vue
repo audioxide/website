@@ -45,15 +45,15 @@
         </li>
         <li>
           <span class="icon"><icon :icon="['fab', 'facebook-f']" /></span>
-          <a class="label" :href="FACEBOOK_URL">Facebook</a>
+          <a class="label" :href="FACEBOOK_URL" rel="me">Facebook</a>
         </li>
         <li>
           <span class="icon"><icon :icon="['fab', 'twitter']" /></span>
-          <a class="label" :href="TWITTER_URL">Twitter</a>
+          <a class="label" :href="TWITTER_URL" rel="me">Twitter</a>
         </li>
         <li>
           <span class="icon"><icon :icon="['fab', 'instagram']" /></span>
-          <a class="label" :href="INSTAGRAM_URL">Insta</a>
+          <a class="label" :href="INSTAGRAM_URL" rel="me">Insta</a>
         </li>
         <li>
           <span class="icon"><icon icon="rss" /></span>

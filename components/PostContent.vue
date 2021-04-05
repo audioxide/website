@@ -126,6 +126,7 @@ export default Vue.extend({
             figcaption {
                 text-align: right;
                 padding-right: 15px;
+                font-family: $heading-fontstack;
                 font-size: $site-content__font--small;
             }
             table {
@@ -138,6 +139,9 @@ export default Vue.extend({
                     border: 1px solid $colour-grey;
                     padding: 0.5rem;
                     text-align: left;
+                }
+                tr {
+                    line-height: 1.3;
                 }
             }
             .table-container {
