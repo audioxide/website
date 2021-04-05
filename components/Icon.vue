@@ -7,6 +7,7 @@
     faRss,
     faSearch,
     faBrain,
+    faExternalLinkAlt,
   } from '@fortawesome/free-solid-svg-icons';
   import {
     faFacebookF,
@@ -30,6 +31,7 @@
     faBrain,
     faInfoCircle,
     faSpinnerThird,
+    faExternalLinkAlt,
   });
 
   export default Vue.component('icon', FontAwesomeIcon);
