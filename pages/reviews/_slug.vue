@@ -51,7 +51,7 @@
                 </span>
                 <span class="review-sidebar__total" :style="sidebarHighlightStyles">{{review.metadata.totalscore.possible}}</span>
             </div>
-            <p class="review-sidebar__summary" :style="textStyles">{{ review.metadata.summary }}</p>
+            <p class="review-sidebar__summary" :style="textStyles">‘{{ review.metadata.summary }}’</p>
             <div class="review-sidebar__tracks" :class="{ 'review-sidebar__tracks--artist-link': review.metadata.artistLink }" :style="sidebarStyles">
                 <template v-if="review.metadata.essentialtracks.length">
                 <p class="review-sidebar__heading" :style="sidebarHighlightStyles">Essential</p>
@@ -459,12 +459,6 @@ export default Vue.extend({
         margin: 0;
         font-style: italic;
         padding: $site-content__spacer--large;
-        &:before {
-            content: open-quote;
-        }
-        &:after {
-            content: close-quote;
-        }
     }
 
     .review-sidebar__tracks :first-child {
