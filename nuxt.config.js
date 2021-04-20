@@ -129,7 +129,8 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    { src: '~plugins/goatcounter.js', mode: 'client' }
+    { src: '~plugins/goatcounter.js', mode: 'client' },
+    { src: '~plugins/closest-polyfill.js', mode: 'client' }
   ],
   /*
    ** Nuxt.js dev-modules
@@ -145,7 +146,8 @@ export default {
   modules: [
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    'portal-vue/nuxt'
   ],
   /*
    ** Build configuration

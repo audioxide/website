@@ -30,6 +30,7 @@
     "fetch-ponyfill": "^7.0.0",
     "he": "^1.2.0",
     "nuxt": "^2.0.0",
+    "portal-vue": "^2.1.7",
     "sitemap-webpack-plugin": "^1.0.0",
     "wpapi": "^1.2.1"
   },

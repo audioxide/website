@@ -3,6 +3,7 @@
     <audioxide-header />
     <nuxt />
     <audioxide-footer />
+    <portal-target name="global" multiple />
   </div>
 </template>
 
