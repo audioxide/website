@@ -84,8 +84,8 @@ export default Vue.extend({
                 if ('slug' in route.params) {
                     console.log('gonna show a preview for ', route.params.slug);
                     const { slug } = route.params;
-                    const { top, left } = elm.getBoundingClientRect();
-                    this.previews.push({ slug, top, left });
+                    const { top, left, height } = elm.getBoundingClientRect();
+                    this.previews.push({ slug, top: top + height + window.scrollY, left: left + window.scrollX });
                 }
             }
         }
