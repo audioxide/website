@@ -44,7 +44,6 @@ const routeChangeFrequency = (urlPath) => {
 
 export default {
   target: 'static',
-  ssr: false,
   modern: 'client',
   generate: { routes },
   /*
