@@ -1,18 +1,18 @@
 <template>
     <portal to="global">
         <div class="wrapper" :style="{ top: `${top}px`, left: `${left}px`}">
-            <div class="info">
-                <h3>
-                    <span class="album">Debut</span>
-                    <span class="artist">Bjork</span>
-                </h3>
-                <p>‘Björk creates her own identity by combining seemingly contrasting genres and forming something entirely unique. This was the first sign of innovation in her career, breaking the mould of what it means to be a new, exciting artist.’</p>
-                <p class="score">
-                    <span class="given">25</span>
-                    <span class="total">30</span>
-                </p>
+            <h3>
+                <span class="album">Debut</span>
+                <span class="artist">Bjork</span>
+            </h3>
+            <p>‘Björk creates her own identity by combining seemingly contrasting genres and forming something entirely unique. This was the first sign of innovation in her career, breaking the mould of what it means to be a new, exciting artist.’</p>
+            <p class="score">
+                <span class="given">25</span>
+                <span class="total">30</span>
+            </p>
+            <div class="img">
+                <img src="https://picsum.photos/300/300" />
             </div>
-            <img src="https://picsum.photos/300/300" />
         </div>
     </portal>
 </template>
@@ -40,16 +40,13 @@ export default Vue.extend({
     background: white;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.6);
     border-radius: 0.5em;
-    display: flex;
+    display: grid;
     max-width: 625px;
     overflow: hidden;
-}
-
-.info {
-    @include site-content__body-text;
     padding: 20px 37px;
     font-family: $base-fontstack;
     margin: 0;
+    flex-shrink: 1;
     h3, .score {
         font-family: $heading-fontstack;
         font-weight: 500;
@@ -63,6 +60,22 @@ export default Vue.extend({
                 font-style: italic;
             }
         }
+    }
+    p {
+        @include site-content__body-text;
+    }
+}
+
+.img {
+    flex-shrink: 0;
+    width: 300px;
+    img {
+        width: 70%;
+    }
+    &::before {
+        content: '';
+        background-image: 'https://picsum.photos/300/300';
+        filter: blur(10px) contrast(1.5);
     }
 }
 </style>
