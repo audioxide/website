@@ -5,7 +5,8 @@
                 aria-label="Toggle site menu"
                 tabindex="0"
                 @click="collapsed = !collapsed">
-                {{ menuText }}
+                <span class="menu">Menu</span>
+                <span class="more">{{ collapsed ? 'More' : 'Close' }}</span>
         </span>
 
         <!-- Search bar -->
@@ -78,13 +79,6 @@ export default Vue.extend({
         activenav(): NavConfig {
         return this.collapsed ? this.mininav : this.nav;
         },
-        menuText(): String {
-            const bp = this.$store.state.breakpoint;
-            if (bp === 'base' || bp === 'small') {
-                return 'Menu';
-            }
-            return this.collapsed ? 'More' : 'Close';
-        }
     },
 });
 </script>
@@ -115,6 +109,7 @@ export default Vue.extend({
             padding: 1rem 5vw;
             display: flex;
             justify-content: flex-start;
+            align-items: center;
             margin: 0 auto;
         }
     }
@@ -171,7 +166,16 @@ export default Vue.extend({
         display: inline-block;
         margin-right: 2.5rem;
         position: relative;
+        .more {
+            display: none;
+        }
         @include medium {
+            .menu {
+                display: none;
+            }
+            .more {
+                display: initial;
+            }
             .active & {
                 // Audioxide logo width so no overlapping occurs
                 margin-right: calc(2.5rem + 172px);
@@ -240,6 +244,7 @@ export default Vue.extend({
 
     .site-nav.active {
         .menu-toggle {
+            align-self: baseline;
             &::after {
                 transform: rotate(180deg) translateY(1px);
             }
@@ -276,10 +281,7 @@ export default Vue.extend({
         display: none;
         .site-nav.active & {
             display: block;
-            margin-top: 1rem;
-        }
-        @include medium {
-            margin-top: -0.3rem;
+            margin-top: 2rem;
         }
     }
 
