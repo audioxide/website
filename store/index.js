@@ -24,7 +24,7 @@ export const plugins = [
         window.onNuxtReady(setBreakpoint);
         window.addEventListener('DOMContentLoaded', setBreakpoint);
         window.addEventListener('resize', setBreakpoint);
-    },
+    }
 ]
 
 export const state = () => ({
@@ -50,9 +50,6 @@ export const mutations = {
 };
 
 export const actions = {
-    async nuxtServerInit({ dispatch }) {
-        await dispatch('getBannerData');
-    },
     async getBannerData({ commit }) {
         commit('setBannerData', await banner());
     },

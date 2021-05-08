@@ -1,7 +1,7 @@
 <template>
     <div class="album-banner">
         <div class="album-banner__art-wrapper" v-for="(album, key) in bannerData" :key="key">
-            <nuxt-link :to="`/reviews/${album.slug}/`" class="album-banner__review-link">
+            <nuxt-link no-prefetch :to="`/reviews/${album.slug}/`" class="album-banner__review-link">
                 <span class="album-banner__score">{{ album.score }}/30</span>
                 <img class="album-banner__album-art" :src="album.image" :alt="`Album cover for ${album.artist} - ${album.album}`" width="300" height="300">
             </nuxt-link>
@@ -14,6 +14,9 @@ import Vue from 'vue';
 
 export default Vue.extend({
     name: 'AlbumBanner',
+    async fetch() {
+        await this.$store.dispatch('getBannerData');
+    },
     computed: {
         bannerData(): PostListing<Review> {
             return this.$store.state.banner;
