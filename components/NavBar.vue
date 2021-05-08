@@ -16,19 +16,19 @@
             <li v-for="(item, key) in activenav"
                 :key="key"
                 class="site-nav__list-item site-nav__list-item--always-show">
-                <nuxt-link :to="item.link.route" @click.native="collapsed = true">{{ item.link.text }}</nuxt-link>
+                <nuxt-link no-prefetch :to="item.link.route" @click.native="collapsed = true">{{ item.link.text }}</nuxt-link>
                 <ul v-if="!collapsed && 'children' in item" class="site-nav__listing--sub">
                 <li v-for="(child, cKey) in item.children"
                     :key="cKey"
                     class="site-nav__list-item site-nav__list-item--sub">
-                    <nuxt-link :to="child.route" @click.native="collapsed = true">{{ child.text }}</nuxt-link>
+                    <nuxt-link no-prefetch :to="child.route" @click.native="collapsed = true">{{ child.text }}</nuxt-link>
                 </li>
                 </ul>
             </li>
         </ul>
 
         <!-- Logo -->
-        <nuxt-link to="/" class="site-nav__logo">
+        <nuxt-link no-prefetch to="/" class="site-nav__logo">
             <span class="site-nav__logo-text">Audioxide</span>
         </nuxt-link>
 
