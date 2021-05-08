@@ -281,7 +281,7 @@ export default Vue.extend({
         display: none;
         .site-nav.active & {
             display: block;
-            margin-top: 1rem;
+            margin-top: 2rem;
         }
     }
 
