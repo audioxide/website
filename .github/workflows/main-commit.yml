@@ -1,0 +1,12 @@
+name: Emit event on main commit
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  emit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v1.1.3
