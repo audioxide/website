@@ -96,5 +96,11 @@ assets/webfonts
 static/favicon.ico
 static/*.png
 .vscode/settings.json
+
+# Scala metal metadata
 .metals/metals.h2.db
 .metals/metals.lock.db
+
+# Storybook files
+.nuxt-storybook
+storybook-static
