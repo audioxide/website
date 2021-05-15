@@ -68,6 +68,7 @@
   },
   "resolutions": {
     "@babel/core": "7.13.15",
-    "@babel/preset-env": "7.13.15"
+    "@babel/preset-env": "7.13.15",
+    "css-loader": "^4.3.0"
   }
 }
