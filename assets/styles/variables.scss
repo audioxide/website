@@ -59,9 +59,12 @@ $album-banner__total-albums: 22; /* If you change this variable you must change 
 $album-banner__full-scroll-time: 300s;
 
 /* Values = 100vw / number of albums shown on screen size */
-$album-banner__album-width--small: 25vw;
-$album-banner__album-width--medium: 17vw;
-$album-banner__album-width--large: 9vw;
+$album-banner__album-width-raw--small: math.div(100vw, 4);
+$album-banner__album-width--small: calc(#{$album-banner__album-width-raw--small});
+$album-banner__album-width-raw--medium: math.div(100vw, 6);
+$album-banner__album-width--medium: calc(#{$album-banner__album-width-raw--medium});
+$album-banner__album-width-raw--large: math.div(100vw, 11);
+$album-banner__album-width--large: calc(#{$album-banner__album-width-raw--large});
 
 /* Site nav config */
 $site-nav__menu-width--small: 75vw;
@@ -74,9 +77,9 @@ $site-nav__signet-size--medium: calc(#{$album-banner__album-width-raw--medium} *
 $site-nav__signet-size--large: calc(#{$album-banner__album-width--large} * 1.05);
 $site-nav__signet-gutter--small: $site-nav__signet-size--small * 0.2;
 $site-nav__bar-width--large: $content-width--large;
-$site-nav__bar-margin--large: math.div(calc(100vw - 90vw), 2);
+$site-nav__bar-margin--large: 5vw;
 $site-nav__bar-width--x-large: $content-width--x-large;
-$site-nav__bar-margin--x-large: math.div(calc(100vw - 70vw), 2);
+$site-nav__bar-margin--x-large: 15vw;
 
 /* Site content config */
 $site-content__underhang: 0.9;
