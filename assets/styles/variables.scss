@@ -75,9 +75,9 @@ $site-nav__signet-size--medium: calc(#{$album-banner__album-width-raw--medium} *
 $site-nav__signet-size--large: calc(#{$album-banner__album-width--large} * 1.05);
 $site-nav__signet-gutter--small: $site-nav__signet-size--small * 0.2;
 $site-nav__bar-width--large: $content-width--large;
-$site-nav__bar-margin--large: math.div(calc((100vw - #{$site-nav__bar-width--large}), 2));
+$site-nav__bar-margin--large: math.div(calc((100vw - #{$site-nav__bar-width--large})), 2);
 $site-nav__bar-width--x-large: $content-width--x-large;
-$site-nav__bar-margin--x-large: math.div(calc((100vw - #{$site-nav__bar-width--x-large}), 2));
+$site-nav__bar-margin--x-large: math.div(calc((100vw - #{$site-nav__bar-width--x-large})), 2);
 
 /* Site content config */
 $site-content__underhang: 0.9;
