@@ -59,27 +59,20 @@ $album-banner__total-albums: 22; /* If you change this variable you must change 
 $album-banner__full-scroll-time: 300s;
 
 /* Values = 100vw / number of albums shown on screen size */
-$album-banner__album-width-raw--small: math.div(100vw, 4);
-$album-banner__album-width--small: calc(#{$album-banner__album-width-raw--small});
-$album-banner__album-width-raw--medium: math.div(100vw, 6);
-$album-banner__album-width--medium: calc(#{$album-banner__album-width-raw--medium});
-$album-banner__album-width-raw--large: math.div(100vw, 11);
-$album-banner__album-width--large: calc(#{$album-banner__album-width-raw--large});
+$album-banner__score-multiplier: 0.28;
+$album-banner__album-width--small: math.div(100vw, $album-banner__albums-shown--small);
+$album-banner__score-size--small: $album-banner__album-width--small * $album-banner__score-multiplier;
+$album-banner__album-width--medium: math.div(100vw, $album-banner__albums-shown--medium);
+$album-banner__score-size--medium: $album-banner__album-width--medium * $album-banner__score-multiplier;
+$album-banner__album-width--large: math.div(100vw, $album-banner__albums-shown--large);
+$album-banner__score-size--large: $album-banner__album-width--large * $album-banner__score-multiplier;
 
 /* Site nav config */
-$site-nav__menu-width--small: 75vw;
-$site-nav__margin--small: 1.5rem;
 $site-nav__bar-height: 69px;
-$site-nav__bar-font-size--x-small: math.div(69px, 2.5);
-$site-nav__bar-font-size--small: math.div(69px, 2);
+$site-nav__bar-font-size--x-small: math.div($site-nav__bar-height, 2.5);
+$site-nav__bar-font-size--small: math.div($site-nav__bar-height, 2);
 $site-nav__signet-size--small: $site-nav__bar-font-size--small * 1.3;
-$site-nav__signet-size--medium: calc(#{$album-banner__album-width-raw--medium} * 0.6);
-$site-nav__signet-size--large: calc(#{$album-banner__album-width--large} * 1.05);
 $site-nav__signet-gutter--small: $site-nav__signet-size--small * 0.2;
-$site-nav__bar-width--large: $content-width--large;
-$site-nav__bar-margin--large: 5vw;
-$site-nav__bar-width--x-large: $content-width--x-large;
-$site-nav__bar-margin--x-large: 15vw;
 
 /* Site content config */
 $site-content__underhang: 0.9;

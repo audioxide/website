@@ -26,6 +26,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+    @use "sass:math";
     @import '~assets/styles/variables.scss';
 
     .album-banner {
@@ -50,20 +51,20 @@ export default Vue.extend({
         position: relative;
         display: block;
         height: 100%;
-        width: calc(100% / 4);
+        width: calc(100% / $album-banner__albums-shown--small);
         @include small {
-            width: calc(100% / 6);
+            width: calc(100% / $album-banner__albums-shown--medium);
         }
         @include medium {
-            width: calc(100% / 11);
+            width: calc(100% / $album-banner__albums-shown--large);
         }
         @media (max-width: $bp_small - .1) {
-            &:nth-child(4) ~ .album-banner__art-wrapper {
+            &:nth-child(#{$album-banner__albums-shown--small}) ~ .album-banner__art-wrapper {
                 display: none;
             }
         }
         @media (max-width: $bp_medium - .1) {
-            &:nth-child(6) ~ .album-banner__art-wrapper {
+            &:nth-child(#{$album-banner__albums-shown--medium}) ~ .album-banner__art-wrapper {
                 display: none;
             }
         }
@@ -73,39 +74,27 @@ export default Vue.extend({
         position: absolute;
         width: 100%;
         height: 100%;
-        line-height: 25vw;
+        line-height: $album-banner__album-width--small;
         display: block;
         text-align: center;
         background: rgba(0,0,0,0.6);
         color: white;
         font-family: $logo-fontstack;
-        font-size: 7vw;
+        font-size: $album-banner__score-size--small;
         text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
         0px 8px 13px rgba(0,0,0,0.1),
         0px 18px 23px rgba(0,0,0,0.1);
         opacity: 0;
         transition: 0.25s opacity ease-in-out;
         @include small {
-            line-height: 17vw;
-            font-size: 4vw;
+            line-height: $album-banner__album-width--medium;
+            font-size: $album-banner__score-size--medium;
         }
         @include medium {
-            line-height: 10vw;
-            font-size: 2.5vw;
-        }
-    }
-
-    /* @include small {
-        .album-banner__score {
-            line-height: $album-banner__album-width--medium;
-        }
-    }
-
-    @include medium {
-        .album-banner__score {
             line-height: $album-banner__album-width--large;
+            font-size: $album-banner__score-size--large;
         }
-    } */
+    }
 
     .album-banner__album-art {
         width: 100%;
