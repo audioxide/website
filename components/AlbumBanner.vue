@@ -51,12 +51,12 @@ export default Vue.extend({
         position: relative;
         display: block;
         height: 100%;
-        width: calc(100% / $album-banner__albums-shown--small);
+        width: calc(100% / #{$album-banner__albums-shown--small});
         @include small {
-            width: calc(100% / $album-banner__albums-shown--medium);
+            width: calc(100% / #{$album-banner__albums-shown--medium});
         }
         @include medium {
-            width: calc(100% / $album-banner__albums-shown--large);
+            width: calc(100% / #{$album-banner__albums-shown--large});
         }
         @media (max-width: $bp_small - .1) {
             &:nth-child(#{$album-banner__albums-shown--small}) ~ .album-banner__art-wrapper {
