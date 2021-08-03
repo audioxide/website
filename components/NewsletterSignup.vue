@@ -19,4 +19,8 @@
   border-radius: 15px;
 }
 
+span {
+  padding: 10px 0;
+}
+
 </style>
