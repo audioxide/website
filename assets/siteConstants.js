@@ -6,7 +6,7 @@ const SITE_FOUNDING_YEAR=2015;
 // Content channels
 const RSS_BASE='/feed';
 const RSS_URL=SITE_URL + RSS_BASE;
-const NEWSLETTER_URL='https://eepurl.com/cox6qr';
+const NEWSLETTER_URL='https://audioxide.eo.page/newsletter';
 const GITHUB_URL='https://github.com/audioxide';
 
 // Social media
