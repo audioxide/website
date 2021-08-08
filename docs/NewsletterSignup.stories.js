@@ -2,10 +2,10 @@ import NewsletterSignup from '../components/NewsletterSignup.vue';
 
 export default {
     component: NewsletterSignup,
-    title: 'Components/NewsletterSignup',
+    title: 'Components/Newsletter Signup Box',
   };
 
-  export const Primary = () => ({
+  export const Main = () => ({
     components: { NewsletterSignup },
     template: '<newsletter-signup />',
   });

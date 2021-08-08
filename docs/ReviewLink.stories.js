@@ -8,7 +8,7 @@ const reviewLinkDefaults = Object.entries(ReviewLink.sealedOptions.props).reduce
 }, {});
 
 export default {
-  title: 'Components/ReviewLink',
+  title: 'Components/Review Link',
   component: ReviewLink,
   argTypes: {
     postArtist: { name: 'Artist' },
