@@ -104,3 +104,4 @@ static/*.png
 # Storybook files
 .nuxt-storybook
 storybook-static
+package-lock.json
