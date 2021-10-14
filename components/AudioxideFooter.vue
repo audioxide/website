@@ -4,10 +4,10 @@
             <ul class="site-foot_nav">
                 <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--site-logo site-foot_nav-item--middle">
                     <span>Audioxide</span></li>
-                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--facebook site-foot_nav-item--left"><span>Facebook</span><a :href="FACEBOOK_URL" aria-label="Facebook"><icon :icon="['fab', 'facebook-f']" /></a></li>
-                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--twitter site-foot_nav-item--left"><span>Twitter</span><a :href="TWITTER_URL" aria-label="Twitter"><icon :icon="['fab', 'twitter']" /></a></li>
-                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--instagram"><span>Instagram</span><a :href="INSTAGRAM_URL" aria-label="Instagram"><icon :icon="['fab', 'instagram']" /></a></li>
-                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--rss"><span>RSS feed</span><a :href="RSS_BASE" aria-label="RSS feed"><icon icon="rss" /></a></li>
+                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--facebook site-foot_nav-item--left"><span>Facebook</span><a :href="FACEBOOK_URL" aria-label="Facebook"><img src="@/assets/icons/facebook-fill.svg"/></a></li>
+                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--twitter site-foot_nav-item--left"><span>Twitter</span><a :href="TWITTER_URL" aria-label="Twitter"><img src="@/assets/icons/twitter-fill.svg"/></a></li>
+                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--instagram"><span>Instagram</span><a :href="INSTAGRAM_URL" aria-label="Instagram"><img src="@/assets/icons/instagram-fill.svg"/></a></li>
+                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--rss"><span>RSS feed</span><a :href="RSS_BASE" aria-label="RSS feed"><img src="@/assets/icons/rss-fill.svg"/></a></li>
                 <li class="site-foot_nav-item"><nuxt-link to="/about/">About</nuxt-link></li>
                 <li class="site-foot_nav-item"><a :href="NEWSLETTER_URL">Newsletter</a></li>
                 <li class="site-foot_nav-item"><nuxt-link to="/privacy/">Privacy</nuxt-link></li>

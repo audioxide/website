@@ -40,8 +40,8 @@
             <figure>
                 <img class="review-sidebar__album-cover" :alt="coverAlt" :src="review.metadata.featuredimage['medium-square']" :style="sidebarStyles" width="600" height="600" />
                 <template v-if="review.metadata.artworkCredit">
-                    <figcaption class="review-sidebar__artwork-info" v-if="showCredit">The album artwork of <span class="album">{{ review.metadata.album }}</span> by {{ review.metadata.artist }} {{ review.metadata.artworkCredit }} <template v-if="review.metadata.artworkCreditSource"><a :href="review.metadata.artworkCreditSource" class="review-sidebar_artwork-source-link" target="_blank" rel="noopener" aria-label="Source link">Source <icon :icon="['fa', 'external-link-alt']" /></a></template></figcaption>
-                    <icon class="review-sidebar__artwork-info-icon" @click="showCredit = !showCredit" :icon="['fad', 'info-circle']" />
+                    <figcaption class="review-sidebar__artwork-info" v-if="showCredit">The album artwork of <span class="album">{{ review.metadata.album }}</span> by {{ review.metadata.artist }} {{ review.metadata.artworkCredit }} <template v-if="review.metadata.artworkCreditSource"><a :href="review.metadata.artworkCreditSource" class="review-sidebar_artwork-source-link" target="_blank" rel="noopener" aria-label="Source link">Source <img class="review-sidebar__artwork-info-external-link" src="@/assets/icons/external-link.svg" /></a></template></figcaption>
+                    <img class="review-sidebar__artwork-info-icon" @click="showCredit = !showCredit" src="@/assets/icons/information-fill.svg" />
                 </template>
             </figure>
             </div>
@@ -382,7 +382,7 @@ export default Vue.extend({
     }
 
     .review-sidebar__artwork-info-icon {
-        color: grey; // fallback where CSS vars aren't supported
+        fill: grey; // fallback where CSS vars aren't supported
         --fa-primary-color: #f5f5f5;
         --fa-secondary-color: black;
         margin: 8%;
@@ -396,6 +396,10 @@ export default Vue.extend({
     .review-sidebar__artwork-info-icon:hover {
         color: lightgray;
         cursor: pointer;
+    }
+
+    .review-sidebar__artwork-info-external-link {
+        stroke: pink;
     }
 
     .review-sidebar__total-score, .review-sidebar__tracks {

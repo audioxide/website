@@ -37,26 +37,23 @@
       <h3>Follow Audioxide</h3>
       <ul class="social-icons">
         <li>
-          <span class="icon">
-            <icon class="closed" icon="envelope" />
-            <icon class="opened" icon="envelope-open" />
-          </span>
+          <span class="icon"><img class="closed" src="@/assets/icons/mail-fill.svg"/></span>
           <a class="label" :href="NEWSLETTER_URL">Newsletter</a>
         </li>
         <li>
-          <span class="icon"><icon :icon="['fab', 'facebook-f']" /></span>
+          <span class="icon"><img src="@/assets/icons/facebook-fill.svg"/></span>
           <a class="label" :href="FACEBOOK_URL" rel="me">Facebook</a>
         </li>
         <li>
-          <span class="icon"><icon :icon="['fab', 'twitter']" /></span>
+          <span class="icon"><img src="@/assets/icons/twitter-fill.svg"/></span>
           <a class="label" :href="TWITTER_URL" rel="me">Twitter</a>
         </li>
         <li>
-          <span class="icon"><icon :icon="['fab', 'instagram']" /></span>
+          <span class="icon"><img src="@/assets/icons/instagram-fill.svg"/></span>
           <a class="label" :href="INSTAGRAM_URL" rel="me">Insta</a>
         </li>
         <li>
-          <span class="icon"><icon icon="rss" /></span>
+          <span class="icon"><img src="@/assets/icons/rss-fill.svg"/></span>
           <a class="label" :href="RSS_BASE">RSS</a>
         </li>
       </ul>
@@ -327,33 +324,16 @@ export default Vue.extend({
         align-items: center;
         margin-bottom: 1em;
         position: relative;
-        &:hover {
-          .icon [role="img"] {
-            &.opened {
-              display: initial;
-            }
-            &.closed {
-              display: none;
-            }
-          }
-        }
         .icon {
           margin-right: 1em;
-          border-radius: 1em;
-          border: 2.5px solid black;
+          border-radius: 5em;
+          border: 2px solid black;
           font-size: 1em;
-          height: 2em;
-          width: 2em;
+          height: 2.5em;
+          width: 2.5em;
           display: flex;
           justify-content: space-around;
           align-items: center;
-          [role="img"] {
-            width: 0.9em;
-            &.opened {
-              display: none;
-              margin-top: -4px;
-            }
-          }
         }
         .label {
           font-family: $heading-fontstack;
