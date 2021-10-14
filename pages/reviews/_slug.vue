@@ -382,9 +382,7 @@ export default Vue.extend({
     }
 
     .review-sidebar__artwork-info-icon {
-        fill: grey; // fallback where CSS vars aren't supported
-        --fa-primary-color: #f5f5f5;
-        --fa-secondary-color: black;
+        filter: invert(54%) sepia(1%) saturate(0%) hue-rotate(144deg) brightness(94%) contrast(90%);
         margin: 8%;
         width: 8%;
         height: 8%;
@@ -394,12 +392,13 @@ export default Vue.extend({
     }
 
     .review-sidebar__artwork-info-icon:hover {
-        color: lightgray;
+        filter: invert(97%) sepia(1%) saturate(14%) hue-rotate(314deg) brightness(93%) contrast(81%);
         cursor: pointer;
     }
 
     .review-sidebar__artwork-info-external-link {
-        stroke: pink;
+        filter: invert(25%) sepia(78%) saturate(5157%) hue-rotate(334deg) brightness(95%) contrast(98%);
+        height: 100%;
     }
 
     .review-sidebar__total-score, .review-sidebar__tracks {
