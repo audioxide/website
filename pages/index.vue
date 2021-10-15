@@ -37,26 +37,23 @@
       <h3>Follow Audioxide</h3>
       <ul class="social-icons">
         <li>
-          <span class="icon">
-            <icon class="closed" icon="envelope" />
-            <icon class="opened" icon="envelope-open" />
-          </span>
+          <span class="icon"><img src="@/assets/icons/envelope-closed.svg"/></span>
           <a class="label" :href="NEWSLETTER_URL">Newsletter</a>
         </li>
         <li>
-          <span class="icon"><icon :icon="['fab', 'facebook-f']" /></span>
+          <span class="icon"><img src="@/assets/icons/facebook.svg"/></span>
           <a class="label" :href="FACEBOOK_URL" rel="me">Facebook</a>
         </li>
         <li>
-          <span class="icon"><icon :icon="['fab', 'twitter']" /></span>
+          <span class="icon"><img src="@/assets/icons/twitter.svg"/></span>
           <a class="label" :href="TWITTER_URL" rel="me">Twitter</a>
         </li>
         <li>
-          <span class="icon"><icon :icon="['fab', 'instagram']" /></span>
+          <span class="icon"><img src="@/assets/icons/instagram.svg"/></span>
           <a class="label" :href="INSTAGRAM_URL" rel="me">Insta</a>
         </li>
         <li>
-          <span class="icon"><icon icon="rss" /></span>
+          <span class="icon"><img src="@/assets/icons/rss.svg"/></span>
           <a class="label" :href="RSS_BASE">RSS</a>
         </li>
       </ul>
@@ -68,13 +65,12 @@
 import Vue from 'vue';
 import ArticleLink from '@/components/ArticleLink.vue';
 import ReviewLink from '@/components/ReviewLink.vue';
-import Icon from '@/components/Icon.vue';
 import { audioxideStructuredData } from '@/assets/utilities';
 import * as SITE_CONSTANTS from '@/assets/siteConstants';
 import AnyPostLink from '~/components/AnyPostLink.vue';
 
 export default Vue.extend({
-  components: { ArticleLink, ReviewLink, Icon, AnyPostLink },
+  components: { ArticleLink, ReviewLink, AnyPostLink },
   data: () => SITE_CONSTANTS,
   head() {
     return {
@@ -339,11 +335,11 @@ export default Vue.extend({
         }
         .icon {
           margin-right: 1em;
-          border-radius: 1em;
-          border: 2.5px solid black;
+          border-radius: 5em;
+          border: 2px solid black;
           font-size: 1em;
-          height: 2em;
-          width: 2em;
+          height: 2.5em;
+          width: 2.5em;
           display: flex;
           justify-content: space-around;
           align-items: center;
