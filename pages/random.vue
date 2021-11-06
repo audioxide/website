@@ -1,6 +1,11 @@
+<template>
+    <main>
+        <img src="@/assets/icons/brain.svg" class="random-icon"/>
+    </main>
+</template>
+
 <script lang="ts">
 import Vue from 'vue'
-import Icon from '@/components/Icon.vue';
 import { rand } from '~/assets/utilities';
 
 export default Vue.extend({
@@ -11,7 +16,6 @@ export default Vue.extend({
         }
         return Promise.resolve();
     },
-    render: (h) => h(Icon, { props: { icon: 'brain' }, class: 'random-icon' }),
     async created() {
         const totalPosts = this.$store.state.types.postTotal;
         const postInd = rand(0, totalPosts - 1);
@@ -26,7 +30,7 @@ export default Vue.extend({
     @import "~assets/styles/animations.scss";
 
     .random-icon {
-        font-size: 10em;
+        width: 400px;
         margin: 80px auto;
         display: block;
         animation: 1s linear infinite both pulse;
