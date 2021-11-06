@@ -1,15 +1,15 @@
 <template>
   <div>
-    <audioxide-header />
+    <site-header />
     <nuxt />
-    <audioxide-footer />
+    <site-footer />
   </div>
 </template>
 
 <script>
 import Vue from 'vue';
-import AudioxideHeader from '../components/AudioxideHeader.vue';
-import AudioxideFooter from '../components/AudioxideFooter.vue';
+import SiteHeader from '../components/SiteHeader.vue';
+import SiteFooter from '../components/SiteFooter.vue';
 import { SITE_URL } from '../assets/siteConstants';
 import { padNum } from '../assets/utilities';
 
@@ -24,7 +24,7 @@ Vue.filter('formatDate', date => {
 
 export default {
   name: 'AudioxideApp',
-  components: { AudioxideHeader, AudioxideFooter },
+  components: { SiteHeader, SiteFooter },
   head() {
     return {
       meta: [

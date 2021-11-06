@@ -10,7 +10,7 @@
         </span>
 
         <!-- Search bar -->
-        <search-bar class="search-bar" />
+        <site-header-nav-bar-search-bar class="search-bar" />
 
         <!-- Primary Nav -->
         <ul class="site-nav__listing">
@@ -38,7 +38,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import SearchBar from '@/components/SearchBar.vue';
+import SiteHeaderNavBarSearchBar from '@/components/SiteHeaderNavBarSearchBar.vue';
 
 const nav = [
     {
@@ -65,8 +65,8 @@ const nav = [
 type NavConfig = typeof nav;
 
 export default Vue.extend({
-    name: 'NavBar',
-    components: { SearchBar },
+    name: 'SiteHeaderNavBar',
+    components: { SiteHeaderNavBarSearchBar },
     data: () => ({
         nav,
         cutoff: 3,

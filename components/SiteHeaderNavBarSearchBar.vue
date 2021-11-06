@@ -48,7 +48,7 @@ const throttledSearch = throttle(async (ctx) => {
 }, 250);
 
 export default Vue.extend({
-    name: 'SearchBar',
+    name: 'SiteHeaderNavBarSearchBar',
     data: () => ({ results: {}, term: '', isLoading: false }),
     created() {
         // Wait until after the route has loaded to defocus

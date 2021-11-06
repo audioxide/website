@@ -13,7 +13,7 @@
 import Vue from 'vue';
 
 export default Vue.extend({
-    name: 'AlbumBanner',
+    name: 'SiteHeaderAlbumBanner',
     async fetch() {
         await this.$store.dispatch('getBannerData');
     },
