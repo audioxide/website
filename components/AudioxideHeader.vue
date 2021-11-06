@@ -20,5 +20,6 @@ export default {
 
   header {
     padding-top: $site-nav__bar-height;
+    background-color: black;
   }
 </style>
