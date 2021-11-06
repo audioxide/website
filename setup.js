@@ -10,7 +10,6 @@ const init = async () => {
     const getBrandDepPath = (...paths) => getDepPath('brand/assets', ...paths);
 
     fse.copySync(
-        getDepPath('licensed-assets/webfonts'),
         getPath('assets/webfonts'),
     );
 
