@@ -9,11 +9,6 @@ const init = async () => {
     const getDepPath = (...paths) => getPath('./node_modules/@audioxide', ...paths);
     const getBrandDepPath = (...paths) => getDepPath('brand/assets', ...paths);
 
-    fse.copySync(
-        getDepPath('licensed-assets/webfonts'),
-        getPath('assets/webfonts'),
-    );
-
     const imgDir = getPath('assets/img');
     const staticDir = getPath('static');
     fse.copySync(
