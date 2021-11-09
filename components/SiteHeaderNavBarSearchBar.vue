@@ -2,7 +2,7 @@
   <div class="search-bar" :class="{ active: isActive }">
         <span class="input-wrapper">
             <span class="search-icon">
-                <img src="@/assets/icons/magnifying-glass.svg" />
+                <img src="@/assets/icons/magnifying-glass.svg" :class="{ loading: isLoading }" />
             </span>
             <input class="search-input"
                    type="text"
@@ -114,6 +114,16 @@ export default Vue.extend({
         width: 20.8px;
         position: relative;
         margin-top: .3em;
+    }
+
+    @keyframes pulse {
+        0% { opacity: 1; }
+        50% { opacity: 0; }
+        100% { opacity: 1; } 
+    } 
+
+    .search-icon .loading {
+        animation: pulse 10s both;
     }
 
     .search-input {
