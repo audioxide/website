@@ -23,7 +23,7 @@ import Icon from '~/components/Icon.vue';
 import * as SITE_CONSTANTS from '@/assets/siteConstants';
 
 export default {
-    name: "AudioxideFooter",
+    name: "SiteFooter",
     components: { Icon },
     data: () => ({
         year: new Date().getFullYear(),
