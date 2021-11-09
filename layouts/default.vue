@@ -1,7 +1,10 @@
 <template>
   <div>
+    <a class="skip-link" href="#main">Skip to main content</a>
     <audioxide-header />
-    <nuxt />
+    <div id="main">
+      <nuxt />
+    </div>
     <audioxide-footer />
   </div>
 </template>
@@ -114,5 +117,15 @@ export default {
     &::-webkit-details-marker {
       display: none;
     }
+  }
+
+  .skip-link {
+    position: absolute;
+    left: -9999em;
+  }
+
+  .skip-link:focus {
+    left: 0;
+    z-index: 1; /* or larger if necessary */
   }
 </style>
