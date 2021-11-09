@@ -123,7 +123,7 @@ export default Vue.extend({
     } 
 
     .search-icon .loading {
-        animation: pulse 10s both;
+        animation: pulse 2s both;
     }
 
     .search-input {
