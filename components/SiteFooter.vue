@@ -4,10 +4,10 @@
             <ul class="site-foot_nav">
                 <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--site-logo site-foot_nav-item--middle">
                     <span>Audioxide</span></li>
-                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--facebook site-foot_nav-item--left"><span>Facebook</span><a :href="FACEBOOK_URL" aria-label="Facebook"><icon :icon="['fab', 'facebook-f']" /></a></li>
-                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--twitter site-foot_nav-item--left"><span>Twitter</span><a :href="TWITTER_URL" aria-label="Twitter"><icon :icon="['fab', 'twitter']" /></a></li>
-                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--instagram"><span>Instagram</span><a :href="INSTAGRAM_URL" aria-label="Instagram"><icon :icon="['fab', 'instagram']" /></a></li>
-                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--rss"><span>RSS feed</span><a :href="RSS_BASE" aria-label="RSS feed"><icon icon="rss" /></a></li>
+                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--left"><span>Facebook</span><a :href="FACEBOOK_URL" aria-label="Facebook"><img class="svg-icon" alt="Facebook emblem" src="@/assets/icons/facebook.svg"/></a></li>
+                <li class="site-foot_nav-item site-foot_nav-item--icon site-foot_nav-item--left"><span>Twitter</span><a :href="TWITTER_URL" aria-label="Twitter"><img class="svg-icon" alt="Twitter emblem" src="@/assets/icons/twitter.svg"/></a></li>
+                <li class="site-foot_nav-item site-foot_nav-item--icon"><span>Instagram</span><a :href="INSTAGRAM_URL" aria-label="Instagram"><img class="svg-icon" alt="Instagram emblem" src="@/assets/icons/instagram.svg"/></a></li>
+                <li class="site-foot_nav-item site-foot_nav-item--icon"><span>RSS feed</span><a :href="RSS_BASE" aria-label="RSS feed"><img class="svg-icon" alt="RSS icon" src="@/assets/icons/rss.svg"/></a></li>
                 <li class="site-foot_nav-item"><nuxt-link to="/about/">About</nuxt-link></li>
                 <li class="site-foot_nav-item"><a :href="NEWSLETTER_URL">Newsletter</a></li>
                 <li class="site-foot_nav-item"><nuxt-link to="/privacy/">Privacy</nuxt-link></li>
@@ -19,12 +19,10 @@
 </template>
 
 <script>
-import Icon from '~/components/Icon.vue';
 import * as SITE_CONSTANTS from '@/assets/siteConstants';
 
 export default {
     name: "SiteFooter",
-    components: { Icon },
     data: () => ({
         year: new Date().getFullYear(),
         ...SITE_CONSTANTS,
@@ -98,16 +96,19 @@ export default {
                 transition: $transitionMs color ease-in-out,
                             $transitionMs background-color ease-in-out;
                 color: black;
-                border: $line-width solid black;
-                border-radius: 2rem;
                 display: inline-block;
                 width: 40px;
                 height: 40px;
                 line-height: 38px;
                 &:hover {
-                    color: $colour-pink;
-                    background-color: black;
+                    .svg-icon {
+                        filter: invert(25%) sepia(78%) saturate(5157%) hue-rotate(334deg) brightness(95%) contrast(98%);
+                        $transitionMs: 0.25s;
+                    }
                 }
+            }
+            .svg-icon {
+                border-radius: 5rem;
             }
             & span {
                 display: none;

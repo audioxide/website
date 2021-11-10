@@ -40,8 +40,8 @@
             <figure>
                 <img class="review-sidebar__album-cover" :alt="coverAlt" :src="review.metadata.featuredimage['medium-square']" :style="sidebarStyles" width="600" height="600" />
                 <template v-if="review.metadata.artworkCredit">
-                    <figcaption class="review-sidebar__artwork-info" v-if="showCredit">The album artwork of <span class="album">{{ review.metadata.album }}</span> by {{ review.metadata.artist }} {{ review.metadata.artworkCredit }} <template v-if="review.metadata.artworkCreditSource"><a :href="review.metadata.artworkCreditSource" class="review-sidebar_artwork-source-link" target="_blank" rel="noopener" aria-label="Source link">Source <icon :icon="['fa', 'external-link-alt']" /></a></template></figcaption>
-                    <icon class="review-sidebar__artwork-info-icon" @click="showCredit = !showCredit" :icon="['fad', 'info-circle']" />
+                    <figcaption class="review-sidebar__artwork-info" v-if="showCredit">The album artwork of <span class="album">{{ review.metadata.album }}</span> by {{ review.metadata.artist }} {{ review.metadata.artworkCredit }} <template v-if="review.metadata.artworkCreditSource"><a :href="review.metadata.artworkCreditSource" class="review-sidebar_artwork-source-link" target="_blank" rel="noopener" aria-label="Source link">Source <img class="review-sidebar__artwork-info-external-link" src="@/assets/icons/external-link.svg" /></a></template></figcaption>
+                    <img class="review-sidebar__artwork-info-icon" @click="showCredit = !showCredit" src="@/assets/icons/information.svg" />
                 </template>
             </figure>
             </div>
@@ -382,9 +382,9 @@ export default Vue.extend({
     }
 
     .review-sidebar__artwork-info-icon {
-        color: grey; // fallback where CSS vars aren't supported
-        --fa-primary-color: #f5f5f5;
-        --fa-secondary-color: black;
+        filter: invert(95%) sepia(1%) saturate(0%) hue-rotate(144deg) brightness(94%) contrast(90%);
+        background: white;
+        border-radius: 5rem;
         margin: 8%;
         width: 8%;
         height: 8%;
@@ -394,8 +394,15 @@ export default Vue.extend({
     }
 
     .review-sidebar__artwork-info-icon:hover {
-        color: lightgray;
+        filter: invert(97%) sepia(1%) saturate(14%) hue-rotate(314deg) brightness(93%) contrast(81%);
         cursor: pointer;
+    }
+
+    .review-sidebar__artwork-info-external-link {
+        filter: invert(25%) sepia(78%) saturate(5157%) hue-rotate(334deg) brightness(95%) contrast(98%);
+        height: 1em;
+        top: .125em;
+        position: relative;
     }
 
     .review-sidebar__total-score, .review-sidebar__tracks {

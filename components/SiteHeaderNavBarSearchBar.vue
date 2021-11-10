@@ -2,8 +2,7 @@
   <div class="search-bar" :class="{ active: isActive }">
         <span class="input-wrapper">
             <span class="search-icon">
-                <icon icon="search" class="initial" :class="{ active: !isLoading }" />
-                <icon :icon="['fad', 'spinner-third']" spin class="loading" :class="{ active: isLoading }" />
+                <img src="@/assets/icons/magnifying-glass.svg" :class="{ loading: isLoading }" />
             </span>
             <input class="search-input"
                    type="text"
@@ -114,15 +113,17 @@ export default Vue.extend({
     .search-icon {
         width: 20.8px;
         position: relative;
-        margin-top: .4em;
-        & > * {
-            position: absolute;
-            transition: 0.25s opacity ease-in-out;
-            opacity: 0;
-        }
-        .active {
-            opacity: 1;
-        }
+        margin-top: .3em;
+    }
+
+    @keyframes pulse {
+        0% { opacity: 1; }
+        50% { opacity: 0; }
+        100% { opacity: 1; } 
+    } 
+
+    .search-icon .loading {
+        animation: pulse 2s both;
     }
 
     .search-input {
