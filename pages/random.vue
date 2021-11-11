@@ -1,6 +1,6 @@
 <template>
     <main>
-        <img src="@/assets/icons/brain.svg" class="random-icon"/>
+        <img src="@/assets/icons/brain.svg" class="random-icon" alt="Brain icon"/>
     </main>
 </template>
 
