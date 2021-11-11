@@ -37,23 +37,23 @@
       <h3>Follow Audioxide</h3>
       <ul class="social-icons">
         <li>
-          <span class="icon"><img src="@/assets/icons/envelope-closed.svg"/></span>
+          <span class="icon"><img src="@/assets/icons/envelope-closed.svg" alt="Envelope icon"/></span>
           <a class="label" :href="NEWSLETTER_URL">Newsletter</a>
         </li>
         <li>
-          <span class="icon"><img src="@/assets/icons/facebook.svg"/></span>
+          <span class="icon"><img src="@/assets/icons/facebook.svg" alt="Facebook logo"/></span>
           <a class="label" :href="FACEBOOK_URL" rel="me">Facebook</a>
         </li>
         <li>
-          <span class="icon"><img src="@/assets/icons/twitter.svg"/></span>
+          <span class="icon"><img src="@/assets/icons/twitter.svg" alt="Twitter logo"/></span>
           <a class="label" :href="TWITTER_URL" rel="me">Twitter</a>
         </li>
         <li>
-          <span class="icon"><img src="@/assets/icons/instagram.svg"/></span>
+          <span class="icon"><img src="@/assets/icons/instagram.svg" alt="Instagram logo"/></span>
           <a class="label" :href="INSTAGRAM_URL" rel="me">Insta</a>
         </li>
         <li>
-          <span class="icon"><img src="@/assets/icons/rss.svg"/></span>
+          <span class="icon"><img src="@/assets/icons/rss.svg" alt="RSS icon"/></span>
           <a class="label" :href="RSS_BASE">RSS</a>
         </li>
       </ul>

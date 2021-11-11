@@ -2,7 +2,7 @@
   <div class="search-bar" :class="{ active: isActive }">
         <span class="input-wrapper">
             <span class="search-icon">
-                <img src="@/assets/icons/magnifying-glass.svg" :class="{ loading: isLoading }" />
+                <img src="@/assets/icons/magnifying-glass.svg" :class="{ loading: isLoading }" alt="Magnifying glass icon"/>
             </span>
             <input class="search-input"
                    type="text"

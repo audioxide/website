@@ -41,7 +41,7 @@
                 <img class="review-sidebar__album-cover" :alt="coverAlt" :src="review.metadata.featuredimage['medium-square']" :style="sidebarStyles" width="600" height="600" />
                 <template v-if="review.metadata.artworkCredit">
                     <figcaption class="review-sidebar__artwork-info" v-if="showCredit">The album artwork of <span class="album">{{ review.metadata.album }}</span> by {{ review.metadata.artist }} {{ review.metadata.artworkCredit }} <template v-if="review.metadata.artworkCreditSource"><a :href="review.metadata.artworkCreditSource" class="review-sidebar_artwork-source-link" target="_blank" rel="noopener" aria-label="Source link">Source <img class="review-sidebar__artwork-info-external-link" src="@/assets/icons/external-link.svg" /></a></template></figcaption>
-                    <img class="review-sidebar__artwork-info-icon" @click="showCredit = !showCredit" src="@/assets/icons/information.svg" />
+                    <img class="review-sidebar__artwork-info-icon" @click="showCredit = !showCredit" src="@/assets/icons/information.svg" alt="Information icon"/>
                 </template>
             </figure>
             </div>
