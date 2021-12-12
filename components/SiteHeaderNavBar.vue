@@ -45,7 +45,8 @@ const nav = [
         link: { text: 'Reviews', route: '/reviews' },
         children: [
             { text: 'Scoring System', route: '/scoring-system' },
-            { text: 'The 27+ Club', route: '/tags/27-plus-club' }
+            { text: 'The 27+ Club', route: '/tags/27-plus-club' },
+            { text: 'Stats', route: '/stats'}
         ],
     },
     {
