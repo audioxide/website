@@ -1,8 +1,14 @@
 <template>
     <div class="stats-overview-card">
-        <p id="review-count"></p>
-        <p id="average-overall-score"></p>
-        <p id="27-plus-club"></p>
+        <p>Everything below is generated using the <a href="https://api.audioxide.com/reviews.json">Audioxide API</a>. 
+        It's all the stuff you wanted to know, and a few things you didn't.
+        </p>
+        <ul>
+            <li id="review-count"></li>
+            <li id="average-overall-score"></li>
+            <li id="27-plus-club"></li>
+        </ul>
+        <p>More coming soon.</p>
     </div>
 </template>
 
@@ -12,7 +18,7 @@ import Vue from 'vue';
 export default Vue.extend({
     name: 'StatsOverview',
     created() {
-        fetch("https://gist.githubusercontent.com/frederickobrien/6c2239358cfa04d6aaf5f2275a864e56/raw/81e4a925db42361eaf1be69d3a1adfc94795ecec/reviews-data.json")
+        fetch("https://api.audioxide.com/reviews.json")
             .then(response => response.json())
             .then(data => {
                 const albumCount = data.length;
@@ -25,9 +31,11 @@ export default Vue.extend({
                 }
                 const siteWideAverageScore = scores / albumCount;
 
-                document.getElementById('review-count').innerText = `Audioxide has reviewed ${albumCount} albums.`;
+                document.getElementById('review-count').innerHTML = `To date Audioxide has reviewed ${albumCount} albums.`;
                 document.getElementById('average-overall-score').innerText = `The sitewide average score is ${Math.round(siteWideAverageScore * 100) / 100} out of 30.`;
-                document.getElementById('27-plus-club').innerText = `The 27+ Club currently has ${plusClubMembers} members.`;
+                document.getElementById('27-plus-club').innerHTML = `
+                    The <a href="/tags/27-plus-club/">27+ Club</a> currently has ${plusClubMembers} members.
+                    `;
 
             });
     }
@@ -41,7 +49,30 @@ export default Vue.extend({
 
 .stats-overview-card {
     @include site-content__body-text;
-    text-align: center;
+    margin: auto;
+    width: 95%;
+}
+
+.stats-overview-card p {
+    margin-bottom: 10px;
+}
+
+li {
+    list-style-type: disc;
+    list-style-position: inside;
+    padding-bottom: 0.5em;
+}
+
+li:before {
+    color: black;
+}
+
+@media (min-width: 1281px) {
+  
+  .stats-overview-card {
+      width: 50%;
+  }
+  
 }
 
 </style>
