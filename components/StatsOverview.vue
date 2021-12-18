@@ -7,14 +7,15 @@
     </p>
     <ul>
       <li id="review-count">
-        To date Audioxide has reviewed {{ reviewData.length }} albums.
+        To date Audioxide has reviewed {{ this.reviewData.length }} albums
       </li>
       <li id="average-overall-score">
-        The sitewide average score is {{ calculateAverageScore(reviewData) }}
+        The sitewide average score is
+        {{ calculateAverageScore(this.reviewData) }} out of 30
       </li>
       <li id="27-plus-club">
         The <a href="/tags/27-plus-club/">27+ Club</a> currently has
-        {{ count27PlusClubMembers(reviewData) }} members
+        {{ count27PlusClubMembers(this.reviewData) }} members
       </li>
     </ul>
     <p>More coming soon.</p>
@@ -32,8 +33,8 @@ export default Vue.extend({
       const response = await fetch(
         'https://gist.githubusercontent.com/frederickobrien/6c2239358cfa04d6aaf5f2275a864e56/raw/81e4a925db42361eaf1be69d3a1adfc94795ecec/reviews-data.json'
       )
-      const data = await response.json()
-      return (this.reviewData = data)
+      const fetchedData = await response.json()
+      return (this.reviewData = fetchedData)
     },
     calculateAverageScore(data) {
       let scores = 0

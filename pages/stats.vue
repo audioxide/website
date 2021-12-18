@@ -1,7 +1,7 @@
 <template>
   <main>
     <h2>Stats</h2>
-    <stats-overview :reviewData="{ data }" />
+    <stats-overview :reviewData="{ reviewData }" />
   </main>
 </template>
 
@@ -10,12 +10,21 @@ import Vue from 'vue'
 import StatsOverview from '@/components/StatsOverview.vue'
 
 export default Vue.extend({
-  data: function() {
-    return fetch(
-      'https://gist.githubusercontent.com/frederickobrien/6c2239358cfa04d6aaf5f2275a864e56/raw/81e4a925db42361eaf1be69d3a1adfc94795ecec/reviews-data.json'
-    )
-      .then((response) => response.json())
-      .then((data) => data)
+  data: {
+    reviewData: {}
+  },
+  methods: {
+    async fetchData() {
+      const response = await fetch(
+        'https://gist.githubusercontent.com/frederickobrien/6c2239358cfa04d6aaf5f2275a864e56/raw/81e4a925db42361eaf1be69d3a1adfc94795ecec/reviews-data.json'
+      )
+      const fetchedData = await response.json()
+      return fetchedData
+    }
+  },
+  created() {
+    this.reviewData = this.fetchData()
+    console.log(this.reviewData)
   },
   components: { StatsOverview }
 })
