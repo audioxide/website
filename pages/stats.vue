@@ -1,37 +1,51 @@
 <template>
   <main>
     <h2>Stats</h2>
-    <stats-overview :reviewData="{ reviewData }" />
+    <stats-overview :reviewData="this.reviewData" />
   </main>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import StatsOverview from '@/components/StatsOverview.vue'
+import { metaTitle } from '~/assets/utilities'
+
+const apiLink = 'https://api.audioxide.com/reviews.json'
+const dummyApiLinkForLocalDevelopment =
+  'https://gist.githubusercontent.com/frederickobrien/6c2239358cfa04d6aaf5f2275a864e56/raw/81e4a925db42361eaf1be69d3a1adfc94795ecec/reviews-data.json'
 
 export default Vue.extend({
-  data: {
-    reviewData: {}
-  },
-  methods: {
-    async fetchData() {
-      const response = await fetch(
-        'https://gist.githubusercontent.com/frederickobrien/6c2239358cfa04d6aaf5f2275a864e56/raw/81e4a925db42361eaf1be69d3a1adfc94795ecec/reviews-data.json'
-      )
-      const fetchedData = await response.json()
-      return fetchedData
+  data() {
+    return {
+      reviewData: {}
     }
   },
   created() {
-    this.reviewData = this.fetchData()
-    console.log(this.reviewData)
+    const fetchData = async () => {
+      const rawFetchedData = await fetch(apiLink)
+      const formattedFetchedData = await rawFetchedData.json()
+      this.reviewData = formattedFetchedData
+      console.log(this.reviewData)
+    }
+
+    fetchData()
   },
-  components: { StatsOverview }
+  components: { StatsOverview },
+  head() {
+    return {
+      title: metaTitle('Stats')
+    }
+  }
 })
 </script>
 
 <style lang="scss" scoped>
 @import '~assets/styles/variables';
+
+main {
+  width: 90%;
+  margin: auto;
+}
 
 h2 {
   text-align: center;
@@ -39,7 +53,16 @@ h2 {
   font-family: $heading-fontstack;
   margin-top: 1em;
 }
-</style>
 
-function fetchData() { throw new Error('Function not implemented.') } function
-fetchData() { throw new Error('Function not implemented.') }
+@include medium {
+  main {
+    width: 75%;
+  }
+}
+
+@include large {
+  main {
+    width: 50%;
+  }
+}
+</style>

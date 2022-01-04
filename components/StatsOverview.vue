@@ -7,15 +7,15 @@
     </p>
     <ul>
       <li id="review-count">
-        To date Audioxide has reviewed {{ this.reviewData.length }} albums
+        To date Audioxide has reviewed {{ reviewData.length }} albums
       </li>
       <li id="average-overall-score">
         The sitewide average score is
-        {{ calculateAverageScore(this.reviewData) }} out of 30
+        {{ calculateAverageScore(reviewData) }} out of 30
       </li>
       <li id="27-plus-club">
         The <a href="/tags/27-plus-club/">27+ Club</a> currently has
-        {{ count27PlusClubMembers(this.reviewData) }} members
+        {{ count27PlusClubMembers(reviewData) }} members
       </li>
     </ul>
     <p>More coming soon.</p>
@@ -29,13 +29,6 @@ export default Vue.extend({
   name: 'StatsOverview',
   props: ['reviewData'],
   methods: {
-    async fetchData() {
-      const response = await fetch(
-        'https://gist.githubusercontent.com/frederickobrien/6c2239358cfa04d6aaf5f2275a864e56/raw/81e4a925db42361eaf1be69d3a1adfc94795ecec/reviews-data.json'
-      )
-      const fetchedData = await response.json()
-      return (this.reviewData = fetchedData)
-    },
     calculateAverageScore(data) {
       let scores = 0
       for (let i = 0; i < data.length; i++) {
@@ -50,11 +43,6 @@ export default Vue.extend({
       }
       return plusClubMembers
     }
-  },
-  created() {
-    this.fetchData().then(() => {
-      console.log(this.reviewData.length)
-    })
   }
 })
 </script>
@@ -86,7 +74,7 @@ li:before {
 
 @media (min-width: 1281px) {
   .stats-overview-card {
-    width: 50%;
+    width: 67%;
   }
 }
 </style>
