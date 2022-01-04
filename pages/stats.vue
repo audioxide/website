@@ -10,10 +10,6 @@ import Vue from 'vue'
 import StatsOverview from '@/components/StatsOverview.vue'
 import { metaTitle } from '~/assets/utilities'
 
-const apiLink = 'https://api.audioxide.com/reviews.json'
-const dummyApiLinkForLocalDevelopment =
-  'https://gist.githubusercontent.com/frederickobrien/6c2239358cfa04d6aaf5f2275a864e56/raw/81e4a925db42361eaf1be69d3a1adfc94795ecec/reviews-data.json'
-
 export default Vue.extend({
   data() {
     return {
@@ -22,7 +18,9 @@ export default Vue.extend({
   },
   created() {
     const fetchData = async () => {
-      const rawFetchedData = await fetch(apiLink)
+      const rawFetchedData = await fetch(
+        'https://api.audioxide.com/reviews.json'
+      )
       const formattedFetchedData = await rawFetchedData.json()
       this.reviewData = formattedFetchedData
       console.log(this.reviewData)
