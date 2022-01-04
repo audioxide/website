@@ -1,28 +1,66 @@
 <template>
   <main>
     <h2>Stats</h2>
-    <stats-overview />
+    <stats-overview :reviewData="this.reviewData" />
   </main>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import StatsOverview from '@/components/StatsOverview.vue';
+import Vue from 'vue'
+import StatsOverview from '@/components/StatsOverview.vue'
+import { metaTitle } from '~/assets/utilities'
 
 export default Vue.extend({
-  components: { StatsOverview }
-})
+  data() {
+    return {
+      reviewData: {}
+    }
+  },
+  created() {
+    const fetchData = async () => {
+      const rawFetchedData = await fetch(
+        'https://api.audioxide.com/reviews.json'
+      )
+      const formattedFetchedData = await rawFetchedData.json()
+      this.reviewData = formattedFetchedData
+      console.log(this.reviewData)
+    }
 
+    fetchData()
+  },
+  components: { StatsOverview },
+  head() {
+    return {
+      title: metaTitle('Stats')
+    }
+  }
+})
 </script>
 
 <style lang="scss" scoped>
-    @import "~assets/styles/variables";
+@import '~assets/styles/variables';
 
-    h2 {
-        text-align: center;
-        font-size: 2em;
-        font-family: $heading-fontstack;
-        padding: 30px;
-    }
+main {
+  width: 90%;
+  margin: auto;
+}
 
+h2 {
+  text-align: center;
+  font-size: 3em;
+  font-family: $heading-fontstack;
+  margin-top: 1em;
+}
+
+@include medium {
+  main {
+    width: 75%;
+  }
+}
+
+@include large {
+  main {
+    width: 50%;
+  }
+}
 </style>
