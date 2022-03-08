@@ -110,6 +110,7 @@ export default Vue.extend({
 
     .track {
         display: block;
+        font-family: $base-fontstack;
     }
 
     .track-prefix {

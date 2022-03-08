@@ -121,6 +121,7 @@ $listening-party__message-link-hover-colour--speaker1: #ffe6e6;
 @mixin site-content__body-text {
   margin-bottom: $site-content__spacer--xx-large;
   line-height: $site-content__spacer--x-large;
+  font-family: $base-fontstack;
   font-size: 1.1em;
   letter-spacing: -0.2px;
 }
