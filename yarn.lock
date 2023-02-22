@@ -2,10 +2,9 @@
 # yarn lockfile v1
 
 
-"@audioxide/brand@^0.5.0":
+"@audioxide/brand@git+ssh://git@github.com/audioxide/brand.git":
   version "0.5.0"
-  resolved "https://npm.pkg.github.com/download/@audioxide/brand/0.5.0/870bd543c4e6fca4e3939d47e922e63d84e530c0abf45ad2db7174582894af10#e53bf1aa68d39443f3afd88bdbb124f8e894c830"
-  integrity sha512-NXviO92GprPbmGr2wALuKUCnFq0fxoUYzltIJqjYTYXb0SNWaKfouXd2Nh9vqzVlTrAmy+AHFZq7Izjzl1186A==
+  resolved "git+ssh://git@github.com/audioxide/brand.git#b6f0bf2809b9a396a4aeb7284f2b3bb0ced7a9d0"
 
 "@babel/code-frame@7.10.4":
   version "7.10.4"
@@ -6141,6 +6140,11 @@ dotenv-webpack@^1.8.0:
   integrity sha512-o8pq6NLBehtrqA8Jv8jFQNtG9nhRtVqmoD4yWbgUyoU3+9WBlPe+c2EAiaJok9RB28QvrWvdWLZGeTT5aATDMg==
   dependencies:
     dotenv-defaults "^1.0.2"
+
+dotenv@^16.0.3:
+  version "16.0.3"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.3.tgz#115aec42bac5053db3c456db30cc243a5a836a07"
+  integrity sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==
 
 dotenv@^6.2.0:
   version "6.2.0"
