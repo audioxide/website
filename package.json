@@ -18,7 +18,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "@audioxide/brand": "git+ssh://git@github.com/audioxide/brand.git",
+    "@audioxide/brand": "https://github.com/audioxide/brand.git",
     "@babel/core": "^7.0.0",
     "@nuxt/types": "^2.15.4",
     "@nuxtjs/dotenv": "^1.4.0",

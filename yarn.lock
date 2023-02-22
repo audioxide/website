@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@audioxide/brand@git+ssh://git@github.com/audioxide/brand.git":
+"@audioxide/brand@https://github.com/audioxide/brand.git":
   version "0.5.0"
-  resolved "git+ssh://git@github.com/audioxide/brand.git#b6f0bf2809b9a396a4aeb7284f2b3bb0ced7a9d0"
+  resolved "https://github.com/audioxide/brand.git#b6f0bf2809b9a396a4aeb7284f2b3bb0ced7a9d0"
 
 "@babel/code-frame@7.10.4":
   version "7.10.4"
