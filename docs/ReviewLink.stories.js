@@ -1,13 +1,11 @@
-import ReviewLink from '../components/ReviewLink.vue'
+import ReviewLink from '../components/ReviewLink.vue';
 
-const reviewLinkDefaults = Object.entries(
-  ReviewLink.sealedOptions.props
-).reduce((acc, [key, val]) => {
+const reviewLinkDefaults = Object.entries(ReviewLink.sealedOptions.props).reduce((acc, [key, val]) => {
   if (typeof val === 'object' && val !== null && 'default' in val) {
-    acc[key] = val.default
+    acc[key] = val.default;
   }
-  return acc
-}, {})
+  return acc;
+}, {});
 
 export default {
   title: 'Components/Review Link',
@@ -26,17 +24,17 @@ export default {
           standard: 'Standard (3:2)',
           square: 'Square (1:1)',
           original: 'Use original image aspect ratio',
-        },
-      },
+        }
+      }
     },
     imageSize: {
       name: 'Image Size',
       control: 'select',
-      options: ['xsmall', 'small', 'medium', 'large', 'xlarge'],
+      options: ['xsmall', 'small', 'medium', 'large', 'xlarge']
     },
     image: {
       name: 'Show image?',
-      table: { defaultValue: { summary: true } },
+      table: { defaultValue: { summary: true } }
     },
     title: {
       name: 'Show title?',
@@ -46,23 +44,16 @@ export default {
     },
     author: {
       name: 'Show author?',
-    },
+    }
   },
   args: reviewLinkDefaults,
-}
+};
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { ReviewLink },
   render(h) {
-    const {
-      postAlbum,
-      postArtist,
-      postColour,
-      postBlurb,
-      postImagePrefix,
-      ...rest
-    } = this.$props
+    const { postAlbum, postArtist, postColour, postBlurb, postImagePrefix, ...rest } = this.$props;
     return h(ReviewLink, { props: { ...rest, post: this.post } })
   },
   computed: {
@@ -77,25 +68,24 @@ const Template = (args, { argTypes }) => ({
           blurb: this.postBlurb,
           featuredimage: {
             [`${this.imageSize}-${this.imageFormat}`]: `${this.postImagePrefix}-${this.imageSize}-${this.imageFormat}.jpg`,
-          },
-        },
-      }
-    },
+          }
+        }
+      };
+    }
   },
-})
+});
 
-export const Listing = Template.bind({})
+export const Listing = Template.bind({});
 Listing.args = {
   postAlbum: 'Test Album',
   postArtist: 'Test Artist',
   postColour: 'pink',
   postBlurb: 'Lorem ipsum dolor',
-  postImagePrefix:
-    'https://audioxide.com/api/images/album-artwork/mm-food-mf-doom',
-}
+  postImagePrefix: 'https://audioxide.com/api/images/album-artwork/mm-food-mf-doom'
+};
 
-export const RelatedLink = Template.bind({})
+export const RelatedLink = Template.bind({});
 RelatedLink.args = {
   ...Listing.args,
   blurb: false,
-}
+};

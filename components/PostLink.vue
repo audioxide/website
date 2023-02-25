@@ -1,21 +1,15 @@
 <script lang="ts">
 import Vue, { PropType } from 'vue'
 export default Vue.extend({
-  name: 'PostLink',
-  props: {
-    post: { type: Object as PropType<Post>, required: true },
-    imageSize: {
-      type: String as PropType<ImageSizeResolutions>,
-      default: 'small',
+    name: 'PostLink',
+    props: {
+        post: { type: Object as PropType<Post>, required: true },
+        imageSize: { type: String as PropType<ImageSizeResolutions>, default: 'small' },
+        imageFormat: { type: String as PropType<ImageSizeAspectRatios>, default: 'standard' },
+        image: { type: Boolean, default: true },
+        title: { type: Boolean, default: true },
+        blurb: { type: Boolean, default: true },
+        author: { type: Boolean, default: true },
     },
-    imageFormat: {
-      type: String as PropType<ImageSizeAspectRatios>,
-      default: 'standard',
-    },
-    image: { type: Boolean, default: true },
-    title: { type: Boolean, default: true },
-    blurb: { type: Boolean, default: true },
-    author: { type: Boolean, default: true },
-  },
-})
+});
 </script>

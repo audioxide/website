@@ -1,11 +1,6 @@
 <template functional>
   <div class="newsletter-signup-container" :class="data.staticClass || ''">
-    <span
-      >Receive monthly roundups of what we’ve been up to.
-      <a href="https://audioxide.eo.page/newsletter"
-        >Sign up for our newsletter ➔</a
-      ></span
-    >
+    <span>Receive monthly roundups of what we’ve been up to. <a href="https://audioxide.eo.page/newsletter">Sign up for our newsletter ➔</a></span>
   </div>
 </template>
 
@@ -27,4 +22,5 @@
 span {
   padding: 10px 0;
 }
+
 </style>

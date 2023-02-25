@@ -1,44 +1,30 @@
 <template>
-  <div class="post-link">
-    <div class="img-wrap">
-      <img
-        v-if="image"
-        :src="post.metadata.featuredimage[`${imageSize}-${imageFormat}`]"
-        :alt="post.metadata.featuredimageAlt"
-        loading="lazy"
-        width="300"
-        height="200"
-      />
+    <div class="post-link">
+        <div class="img-wrap">
+            <img v-if="image" :src="post.metadata.featuredimage[`${imageSize}-${imageFormat}`]" :alt="post.metadata.featuredimageAlt" loading="lazy" width="300" height="200" />
+        </div>
+        <div class="info">
+            <h4 v-if="title"><nuxt-link :to="`/${post.metadata.type}/${post.metadata.slug}/`" class="overlay-link">{{ post.metadata.title | unescape }}</nuxt-link></h4>
+            <p v-if="blurb">{{ post.metadata.blurb }}</p>
+            <p v-if="author && post.metadata.author" class="author">By <span class="name">{{ post.metadata.author.name }}</span></p>
+        </div>
     </div>
-    <div class="info">
-      <h4 v-if="title">
-        <nuxt-link
-          :to="`/${post.metadata.type}/${post.metadata.slug}/`"
-          class="overlay-link"
-          >{{ post.metadata.title | unescape }}</nuxt-link
-        >
-      </h4>
-      <p v-if="blurb">{{ post.metadata.blurb }}</p>
-      <p v-if="author && post.metadata.author" class="author">
-        By <span class="name">{{ post.metadata.author.name }}</span>
-      </p>
-    </div>
-  </div>
 </template>
 
 <script lang="ts">
-import PostLink from './PostLink.vue'
+import PostLink from './PostLink.vue';
 
 export default PostLink.extend({
-  name: 'ArticleLink',
-})
+    name: 'ArticleLink',
+});
 </script>
 
 <style lang="scss" scoped>
-@import '~assets/styles/variables';
+@import "~assets/styles/variables";
 
 @include postLink;
 @include small {
-  @include postLinkFlex;
+    @include postLinkFlex;
 }
+
 </style>

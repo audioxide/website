@@ -41,7 +41,7 @@ export default Vue.extend({
       const reviewTypeCounts = {
         newRelease: 0,
         retrospective: 0,
-        gag: 0,
+        gag: 0
       }
       for (let i = 0; i < data.length; i++) {
         // Average score
@@ -58,10 +58,10 @@ export default Vue.extend({
       return {
         averageScore: Math.round((scores / data.length) * 100) / 100,
         plusClubMembers,
-        reviewTypeCounts,
+        reviewTypeCounts
       }
-    },
-  },
+    }
+  }
 })
 </script>
 
