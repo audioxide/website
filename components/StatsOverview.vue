@@ -1,4 +1,3 @@
-<!-- eslint-disable prettier/prettier -->
 <template>
   <div class="stats-overview-card">
     <p>
@@ -36,45 +35,31 @@ export default Vue.extend({
   name: 'StatsOverview',
   props: ['reviewData'],
   methods: {
-    calculateAverageScore(data) {
+    calculateSummaryStats(data) {
       let scores = 0
-      for (let i = 0; i < data.length; i++) {
-        scores += data[i].metadata.totalscore.given
-      }
-      return Math.round((scores / data.length) * 100) / 100
-    },
-    count27PlusClubMembers(data) {
       let plusClubMembers = 0
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].metadata.totalscore.given >= 27) plusClubMembers++
+      const reviewTypeCounts = {
+        newRelease: 0,
+        retrospective: 0,
+        gag: 0
       }
-      return plusClubMembers
-    },
-    getReviewTypeCounts(data) {
-      let newRelease = 0
-      let retrospective = 0
-      let gag = 0
       for (let i = 0; i < data.length; i++) {
-        if (data[i].metadata.reviewType === 'newRelease') newRelease++
-        else if (data[i].metadata.reviewType === 'retrospective')
-          retrospective++
-        else if (data[i].metadata.reviewType === 'gag') gag++
-        else console.log('Review type not recognised. Album is:' + data[i].metadata.title)
+        // Average score
+        scores += data[i].metadata.totalscore.given
+        // 27+ Club members
+        if (data[i].metadata.totalscore.given >= 27) plusClubMembers++
+        // Release type counts
+        if (data[i].metadata.reviewType === 'newRelease')
+          reviewTypeCounts.newRelease++
+        if (data[i].metadata.reviewType === 'retrospective')
+          reviewTypeCounts.retrospective++
+        if (data[i].metadata.reviewType === 'gag') reviewTypeCounts.gag++
       }
       return {
-        newRelease,
-        retrospective,
-        gag
+        averageScore: Math.round((scores / data.length) * 100) / 100,
+        plusClubMembers,
+        reviewTypeCounts
       }
-    },
-    calculateSummaryStats(data) {
-      const summaryStats = {
-        averageScore: this.calculateAverageScore(data),
-        plusClubMembers: this.count27PlusClubMembers(data),
-        reviewTypeCounts: this.getReviewTypeCounts(data)
-      }
-      console.log(summaryStats)
-      return summaryStats
     }
   }
 })
