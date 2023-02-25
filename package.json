@@ -60,7 +60,7 @@
     "sass-loader": "^10.0.0",
     "stylelint": "^10.1.0",
     "ts-jest": "^29.0.5",
-    "vue-jest": "^4.0.0-0",
+    "vue-jest": "^3.0.7",
     "vue-loader": "^15.9.6"
   },
   "resolutions": {
