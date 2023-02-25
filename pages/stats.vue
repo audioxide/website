@@ -16,12 +16,12 @@ export default Vue.extend({
   components: { StatsOverview },
   data() {
     return {
-      reviewData: {}
+      reviewData: {},
     }
   },
   head() {
     return {
-      title: metaTitle('Stats')
+      title: metaTitle('Stats'),
     }
   },
   created() {
@@ -32,7 +32,7 @@ export default Vue.extend({
     }
 
     fetchData()
-  }
+  },
 })
 </script>
 
