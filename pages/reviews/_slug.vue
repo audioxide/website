@@ -382,9 +382,6 @@ export default Vue.extend({
     }
 
     .review-sidebar__artwork-info-icon {
-        filter: invert(95%) sepia(1%) saturate(0%) hue-rotate(144deg) brightness(94%) contrast(90%);
-        background: white;
-        border-radius: 5rem;
         margin: 8%;
         width: 8%;
         height: 8%;
