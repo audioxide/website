@@ -1,7 +1,7 @@
 <template>
   <main>
     <h2>Stats</h2>
-    <stats-overview :reviewData="this.reviewData" />
+    <stats-overview :review-data="reviewData" />
   </main>
 </template>
 
@@ -10,29 +10,28 @@ import Vue from 'vue'
 import StatsOverview from '@/components/StatsOverview.vue'
 import { metaTitle } from '~/assets/utilities'
 
+const reviewDataLocation = 'https://api.audioxide.com/reviews.json'
+
 export default Vue.extend({
+  components: { StatsOverview },
   data() {
     return {
       reviewData: {}
     }
   },
-  created() {
-    const fetchData = async () => {
-      const rawFetchedData = await fetch(
-        'https://api.audioxide.com/reviews.json'
-      )
-      const formattedFetchedData = await rawFetchedData.json()
-      this.reviewData = formattedFetchedData
-      console.log(this.reviewData)
-    }
-
-    fetchData()
-  },
-  components: { StatsOverview },
   head() {
     return {
       title: metaTitle('Stats')
     }
+  },
+  created() {
+    const fetchData = async () => {
+      const rawFetchedData = await fetch(reviewDataLocation)
+      const formattedFetchedData = await rawFetchedData.json()
+      this.reviewData = formattedFetchedData
+    }
+
+    fetchData()
   }
 })
 </script>

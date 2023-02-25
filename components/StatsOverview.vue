@@ -7,15 +7,21 @@
     </p>
     <ul>
       <li id="review-count">
-        To date Audioxide has reviewed {{ reviewData.length }} albums
+        To date Audioxide has reviewed {{ reviewData.length }} albums. Of these
+        {{ calculateSummaryStats(reviewData).reviewTypeCounts.newRelease }} were
+        new releases,
+        {{ calculateSummaryStats(reviewData).reviewTypeCounts.retrospective }}
+        were retrospectives, and
+        {{ calculateSummaryStats(reviewData).reviewTypeCounts.gag }} weren't
+        strictly serious.
       </li>
       <li id="average-overall-score">
         The sitewide average score is
-        {{ calculateAverageScore(reviewData) }} out of 30
+        {{ calculateSummaryStats(reviewData).averageScore }} out of 30
       </li>
       <li id="27-plus-club">
         The <a href="/tags/27-plus-club/">27+ Club</a> currently has
-        {{ count27PlusClubMembers(reviewData) }} members
+        {{ calculateSummaryStats(reviewData).plusClubMembers }} members
       </li>
     </ul>
     <p>More coming soon.</p>
@@ -29,19 +35,31 @@ export default Vue.extend({
   name: 'StatsOverview',
   props: ['reviewData'],
   methods: {
-    calculateAverageScore(data) {
+    calculateSummaryStats(data) {
       let scores = 0
-      for (let i = 0; i < data.length; i++) {
-        scores += data[i].metadata.totalscore.given
-      }
-      return Math.round((scores / data.length) * 100) / 100
-    },
-    count27PlusClubMembers(data) {
       let plusClubMembers = 0
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].metadata.totalscore.given >= 27) plusClubMembers++
+      const reviewTypeCounts = {
+        newRelease: 0,
+        retrospective: 0,
+        gag: 0
       }
-      return plusClubMembers
+      for (let i = 0; i < data.length; i++) {
+        // Average score
+        scores += data[i].metadata.totalscore.given
+        // 27+ Club members
+        if (data[i].metadata.totalscore.given >= 27) plusClubMembers++
+        // Release type counts
+        if (data[i].metadata.reviewType === 'newRelease')
+          reviewTypeCounts.newRelease++
+        if (data[i].metadata.reviewType === 'retrospective')
+          reviewTypeCounts.retrospective++
+        if (data[i].metadata.reviewType === 'gag') reviewTypeCounts.gag++
+      }
+      return {
+        averageScore: Math.round((scores / data.length) * 100) / 100,
+        plusClubMembers,
+        reviewTypeCounts
+      }
     }
   }
 })
