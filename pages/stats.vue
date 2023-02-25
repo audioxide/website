@@ -10,6 +10,8 @@ import Vue from 'vue'
 import StatsOverview from '@/components/StatsOverview.vue'
 import { metaTitle } from '~/assets/utilities'
 
+const reviewDataLocation = 'https://api.audioxide.com/reviews.json'
+
 export default Vue.extend({
   data() {
     return {
@@ -18,9 +20,7 @@ export default Vue.extend({
   },
   created() {
     const fetchData = async () => {
-      const rawFetchedData = await fetch(
-        'https://api.audioxide.com/reviews.json'
-      )
+      const rawFetchedData = await fetch(reviewDataLocation)
       const formattedFetchedData = await rawFetchedData.json()
       this.reviewData = formattedFetchedData
       console.log(this.reviewData)

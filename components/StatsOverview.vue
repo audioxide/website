@@ -1,3 +1,4 @@
+<!-- eslint-disable prettier/prettier -->
 <template>
   <div class="stats-overview-card">
     <p>
@@ -7,15 +8,21 @@
     </p>
     <ul>
       <li id="review-count">
-        To date Audioxide has reviewed {{ reviewData.length }} albums
+        To date Audioxide has reviewed {{ reviewData.length }} albums. Of these
+        {{ calculateSummaryStats(reviewData).reviewTypeCounts.newRelease }} were
+        new releases,
+        {{ calculateSummaryStats(reviewData).reviewTypeCounts.retrospective }}
+        were retrospectives, and
+        {{ calculateSummaryStats(reviewData).reviewTypeCounts.gag }} weren't
+        strictly serious.
       </li>
       <li id="average-overall-score">
         The sitewide average score is
-        {{ calculateAverageScore(reviewData) }} out of 30
+        {{ calculateSummaryStats(reviewData).averageScore }} out of 30
       </li>
       <li id="27-plus-club">
         The <a href="/tags/27-plus-club/">27+ Club</a> currently has
-        {{ count27PlusClubMembers(reviewData) }} members
+        {{ calculateSummaryStats(reviewData).plusClubMembers }} members
       </li>
     </ul>
     <p>More coming soon.</p>
@@ -42,6 +49,32 @@ export default Vue.extend({
         if (data[i].metadata.totalscore.given >= 27) plusClubMembers++
       }
       return plusClubMembers
+    },
+    getReviewTypeCounts(data) {
+      let newRelease = 0
+      let retrospective = 0
+      let gag = 0
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].metadata.reviewType === 'newRelease') newRelease++
+        else if (data[i].metadata.reviewType === 'retrospective')
+          retrospective++
+        else if (data[i].metadata.reviewType === 'gag') gag++
+        else console.log('Review type not recognised. Album is:' + data[i].metadata.title)
+      }
+      return {
+        newRelease,
+        retrospective,
+        gag
+      }
+    },
+    calculateSummaryStats(data) {
+      const summaryStats = {
+        averageScore: this.calculateAverageScore(data),
+        plusClubMembers: this.count27PlusClubMembers(data),
+        reviewTypeCounts: this.getReviewTypeCounts(data)
+      }
+      console.log(summaryStats)
+      return summaryStats
     }
   }
 })
