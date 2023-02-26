@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import { get, searchBySlugWith } from '../api/users'
 
 export const state = () => ({

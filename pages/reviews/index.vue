@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { VNode } from 'vue'
+import Vue from 'vue'
 import PostListing from '@/components/PostListing.vue'
 import ReviewLink from '~/components/ReviewLink.vue'
 import {

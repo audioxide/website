@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType, Component } from 'vue'
+import Vue, { PropType } from 'vue'
 import PostLink from '@/components/PostLink.vue'
 import ArticleLink from '@/components/ArticleLink.vue'
 import { throttle } from '~/assets/utilities'

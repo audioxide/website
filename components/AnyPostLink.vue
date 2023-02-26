@@ -1,5 +1,5 @@
 <script lang="ts">
-import Vue, { VNode, PropType } from 'vue'
+import { VNode, PropType } from 'vue'
 import PostLink from '@/components/PostLink.vue'
 import ArticleLink from '@/components/ArticleLink.vue'
 import ReviewLink from '@/components/ReviewLink.vue'

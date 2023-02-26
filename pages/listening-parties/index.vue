@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { VNode } from 'vue'
+import Vue from 'vue'
 import PostListing from '@/components/PostListing.vue'
 import {
   audioxideStructuredData,
