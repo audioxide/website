@@ -437,7 +437,7 @@ export default Vue.extend({
     }
   },
   async created() {
-    this.review = this.$store.getters['posts/pathLookup'][
+    this.review = await this.$store.getters['posts/pathLookup'][
       `reviews/${this.$route.params.slug}`
     ]
   },
