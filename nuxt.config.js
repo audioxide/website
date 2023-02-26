@@ -1,15 +1,13 @@
-const fs = require('fs')
-const path = require('path')
-const SitemapPlugin = require('sitemap-webpack-plugin').default
-const CopyPlugin = require('copy-webpack-plugin')
-
-const {
+import * as fs from 'fs'
+import {
   SITE_NAME,
   SITE_URL,
   SITE_DESCRIPTION,
   TWITTER_HANDLE,
   RSS_URL
-} = require('./assets/siteConstants')
+} from './assets/siteConstants'
+
+const SitemapPlugin = require('sitemap-webpack-plugin').default
 
 const routes = fs.existsSync('./routes.json')
   ? JSON.parse(fs.readFileSync('./routes.json'))
@@ -282,7 +280,7 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {},
+    extend() {},
     plugins: [
       new SitemapPlugin({
         base: SITE_URL,
