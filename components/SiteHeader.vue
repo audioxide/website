@@ -6,20 +6,20 @@
 </template>
 
 <script>
-import SiteHeaderNavBar from './SiteHeaderNavBar.vue';
-import SiteHeaderAlbumBanner from './SiteHeaderAlbumBanner.vue';
+import SiteHeaderNavBar from './SiteHeaderNavBar.vue'
+import SiteHeaderAlbumBanner from './SiteHeaderAlbumBanner.vue'
 
 export default {
   name: 'SiteHeader',
-  components: { SiteHeaderNavBar, SiteHeaderAlbumBanner },
-};
+  components: { SiteHeaderNavBar, SiteHeaderAlbumBanner }
+}
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/styles/variables.scss';
+@import '~assets/styles/variables.scss';
 
-  header {
-    padding-top: $site-nav__bar-height;
-    background-color: black;
-  }
+header {
+  padding-top: $site-nav__bar-height;
+  background-color: black;
+}
 </style>
