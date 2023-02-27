@@ -45,7 +45,7 @@ export default Vue.extend({
         window.URL.prototype &&
         'href' in window.URL.prototype
       ) {
-        ({ host, pathname } = new URL(url))
+        ;({ host, pathname } = new URL(url))
       } else {
         // No version of IE supports an instance of URL
         const uriRegex = /^(([^:/?#]+):)?(\/\/([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?/
