@@ -89,9 +89,9 @@ export const getPosts = (params = {}) =>
     return Promise.all(
       posts.map(async (post) => {
         if (post.categories.includes(2)) {
-          return await processReview(post)
+          return processReview(post)
         }
-        return await processPost(post)
+        return processPost(post)
       })
     )
   })

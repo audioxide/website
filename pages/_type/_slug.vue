@@ -249,7 +249,7 @@ export default Vue.extend({
     if (slug) {
       this.slug = slug
     }
-    const articleData = await this.$store.getters['posts/pathLookup'][
+    const articleData = this.$store.getters['posts/pathLookup'][
       `${this.type}/${this.slug}`
     ]
     if (isObject(articleData)) {
