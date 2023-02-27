@@ -69,9 +69,6 @@ import {
 } from '../../assets/utilities'
 import RelatedPosts from '@/components/RelatedPosts.vue'
 
-type PostColours = [string, string, string]
-type ColourStyles = { [key: string]: string }
-
 export default Vue.extend({
   name: 'AudioxideArticle',
   components: { PostContentBlock, NewsletterSignup, RelatedPosts },
