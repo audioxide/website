@@ -1,7 +1,9 @@
-require('dotenv').config()
-const path = require('path')
-const fse = require('fs-extra')
-const generateRoutes = require('./generateRoutes')
+import path from 'path'
+import fse from 'fs-extra'
+import * as dotenv from 'dotenv'
+import { generateRoutes } from './generateRoutes'
+
+dotenv.config()
 
 const init = async () => {
   const routesReady = generateRoutes()

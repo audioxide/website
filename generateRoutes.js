@@ -1,6 +1,7 @@
-const fs = require('fs')
-const path = require('path')
-const fetchPonyfill = require('fetch-ponyfill')
+import fs from 'fs'
+import path from 'path'
+import fetchPonyfill from 'fetch-ponyfill'
+
 const { fetch } = fetchPonyfill()
 
 // This is only run on servers and run before proxy redirects are implemented. Use the real API url
@@ -9,7 +10,7 @@ const getData = (route) =>
 
 const cacheFilePath = path.resolve(__dirname, './routes.json')
 
-module.exports = async () => {
+export const generateRoutes = async () => {
   if (fs.existsSync(cacheFilePath))
     return JSON.parse(await fs.promises.readFile(cacheFilePath))
   const routes = ['/']

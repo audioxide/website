@@ -40,7 +40,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import he from 'he'
+import { decode } from 'he'
 import { search } from '~/api'
 import { throttle } from '~/assets/utilities'
 
@@ -53,7 +53,7 @@ const throttledSearch = throttle(async (ctx) => {
     ctx.isLoading = true
     ctx.results = await search(term)
     Object.values(ctx.results as Results).forEach((set) =>
-      set.forEach((item) => Vue.set(item, 'title', he.decode(item.title)))
+      set.forEach((item) => Vue.set(item, 'title', decode(item.title)))
     )
     ctx.isLoading = false
     return

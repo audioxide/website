@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import he from 'he'
+import { decode } from 'he'
 import { MetaInfo } from 'vue-meta'
 import PostSingle from '@/components/PostSingle.vue'
 import PostListing from '@/components/PostListing.vue'
@@ -75,7 +75,7 @@ export default Vue.extend({
     switch (this.type) {
       case 'page': {
         const page = this.pageData as Post
-        title = he.decode(page.metadata.title)
+        title = decode(page.metadata.title)
         metaData.title = metaTitle(title)
         metaData.script.push({
           type: 'application/ld+json',

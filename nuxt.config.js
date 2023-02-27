@@ -1,4 +1,5 @@
 import * as fs from 'fs'
+import SitemapPlugin from 'sitemap-webpack-plugin'
 import {
   SITE_NAME,
   SITE_URL,
@@ -6,8 +7,6 @@ import {
   TWITTER_HANDLE,
   RSS_URL
 } from './assets/siteConstants'
-
-const SitemapPlugin = require('sitemap-webpack-plugin').default
 
 const routes = fs.existsSync('./routes.json')
   ? JSON.parse(fs.readFileSync('./routes.json'))
