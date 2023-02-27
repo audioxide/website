@@ -10,7 +10,7 @@ import { rand } from '~/assets/utilities'
 
 export default Vue.extend({
   name: 'RandomPost',
-  asyncData({ params: { type }, store }) {
+  asyncData({ store }) {
     if (!('postTotal' in store.state.types)) {
       return store.dispatch('getTypes')
     }

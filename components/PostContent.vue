@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from 'vue'
+import Vue from 'vue'
 
 type PartialEvent = {
   preventDefault: Event['preventDefault']
@@ -48,7 +48,7 @@ export default Vue.extend({
         ;({ host, pathname } = new URL(url))
       } else {
         // No version of IE supports an instance of URL
-        const uriRegex = /^(([^:\/?#]+):)?(\/\/([^\/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?/
+        const uriRegex = /^(([^:/?#]+):)?(\/\/([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?/
         const result = url.match(uriRegex)
         if (!result) return
         host = result[4]

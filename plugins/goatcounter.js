@@ -2,7 +2,7 @@ export default ({ app }) => {
   window.goatcounter = { no_onload: true }
   let timeoutUID
 
-  app.router.afterEach((to, from) => {
+  app.router.afterEach((to) => {
     if (process.env.isProduction !== true) {
       console.log(`Count pageview for '${to.fullPath}'`)
     } else if (typeof window.goatcounter.count === 'function') {

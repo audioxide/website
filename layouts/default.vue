@@ -17,7 +17,7 @@ import { SITE_URL } from '../assets/siteConstants'
 import { padNum } from '../assets/utilities'
 
 Vue.filter('unescape', (str) =>
-  str.replace(/&#(\d+);/g, (match, dec) => String.fromCharCode(dec))
+  str.replace(/&#(\d+);/g, (dec) => String.fromCharCode(dec))
 )
 Vue.filter('formatDate', (date) => {
   let obj = date

@@ -18,7 +18,6 @@ import he from 'he'
 import { MetaInfo } from 'vue-meta'
 import PostSingle from '@/components/PostSingle.vue'
 import PostListing from '@/components/PostListing.vue'
-import ArticleLink from '@/components/ArticleLink.vue'
 import {
   audioxideStructuredData,
   generateBreadcrumbs,
@@ -44,7 +43,7 @@ const ldJsonType = (slug: string) => {
 
 export default Vue.extend({
   name: 'ArticleListing',
-  components: { PostSingle, PostListing, ArticleLink },
+  components: { PostSingle, PostListing },
   async validate({ params: { type }, store }) {
     if (
       !('pages' in store.state.types) ||
@@ -74,7 +73,7 @@ export default Vue.extend({
     metaData.link = []
     metaData.script = []
     switch (this.type) {
-      case 'page':
+      case 'page': {
         const page = this.pageData as Post
         title = he.decode(page.metadata.title)
         metaData.title = metaTitle(title)
@@ -97,6 +96,7 @@ export default Vue.extend({
         })
         injectRichMediaComponentAssets(metaData, page.metadata.components)
         break
+      }
       case 'post':
         title = toTitleCase(this.slug, '-')
         metaData.title = metaTitle(title)
@@ -131,7 +131,7 @@ export default Vue.extend({
       }
       if (this.type === 'post') {
         return this.$store.state.posts.posts[this.slug]
-      }
+      } else return undefined
     }
   },
   created() {

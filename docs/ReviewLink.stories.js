@@ -51,18 +51,11 @@ export default {
   args: reviewLinkDefaults
 }
 
-const Template = (args, { argTypes }) => ({
+const Template = ({ argTypes }) => ({
   props: Object.keys(argTypes),
   components: { ReviewLink },
   render(h) {
-    const {
-      postAlbum,
-      postArtist,
-      postColour,
-      postBlurb,
-      postImagePrefix,
-      ...rest
-    } = this.$props
+    const { ...rest } = this.$props
     return h(ReviewLink, { props: { ...rest, post: this.post } })
   },
   computed: {
