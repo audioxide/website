@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@audioxide/brand": "https://github.com/audioxide/brand.git",
-    "@babel/core": "^7.0.0",
+    "@babel/core": "^7.21.0",
     "@nuxt/types": "^2.15.4",
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/pwa": "^3.0.0-0",
