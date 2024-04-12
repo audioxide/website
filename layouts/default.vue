@@ -11,8 +11,8 @@
 
 <script>
 import Vue from 'vue'
-import SiteHeader from '../components/SiteHeader.vue'
-import SiteFooter from '../components/SiteFooter.vue'
+import SiteHeader from '../components/layout/SiteHeader.vue'
+import SiteFooter from '../components/layout/SiteFooter.vue'
 import { SITE_URL } from '../assets/siteConstants'
 import { padNum } from '../assets/utilities'
 
