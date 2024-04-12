@@ -1,201 +1,3 @@
-<template>
-  <main
-    v-if="review.metadata"
-    class="site-content site-content--flex review-content"
-  >
-    <header class="review-header" :style="chromeStyles">
-      <template v-if="review.metadata.week < 15">
-        <p class="review-header__disclaimer">
-          Our early reviews are threadbare to say the least. In the spirit of
-          remembering where we came from, we've left them as they were.
-        </p>
-      </template>
-      <details class="collapsible">
-        <summary class="collapsible__toggle">
-          <p class="review-header__date">
-            {{ review.metadata.created | formatDate }}
-          </p>
-        </summary>
-        <p class="review-header__date">
-          Last modified {{ review.metadata.modified | formatDate }}
-        </p>
-      </details>
-      <h1 class="review-header__heading">
-        <span class="review-header__album" :style="textStyles">{{
-          review.metadata.album
-        }}</span>
-        <span class="review-header__artist">{{ review.metadata.artist }}</span>
-      </h1>
-      <p class="review-header__authors">
-        <span>Album review by </span>
-        <span v-for="(reviewItem, key) in reviews" :key="`reviewers-${key}`">
-          <a
-            v-if="reviewAuthorLinks[key]"
-            class="review-header__author"
-            :href="reviewAuthorLinks[key].url"
-            >{{ reviewItem.author.name }}</a
-          ><span v-else>{{ reviewItem.author.name }}</span
-          >{{ authorDivider(key, reviews.length) }}
-        </span>
-      </p>
-    </header>
-    <aside class="review-sidebar">
-      <div class="review-sidebar__album-cover-container">
-        <template v-if="review.metadata.totalscore.given > 26">
-          <a href="/tags/27-plus-club/" target="_blank"
-            ><img
-              class="review-sidebar__sticker"
-              src="~assets/img/award-platinum.png"
-              alt="Platinum Audioxide review badge"
-          /></a>
-        </template>
-        <template
-          v-if="
-            review.metadata.totalscore.given == 26 ||
-              review.metadata.totalscore.given == 25
-          "
-        >
-          <img
-            class="review-sidebar__ribbon"
-            src="~assets/img/award-gold.png"
-            alt="Gold Audioxide review ribbon"
-          />
-        </template>
-        <template
-          v-if="
-            review.metadata.totalscore.given == 24 ||
-              review.metadata.totalscore.given == 23
-          "
-        >
-          <img
-            class="review-sidebar__ribbon"
-            src="~assets/img/award-silver.png"
-            alt="Silver Audioxide review ribbon"
-          />
-        </template>
-        <template
-          v-if="
-            review.metadata.totalscore.given == 22 ||
-              review.metadata.totalscore.given == 21
-          "
-        >
-          <img
-            class="review-sidebar__ribbon"
-            src="~assets/img/award-bronze.png"
-            alt="Bronze Audioxide review ribbon"
-          />
-        </template>
-        <figure>
-          <img
-            class="review-sidebar__album-cover"
-            :alt="coverAlt"
-            :src="review.metadata.featuredimage['medium-square']"
-            :style="sidebarStyles"
-            width="600"
-            height="600"
-          />
-          <template v-if="review.metadata.artworkCredit">
-            <figcaption v-if="showCredit" class="review-sidebar__artwork-info">
-              The album artwork of
-              <span class="album">{{ review.metadata.album }}</span> by
-              {{ review.metadata.artist }} {{ review.metadata.artworkCredit }}
-              <template v-if="review.metadata.artworkCreditSource"
-                ><a
-                  :href="review.metadata.artworkCreditSource"
-                  class="review-sidebar_artwork-source-link"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Source link"
-                  >Source
-                  <img
-                    class="review-sidebar__artwork-info-external-link"
-                    src="@/assets/icons/external-link.svg"/></a
-              ></template>
-            </figcaption>
-            <img
-              class="review-sidebar__artwork-info-icon"
-              src="@/assets/icons/information.svg"
-              alt="Information icon"
-              @click="showCredit = !showCredit"
-            />
-          </template>
-        </figure>
-      </div>
-      <div class="review-sidebar__total-score" :style="sidebarStyles">
-        <span class="review-sidebar__score" :style="sidebarTextStyles">
-          {{ review.metadata.totalscore.given }}
-        </span>
-        <span class="review-sidebar__total" :style="sidebarHighlightStyles">{{
-          review.metadata.totalscore.possible
-        }}</span>
-      </div>
-      <p class="review-sidebar__summary" :style="textStyles">
-        ‘{{ review.metadata.summary }}’
-      </p>
-      <div
-        class="review-sidebar__tracks"
-        :class="{
-          'review-sidebar__tracks--artist-link': review.metadata.artistLink
-        }"
-        :style="sidebarStyles"
-      >
-        <template v-if="review.metadata.essentialtracks.length">
-          <p class="review-sidebar__heading" :style="sidebarHighlightStyles">
-            Essential
-          </p>
-          <p
-            v-for="(track, key) in review.metadata.essentialtracks"
-            :key="`essential-tracks-${key}`"
-            class="review-sidebar__track"
-            :style="sidebarTextStyles"
-          >
-            {{ track }}
-          </p>
-        </template>
-        <template v-if="review.metadata.favouritetracks.length">
-          <p class="review-sidebar__heading" :style="sidebarHighlightStyles">
-            Favourites
-          </p>
-          <p
-            v-for="(track, key) in review.metadata.favouritetracks"
-            :key="`favourite-tracks-${key}`"
-            class="review-sidebar__track"
-            :style="sidebarTextStyles"
-          >
-            {{ track }}
-          </p>
-        </template>
-      </div>
-      <template v-if="review.metadata.artistLink">
-        <div class="review-sidebar__artist-link">
-          <p>
-            <a :href="review.metadata.artistLink" target="_blank" rel="noopener"
-              >Support the artist →</a
-            >
-          </p>
-        </div>
-      </template>
-      <p class="review-sidebar__serial">No. {{ weekStr }}</p>
-    </aside>
-    <section class="review-content">
-      <post-content-block :content="review.content" :colours="colours" />
-      <div class="tags">
-        <span v-for="(tag, key) in review.metadata.tags" :key="key" class="tag"
-          ><nuxt-link :to="`/tags/${tag.replace(/ /g, '-')}`">{{
-            tag
-          }}</nuxt-link></span
-        >
-      </div>
-    </section>
-    <newsletter-signup class="newsletter" />
-    <related-posts
-      v-if="review.related"
-      class="related"
-      :posts="review.related"
-    />
-  </main>
-</template>
-
 <script lang="ts">
 import Vue from 'vue'
 import { MetaInfo } from 'vue-meta'
@@ -209,17 +11,21 @@ import {
   generateBreadcrumbs,
   metaTitle,
   padNum,
-  resolveAuthorLink,
-  authorDivider,
   injectRichMediaComponentAssets
 } from '~/assets/utilities'
+import ReviewHeader from '~/components/reviews/ReviewHeader.vue'
 
 type PostColours = [string, string, string]
 type ColourStyles = { [key: string]: string }
 
 export default Vue.extend({
   name: 'AudioxideReview',
-  components: { PostContentBlock, NewsletterSignup, RelatedPosts },
+  components: {
+    ReviewHeader,
+    PostContentBlock,
+    NewsletterSignup,
+    RelatedPosts
+  },
   asyncData({ params: { slug }, store }) {
     return store.dispatch('posts/getPost', { type: 'reviews', slug })
   },
@@ -396,32 +202,11 @@ export default Vue.extend({
     return pageMeta
   },
   computed: {
-    reviews(): ReviewItem[] {
-      const reviews = []
-      for (const review of this.review.content) {
-        if (typeof review !== 'object') continue
-        reviews.push(review)
-      }
-      return reviews
-    },
-    reviewAuthorLinks(): ReturnType<typeof resolveAuthorLink>[] {
-      const links = []
-      for (const review of this.reviews) {
-        links.push(resolveAuthorLink(review.author.authors[0]))
-      }
-      return links
-    },
     weekStr(): string {
       return padNum(this.review.metadata.week, 7)
     },
     colours(): PostColours {
       return this.review.metadata.colours
-    },
-    textStyles(): ColourStyles {
-      return { color: this.colours[0] }
-    },
-    chromeStyles(): ColourStyles {
-      return { 'border-bottom-color': this.colours[0] }
     },
     sidebarStyles(): ColourStyles {
       return { 'background-color': this.colours[0] }
@@ -437,86 +222,186 @@ export default Vue.extend({
     }
   },
   async created() {
-    this.review = this.$store.getters['posts/pathLookup'][
+    this.review = await this.$store.getters['posts/pathLookup'][
       `reviews/${this.$route.params.slug}`
     ]
-  },
-  methods: {
-    authorDivider
   }
 })
 </script>
 
+<template>
+  <main
+    v-if="review.metadata"
+    class="site-content site-content--flex review-content"
+  >
+    <review-header
+      :colours="colours"
+      :week="review.metadata.week"
+      :created="review.metadata.created"
+      :modified="review.metadata.modified"
+      :artist="review.metadata.artist"
+      :album="review.metadata.album"
+      :content="review.content"
+    />
+    <aside class="review-sidebar">
+      <div class="review-sidebar__album-cover-container">
+        <template v-if="review.metadata.totalscore.given > 26">
+          <a href="/tags/27-plus-club/" target="_blank"
+            ><img
+              class="review-sidebar__sticker"
+              src="~assets/img/award-platinum.png"
+              alt="Platinum Audioxide review badge"
+          /></a>
+        </template>
+        <template
+          v-if="
+            review.metadata.totalscore.given == 26 ||
+              review.metadata.totalscore.given == 25
+          "
+        >
+          <img
+            class="review-sidebar__ribbon"
+            src="~assets/img/award-gold.png"
+            alt="Gold Audioxide review ribbon"
+          />
+        </template>
+        <template
+          v-if="
+            review.metadata.totalscore.given == 24 ||
+              review.metadata.totalscore.given == 23
+          "
+        >
+          <img
+            class="review-sidebar__ribbon"
+            src="~assets/img/award-silver.png"
+            alt="Silver Audioxide review ribbon"
+          />
+        </template>
+        <template
+          v-if="
+            review.metadata.totalscore.given == 22 ||
+              review.metadata.totalscore.given == 21
+          "
+        >
+          <img
+            class="review-sidebar__ribbon"
+            src="~assets/img/award-bronze.png"
+            alt="Bronze Audioxide review ribbon"
+          />
+        </template>
+        <figure>
+          <img
+            class="review-sidebar__album-cover"
+            :alt="coverAlt"
+            :src="review.metadata.featuredimage['medium-square']"
+            :style="sidebarStyles"
+            width="600"
+            height="600"
+          />
+          <template v-if="review.metadata.artworkCredit">
+            <figcaption v-if="showCredit" class="review-sidebar__artwork-info">
+              The album artwork of
+              <span class="album">{{ review.metadata.album }}</span> by
+              {{ review.metadata.artist }} {{ review.metadata.artworkCredit }}
+              <template v-if="review.metadata.artworkCreditSource"
+                ><a
+                  :href="review.metadata.artworkCreditSource"
+                  class="review-sidebar_artwork-source-link"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Source link"
+                  >Source
+                  <img
+                    class="review-sidebar__artwork-info-external-link"
+                    src="@/assets/icons/external-link.svg"/></a
+              ></template>
+            </figcaption>
+            <img
+              class="review-sidebar__artwork-info-icon"
+              src="@/assets/icons/information.svg"
+              alt="Information icon"
+              @click="showCredit = !showCredit"
+            />
+          </template>
+        </figure>
+      </div>
+      <div class="review-sidebar__total-score" :style="sidebarStyles">
+        <span class="review-sidebar__score" :style="sidebarTextStyles">
+          {{ review.metadata.totalscore.given }}
+        </span>
+        <span class="review-sidebar__total" :style="sidebarHighlightStyles">{{
+          review.metadata.totalscore.possible
+        }}</span>
+      </div>
+      <p class="review-sidebar__summary" :style="{ color: colours[0] }">
+        ‘{{ review.metadata.summary }}’
+      </p>
+      <div
+        class="review-sidebar__tracks"
+        :class="{
+          'review-sidebar__tracks--artist-link': review.metadata.artistLink
+        }"
+        :style="sidebarStyles"
+      >
+        <template v-if="review.metadata.essentialtracks.length">
+          <p class="review-sidebar__heading" :style="sidebarHighlightStyles">
+            Essential
+          </p>
+          <p
+            v-for="(track, key) in review.metadata.essentialtracks"
+            :key="`essential-tracks-${key}`"
+            class="review-sidebar__track"
+            :style="sidebarTextStyles"
+          >
+            {{ track }}
+          </p>
+        </template>
+        <template v-if="review.metadata.favouritetracks.length">
+          <p class="review-sidebar__heading" :style="sidebarHighlightStyles">
+            Favourites
+          </p>
+          <p
+            v-for="(track, key) in review.metadata.favouritetracks"
+            :key="`favourite-tracks-${key}`"
+            class="review-sidebar__track"
+            :style="sidebarTextStyles"
+          >
+            {{ track }}
+          </p>
+        </template>
+      </div>
+      <template v-if="review.metadata.artistLink">
+        <div class="review-sidebar__artist-link">
+          <p>
+            <a :href="review.metadata.artistLink" target="_blank" rel="noopener"
+              >Support the artist →</a
+            >
+          </p>
+        </div>
+      </template>
+      <p class="review-sidebar__serial">No. {{ weekStr }}</p>
+    </aside>
+    <section class="review-content">
+      <post-content-block :content="review.content" :colours="colours" />
+      <div class="tags">
+        <span v-for="(tag, key) in review.metadata.tags" :key="key" class="tag"
+          ><nuxt-link :to="`/tags/${tag.replace(/ /g, '-')}`">{{
+            tag
+          }}</nuxt-link></span
+        >
+      </div>
+    </section>
+    <newsletter-signup class="newsletter" />
+    <related-posts
+      v-if="review.related"
+      class="related"
+      :posts="review.related"
+    />
+  </main>
+</template>
+
 <style lang="scss" scoped>
 @import '~assets/styles/variables';
-
-.review-header {
-  border-bottom: 5px solid black;
-  padding-top: $site-content__spacer--large;
-  padding-bottom: $site-content__spacer--x-large;
-}
-
-.collapsible {
-  text-align: left;
-}
-
-.collapsible__toggle {
-  display: inline;
-  padding: 0.5em;
-  &:active,
-  &:focus {
-    outline: none;
-  }
-}
-
-.review-header__date {
-  @include site-content__subtext;
-}
-
-.review-header__album,
-.review-header__artist,
-.review-header__date,
-.review-header__authors,
-.review-header__disclaimer {
-  font-family: $heading-fontstack;
-}
-
-.review-header__heading {
-  margin-top: $site-content__spacer--large;
-  margin-bottom: $site-content__spacer--large;
-}
-
-.review-header__disclaimer {
-  color: black;
-  background-color: #ffe501;
-  padding: 0.9em;
-  font-weight: 600;
-  border-radius: 5px;
-  margin-top: $site-content__spacer--large;
-  margin-bottom: $site-content__spacer--large;
-  display: inline-block;
-}
-
-.review-header__album {
-  font-size: $site-content__font--x-large;
-  padding-bottom: 0.1em;
-  display: block;
-}
-
-.review-header__artist {
-  font-size: $site-content__font--x-large * 0.9;
-  display: block;
-}
-
-.review-header__album {
-  font-weight: bold;
-  font-style: italic;
-}
-
-.review-header__authors {
-  color: $colour-grey;
-  margin-top: $site-content__spacer--x-large;
-}
 
 .review-sidebar__album-cover-container {
   position: relative;
