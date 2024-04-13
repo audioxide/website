@@ -30,7 +30,7 @@
 
 <script lang="ts">
 import Vue, { PropType } from 'vue'
-import PostContent from '~/components/PostContent.vue'
+import PostContent from '~/components/content/PostContent.vue'
 import { isObject, resolveAuthorLink } from '~/assets/utilities'
 
 type AuthorLink = {

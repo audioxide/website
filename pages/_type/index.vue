@@ -16,7 +16,7 @@
 import Vue from 'vue'
 import he from 'he'
 import { MetaInfo } from 'vue-meta'
-import PostSingle from '@/components/PostSingle.vue'
+import PostSingle from '@/components/content/PostSingle.vue'
 import PostListing from '@/components/PostListing.vue'
 import {
   generateBreadcrumbs,

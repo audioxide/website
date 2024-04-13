@@ -2,7 +2,7 @@
 import Vue from 'vue'
 import { MetaInfo } from 'vue-meta'
 import formatISO from 'date-fns/formatISO'
-import PostContentBlock from '../../components/PostContentBlock.vue'
+import PostContentBlock from '../../components/content/PostContentBlock.vue'
 import NewsletterSignup from '../../components/NewsletterSignup.vue'
 import RelatedPosts from '@/components/RelatedPosts.vue'
 import {
