@@ -3,9 +3,7 @@ import { MetaInfo } from 'vue-meta'
 import he from 'he'
 
 const rand = (min: number, max: number) =>
-  (Math.floor(Math.pow(10, 14) * Math.random() * Math.random()) %
-    (max - min + 1)) +
-  min
+  (Math.floor(10 ** 14 * Math.random() * Math.random()) % (max - min + 1)) + min
 
 const padNum = (number: number, length = 2, character = '0') =>
   number.toString().padStart(length, character)
