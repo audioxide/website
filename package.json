@@ -29,7 +29,7 @@
     "fetch-ponyfill": "^7.1.0",
     "he": "^1.2.0",
     "nuxt": "^2.15.0",
-    "sitemap-webpack-plugin": "^1.0.0",
+    "sitemap-webpack-plugin": "^1.1.1",
     "wpapi": "^1.2.1"
   },
   "devDependencies": {
