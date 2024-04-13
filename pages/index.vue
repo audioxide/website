@@ -114,11 +114,11 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import ArticleLink from '@/components/ArticleLink.vue'
-import ReviewLink from '@/components/ReviewLink.vue'
+import ArticleLink from '@/components/link-cards/ArticleLink.vue'
+import ReviewLink from '@/components/link-cards/ReviewLink.vue'
 import { audioxideStructuredData } from '@/assets/structured-data'
 import * as SITE_CONSTANTS from '@/assets/siteConstants'
-import AnyPostLink from '~/components/AnyPostLink.vue'
+import AnyPostLink from '~/components/link-cards/AnyPostLink.vue'
 
 export default Vue.extend({
   components: { ArticleLink, ReviewLink, AnyPostLink },

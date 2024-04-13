@@ -5,7 +5,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import PostListing from '@/components/PostListing.vue'
-import ReviewLink from '~/components/ReviewLink.vue'
+import ReviewLink from '~/components/link-cards/ReviewLink.vue'
 import { generateBreadcrumbs, metaTitle } from '~/assets/utilities'
 import { audioxideStructuredData } from '~/assets/structured-data'
 

@@ -1,4 +1,4 @@
-import ReviewLink from '../components/ReviewLink.vue'
+import ReviewLink from '../components/link-cards/ReviewLink.vue'
 
 const reviewLinkDefaults = Object.entries(
   ReviewLink.sealedOptions.props

@@ -10,7 +10,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import PostListing from '@/components/PostListing.vue'
-import AnyPostLink from '@/components/AnyPostLink.vue'
+import AnyPostLink from '@/components/link-cards/AnyPostLink.vue'
 import { generateBreadcrumbs, metaTitle } from '~/assets/utilities'
 import { audioxideStructuredData } from '~/assets/structured-data'
 
