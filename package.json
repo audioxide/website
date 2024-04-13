@@ -20,7 +20,7 @@
   "dependencies": {
     "@audioxide/brand": "https://github.com/audioxide/brand.git",
     "@babel/core": "^7.21.0",
-    "@nuxt/types": "^2.15.4",
+    "@nuxt/types": "^2.17.3",
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/pwa": "^3.0.0-0",
     "@types/he": "^1.1.1",
@@ -28,7 +28,7 @@
     "date-fns": "^2.30.0",
     "fetch-ponyfill": "^7.1.0",
     "he": "^1.2.0",
-    "nuxt": "^2.15.0",
+    "nuxt": "^2.17.3",
     "sitemap-webpack-plugin": "^1.1.1",
     "wpapi": "^1.2.2"
   },
