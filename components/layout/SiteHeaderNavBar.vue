@@ -56,7 +56,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import SiteHeaderNavBarSearchBar from '@/components/SiteHeaderNavBarSearchBar.vue'
+import SiteHeaderNavBarSearchBar from '@/components/layout/SiteHeaderNavBarSearchBar.vue'
 
 const nav = [
   {

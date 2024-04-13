@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import Vue, { PropType } from 'vue'
-import AnyPostLink from '@/components/AnyPostLink.vue'
+import AnyPostLink from '@/components/link-cards/AnyPostLink.vue'
 
 export default Vue.extend({
   name: 'RelatedPosts',

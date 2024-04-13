@@ -16,15 +16,15 @@
 import Vue from 'vue'
 import he from 'he'
 import { MetaInfo } from 'vue-meta'
-import PostSingle from '@/components/PostSingle.vue'
+import PostSingle from '@/components/content/PostSingle.vue'
 import PostListing from '@/components/PostListing.vue'
 import {
-  audioxideStructuredData,
   generateBreadcrumbs,
   injectRichMediaComponentAssets,
   metaTitle,
   toTitleCase
 } from '~/assets/utilities'
+import { audioxideStructuredData } from '~/assets/structured-data'
 
 type ContentTypes = { pages: string[]; postTypes: string[] }
 const isPost = (type: string, types: ContentTypes) =>

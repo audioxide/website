@@ -55,22 +55,19 @@
 import Vue from 'vue'
 import { MetaInfo } from 'vue-meta'
 import { formatISO } from 'date-fns'
-import PostContentBlock from '../../components/PostContentBlock.vue'
+import PostContentBlock from '../../components/content/PostContentBlock.vue'
 import NewsletterSignup from '../../components/NewsletterSignup.vue'
 import {
   resolveAuthorLink,
   isObject,
   metaTitle,
   toTitleCase,
-  audioxideStructuredData,
   generateBreadcrumbs,
   authorDivider,
   injectRichMediaComponentAssets
 } from '../../assets/utilities'
+import { audioxideStructuredData } from '../../assets/structured-data'
 import RelatedPosts from '@/components/RelatedPosts.vue'
-
-type PostColours = [string, string, string]
-type ColourStyles = { [key: string]: string }
 
 export default Vue.extend({
   name: 'AudioxideArticle',

@@ -1,8 +1,8 @@
 <script lang="ts">
 import { VNode, PropType } from 'vue'
-import PostLink from '@/components/PostLink.vue'
-import ArticleLink from '@/components/ArticleLink.vue'
-import ReviewLink from '@/components/ReviewLink.vue'
+import PostLink from '@/components/link-cards/PostLink.vue'
+import ArticleLink from '@/components/link-cards/ArticleLink.vue'
+import ReviewLink from '@/components/link-cards/ReviewLink.vue'
 
 const ALBUM_TYPES = ['reviews']
 

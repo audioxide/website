@@ -5,11 +5,8 @@
 <script lang="ts">
 import Vue from 'vue'
 import PostListing from '@/components/PostListing.vue'
-import {
-  audioxideStructuredData,
-  generateBreadcrumbs,
-  metaTitle
-} from '~/assets/utilities'
+import { generateBreadcrumbs, metaTitle } from '~/assets/utilities'
+import { audioxideStructuredData } from '~/assets/structured-data'
 
 const type = 'listening-parties'
 const typeTitle = 'Listening parties'

@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import StatsOverview from '@/components/StatsOverview.vue'
+import StatsOverview from '@/components/stats/StatsOverview.vue'
 import { metaTitle } from '~/assets/utilities'
 
 const reviewDataLocation = 'https://api.audioxide.com/reviews.json'
