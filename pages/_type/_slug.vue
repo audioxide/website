@@ -46,7 +46,6 @@
         >
       </div>
     </section>
-    <newsletter-signup />
     <related-posts v-if="article.related" :posts="article.related" />
   </main>
 </template>
@@ -56,7 +55,6 @@ import Vue from 'vue'
 import { MetaInfo } from 'vue-meta'
 import { formatISO } from 'date-fns'
 import PostContentBlock from '../../components/content/PostContentBlock.vue'
-import NewsletterSignup from '../../components/NewsletterSignup.vue'
 import {
   resolveAuthorLink,
   isObject,
@@ -71,7 +69,7 @@ import RelatedPosts from '@/components/RelatedPosts.vue'
 
 export default Vue.extend({
   name: 'AudioxideArticle',
-  components: { PostContentBlock, NewsletterSignup, RelatedPosts },
+  components: { PostContentBlock, RelatedPosts },
   asyncData({ params: { type, slug }, store }) {
     return store.dispatch('posts/getPost', { type, slug })
   },
@@ -369,10 +367,6 @@ main.site-content.article-content {
     .tags {
       width: 67%;
       margin: auto;
-    }
-
-    .newsletter-container {
-      width: 67%;
     }
   }
 }
