@@ -3,7 +3,6 @@ import Vue from 'vue'
 import { MetaInfo } from 'vue-meta'
 import formatISO from 'date-fns/formatISO'
 import PostContentBlock from '../../components/content/PostContentBlock.vue'
-import NewsletterSignup from '../../components/NewsletterSignup.vue'
 import RelatedPosts from '@/components/RelatedPosts.vue'
 import {
   albumCoverAlt,
@@ -22,7 +21,6 @@ export default Vue.extend({
     ReviewHeader,
     ReviewSummary,
     PostContentBlock,
-    NewsletterSignup,
     RelatedPosts
   },
   asyncData({ params: { slug }, store }) {
@@ -198,7 +196,6 @@ export default Vue.extend({
         >
       </div>
     </section>
-    <newsletter-signup class="newsletter" />
     <related-posts
       v-if="review.related"
       class="related"
@@ -231,7 +228,6 @@ export default Vue.extend({
     padding-right: $site-content__spacer--xx-large;
   }
   .review-sidebar,
-  ::v-deep .newsletter,
   ::v-deep .related {
     order: 1;
   }

@@ -48,9 +48,6 @@
           <nuxt-link to="/about/">About</nuxt-link>
         </li>
         <li class="site-foot_nav-item">
-          <a :href="NEWSLETTER_URL">Newsletter</a>
-        </li>
-        <li class="site-foot_nav-item">
           <nuxt-link to="/privacy/">Privacy</nuxt-link>
         </li>
         <li class="site-foot_nav-item">
