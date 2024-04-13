@@ -116,7 +116,7 @@
 import Vue from 'vue'
 import ArticleLink from '@/components/ArticleLink.vue'
 import ReviewLink from '@/components/ReviewLink.vue'
-import { audioxideStructuredData } from '@/assets/utilities'
+import { audioxideStructuredData } from '@/assets/structured-data'
 import * as SITE_CONSTANTS from '@/assets/siteConstants'
 import AnyPostLink from '~/components/AnyPostLink.vue'
 

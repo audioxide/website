@@ -62,11 +62,11 @@ import {
   isObject,
   metaTitle,
   toTitleCase,
-  audioxideStructuredData,
   generateBreadcrumbs,
   authorDivider,
   injectRichMediaComponentAssets
 } from '../../assets/utilities'
+import { audioxideStructuredData } from '../../assets/structured-data'
 import RelatedPosts from '@/components/RelatedPosts.vue'
 
 export default Vue.extend({

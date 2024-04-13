@@ -7,11 +7,10 @@ import NewsletterSignup from '../../components/NewsletterSignup.vue'
 import RelatedPosts from '@/components/RelatedPosts.vue'
 import {
   albumCoverAlt,
-  audioxideStructuredData,
-  generateBreadcrumbs,
   metaTitle,
   injectRichMediaComponentAssets
 } from '~/assets/utilities'
+import { createReviewStructuredData } from '~/assets/structured-data'
 import ReviewHeader from '~/components/reviews/ReviewHeader.vue'
 import ReviewSummary from '~/components/reviews/ReviewSummary.vue'
 
@@ -149,54 +148,12 @@ export default Vue.extend({
 
       injectRichMediaComponentAssets(pageMeta, metadata.components)
 
-      pageMeta.script = [
-        {
-          type: 'application/ld+json',
-          json: {
-            '@context': 'http://schema.org',
-            '@type': 'Review',
-            headline: title,
-            description: metadata.summary || metadata.blurb || '',
-            datePublished,
-            dateModified,
-            author: metadata.author.authors.map((author) => ({
-              '@type': 'Person',
-              name: author.name
-            })),
-            itemReviewed: {
-              '@type': 'MusicAlbum',
-              name: metadata.album,
-              '@id': `https://musicbrainz.org/release-group/${metadata.albumMBID}`,
-              image: (metadata.featuredimage || {})['medium-square'] || '',
-              albumReleaseType: 'http://schema.org/AlbumRelease',
-              byArtist: {
-                '@type': 'MusicGroup',
-                name: metadata.artist,
-                '@id': `https://musicbrainz.org/artist/${metadata.artistMBID}`
-              }
-            },
-            reviewRating: {
-              '@type': 'Rating',
-              ratingValue: metadata.totalscore.given,
-              worstRating: 0,
-              bestRating: metadata.totalscore.possible
-            },
-            speakable: {
-              '@type': 'SpeakableSpecification',
-              cssSelector: [
-                '.review-header__album',
-                '.review-header__artist',
-                '.review-sidebar__summary'
-              ]
-            },
-            publisher: audioxideStructuredData(),
-            breadcrumb: generateBreadcrumbs(this.$route, [
-              'Album Reviews',
-              albumArtist
-            ])
-          }
-        }
-      ]
+      pageMeta.script = createReviewStructuredData(
+        metadata,
+        datePublished,
+        dateModified,
+        this.$route
+      )
     }
     return pageMeta
   },

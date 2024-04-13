@@ -11,11 +11,8 @@
 import Vue from 'vue'
 import PostListing from '@/components/PostListing.vue'
 import AnyPostLink from '@/components/AnyPostLink.vue'
-import {
-  audioxideStructuredData,
-  generateBreadcrumbs,
-  metaTitle
-} from '~/assets/utilities'
+import { generateBreadcrumbs, metaTitle } from '~/assets/utilities'
+import { audioxideStructuredData } from '~/assets/structured-data'
 
 const tagFromParam = (tagParam: string) => tagParam.replace(/-/g, ' ')
 
