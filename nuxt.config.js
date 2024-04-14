@@ -47,7 +47,10 @@ export default defineNuxtConfig({
   target: 'static',
   modern: 'client',
   generate: { routes },
-  bridge: false,
+  bridge: {
+    typescript: true,
+    nitro: true
+  },
   /*
    ** Environment defaults
    */
@@ -263,7 +266,6 @@ export default defineNuxtConfig({
    ** Nuxt.js dev-modules
    */
   buildModules: [
-    '@nuxt/typescript-build',
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module'
   ],
@@ -282,7 +284,7 @@ export default defineNuxtConfig({
     /*
      ** You can extend webpack config here
      */
-    extend() {},
+    extend() { },
     plugins: [
       new SitemapPlugin({
         base: SITE_URL,

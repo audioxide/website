@@ -8,10 +8,10 @@
   "scripts": {
     "setup-env": "cp .env.example .env",
     "setup": "node setup.js",
-    "dev": "nuxt2",
-    "build": "nuxt2 build",
-    "generate": "nuxt2 generate && cp dist/_nuxt/sitemap.* dist",
-    "start": "nuxt2 start",
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "generate": "nuxti generate && cp dist/_nuxt/sitemap.* dist",
+    "start": "nuxi preview",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "test": "jest",
     "storybook": "start-storybook -p 6006",
@@ -34,7 +34,6 @@
   },
   "devDependencies": {
     "@nuxt/bridge": "^3.1.0",
-    "@nuxt/typescript-build": "^0.6.0",
     "@nuxtjs/eslint-config-typescript": "^1.0.0",
     "@nuxtjs/eslint-module": "^1.0.0",
     "@nuxtjs/stylelint-module": "^3.1.0",
