@@ -8,10 +8,10 @@
   "scripts": {
     "setup-env": "cp .env.example .env",
     "setup": "node setup.js",
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "generate": "nuxt generate && cp dist/_nuxt/sitemap.* dist",
-    "start": "nuxt start",
+    "dev": "nuxt2",
+    "build": "nuxt2 build",
+    "generate": "nuxt2 generate && cp dist/_nuxt/sitemap.* dist",
+    "start": "nuxt2 start",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "test": "jest",
     "storybook": "start-storybook -p 6006",
@@ -33,6 +33,7 @@
     "wpapi": "^1.2.2"
   },
   "devDependencies": {
+    "@nuxt/bridge": "^3.1.0",
     "@nuxt/typescript-build": "^0.6.0",
     "@nuxtjs/eslint-config-typescript": "^1.0.0",
     "@nuxtjs/eslint-module": "^1.0.0",
@@ -55,6 +56,7 @@
     "eslint-plugin-prettier": "^3.1.2",
     "fs-extra": "^9.0.1",
     "jest": "^24.1.0",
+    "nuxi": "^3.11.1",
     "prettier": "^1.19.1",
     "sass": "^1.34.1",
     "sass-loader": "^10.0.0",

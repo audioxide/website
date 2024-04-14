@@ -1,4 +1,5 @@
 import * as fs from 'fs'
+import { defineNuxtConfig } from '@nuxt/bridge'
 import {
   SITE_NAME,
   SITE_URL,
@@ -42,10 +43,11 @@ const routeChangeFrequency = (urlPath) => {
   }
 }
 
-export default {
+export default defineNuxtConfig({
   target: 'static',
   modern: 'client',
   generate: { routes },
+  bridge: false,
   /*
    ** Environment defaults
    */
@@ -295,4 +297,4 @@ export default {
       })
     ]
   }
-}
+})
