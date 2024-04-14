@@ -8,10 +8,10 @@
   "scripts": {
     "setup-env": "cp .env.example .env",
     "setup": "node setup.js",
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "generate": "nuxt generate && cp dist/_nuxt/sitemap.* dist",
-    "start": "nuxt start",
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "generate": "nuxti generate && cp dist/_nuxt/sitemap.* dist",
+    "start": "nuxi preview",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "test": "jest",
     "storybook": "start-storybook -p 6006",
@@ -20,7 +20,7 @@
   "dependencies": {
     "@audioxide/brand": "https://github.com/audioxide/brand.git",
     "@babel/core": "^7.21.0",
-    "@nuxt/types": "^2.15.4",
+    "@nuxt/types": "^2.17.3",
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/pwa": "^3.0.0-0",
     "@types/he": "^1.1.1",
@@ -28,12 +28,12 @@
     "date-fns": "^2.30.0",
     "fetch-ponyfill": "^7.1.0",
     "he": "^1.2.0",
-    "nuxt": "^2.15.0",
+    "nuxt": "^2.17.3",
     "sitemap-webpack-plugin": "^1.1.1",
     "wpapi": "^1.2.2"
   },
   "devDependencies": {
-    "@nuxt/typescript-build": "^0.6.0",
+    "@nuxt/bridge": "^3.1.0",
     "@nuxtjs/eslint-config-typescript": "^1.0.0",
     "@nuxtjs/eslint-module": "^1.0.0",
     "@nuxtjs/stylelint-module": "^3.1.0",
@@ -55,17 +55,18 @@
     "eslint-plugin-prettier": "^3.1.2",
     "fs-extra": "^9.0.1",
     "jest": "^24.1.0",
+    "nuxi": "^3.11.1",
     "prettier": "^1.19.1",
     "sass": "^1.34.1",
     "sass-loader": "^10.0.0",
     "stylelint": "^10.1.0",
     "ts-jest": "^25.0.0",
     "vue-jest": "^4.0.0-0",
-    "vue-loader": "^15.9.6"
+    "vue-loader": "^15.11.1"
   },
   "resolutions": {
-    "@babel/core": "7.13.15",
-    "@babel/preset-env": "7.13.15",
+    "@babel/core": "7.23.7",
+    "@babel/preset-env": "7.23.7",
     "css-loader": "^4.3.0"
   }
 }

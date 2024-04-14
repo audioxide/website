@@ -1,4 +1,5 @@
 import * as fs from 'fs'
+import { defineNuxtConfig } from '@nuxt/bridge'
 import {
   SITE_NAME,
   SITE_URL,
@@ -42,10 +43,14 @@ const routeChangeFrequency = (urlPath) => {
   }
 }
 
-export default {
+export default defineNuxtConfig({
   target: 'static',
   modern: 'client',
   generate: { routes },
+  bridge: {
+    typescript: true,
+    nitro: true
+  },
   /*
    ** Environment defaults
    */
@@ -261,7 +266,6 @@ export default {
    ** Nuxt.js dev-modules
    */
   buildModules: [
-    '@nuxt/typescript-build',
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module'
   ],
@@ -280,7 +284,7 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend() {},
+    extend() { },
     plugins: [
       new SitemapPlugin({
         base: SITE_URL,
@@ -295,4 +299,4 @@ export default {
       })
     ]
   }
-}
+})
