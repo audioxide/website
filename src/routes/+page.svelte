@@ -1,2 +1,20 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<!-- Lead -->
+<h2>Lead</h2>
+
+<!-- Album Reviews -->
+<h2>Album Reviews</h2>
+
+<!-- Feed your head -->
+<h2>Feed Your Head</h2>
+
+<!-- Articles -->
+<h2>Articles</h2>
+
+<!-- Interviews -->
+<h2>Interviews</h2>
+
+<!-- Listening Parties -->
+<h2>Listening Parties</h2>
+
+<!-- Funnyfarm -->
+<h2>Funnyfarm</h2>
