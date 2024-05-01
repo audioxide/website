@@ -8,3 +8,9 @@
 		</ul>
 	</nav>
 </header>
+
+<style>
+	a {
+		font-family: 'Rounded Elegance', sans-serif;
+	}
+</style>

@@ -1,3 +1,14 @@
 * {
 	margin: 0;
 }
+
+:root {
+	--link-color: #dd0e3e;
+}
+
+a {
+	color: var(--link-color);
+	:hover {
+		opacity: 0.8;
+	}
+}
