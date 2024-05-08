@@ -1,5 +1,6 @@
 * {
 	margin: 0;
+	padding: 0;
 }
 
 :root {
@@ -8,7 +9,10 @@
 
 a {
 	color: var(--link-color);
-	:hover {
-		opacity: 0.8;
-	}
+}
+a:hover {
+	opacity: 0.8;
+}
+img {
+	height: 100%;
 }
