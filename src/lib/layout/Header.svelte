@@ -1,17 +1,11 @@
 <script lang="ts">
-	const covers = [
-		'https://audioxide.com/api/images/album-artwork/for-your-pleasure-roxy-music-xsmall-square.jpg',
-		'https://audioxide.com/api/images/album-artwork/ants-from-up-there-black-country-new-road-xsmall-square.jpg',
-		'https://audioxide.com/api/images/album-artwork/crawler-idles-xsmall-square.jpg',
-		'https://audioxide.com/api/images/album-artwork/hushed-and-grim-mastodon-xsmall-square.jpg',
-		'https://audioxide.com/api/images/album-artwork/skin-joy-crookes-xsmall-square.jpg',
-		'https://audioxide.com/api/images/album-artwork/friends-that-break-your-heart-james-blake-xsmall-square.jpg',
-		'https://audioxide.com/api/images/album-artwork/pinkerton-weezer-xsmall-square.jpg',
-		'https://audioxide.com/api/images/album-artwork/electric-warrior-t-rex-xsmall-square.jpg',
-		'https://audioxide.com/api/images/album-artwork/sinner-get-ready-lingua-ignota-xsmall-square.jpg',
-		'https://audioxide.com/api/images/album-artwork/donda-kanye-west-xsmall-square.jpg',
-		'https://audioxide.com/api/images/album-artwork/is-this-it-the-strokes-xsmall-square.jpg'
-	];
+	const { recentReviews } = $props();
+	const covers = recentReviews.map((review) => {
+		return {
+			cover: review.metadata.featuredimage['medium-square'],
+			slug: review.metadata.slug
+		};
+	});
 </script>
 
 <header>
@@ -28,8 +22,8 @@
 
 	<div class="album-banner">
 		{#each covers as cover}
-			<a href="#">
-				<img src={cover} alt="" />
+			<a href={`/reviews/${cover.slug}`}>
+				<img src={cover.cover} alt="" />
 			</a>
 		{/each}
 	</div>

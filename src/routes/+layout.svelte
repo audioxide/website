@@ -3,10 +3,26 @@
 	import Footer from '$lib/layout/Footer.svelte';
 	import type { Snippet } from 'svelte';
 
-	let { children }: { children: Snippet } = $props();
+	let {
+		children,
+		data
+	}: {
+		children: Snippet;
+		data: {
+			reviews: {
+				metadata: {
+					slug: string;
+					title: string;
+					artist: string;
+				};
+			}[];
+		};
+	} = $props();
+
+	const tenMostRecentReviews = data.reviews.slice(0, 10);
 </script>
 
-<Header />
+<Header recentReviews={tenMostRecentReviews} />
 {@render children()}
 <Footer />
 
