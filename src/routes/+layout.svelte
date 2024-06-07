@@ -14,6 +14,9 @@
 					slug: string;
 					title: string;
 					artist: string;
+					featuredimage: {
+						'medium-square': string;
+					};
 				};
 			}[];
 		};
@@ -23,7 +26,9 @@
 </script>
 
 <Header recentReviews={tenMostRecentReviews} />
-{@render children()}
+<main>
+	{@render children()}
+</main>
 <Footer />
 
 <style>
@@ -171,5 +176,10 @@
 			local('SourceSansPro-SemiBold'),
 			url('/fonts/source-sans-pro/source-sans-pro-600.woff2') format('woff2'),
 			url('/fonts/source-sans-pro/source-sans-pro-600.woff') format('woff');
+	}
+	main {
+		max-width: 1280px;
+		margin: 2rem auto;
+		padding: 0 1rem;
 	}
 </style>

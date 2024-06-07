@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { ReviewMetadata } from '$lib/types/reviewInterface.js';
 	import SummaryCard from '$lib/components/reviews/SummaryCard.svelte';
+	import ReviewHeader from '$lib/components/reviews/ReviewHeader.svelte';
 
 	export let data;
 	const {
@@ -10,28 +11,69 @@
 	} = data;
 </script>
 
-<time datetime={review.created}>{review.created}</time>
-
-<div>{review.album}</div>
-<div>{review.artist}</div>
-
-<div>
-	Review by {#each review.author.authors as author}
-		<a href={`https://x.com/${author.links.twitter}`}>{author.name}</a>{author ===
-		review.author.authors[review.author.authors.length - 1]
-			? ''
-			: ', '}
-	{/each}
+<div class="container">
+	<div class="header">
+		<ReviewHeader
+			dateCreated={review.created}
+			albumTitle={review.album}
+			artistName={review.artist}
+			authors={review.author.authors}
+			primaryColor={review.colours[0]}
+			secondaryColor={review.colours[1]}
+		/>
+	</div>
+	<div class="summary-card">
+		<SummaryCard
+			imageUrl={review.featuredimage['medium-square']}
+			scoreGiven={review.totalscore.given}
+			scorePossible={review.totalscore.possible}
+			summary={review.summary}
+			artistLink={review.artistLink}
+			essentialTracks={review.essentialtracks}
+			favouriteTracks={review.favouritetracks}
+			primaryColor={review.colours[0]}
+			secondaryColor={review.colours[1]}
+		/>
+	</div>
+	<div class="review">Blah blah blah</div>
+	<div class="related-content">
+		<h2>Related Content</h2>
+		<ul>
+			<li>Related review 1</li>
+			<li>Related review 2</li>
+			<li>Related review 3</li>
+		</ul>
+	</div>
 </div>
 
-<SummaryCard
-	imageUrl={review.featuredimage['medium-square']}
-	scoreGiven={review.totalscore.given}
-	scorePossible={review.totalscore.possible}
-	summary={review.summary}
-	artistLink={review.artistLink}
-	essentialTracks={review.essentialtracks}
-	favouriteTracks={review.favouritetracks}
-	--primary-color={review.colours[0]}
-	--secondary-color={review.colours[1]}
-/>
+<style>
+	@media (min-width: 768px) {
+		.container {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+			grid-template-rows: auto auto auto;
+			gap: 0px 0px;
+			grid-auto-flow: row;
+			grid-template-areas:
+				'header header header'
+				'review review summary-card'
+				'related-content related-content related-content';
+		}
+
+		.header {
+			grid-area: header;
+		}
+
+		.summary-card {
+			grid-area: summary-card;
+		}
+
+		.review {
+			grid-area: review;
+		}
+
+		.related-content {
+			grid-area: related-content;
+		}
+	}
+</style>

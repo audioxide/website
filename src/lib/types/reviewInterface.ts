@@ -47,12 +47,14 @@ export interface ReviewMetadata {
 	};
 	author: {
 		name: string;
-		authors: {
-			name: string;
-			forename: string;
-			links: AuthorLinks;
-		}[];
+		authors: AuthorObject[];
 	};
+}
+
+export interface AuthorObject {
+	name: string;
+	forename: string;
+	links: AuthorLinks;
 }
 
 interface AuthorLinks {

@@ -6,7 +6,9 @@
 		summary,
 		artistLink,
 		essentialTracks,
-		favouriteTracks
+		favouriteTracks,
+		primaryColor,
+		secondaryColor
 	}: {
 		imageUrl: string;
 		scoreGiven: number;
@@ -15,10 +17,15 @@
 		artistLink?: string;
 		essentialTracks: string[];
 		favouriteTracks: string[];
+		primaryColor: string;
+		secondaryColor: string;
 	} = $props();
 </script>
 
-<div class="summary-card">
+<div
+	class="summary-card"
+	style="--primary-color: {primaryColor}; --secondary-color: {secondaryColor}"
+>
 	<figure>
 		<img src={imageUrl} alt="" />
 	</figure>
@@ -54,7 +61,7 @@
 
 <style>
 	.summary-card {
-		max-width: 500px;
+		width: 100%;
 	}
 	.summary {
 		color: var(--primary-color);

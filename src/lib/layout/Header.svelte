@@ -1,5 +1,16 @@
 <script lang="ts">
-	const { recentReviews } = $props();
+	const {
+		recentReviews
+	}: {
+		recentReviews: {
+			metadata: {
+				slug: string;
+				featuredimage: {
+					'medium-square': string;
+				};
+			};
+		}[];
+	} = $props();
 	const covers = recentReviews.map((review) => {
 		return {
 			cover: review.metadata.featuredimage['medium-square'],

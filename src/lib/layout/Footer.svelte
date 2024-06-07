@@ -11,3 +11,9 @@
 	</ul>
 	<div>© 2015-{currentYear}. All rights reserved.</div>
 </footer>
+
+<style>
+	footer {
+		text-align: center;
+	}
+</style>
