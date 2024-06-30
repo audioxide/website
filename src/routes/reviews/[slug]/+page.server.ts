@@ -1,7 +1,12 @@
 import allReviews from '../../../../static/api/reviews.json';
+import type { ReviewMetadata } from '$lib/types/reviewInterface';
+
+const reviews: {
+	metadata: ReviewMetadata;
+}[] = allReviews;
 
 export const load = ({ params }) => {
-	const matchingReview = allReviews.find((review) => review.metadata.slug === params.slug);
+	const matchingReview = reviews.find((review) => review.metadata.slug === params.slug);
 
 	if (!matchingReview) {
 		return {

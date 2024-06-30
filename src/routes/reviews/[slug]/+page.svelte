@@ -11,6 +11,11 @@
 	} = data;
 </script>
 
+<svelte:head>
+	<title>{review.album} // {review.artist} // Audioxide</title>
+	<meta name="description" content={review.summary} />
+</svelte:head>
+
 <div class="container">
 	<div class="header">
 		<ReviewHeader

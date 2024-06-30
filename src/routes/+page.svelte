@@ -1,3 +1,8 @@
+<svelte:head>
+	<title>Audioxide</title>
+	<meta name="description" content="Music reviews, articles, and interviews." />
+</svelte:head>
+
 <!-- Lead -->
 <h2>Lead</h2>
 
