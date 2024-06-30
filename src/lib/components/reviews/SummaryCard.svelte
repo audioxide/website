@@ -62,11 +62,13 @@
 <style>
 	.summary-card {
 		width: 100%;
+		max-width: 440px;
 	}
 	.summary {
 		color: var(--primary-color);
 	}
 	img {
+		width: 100%;
 		aspect-ratio: 1 / 1;
 		outline: 1px solid lightgray;
 	}
