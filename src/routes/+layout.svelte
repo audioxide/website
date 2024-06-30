@@ -24,10 +24,10 @@
 		};
 	} = $props();
 
-	const tenMostRecentReviews = data.reviews.slice(0, 10);
+	const fiteenMostRecentReviews = data.reviews.slice(0, 15);
 </script>
 
-<Header recentReviews={tenMostRecentReviews} />
+<Header recentReviews={fiteenMostRecentReviews} />
 <main>
 	{@render children()}
 </main>
