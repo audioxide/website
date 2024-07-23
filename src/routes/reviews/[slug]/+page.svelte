@@ -4,11 +4,7 @@
 	import ReviewHeader from '$lib/components/reviews/ReviewHeader.svelte';
 
 	export let data;
-	const {
-		review
-	}: {
-		review: ReviewMetadata;
-	} = data;
+	$: ({ review } = data);
 </script>
 
 <svelte:head>

@@ -44,8 +44,7 @@
 
 	<div class="album-banner">
 		{#each covers as cover, i}
-			<!-- Not sure this is the best solution for forcing pages to render properly, but it works -->
-			<a data-sveltekit-reload href={`/reviews/${cover.slug}`} class={assignClass(i)}>
+			<a href={`/reviews/${cover.slug}`} class={assignClass(i)}>
 				<img src={cover.cover} alt="" />
 			</a>
 		{/each}
