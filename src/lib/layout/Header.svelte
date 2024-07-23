@@ -56,6 +56,7 @@
 		display: flex;
 		flex-direction: row;
 		gap: 0.5em;
+		align-items: center;
 	}
 	.logo-icon {
 		height: 2rem;

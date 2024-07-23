@@ -29,6 +29,7 @@
 	</div>
 	<div class="summary-card">
 		<SummaryCard
+			id={review.id}
 			imageUrl={review.featuredimage['medium-square']}
 			scoreGiven={review.totalscore.given}
 			scorePossible={review.totalscore.possible}
@@ -36,8 +37,7 @@
 			artistLink={review.artistLink}
 			essentialTracks={review.essentialtracks}
 			favouriteTracks={review.favouritetracks}
-			primaryColor={review.colours[0]}
-			secondaryColor={review.colours[1]}
+			colors={review.colours}
 		/>
 	</div>
 	<div class="review">Blah blah blah</div>

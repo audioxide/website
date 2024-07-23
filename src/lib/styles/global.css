@@ -1,5 +1,17 @@
 :root {
 	--link-color: #dd0e3e;
+	--content-font-size: 1.1rem;
+}
+
+* {
+	font-size: var(--content-font-size);
+}
+
+ul,
+ol {
+	list-style: none;
+	padding: 0;
+	margin: 0;
 }
 
 a {

@@ -61,16 +61,20 @@
 		gap: 1rem;
 	}
 	.album-title {
-		font-size: 3em;
+		font-size: 2.5rem;
 		color: var(--primary-color);
 		font-style: italic;
 	}
 	.artist-name {
 		color: black;
-		font-size: 2.7em;
+		font-size: 2.3rem;
 		font-weight: 500;
 	}
 	.authors {
 		margin-bottom: 2rem;
+		font-size: 0.9rem;
+	}
+	.authors a {
+		font-size: 0.9rem;
 	}
 </style>
