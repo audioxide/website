@@ -46,6 +46,9 @@
 				{/each}
 			</ul>
 		{/if}
+		{#if essentialTracks.length > 0 && favouriteTracks.length > 0}
+			<div class="top-tracks-section-divider"></div>
+		{/if}
 		{#if favouriteTracks.length > 0}
 			<h3>Favourite Tracks</h3>
 			<ul>
@@ -94,6 +97,9 @@
 	.fav-tracks h3 {
 		font-family: 'Source Sans Pro', sans-serif;
 		color: var(--tertiary-color);
+	}
+	.top-tracks-section-divider {
+		margin-bottom: 1rem;
 	}
 	.no-artist-link {
 		border-radius: 0 0 15px 15px;
