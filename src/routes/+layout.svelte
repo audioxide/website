@@ -2,6 +2,7 @@
 	import Header from '$lib/layout/Header.svelte';
 	import Footer from '$lib/layout/Footer.svelte';
 	import type { Snippet } from 'svelte';
+	import '$lib/styles/reset.css';
 	import '$lib/styles/global.css';
 	import '$lib/styles/fonts.css';
 
