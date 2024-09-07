@@ -1,10 +1,20 @@
 :root {
 	--link-color: #dd0e3e;
 	--content-font-size: 1.1rem;
+	--site-primary-serif: 'Spectral', serif;
+	--site-primary-sans-serif: 'Source Sans Pro', sans-serif;
 }
 
 * {
 	font-size: var(--content-font-size);
+	font-family: var(--site-primary-sans-serif);
+}
+
+p,
+ul,
+ol {
+	margin-bottom: 1.5rem;
+	font-family: var(--site-primary-serif);
 }
 
 ul,
