@@ -17,13 +17,13 @@
 <h2>Feed Your Head</h2>
 
 <!-- Articles -->
-<h2>Articles</h2>
+<a href="/articles"><h2>Articles</h2></a>
 
 <!-- Interviews -->
-<h2>Interviews</h2>
+<a href="/interviews"><h2>Interviews</h2></a>
 
 <!-- Listening Parties -->
-<h2>Listening Parties</h2>
+<a href="/listening-parties"><h2>Listening Parties</h2></a>
 
 <!-- Funnyfarm -->
-<h2>Funnyfarm</h2>
+<a href="/funnyfarm"><h2>Funnyfarm</h2></a>
