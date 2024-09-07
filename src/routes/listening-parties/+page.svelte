@@ -11,7 +11,7 @@
 
 <h1>Listening Parties</h1>
 {#each data.listeningParties as listeningParty}
-	<a href={`/interviews/${listeningParty.metadata.slug}`}>
+	<a href={`/listening-parties/${listeningParty.metadata.slug}`}>
 		<h2>{listeningParty.metadata.title}</h2>
 	</a>
 {/each}

@@ -35,13 +35,13 @@
 			</div>
 		</a>
 	</div>
-	<!-- <nav>
+	<nav>
 		<ul>
 			<li><a href="/reviews">Album Reviews</a></li>
-			<li><a href="/features">Articles</a></li>
+			<li><a href="/articles">Articles</a></li>
 			<li><a href="/interviews">Interviews</a></li>
 		</ul>
-	</nav> -->
+	</nav>
 
 	<div class="album-banner">
 		{#each covers as cover, i}

@@ -11,7 +11,7 @@
 
 <h1>Funnyfarm</h1>
 {#each data.funnyfarms as funnyfarmEntry}
-	<a href={`/interviews/${funnyfarmEntry.metadata.slug}`}>
+	<a href={`/funnyfarm/${funnyfarmEntry.metadata.slug}`}>
 		<h2>{funnyfarmEntry.metadata.title}</h2>
 	</a>
 {/each}
