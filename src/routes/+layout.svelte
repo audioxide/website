@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Header from '$lib/layout/Header.svelte';
-	import Footer from '$lib/layout/Footer.svelte';
+	import Header from '$lib/components/layout/Header.svelte';
+	import Footer from '$lib/components/layout/Footer.svelte';
 	import type { Snippet } from 'svelte';
 	import '$lib/styles/reset.css';
 	import '$lib/styles/global.css';

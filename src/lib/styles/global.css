@@ -10,6 +10,11 @@
 	font-family: var(--site-primary-sans-serif);
 }
 
+img {
+	width: 100%;
+	height: auto;
+}
+
 p,
 ul,
 ol {
