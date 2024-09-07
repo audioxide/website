@@ -16,8 +16,7 @@ const meta = {
 		imageUrl:
 			'https://audioxide.com/api/images/album-artwork/ants-from-up-there-black-country-new-road-large-square.jpg',
 		artistLink: 'https://www.google.com',
-		primaryColor: 'navy',
-		secondaryColor: 'lightgray'
+		colors: ['navy', 'lightgray', 'black']
 	}
 } satisfies Meta<SummaryCard>;
 

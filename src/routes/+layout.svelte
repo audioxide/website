@@ -12,23 +12,18 @@
 	}: {
 		children: Snippet;
 		data: {
-			reviews: {
-				metadata: {
-					slug: string;
-					title: string;
-					artist: string;
-					featuredimage: {
-						'medium-square': string;
-					};
-				};
+			bannerReviews: {
+				image: string;
+				score: number;
+				artist: string;
+				album: string;
+				slug: string;
 			}[];
 		};
 	} = $props();
-
-	const fiteenMostRecentReviews = data.reviews.slice(0, 15);
 </script>
 
-<Header recentReviews={fiteenMostRecentReviews} />
+<Header recentReviews={data.bannerReviews} />
 <main>
 	{@render children()}
 </main>

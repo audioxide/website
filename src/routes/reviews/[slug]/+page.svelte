@@ -1,42 +1,60 @@
 <script lang="ts">
-	import type { ReviewMetadata } from '$lib/types/reviewInterface.js';
+	import type { Review } from '$lib/types/reviewInterface.js';
 	import SummaryCard from '$lib/components/reviews/SummaryCard.svelte';
 	import ReviewHeader from '$lib/components/reviews/ReviewHeader.svelte';
+	import { SITE_NAME } from '$lib/constants';
 
-	export let data;
-	$: ({ review } = data);
+	export let data: {
+		review: Review;
+	};
+	$: ({ metadata, content } = data.review);
 </script>
 
 <svelte:head>
-	<title>{review.album} // {review.artist} // Audioxide</title>
-	<meta name="description" content={review.summary} />
+	<title>Review: {metadata.album} // {metadata.artist} // {SITE_NAME}</title>
+	<meta name="description" content={metadata.summary} />
 </svelte:head>
 
 <div class="container">
 	<div class="header">
 		<ReviewHeader
-			dateCreated={review.created}
-			albumTitle={review.album}
-			artistName={review.artist}
-			authors={review.author.authors}
-			primaryColor={review.colours[0]}
-			secondaryColor={review.colours[1]}
+			dateCreated={metadata.created}
+			albumTitle={metadata.album}
+			artistName={metadata.artist}
+			authors={metadata.author.authors}
+			primaryColor={metadata.colours[0]}
+			secondaryColor={metadata.colours[1]}
 		/>
 	</div>
 	<div class="summary-card">
 		<SummaryCard
-			id={review.id}
-			imageUrl={review.featuredimage['medium-square']}
-			scoreGiven={review.totalscore.given}
-			scorePossible={review.totalscore.possible}
-			summary={review.summary}
-			artistLink={review.artistLink}
-			essentialTracks={review.essentialtracks}
-			favouriteTracks={review.favouritetracks}
-			colors={review.colours}
+			id={metadata.id}
+			imageUrl={metadata.featuredimage['medium-square']}
+			scoreGiven={metadata.totalscore.given}
+			scorePossible={metadata.totalscore.possible}
+			summary={metadata.summary}
+			artistLink={metadata.artistLink}
+			essentialTracks={metadata.essentialtracks}
+			favouriteTracks={metadata.favouritetracks}
+			colors={metadata.colours}
 		/>
 	</div>
-	<div class="review">Blah blah blah</div>
+	<div class="review">
+		{#each content as contentBlock}
+			<h3>{contentBlock.author.name}</h3>
+			{@html contentBlock.review}
+			<h4>Favourite tracks</h4>
+			<ul>
+				{#each contentBlock.tracks as track}
+					<li>{track}</li>
+				{/each}
+			</ul>
+			<div>
+				{contentBlock.score.score}/{contentBlock.score.max}
+			</div>
+			<hr />
+		{/each}
+	</div>
 	<div class="related-content">
 		<h2>Related Content</h2>
 		<ul>
@@ -53,7 +71,7 @@
 			display: grid;
 			grid-template-columns: 1fr 1fr 1fr;
 			grid-template-rows: auto auto auto;
-			gap: 0px 0px;
+			gap: 0 2rem;
 			grid-auto-flow: row;
 			grid-template-areas:
 				'header header header'

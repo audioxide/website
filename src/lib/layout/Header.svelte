@@ -1,20 +1,21 @@
 <script lang="ts">
+	import { SITE_NAME } from '$lib/constants';
+
 	const {
 		recentReviews
 	}: {
 		recentReviews: {
-			metadata: {
-				slug: string;
-				featuredimage: {
-					'medium-square': string;
-				};
-			};
+			image: string;
+			score: number;
+			artist: string;
+			album: string;
+			slug: string;
 		}[];
 	} = $props();
 	const covers = recentReviews.map((review) => {
 		return {
-			cover: review.metadata.featuredimage['medium-square'],
-			slug: review.metadata.slug
+			cover: review.image,
+			slug: review.slug
 		};
 	});
 	const assignClass = (i: number) => {
@@ -29,7 +30,7 @@
 	<div class="top-bar">
 		<a href="/">
 			<div class="logo-container">
-				<h1>Audioxide</h1>
+				<h1>{SITE_NAME}</h1>
 				<img class="logo-icon" src="/favicon.png" alt="" />
 			</div>
 		</a>

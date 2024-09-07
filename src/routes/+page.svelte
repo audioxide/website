@@ -1,5 +1,9 @@
+<script>
+	import { SITE_NAME } from '$lib/constants';
+</script>
+
 <svelte:head>
-	<title>Audioxide</title>
+	<title>{SITE_NAME}</title>
 	<meta name="description" content="Music reviews, articles, and interviews." />
 </svelte:head>
 
@@ -7,7 +11,7 @@
 <h2>Lead</h2>
 
 <!-- Album Reviews -->
-<h2>Album Reviews</h2>
+<a href="/reviews"><h2>Album Reviews</h2></a>
 
 <!-- Feed your head -->
 <h2>Feed Your Head</h2>
