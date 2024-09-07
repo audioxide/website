@@ -1,11 +1,6 @@
-export interface ReviewMetadata {
-	id: number;
-	slug: string;
-	type: string;
-	created: string;
-	title: string;
-	modified: string;
-	tags: string[];
+import type { AuthorObject, ContentBlock, SharedPostMetadata } from './shared';
+
+export interface ReviewMetadata extends SharedPostMetadata {
 	featuredimage: {
 		'xsmall-original': string;
 		'xsmall-square': string;
@@ -51,30 +46,8 @@ export interface ReviewMetadata {
 	};
 }
 
-export interface AuthorObject {
-	name: string;
-	forename: string;
-	links: AuthorLinks;
-	slug: string;
-}
-
-interface AuthorLinks {
-	[key: string]: string;
-}
-
 export interface Review {
 	metadata: ReviewMetadata;
 	content: ContentBlock[];
 	related: ReviewMetadata[];
-}
-
-interface ContentBlock {
-	author: AuthorObject;
-	review: string;
-	score: {
-		score: number;
-		max: number;
-		fraction: number;
-	};
-	tracks: string[];
 }
