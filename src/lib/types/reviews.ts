@@ -1,23 +1,6 @@
-import type { AuthorObject, ContentBlock, SharedPostMetadata } from './shared';
+import type { ContentBlock, SharedPostMetadata } from './shared';
 
 export interface ReviewMetadata extends SharedPostMetadata {
-	featuredimage: {
-		'xsmall-original': string;
-		'xsmall-square': string;
-		'xsmall-standard': string;
-		'small-original': string;
-		'small-square': string;
-		'small-standard': string;
-		'medium-original': string;
-		'medium-square': string;
-		'medium-standard': string;
-		'large-original': string;
-		'large-square': string;
-		'large-standard': string;
-		'xlarge-original': string;
-		'xlarge-square': string;
-		'xlarge-standard': string;
-	};
 	artist: string;
 	album: string;
 	essentialtracks: string[];
@@ -29,9 +12,7 @@ export interface ReviewMetadata extends SharedPostMetadata {
 	};
 	colours: string[];
 	pullquote: string;
-	summary: string;
 	week: number;
-	blurb: string;
 	artistMBID: string;
 	albumMBID: string;
 	artistLink: string;
@@ -39,10 +20,6 @@ export interface ReviewMetadata extends SharedPostMetadata {
 	components: {
 		scripts: string[];
 		styles: string[];
-	};
-	author: {
-		name: string;
-		authors: AuthorObject[];
 	};
 }
 

@@ -1,7 +1,4 @@
 <script lang="ts">
-	import type { Review } from '$lib/types/reviewInterface.js';
-	import SummaryCard from '$lib/components/reviews/SummaryCard.svelte';
-	import ReviewHeader from '$lib/components/reviews/ReviewHeader.svelte';
 	import { SITE_NAME } from '$lib/constants';
 
 	export let data: {

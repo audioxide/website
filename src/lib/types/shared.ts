@@ -5,7 +5,31 @@ export interface SharedPostMetadata {
 	created: string;
 	modified: string;
 	title: string;
+	summary: string;
+	blurb: string;
 	tags: string[];
+	author: {
+		name: string;
+		authors: AuthorObject[];
+	};
+	featuredimage: {
+		'xsmall-original': string;
+		'xsmall-square': string;
+		'xsmall-standard': string;
+		'small-original': string;
+		'small-square': string;
+		'small-standard': string;
+		'medium-original': string;
+		'medium-square': string;
+		'medium-standard': string;
+		'large-original': string;
+		'large-square': string;
+		'large-standard': string;
+		'xlarge-original': string;
+		'xlarge-square': string;
+		'xlarge-standard': string;
+	};
+	featuredimageAlt: string;
 }
 
 export interface AuthorObject {
@@ -20,7 +44,10 @@ interface AuthorLinks {
 }
 
 export interface ContentBlock {
-	author: AuthorObject;
+	author: {
+		name: string;
+		authors: AuthorObject[];
+	};
 	review: string;
 	score: {
 		score: number;
