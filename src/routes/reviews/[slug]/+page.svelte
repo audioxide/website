@@ -3,11 +3,13 @@
 	import SummaryCard from '$lib/components/reviews/SummaryCard.svelte';
 	import ReviewHeader from '$lib/components/reviews/ReviewHeader.svelte';
 	import { SITE_NAME } from '$lib/constants';
+	import PostSummaryCard from '$lib/components/PostSummaryCard.svelte';
+	import RelatedContent from '$lib/components/RelatedContent.svelte';
 
 	export let data: {
 		review: Review;
 	};
-	$: ({ metadata, content } = data.review);
+	$: ({ metadata, content, related } = data.review);
 </script>
 
 <svelte:head>
@@ -56,12 +58,7 @@
 		{/each}
 	</div>
 	<div class="related-content">
-		<h2>Related Content</h2>
-		<ul>
-			<li>Related review 1</li>
-			<li>Related review 2</li>
-			<li>Related review 3</li>
-		</ul>
+		<RelatedContent relatedContent={related} />
 	</div>
 </div>
 

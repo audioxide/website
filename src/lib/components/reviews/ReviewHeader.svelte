@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { AuthorObject } from '$lib/types/reviewInterface';
+	import type { AuthorObject } from '$lib/types/shared';
 
 	let {
 		dateCreated,

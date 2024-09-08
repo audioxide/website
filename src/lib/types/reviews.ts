@@ -26,5 +26,7 @@ export interface ReviewMetadata extends SharedPostMetadata {
 export interface Review {
 	metadata: ReviewMetadata;
 	content: ContentBlock[];
-	related: ReviewMetadata[];
+	related: {
+		metadata: ReviewMetadata;
+	}[];
 }
