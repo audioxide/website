@@ -36,10 +36,10 @@
 		font-size: 1rem;
 		font-style: italic;
 		margin-bottom: 1rem;
-		padding: 0.5rem 0;
+		padding: 0.8rem 0;
 		text-align: center;
-		border-top: 1px solid lightgray;
-		border-bottom: 1px solid lightgray;
+		border-top: 2px solid var(--gray-color);
+		border-bottom: 2px solid var(--gray-color);
 	}
 	.post-cards {
 		display: grid;

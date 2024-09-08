@@ -5,6 +5,7 @@
 	import { SITE_NAME } from '$lib/constants';
 	import PostSummaryCard from '$lib/components/PostSummaryCard.svelte';
 	import RelatedContent from '$lib/components/RelatedContent.svelte';
+	import RelatedTags from '$lib/components/RelatedTags.svelte';
 
 	export let data: {
 		review: Review;
@@ -42,7 +43,7 @@
 		/>
 	</div>
 	<div class="review">
-		{#each content as contentBlock}
+		{#each content as contentBlock, i}
 			<h3>{contentBlock.author.name}</h3>
 			{@html contentBlock.review}
 			<h4>Favourite tracks</h4>
@@ -54,8 +55,11 @@
 			<div>
 				{contentBlock.score.score}/{contentBlock.score.max}
 			</div>
-			<hr />
+			{#if i !== content.length - 1}
+				<hr />
+			{/if}
 		{/each}
+		<RelatedTags relatedTags={metadata.tags} />
 	</div>
 	<div class="related-content">
 		<RelatedContent relatedContent={related} />
