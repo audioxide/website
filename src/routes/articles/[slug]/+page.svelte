@@ -1,4 +1,5 @@
 <script lang="ts">
+	import ContentBlock from '$lib/components/ContentBlock.svelte';
 	import PostDate from '$lib/components/PostDate.svelte';
 	import PostHeader from '$lib/components/PostHeader.svelte';
 	import RelatedContent from '$lib/components/RelatedContent.svelte';
@@ -23,7 +24,7 @@
 	author={metadata.author}
 />
 
-{@html content}
+<ContentBlock html={content} />
 
 <div class="related-tags">
 	<RelatedTags relatedTags={metadata.tags} />

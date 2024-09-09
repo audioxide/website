@@ -1,4 +1,4 @@
-import type { ContentBlock, SharedPostMetadata } from './shared';
+import type { ReviewSection, SharedPostMetadata } from './shared';
 
 export interface ReviewMetadata extends SharedPostMetadata {
 	artist: string;
@@ -25,7 +25,7 @@ export interface ReviewMetadata extends SharedPostMetadata {
 
 export interface Review {
 	metadata: ReviewMetadata;
-	content: ContentBlock[];
+	content: ReviewSection[];
 	related: {
 		metadata: ReviewMetadata;
 	}[];

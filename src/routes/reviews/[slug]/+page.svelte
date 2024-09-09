@@ -5,7 +5,7 @@
 	import { SITE_NAME } from '$lib/constants';
 	import RelatedContent from '$lib/components/RelatedContent.svelte';
 	import RelatedTags from '$lib/components/RelatedTags.svelte';
-	import ContentBlock from '$lib/components/ContentBlock.svelte';
+	import ReviewSection from '$lib/components/ReviewSection.svelte';
 
 	export let data: {
 		review: Review;
@@ -44,7 +44,7 @@
 	</div>
 	<div class="review">
 		{#each content as contentBlock, i}
-			<ContentBlock
+			<ReviewSection
 				{contentBlock}
 				primaryColor={metadata.colours[0]}
 				isLast={i === content.length - 1}

@@ -43,7 +43,7 @@ interface AuthorLinks {
 	[key: string]: string;
 }
 
-export interface ContentBlock {
+export interface ReviewSection {
 	author: {
 		name: string;
 		authors: AuthorObject[];
