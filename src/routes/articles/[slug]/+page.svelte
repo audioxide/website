@@ -1,4 +1,6 @@
 <script lang="ts">
+	import PostDate from '$lib/components/PostDate.svelte';
+	import PostHeader from '$lib/components/PostHeader.svelte';
 	import RelatedContent from '$lib/components/RelatedContent.svelte';
 	import RelatedTags from '$lib/components/RelatedTags.svelte';
 	import { SITE_NAME } from '$lib/constants';
@@ -14,17 +16,12 @@
 	<meta name="description" content={metadata.summary} />
 </svelte:head>
 
-<div>
-	{metadata.created}
-</div>
-
-<h2>
-	{metadata.title}
-</h2>
-
-<div>{metadata.summary}</div>
-
-<div>By {metadata.author.name}</div>
+<PostHeader
+	datePublished={metadata.created}
+	title={metadata.title}
+	summary={metadata.summary}
+	author={metadata.author}
+/>
 
 {@html content}
 

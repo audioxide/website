@@ -1,9 +1,9 @@
 import type { Meta } from '@storybook/svelte';
-import SummaryCard from '$lib/components/reviews/SummaryCard.svelte';
+import ReviewSummaryCard from '$lib/components/reviews/ReviewSummaryCard.svelte';
 
 const meta = {
-	title: 'Reviews/SummaryCard',
-	component: SummaryCard,
+	title: 'Reviews/ReviewSummaryCard',
+	component: ReviewSummaryCard,
 	parameters: {
 		layout: 'centered'
 	},
@@ -18,7 +18,7 @@ const meta = {
 		artistLink: 'https://www.google.com',
 		colors: ['navy', 'lightgray', 'black']
 	}
-} satisfies Meta<SummaryCard>;
+} satisfies Meta<ReviewSummaryCard>;
 
 export default meta;
 

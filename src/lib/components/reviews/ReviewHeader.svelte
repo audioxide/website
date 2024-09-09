@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { AuthorObject } from '$lib/types/shared';
+	import PostDate from '../PostDate.svelte';
 
 	let {
 		dateCreated,
@@ -16,23 +17,13 @@
 		primaryColor: string;
 		secondaryColor: string;
 	} = $props();
-
-	// Format date as DD.MM.0YYYY. Be sure to include the 0 in front of the year.
-	const prettifyDate = (date: string): string => {
-		const asDate = new Date(date);
-		const day = asDate.getDate().toString().padStart(2, '0');
-		const month = (asDate.getMonth() + 1).toString().padStart(2, '0');
-		const year = asDate.getFullYear().toString().padStart(4, '0');
-		return `${day}.${month}.0${year}`;
-	};
 </script>
 
 <div
 	class="header-container"
 	style="--primary-color: {primaryColor}; --secondary-color: {secondaryColor}"
 >
-	<time class="publication-date" datetime={dateCreated}>{prettifyDate(dateCreated)}</time>
-
+	<PostDate datePublished={dateCreated} />
 	<div>
 		<h2 class="album-title">{albumTitle}</h2>
 		<h2 class="artist-name">{artistName}</h2>

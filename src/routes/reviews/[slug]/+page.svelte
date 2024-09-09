@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Review } from '$lib/types/reviews.js';
-	import SummaryCard from '$lib/components/reviews/SummaryCard.svelte';
+	import ReviewSummaryCard from '$lib/components/reviews/ReviewSummaryCard.svelte';
 	import ReviewHeader from '$lib/components/reviews/ReviewHeader.svelte';
 	import { SITE_NAME } from '$lib/constants';
 	import RelatedContent from '$lib/components/RelatedContent.svelte';
@@ -30,7 +30,7 @@
 		/>
 	</div>
 	<div class="summary-card">
-		<SummaryCard
+		<ReviewSummaryCard
 			id={metadata.week}
 			imageUrl={metadata.featuredimage['medium-square']}
 			scoreGiven={metadata.totalscore.given}
