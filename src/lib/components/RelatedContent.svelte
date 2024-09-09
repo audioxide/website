@@ -18,9 +18,9 @@
 			<PostSummaryCard
 				image={metadata.featuredimage['medium-square']}
 				title={metadata.title}
-				link={`/reviews/${metadata.slug}`}
+				link={`/${metadata.type}/${metadata.slug}`}
 				blurb={metadata.blurb}
-				primaryColor={metadata.colours[0]}
+				primaryColor={metadata.colours ? metadata.colours[0] : 'lightgray'}
 			/>
 		{/each}
 	</div>

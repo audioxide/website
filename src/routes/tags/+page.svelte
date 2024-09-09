@@ -11,7 +11,5 @@
 
 <h1>Reviews</h1>
 {#each data.tags as tag}
-	<a href={`/tag/${tag}`}>
-		<div>{tag}</div>
-	</a>
+	<a href={`/tags/${tag.replace(/ /g, '-')}`}><li>{tag}</li></a>
 {/each}
