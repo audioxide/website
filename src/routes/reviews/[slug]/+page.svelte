@@ -3,9 +3,9 @@
 	import SummaryCard from '$lib/components/reviews/SummaryCard.svelte';
 	import ReviewHeader from '$lib/components/reviews/ReviewHeader.svelte';
 	import { SITE_NAME } from '$lib/constants';
-	import PostSummaryCard from '$lib/components/PostSummaryCard.svelte';
 	import RelatedContent from '$lib/components/RelatedContent.svelte';
 	import RelatedTags from '$lib/components/RelatedTags.svelte';
+	import ContentBlock from '$lib/components/ContentBlock.svelte';
 
 	export let data: {
 		review: Review;
@@ -44,21 +44,14 @@
 	</div>
 	<div class="review">
 		{#each content as contentBlock, i}
-			<h3>{contentBlock.author.name}</h3>
-			{@html contentBlock.review}
-			<h4>Favourite tracks</h4>
-			<ul>
-				{#each contentBlock.tracks as track}
-					<li>{track}</li>
-				{/each}
-			</ul>
-			<div>
-				{contentBlock.score.score}/{contentBlock.score.max}
-			</div>
-			{#if i !== content.length - 1}
-				<hr />
-			{/if}
+			<ContentBlock
+				{contentBlock}
+				primaryColor={metadata.colours[0]}
+				isLast={i === content.length - 1}
+			/>
 		{/each}
+	</div>
+	<div class="related-tags">
 		<RelatedTags relatedTags={metadata.tags} />
 	</div>
 	<div class="related-content">
@@ -77,11 +70,13 @@
 			grid-template-areas:
 				'header header header'
 				'review review summary-card'
+				'related-tags related-tags summary-card'
 				'related-content related-content related-content';
 		}
 
 		.header {
 			grid-area: header;
+			z-index: 2;
 		}
 
 		.summary-card {
@@ -90,6 +85,11 @@
 
 		.review {
 			grid-area: review;
+			margin-bottom: 2rem;
+		}
+
+		.related-tags {
+			grid-area: related-tags;
 		}
 
 		.related-content {

@@ -16,6 +16,11 @@ img {
 	height: auto;
 }
 
+hr {
+	border: 0;
+	border-top: 3px solid var(--gray-color);
+}
+
 p,
 ul,
 ol {

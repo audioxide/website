@@ -81,7 +81,7 @@
 	img {
 		width: 100%;
 		aspect-ratio: 1 / 1;
-		outline: 1px solid lightgray;
+		outline: 1px solid var(--gray-color);
 	}
 	img,
 	.score,
@@ -105,7 +105,7 @@
 		border-radius: 0 0 15px 15px;
 	}
 	.support-the-artist-button {
-		border: 2px solid #dd0e3e;
+		border: 2px solid var(--link-color);
 		border-radius: 0 0 15px 15px;
 		text-align: center;
 		padding: 0.5rem;
