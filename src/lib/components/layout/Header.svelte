@@ -31,7 +31,7 @@
 		<a href="/">
 			<div class="logo-container">
 				<h1>{SITE_NAME}</h1>
-				<img class="logo-icon" src="/favicon.png" alt="" />
+				<img class="logo-icon" src="/icon.png" alt="" />
 			</div>
 		</a>
 	</div>
