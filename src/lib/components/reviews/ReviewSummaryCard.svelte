@@ -34,7 +34,8 @@
 		<img src={imageUrl} alt="" />
 	</figure>
 	<div class="score">
-		{scoreGiven}<span class="possible-score">/{scorePossible}</span>
+		<span class="given-score">{scoreGiven}</span><span class="possible-score">/{scorePossible}</span
+		>
 	</div>
 	<div class="summary">'{summary}'</div>
 	<div class="fav-tracks {artistLink ? '' : 'no-artist-link'}">
@@ -60,7 +61,7 @@
 	</div>
 	{#if artistLink}
 		<a href={artistLink}>
-			<div class="support-the-artist-button">Support the artist</div>
+			<div class="support-the-artist-button">Support the artist →</div>
 		</a>
 	{/if}
 	<div class="review-id">
@@ -75,6 +76,7 @@
 	}
 	.summary {
 		color: var(--primary-color);
+		font-family: 'Spectral', serif;
 		padding: 1rem;
 		font-style: italic;
 	}
@@ -82,6 +84,7 @@
 		width: 100%;
 		aspect-ratio: 1 / 1;
 		outline: 1px solid var(--gray-color);
+		background-color: var(--primary-color);
 	}
 	img,
 	.score,
@@ -108,14 +111,18 @@
 		border: 2px solid var(--link-color);
 		border-radius: 0 0 15px 15px;
 		text-align: center;
-		padding: 0.5rem;
+		font-size: 1rem;
+		padding: 1rem 0;
 		margin-top: 0.2rem;
 	}
 	.score {
-		font-size: 3rem;
-		padding: 2rem;
+		padding: 1.5rem 2rem 2rem 2rem;
 		font-family: 'Source Sans Pro', sans-serif;
+		font-weight: bold;
 		border-radius: 0 0 15px 15px;
+	}
+	.given-score {
+		font-size: 4rem;
 	}
 	.possible-score {
 		color: var(--tertiary-color);

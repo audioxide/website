@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { ReviewSection } from '$lib/types/shared';
-	import ContentBlock from './ContentBlock.svelte';
+	import ContentBlock from '../ContentBlock.svelte';
 	let {
 		contentBlock,
 		primaryColor,

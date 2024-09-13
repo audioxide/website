@@ -5,7 +5,7 @@
 	import { SITE_NAME } from '$lib/constants';
 	import RelatedContent from '$lib/components/RelatedContent.svelte';
 	import RelatedTags from '$lib/components/RelatedTags.svelte';
-	import ReviewSection from '$lib/components/ReviewSection.svelte';
+	import ReviewSection from '$lib/components/reviews/ReviewSection.svelte';
 
 	let {
 		data
