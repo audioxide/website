@@ -8,9 +8,11 @@
 	let {
 		data
 	}: {
-		data: any;
+		data: {
+			listeningParty: any;
+		};
 	} = $props();
-	const { metadata, content, related } = $derived(data.article);
+	const { metadata, content, related } = $derived(data.listeningParty);
 </script>
 
 <svelte:head>

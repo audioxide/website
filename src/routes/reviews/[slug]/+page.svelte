@@ -7,10 +7,14 @@
 	import RelatedTags from '$lib/components/RelatedTags.svelte';
 	import ReviewSection from '$lib/components/ReviewSection.svelte';
 
-	export let data: {
-		review: Review;
-	};
-	$: ({ metadata, content, related } = data.review);
+	let {
+		data
+	}: {
+		data: {
+			review: Review;
+		};
+	} = $props();
+	const { metadata, content, related } = $derived(data.review);
 </script>
 
 <svelte:head>

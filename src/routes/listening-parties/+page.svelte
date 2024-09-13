@@ -3,7 +3,7 @@
 	import PostSummaryCardList from '$lib/components/PostSummaryCardList.svelte';
 	import { SITE_NAME } from '$lib/constants';
 
-	export let data;
+	let { data } = $props();
 </script>
 
 <svelte:head>

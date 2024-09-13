@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { SITE_NAME } from '$lib/constants';
 
 	console.log($page.error?.message);
 </script>
 
 <svelte:head>
-	<title>Error: {$page.status} // Audioxide</title>
+	<title>Error: {$page.status} // {SITE_NAME}</title>
 </svelte:head>
 
 <div class="error-message">
