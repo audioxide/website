@@ -1,8 +1,10 @@
 <script lang="ts">
+	import DirectoryPageHeader from '$lib/components/DirectoryPageHeader.svelte';
 	import PostSummaryCard from '$lib/components/PostSummaryCard.svelte';
+	import PostSummaryCardList from '$lib/components/PostSummaryCardList.svelte';
 	import { SITE_NAME } from '$lib/constants';
 
-	export let data;
+	let { data } = $props();
 </script>
 
 <svelte:head>
@@ -10,18 +12,9 @@
 	<meta name="description" content="Music reviews, articles, and interviews." />
 </svelte:head>
 
-<h2>Album Reviews</h2>
-<div class="reviews-container">
-	{#each data.reviews as review}
-		<PostSummaryCard
-			image={review.metadata.featuredimage['medium-square']}
-			title={review.metadata.title}
-			link={`/reviews/${review.metadata.slug}`}
-			blurb={review.metadata.blurb}
-			primaryColor={review.metadata.colours ? review.metadata.colours[0] : 'lightgray'}
-		/>
-	{/each}
-</div>
+<DirectoryPageHeader header="Album Reviews" />
+
+<PostSummaryCardList posts={data.reviews} />
 
 <style>
 	h2 {
@@ -31,10 +24,5 @@
 		font-style: italic;
 		text-align: center;
 		margin-bottom: 2rem;
-	}
-	.reviews-container {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-		gap: 2rem;
 	}
 </style>

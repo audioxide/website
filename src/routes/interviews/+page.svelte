@@ -1,4 +1,6 @@
 <script lang="ts">
+	import DirectoryPageHeader from '$lib/components/DirectoryPageHeader.svelte';
+	import PostSummaryCardList from '$lib/components/PostSummaryCardList.svelte';
 	import { SITE_NAME } from '$lib/constants';
 
 	export let data;
@@ -12,9 +14,6 @@
 	/>
 </svelte:head>
 
-<h1>Interviews</h1>
-{#each data.interviews as interview}
-	<a href={`/interviews/${interview.metadata.slug}`}>
-		<h2>{interview.metadata.title}</h2>
-	</a>
-{/each}
+<DirectoryPageHeader header="Interviews" />
+
+<PostSummaryCardList posts={data.interviews} />
