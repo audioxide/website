@@ -1,5 +1,7 @@
 <script lang="ts">
 	import type { AuthorObject } from '$lib/types/shared';
+	import { getAuthorLink } from '../../../utils';
+	import PostCredits from '../PostCredits.svelte';
 	import PostDate from '../PostDate.svelte';
 
 	let {
@@ -29,16 +31,7 @@
 		<h2 class="artist-name">{artistName}</h2>
 	</div>
 
-	<div class="authors">
-		Review by {#each authors as author}
-			<a href={`https://x.com/${author.links.twitter}`}>{author.name}</a>{author ===
-			authors[authors.length - 1]
-				? ''
-				: author === authors[authors.length - 2]
-					? ', and '
-					: ', '}
-		{/each}
-	</div>
+	<PostCredits {authors} />
 </div>
 
 <style>
@@ -60,12 +53,5 @@
 		color: black;
 		font-size: 2.3rem;
 		font-weight: 500;
-	}
-	.authors {
-		margin-bottom: 2rem;
-		font-size: 0.9rem;
-	}
-	.authors a {
-		font-size: 0.9rem;
 	}
 </style>

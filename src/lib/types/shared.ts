@@ -35,12 +35,19 @@ export interface SharedPostMetadata {
 export interface AuthorObject {
 	name: string;
 	forename: string;
-	links: AuthorLinks;
 	slug: string;
+	links?: AuthorLinks;
 }
 
-interface AuthorLinks {
-	[key: string]: string;
+export interface AuthorLinks {
+	default: string;
+	website?: string;
+	twitter?: string;
+	facebook?: string;
+	instagram?: string;
+	github?: string;
+	email?: string;
+	support?: string;
 }
 
 export interface ReviewSection {

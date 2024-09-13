@@ -1,4 +1,7 @@
 <script lang="ts">
+	import type { AuthorObject } from '$lib/types/shared';
+	import { getAuthorLink } from '../../utils';
+	import PostCredits from './PostCredits.svelte';
 	import PostDate from './PostDate.svelte';
 
 	let {
@@ -10,7 +13,7 @@
 		datePublished: string;
 		title: string;
 		summary: string;
-		author: { name: string; authors: { name: string; links: { twitter: string } }[] };
+		author: { name: string; authors: AuthorObject[] };
 	} = $props();
 </script>
 
@@ -22,12 +25,7 @@
 
 	<div class="post-summary">{summary}</div>
 
-	<div>
-		By
-		<a href={`https://x.com/${author.authors[0].links.twitter}`}>
-			{author.name}
-		</a>
-	</div>
+	<PostCredits authors={author.authors} />
 </div>
 
 <style>
