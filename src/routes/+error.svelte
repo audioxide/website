@@ -12,7 +12,9 @@
 <div class="error-message">
 	<h2>{$page.status}</h2>
 	<p>Sorry, we couldn't find the page you were looking for.</p>
-	<p><a href="/">Go to the homepage</a></p>
+	<p>
+		<a href="/">Go to the homepage</a> or <a href="/random">feed your head</a>
+	</p>
 </div>
 
 <style>

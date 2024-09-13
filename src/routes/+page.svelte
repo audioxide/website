@@ -14,7 +14,7 @@
 <a href="/reviews"><h2>Album Reviews</h2></a>
 
 <!-- Feed your head -->
-<h2>Feed Your Head</h2>
+<a href="/random"><h2>Feed Your Head</h2></a>
 
 <!-- Articles -->
 <a href="/articles"><h2>Articles</h2></a>
