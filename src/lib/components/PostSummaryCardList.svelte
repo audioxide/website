@@ -14,7 +14,7 @@
 <div class="posts-container">
 	{#each posts as post}
 		<PostSummaryCard
-			image={post.metadata.type === 'reviews'
+			image={post.metadata.type === 'reviews' || post.metadata.type === 'listening-parties'
 				? post.metadata.featuredimage['medium-square']
 				: post.metadata.featuredimage['medium-standard']}
 			title={post.metadata.title}

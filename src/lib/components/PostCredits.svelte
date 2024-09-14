@@ -11,7 +11,7 @@
 		{#if author.links}
 			<a href={getAuthorLink(author.links, author.slug)}>
 				{author.name}
-			</a>{i === authors.length - 1 ? '' : i === authors.length - 2 ? ', and ' : ', '}
+			</a>{i === authors.length - 1 ? '' : i === authors.length - 2 ? ' and ' : ', '}
 		{:else}
 			{author.name}{i === authors.length - 1 ? '' : i === authors.length - 2 ? ', and ' : ', '}
 		{/if}

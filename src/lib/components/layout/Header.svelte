@@ -40,6 +40,8 @@
 			<li><a href="/reviews">Album Reviews</a></li>
 			<li><a href="/articles">Articles</a></li>
 			<li><a href="/interviews">Interviews</a></li>
+			<li><a href="/listening-parties">Listening Parties</a></li>
+			<li><a href="/funnyfarm">Funnyfarm</a></li>
 		</ul>
 	</nav>
 
