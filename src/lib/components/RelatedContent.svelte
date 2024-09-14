@@ -20,7 +20,7 @@
 				title={metadata.title}
 				link={`/${metadata.type}/${metadata.slug}`}
 				blurb={metadata.blurb}
-				primaryColor={metadata.colours ? metadata.colours[0] : 'lightgray'}
+				primaryColor={metadata.colours ? metadata.colours[0] : undefined}
 			/>
 		{/each}
 	</div>

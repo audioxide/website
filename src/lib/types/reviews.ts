@@ -10,7 +10,6 @@ export interface ReviewMetadata extends SharedPostMetadata {
 		possible: number;
 		fraction: number;
 	};
-	colours: string[];
 	pullquote: string;
 	week: number;
 	artistMBID: string;

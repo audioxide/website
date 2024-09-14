@@ -10,13 +10,13 @@
 		title: string;
 		link: string;
 		blurb: string;
-		primaryColor: string;
+		primaryColor: string | undefined;
 	} = $props();
 </script>
 
 <div class="card" style="--primary-color: {primaryColor}">
 	<a href={link}>
-		<img src={image} alt={title} />
+		<img src={image} alt={title} class:border={primaryColor} />
 		<h3>{title}</h3>
 		<p>{blurb}</p>
 	</a>
@@ -36,9 +36,12 @@
 	img {
 		width: 100%;
 		height: auto;
-		border: 3px solid var(--primary-color);
 		border-radius: 5px;
 		margin-bottom: 0.8rem;
+	}
+
+	.border {
+		border: 3px solid var(--primary-color);
 	}
 
 	h3 {

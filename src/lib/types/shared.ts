@@ -8,6 +8,7 @@ export interface SharedPostMetadata {
 	summary: string;
 	blurb: string;
 	tags: string[];
+	colours?: string[];
 	author: {
 		name: string;
 		authors: AuthorObject[];
