@@ -43,7 +43,7 @@
 			<h3>Essential Tracks</h3>
 			<ul>
 				{#each essentialTracks as track}
-					<li>{track}</li>
+					<li class="top-track">{track}</li>
 				{/each}
 			</ul>
 		{/if}
@@ -54,13 +54,13 @@
 			<h3>Favourite Tracks</h3>
 			<ul>
 				{#each favouriteTracks as track}
-					<li>{track}</li>
+					<li class="top-track">{track}</li>
 				{/each}
 			</ul>
 		{/if}
 	</div>
 	{#if artistLink}
-		<a href={artistLink}>
+		<a href={artistLink} class="artist-link">
 			<div class="support-the-artist-button">Support the artist →</div>
 		</a>
 	{/if}
@@ -93,6 +93,9 @@
 		color: var(--secondary-color);
 		text-align: center;
 	}
+	h3 {
+		margin-bottom: 0.3rem;
+	}
 	.fav-tracks {
 		border-radius: 15px 15px 0 0;
 		padding: 2rem 0;
@@ -104,16 +107,27 @@
 	.top-tracks-section-divider {
 		margin-bottom: 1rem;
 	}
+	.top-track {
+		font-family: 'Spectral', serif;
+	}
 	.no-artist-link {
-		border-radius: 0 0 15px 15px;
+		border-radius: 15px;
+	}
+	.artist-link {
+		text-decoration: none;
 	}
 	.support-the-artist-button {
 		border: 2px solid var(--link-color);
 		border-radius: 0 0 15px 15px;
 		text-align: center;
 		font-size: 1rem;
+		font-weight: bold;
 		padding: 1rem 0;
 		margin-top: 0.2rem;
+		&:hover {
+			background-color: var(--link-color);
+			color: var(--gray-color);
+		}
 	}
 	.score {
 		padding: 1.5rem 2rem 2rem 2rem;
