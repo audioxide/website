@@ -12,6 +12,7 @@ export interface ReviewMetadata extends SharedPostMetadata {
 	};
 	pullquote: string;
 	week: number;
+	colours: string[];
 	artistMBID: string;
 	albumMBID: string;
 	artistLink: string;

@@ -1,17 +1,20 @@
 <script lang="ts">
+	import type { SharedPostMetadata } from '$lib/types/shared';
 	import PostSummaryCard from './PostSummaryCard.svelte';
 
 	let {
 		posts
 	}: {
-		posts: any[];
+		posts: {
+			metadata: SharedPostMetadata;
+		}[];
 	} = $props();
 </script>
 
 <div class="posts-container">
 	{#each posts as post}
 		<PostSummaryCard
-			image={post.metadata.type === 'review'
+			image={post.metadata.type === 'reviews'
 				? post.metadata.featuredimage['medium-square']
 				: post.metadata.featuredimage['medium-standard']}
 			title={post.metadata.title}

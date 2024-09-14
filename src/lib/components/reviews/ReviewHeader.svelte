@@ -31,7 +31,7 @@
 		<h2 class="artist-name">{artistName}</h2>
 	</div>
 
-	<PostCredits {authors} />
+	<PostCredits {authors} isReview />
 </div>
 
 <style>

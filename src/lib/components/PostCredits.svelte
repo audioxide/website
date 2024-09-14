@@ -2,11 +2,12 @@
 	import type { AuthorObject } from '$lib/types/shared';
 	import { getAuthorLink } from '../../utils';
 
-	let { authors }: { authors: AuthorObject[] } = $props();
+	let { authors, isReview }: { authors: AuthorObject[]; isReview: boolean } = $props();
 </script>
 
 <div class="authors">
-	By {#each authors as author, i}
+	{isReview ? 'Review by' : 'By'}
+	{#each authors as author, i}
 		{#if author.links}
 			<a href={getAuthorLink(author.links, author.slug)}>
 				{author.name}

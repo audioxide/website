@@ -1,5 +1,5 @@
 <script lang="ts">
-	import DirectoryPageHeader from '$lib/components/DirectoryPageHeader.svelte';
+	import SectionHeader from '$lib/components/SectionHeader.svelte';
 	import PostSummaryCardList from '$lib/components/PostSummaryCardList.svelte';
 	import { SITE_NAME } from '$lib/constants';
 
@@ -11,6 +11,6 @@
 	<meta name="description" content="Articles about music and the like." />
 </svelte:head>
 
-<DirectoryPageHeader header="Articles" />
+<SectionHeader header="Articles" />
 
 <PostSummaryCardList posts={data.articles} />

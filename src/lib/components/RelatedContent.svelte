@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { ReviewMetadata } from '$lib/types/reviews';
 	import PostSummaryCard from './PostSummaryCard.svelte';
+	import SectionHeader from './SectionHeader.svelte';
 
 	let {
 		relatedContent
@@ -12,7 +13,7 @@
 </script>
 
 <div class="related-content">
-	<h2>Related Posts</h2>
+	<SectionHeader header="Related Posts" />
 	<div class="post-cards">
 		{#each relatedContent as { metadata }}
 			<PostSummaryCard

@@ -1,5 +1,9 @@
 <script>
+	import SectionHeader from '$lib/components/SectionHeader.svelte';
+	import PostSummaryCardList from '$lib/components/PostSummaryCardList.svelte';
 	import { SITE_NAME } from '$lib/constants';
+
+	let { data } = $props();
 </script>
 
 <svelte:head>
@@ -11,19 +15,40 @@
 <h2>Lead</h2>
 
 <!-- Album Reviews -->
-<a href="/reviews"><h2>Album Reviews</h2></a>
+<SectionHeader header="Album Reviews" />
+<PostSummaryCardList posts={data.latest.reviews} />
 
 <!-- Feed your head -->
-<a href="/random"><h2>Feed Your Head</h2></a>
+<a class="feed-your-head" href="/random"><h2>Feed Your Head</h2></a>
 
 <!-- Articles -->
-<a href="/articles"><h2>Articles</h2></a>
+<SectionHeader header="Articles" />
+<PostSummaryCardList posts={data.latest.articles} />
 
 <!-- Interviews -->
-<a href="/interviews"><h2>Interviews</h2></a>
+<SectionHeader header="Interviews" />
+<PostSummaryCardList posts={data.latest.interviews} />
 
 <!-- Listening Parties -->
-<a href="/listening-parties"><h2>Listening Parties</h2></a>
+<SectionHeader header="Listening Parties" />
+<PostSummaryCardList posts={data.latest['listening-parties']} />
 
 <!-- Funnyfarm -->
-<a href="/funnyfarm"><h2>Funnyfarm</h2></a>
+<SectionHeader header="Funnyfarm" />
+<PostSummaryCardList posts={data.latest.funnyfarm} />
+
+<style>
+	.feed-your-head {
+		display: block;
+		margin-top: 1rem;
+		padding: 1rem;
+		border: 2px solid var(--link-color);
+		border-radius: 0.5rem;
+		text-align: center;
+		text-decoration: none;
+		&:hover {
+			background-color: var(--link-color);
+			color: var(--gray-color);
+		}
+	}
+</style>

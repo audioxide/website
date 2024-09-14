@@ -25,7 +25,7 @@
 
 	<div class="post-summary">{summary}</div>
 
-	<PostCredits authors={author.authors} />
+	<PostCredits authors={author.authors} isReview={false} />
 </div>
 
 <style>
