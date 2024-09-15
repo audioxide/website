@@ -43,3 +43,19 @@ a {
 a:hover {
 	opacity: 0.8;
 }
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+	margin-bottom: 1.5rem;
+}
+
+th,
+td {
+	border: 1px solid var(--gray-color);
+	padding: 0.5rem;
+}
+
+th {
+	background-color: var(--gray-color);
+}

@@ -34,10 +34,18 @@
 	author={metadata.author}
 />
 
-<ContentBlock html={content} />
-
-<RelatedTags relatedTags={metadata.tags} />
+<div class="content">
+	<ContentBlock html={content} />
+	<RelatedTags relatedTags={metadata.tags} />
+</div>
 
 <RelatedContent relatedContent={related} />
 
 {@html `<script type="application/ld+json">${JSON.stringify(createPostStructuredData(metadata))}</script>`}
+
+<style>
+	.content {
+		max-width: 800px;
+		margin: 0 auto;
+	}
+</style>
