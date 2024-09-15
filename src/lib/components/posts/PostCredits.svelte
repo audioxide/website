@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { AuthorObject } from '$lib/types/shared';
-	import { getAuthorLink } from '../../utils';
+	import { getAuthorLink } from '../../../utils';
 
 	let { authors, isReview }: { authors: AuthorObject[]; isReview: boolean } = $props();
 </script>

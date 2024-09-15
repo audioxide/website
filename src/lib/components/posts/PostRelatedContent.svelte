@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { ReviewMetadata } from '$lib/types/reviews';
 	import type { SharedPostMetadata } from '$lib/types/shared';
-	import PostSummaryCard from './PostSummaryCard.svelte';
-	import SectionHeader from './SectionHeader.svelte';
+	import PostSummaryCard from '../PostSummaryCard.svelte';
+	import SectionHeader from '../SectionHeader.svelte';
 
 	let {
 		relatedContent
@@ -31,17 +31,6 @@
 <style>
 	.related-content {
 		margin: 2rem 0;
-	}
-	h2 {
-		font-family: 'Spectral SC', serif;
-		font-weight: 300;
-		font-size: 1rem;
-		font-style: italic;
-		margin-bottom: 1rem;
-		padding: 0.8rem 0;
-		text-align: center;
-		border-top: 2px solid var(--gray-color);
-		border-bottom: 2px solid var(--gray-color);
 	}
 	.post-cards {
 		display: grid;

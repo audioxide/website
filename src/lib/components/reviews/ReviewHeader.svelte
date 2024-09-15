@@ -1,8 +1,7 @@
 <script lang="ts">
 	import type { AuthorObject } from '$lib/types/shared';
-	import { getAuthorLink } from '../../../utils';
-	import PostCredits from '../PostCredits.svelte';
-	import PostDate from '../PostDate.svelte';
+	import PostCredits from '../posts/PostCredits.svelte';
+	import PostDate from '../posts/PostDate.svelte';
 
 	let {
 		dateCreated,

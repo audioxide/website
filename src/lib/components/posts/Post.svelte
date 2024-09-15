@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { SITE_NAME } from '$lib/constants';
 	import type { SharedPostMetadata } from '$lib/types/shared';
-	import { createPostStructuredData } from '../../utils/schema';
-	import ContentBlock from './ContentBlock.svelte';
+	import { createPostStructuredData } from '../../../utils/schema';
+	import ContentBlock from '../ContentBlock.svelte';
 	import PostHeader from './PostHeader.svelte';
-	import RelatedContent from './RelatedContent.svelte';
-	import RelatedTags from './RelatedTags.svelte';
+	import RelatedContent from './PostRelatedContent.svelte';
+	import RelatedTags from './PostTags.svelte';
 
 	let {
 		post
