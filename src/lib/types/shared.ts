@@ -1,3 +1,11 @@
+export interface GenericPost {
+	metadata: SharedPostMetadata;
+	content: string;
+	related: {
+		metadata: SharedPostMetadata;
+	}[];
+}
+
 export interface SharedPostMetadata {
 	id: number;
 	slug: string;

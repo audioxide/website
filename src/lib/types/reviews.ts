@@ -1,5 +1,13 @@
 import type { ReviewSection, SharedPostMetadata } from './shared';
 
+export interface Review {
+	metadata: ReviewMetadata;
+	content: ReviewSection[];
+	related: {
+		metadata: ReviewMetadata;
+	}[];
+}
+
 export interface ReviewMetadata extends SharedPostMetadata {
 	artist: string;
 	album: string;
@@ -21,12 +29,4 @@ export interface ReviewMetadata extends SharedPostMetadata {
 		scripts: string[];
 		styles: string[];
 	};
-}
-
-export interface Review {
-	metadata: ReviewMetadata;
-	content: ReviewSection[];
-	related: {
-		metadata: ReviewMetadata;
-	}[];
 }
