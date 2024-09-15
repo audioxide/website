@@ -11,6 +11,6 @@
 	<meta name="description" content="A new low for music-related fiction." />
 </svelte:head>
 
-<SectionHeader header="Funnyfarm Entries" />
+<SectionHeader header="Funnyfarm" />
 
 <PostSummaryCardList posts={data.funnyfarms} />

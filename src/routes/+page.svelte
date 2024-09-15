@@ -15,26 +15,26 @@
 <h2>Lead</h2>
 
 <!-- Album Reviews -->
-<SectionHeader header="Album Reviews" />
+<SectionHeader header="Album Reviews" seeAllSlug="reviews" />
 <PostSummaryCardList posts={data.latest.reviews} />
 
 <!-- Feed your head -->
 <a class="feed-your-head" href="/random"><h2>Feed Your Head</h2></a>
 
 <!-- Articles -->
-<SectionHeader header="Articles" />
+<SectionHeader header="Articles" seeAllSlug="articles" />
 <PostSummaryCardList posts={data.latest.articles} />
 
 <!-- Interviews -->
-<SectionHeader header="Interviews" />
+<SectionHeader header="Interviews" seeAllSlug="interviews" />
 <PostSummaryCardList posts={data.latest.interviews} />
 
 <!-- Listening Parties -->
-<SectionHeader header="Listening Parties" />
+<SectionHeader header="Listening Parties" seeAllSlug="listening-parties" />
 <PostSummaryCardList posts={data.latest['listening-parties']} />
 
 <!-- Funnyfarm -->
-<SectionHeader header="Funnyfarm" />
+<SectionHeader header="Funnyfarm" seeAllSlug="funnyfarm" />
 <PostSummaryCardList posts={data.latest.funnyfarm} />
 
 <style>
