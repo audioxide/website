@@ -6,6 +6,7 @@
 	import RelatedContent from '$lib/components/RelatedContent.svelte';
 	import RelatedTags from '$lib/components/RelatedTags.svelte';
 	import ReviewSection from '$lib/components/reviews/ReviewSection.svelte';
+	import { createReviewStructuredData } from '../../../utils/schema';
 
 	let {
 		data
@@ -62,6 +63,8 @@
 		<RelatedContent relatedContent={related} />
 	</div>
 </div>
+
+{@html `<script type="application/ld+json">${JSON.stringify(createReviewStructuredData(metadata))}</script>`}
 
 <style>
 	@media (min-width: 768px) {

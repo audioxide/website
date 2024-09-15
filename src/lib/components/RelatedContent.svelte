@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { ReviewMetadata } from '$lib/types/reviews';
+	import type { SharedPostMetadata } from '$lib/types/shared';
 	import PostSummaryCard from './PostSummaryCard.svelte';
 	import SectionHeader from './SectionHeader.svelte';
 
@@ -7,7 +8,7 @@
 		relatedContent
 	}: {
 		relatedContent: {
-			metadata: ReviewMetadata;
+			metadata: SharedPostMetadata;
 		}[];
 	} = $props();
 </script>

@@ -1,14 +1,15 @@
 <script>
 	import SectionHeader from '$lib/components/SectionHeader.svelte';
 	import PostSummaryCardList from '$lib/components/PostSummaryCardList.svelte';
-	import { SITE_NAME } from '$lib/constants';
+	import { SITE_DESCRIPTION, SITE_NAME } from '$lib/constants';
+	import { audioxideStructuredData } from '../utils/schema';
 
 	let { data } = $props();
 </script>
 
 <svelte:head>
 	<title>{SITE_NAME}</title>
-	<meta name="description" content="Music reviews, articles, and interviews." />
+	<meta name="description" content={SITE_DESCRIPTION} />
 </svelte:head>
 
 <!-- Lead -->
@@ -36,6 +37,8 @@
 <!-- Funnyfarm -->
 <SectionHeader header="Funnyfarm" seeAllSlug="funnyfarm" />
 <PostSummaryCardList posts={data.latest.funnyfarm} />
+
+{@html `<script type="application/ld+json">${JSON.stringify(audioxideStructuredData())}</script>`}
 
 <style>
 	.feed-your-head {

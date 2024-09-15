@@ -4,12 +4,20 @@
 	import RelatedContent from '$lib/components/RelatedContent.svelte';
 	import RelatedTags from '$lib/components/RelatedTags.svelte';
 	import { SITE_NAME } from '$lib/constants';
+	import type { SharedPostMetadata } from '$lib/types/shared';
+	import { createPostStructuredData } from '../../../utils/schema';
 
 	let {
 		data
 	}: {
 		data: {
-			interview: any;
+			interview: {
+				metadata: SharedPostMetadata;
+				content: string;
+				related: {
+					metadata: SharedPostMetadata;
+				}[];
+			};
 		};
 	} = $props();
 	const { metadata, content, related } = $derived(data.interview);
@@ -36,3 +44,5 @@
 <div class="related-posts">
 	<RelatedContent relatedContent={related} />
 </div>
+
+{@html `<script type="application/ld+json">${JSON.stringify(createPostStructuredData(metadata))}</script>`}
