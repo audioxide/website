@@ -31,7 +31,7 @@
 		<a href="/">
 			<div class="logo-container">
 				<h1>{SITE_NAME}</h1>
-				<img class="logo-icon" src="/icon.png" alt="" />
+				<img class="logo-icon" src="/icon.png" alt={`${SITE_NAME} logo`} />
 			</div>
 		</a>
 	</div>
