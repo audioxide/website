@@ -3,16 +3,18 @@
 	import { SITE_NAME } from '$lib/constants';
 
 	let { data } = $props();
+
+	const { metadata, content } = $derived(data.page);
 </script>
 
 <svelte:head>
-	<title>{data.page?.metadata.title} // {SITE_NAME}</title>
-	<meta name="description" content={data.page?.metadata.blurb} />
+	<title>{metadata.title} // {SITE_NAME}</title>
+	<meta name="description" content={metadata.blurb} />
 </svelte:head>
 
 <div class="container">
-	<h2>{data.page?.metadata.title}</h2>
-	{#each data.page?.content as html}
+	<h2>{metadata.title}</h2>
+	{#each content as html}
 		<ContentBlock {html} />
 	{/each}
 </div>
