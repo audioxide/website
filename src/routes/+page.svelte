@@ -3,8 +3,20 @@
 	import PostSummaryCardList from '$lib/components/PostSummaryCardList.svelte';
 	import { SITE_DESCRIPTION, SITE_NAME } from '$lib/constants';
 	import { audioxideStructuredData } from '../utils/schema';
+	import FeaturedPost from '$lib/components/homepage/FeaturedPost.svelte';
 
 	let { data } = $props();
+
+	// data.latest is a map of objects. Each object has a key 'metadata' which is an array of objects.
+	// Find the object with the most recent published date
+
+	const latestPost = Object.values(data.latest)
+		.flat()
+		.sort(
+			(a, b) =>
+				new Date(b.metadata.created).getMilliseconds() -
+				new Date(a.metadata.created).getMilliseconds()
+		)[0];
 </script>
 
 <svelte:head>
@@ -13,7 +25,7 @@
 </svelte:head>
 
 <!-- Lead -->
-<h2>Lead</h2>
+<FeaturedPost post={latestPost.metadata} />
 
 <!-- Album Reviews -->
 <SectionHeader header="Album Reviews" seeAllSlug="reviews" />
