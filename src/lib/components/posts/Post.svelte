@@ -3,6 +3,7 @@
 	import type { SharedPostMetadata } from '$lib/types/shared';
 	import { createPostStructuredData } from '../../../utils/schema';
 	import ContentBlock from '../ContentBlock.svelte';
+	import SupportBlock from '../SupportBlock.svelte';
 	import PostHeader from './PostHeader.svelte';
 	import RelatedContent from './PostRelatedContent.svelte';
 	import RelatedTags from './PostTags.svelte';

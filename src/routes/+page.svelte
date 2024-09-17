@@ -4,6 +4,7 @@
 	import { SITE_DESCRIPTION, SITE_NAME } from '$lib/constants';
 	import { audioxideStructuredData } from '../utils/schema';
 	import FeaturedPost from '$lib/components/homepage/FeaturedPost.svelte';
+	import SupportBlock from '$lib/components/SupportBlock.svelte';
 
 	let { data } = $props();
 
@@ -37,6 +38,8 @@
 <!-- Articles -->
 <SectionHeader header="Articles" seeAllSlug="articles" />
 <PostSummaryCardList posts={data.latest.articles} />
+
+<SupportBlock />
 
 <!-- Interviews -->
 <SectionHeader header="Interviews" seeAllSlug="interviews" />
