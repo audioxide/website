@@ -2,6 +2,7 @@
 	import { INSTAGRAM_URL, SITE_FOUNDING_YEAR, SITE_NAME, X_URL } from '$lib/constants';
 	import { icons } from '$lib/styles/icons';
 	import Icon from '../Icon.svelte';
+	import LogoBordered from '../logos/LogoBordered.svelte';
 
 	const currentYear = new Date().getFullYear();
 </script>
@@ -16,11 +17,7 @@
 			<Icon icon={icons.instagram} />
 		</a>
 		<a href="/">
-			<img
-				class="logo-icon"
-				src="/branding/bordered-emblem-black-transparent.png"
-				alt={`${SITE_NAME} logo`}
-			/>
+			<LogoBordered />
 		</a>
 
 		<a href="mailto:fred@audioxide.com" target="_blank" rel="noopener noreferrer">
