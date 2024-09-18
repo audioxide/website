@@ -24,7 +24,7 @@
 </script>
 
 <div class="search-container">
-	<Icon icon={icons.magnifyingGlass} />
+	<!-- <Icon icon={icons.magnifyingGlass} /> -->
 	<input
 		type="text"
 		placeholder="Search..."
@@ -44,7 +44,7 @@
 		border: 1px solid #ccc;
 		border-radius: 20px;
 		padding: 10px;
-		width: 300px;
+		width: 100%;
 		max-width: 400px;
 		font-size: 16px;
 	}

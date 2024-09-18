@@ -5,6 +5,7 @@
 	import { audioxideStructuredData } from '../utils/schema';
 	import FeaturedPost from '$lib/components/homepage/FeaturedPost.svelte';
 	import SupportBlock from '$lib/components/SupportBlock.svelte';
+	import FeedYourHead from '$lib/components/FeedYourHead.svelte';
 
 	let { data } = $props();
 
@@ -33,7 +34,7 @@
 <PostSummaryCardList posts={data.latest.reviews} />
 
 <!-- Feed your head -->
-<a class="feed-your-head" href="/random"><h2>Feed Your Head</h2></a>
+<FeedYourHead />
 
 <!-- Articles -->
 <SectionHeader header="Articles" seeAllSlug="articles" />
@@ -56,17 +57,4 @@
 {@html `<script type="application/ld+json">${JSON.stringify(audioxideStructuredData())}</script>`}
 
 <style>
-	.feed-your-head {
-		display: block;
-		margin-top: 1rem;
-		padding: 1rem;
-		border: 2px solid var(--link-color);
-		border-radius: 0.5rem;
-		text-align: center;
-		text-decoration: none;
-		&:hover {
-			background-color: var(--link-color);
-			color: var(--gray-color);
-		}
-	}
 </style>

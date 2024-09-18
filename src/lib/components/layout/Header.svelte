@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { SITE_NAME } from '$lib/constants';
+	import { NAVIGATION_LINKS, SITE_NAME } from '$lib/constants';
 	import { icons } from '$lib/styles/icons';
 	import Icon from '../Icon.svelte';
 	import LogoPlain from '../logos/LogoPlain.svelte';
+	import HeaderMenuMobile from './HeaderMenuMobile.svelte';
 	import HeaderSearchBar from './HeaderSearchBar.svelte';
 
 	const {
@@ -16,6 +17,9 @@
 			slug: string;
 		}[];
 	} = $props();
+
+	let showMobileMenu = $state(false);
+
 	const covers = recentReviews.map((review) => {
 		return {
 			cover: review.image,
@@ -32,9 +36,16 @@
 
 <header>
 	<div class="top-bar">
-		<div class="burger">
+		<div
+			class="burger"
+			onclick={() => (showMobileMenu = !showMobileMenu)}
+			aria-label="Toggle menu on"
+		>
 			<Icon icon={icons.bars} color="lightgray" />
 		</div>
+		{#if showMobileMenu}
+			<HeaderMenuMobile bind:showMobileMenu />
+		{/if}
 		<a href="/">
 			<div class="logo-container">
 				<h1>{SITE_NAME}</h1>
@@ -46,11 +57,20 @@
 		</div>
 		<nav>
 			<ul>
-				<li><a href="/reviews">Reviews</a></li>
-				<li><a href="/articles">Articles</a></li>
-				<li><a href="/interviews">Interviews</a></li>
-				<li><a href="/listening-parties">Listening Parties</a></li>
-				<li><a href="/funnyfarm">Funnyfarm</a></li>
+				{#each NAVIGATION_LINKS as item}
+					<li>
+						<a href={item.link}>{item.name}</a>
+						<!-- {#if item.subLinks}
+							<ul class="sublinks">
+								{#each item.subLinks as subItem}
+									<li>
+										<a href={subItem.link}>{subItem.name}</a>
+									</li>
+								{/each}
+							</ul>
+						{/if} -->
+					</li>
+				{/each}
 			</ul>
 		</nav>
 	</div>
@@ -107,6 +127,11 @@
 		flex-direction: row;
 		gap: 1rem;
 		align-items: center;
+	}
+	.sublinks {
+		display: flex;
+		flex-direction: column;
+		gap: 0;
 	}
 	ul {
 		display: flex;
