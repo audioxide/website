@@ -35,6 +35,15 @@
 	author={metadata.author}
 />
 
+{#if metadata.showFeaturedImage}
+	<figure>
+		<img src={metadata.featuredimage['medium-original']} alt={metadata.featuredimageAlt} />
+		{#if metadata.featuredImageCaption}
+			<figcaption>{@html metadata.featuredImageCaption}</figcaption>
+		{/if}
+	</figure>
+{/if}
+
 <div class="content">
 	<ContentBlock html={content} />
 	<RelatedTags relatedTags={metadata.tags} />
@@ -45,6 +54,18 @@
 {@html `<script type="application/ld+json">${JSON.stringify(createPostStructuredData(metadata))}</script>`}
 
 <style>
+	figure {
+		margin: 0 0 2rem 0;
+		img {
+			width: 100%;
+			border-radius: 1rem;
+		}
+		figcaption {
+			text-align: right;
+			margin-right: 0.5rem;
+			color: #666;
+		}
+	}
 	.content {
 		max-width: 800px;
 		margin: 0 auto;

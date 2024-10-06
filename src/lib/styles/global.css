@@ -59,3 +59,9 @@ td {
 th {
 	background-color: var(--gray-color);
 }
+figcaption {
+	font-size: 0.8rem;
+	a {
+		font-size: 0.8rem;
+	}
+}

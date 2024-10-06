@@ -30,7 +30,6 @@
 <style>
 	.post-header {
 		text-align: center;
-		margin-bottom: 2rem;
 		line-height: 1.1;
 		display: flex;
 		flex-direction: column;

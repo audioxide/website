@@ -39,6 +39,8 @@ export interface SharedPostMetadata {
 		'xlarge-standard': string;
 	};
 	featuredimageAlt: string;
+	showFeaturedImage?: boolean;
+	featuredImageCaption?: string;
 }
 
 export interface AuthorObject {
