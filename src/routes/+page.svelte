@@ -26,35 +26,52 @@
 	<meta name="description" content={SITE_DESCRIPTION} />
 </svelte:head>
 
-<!-- Lead -->
-<FeaturedPost post={latestPost.metadata} />
+<div class="homepage-content-container">
+	<!-- Lead -->
+	<FeaturedPost post={latestPost.metadata} />
 
-<!-- Album Reviews -->
-<SectionHeader header="Album Reviews" seeAllSlug="reviews" />
-<PostSummaryCardList posts={data.latest.reviews} />
+	<div>
+		<!-- Album Reviews -->
+		<SectionHeader header="Album Reviews" seeAllSlug="reviews" />
+		<PostSummaryCardList posts={data.latest.reviews.slice(0, 8)} />
+	</div>
 
-<!-- Feed your head -->
-<FeedYourHead />
+	<!-- Feed your head -->
+	<FeedYourHead />
 
-<!-- Articles -->
-<SectionHeader header="Articles" seeAllSlug="articles" />
-<PostSummaryCardList posts={data.latest.articles} />
+	<div>
+		<!-- Articles -->
+		<SectionHeader header="Articles" seeAllSlug="articles" />
+		<PostSummaryCardList posts={data.latest.articles.slice(0, 4)} />
+	</div>
 
-<SupportBlock />
+	<!-- Support -->
+	<SupportBlock />
 
-<!-- Interviews -->
-<SectionHeader header="Interviews" seeAllSlug="interviews" />
-<PostSummaryCardList posts={data.latest.interviews} />
+	<div>
+		<!-- Interviews -->
+		<SectionHeader header="Interviews" seeAllSlug="interviews" />
+		<PostSummaryCardList posts={data.latest.interviews.slice(0, 4)} />
+	</div>
 
-<!-- Listening Parties -->
-<SectionHeader header="Listening Parties" seeAllSlug="listening-parties" />
-<PostSummaryCardList posts={data.latest['listening-parties']} />
+	<div>
+		<!-- Listening Parties -->
+		<SectionHeader header="Listening Parties" seeAllSlug="listening-parties" />
+		<PostSummaryCardList posts={data.latest['listening-parties'].slice(0, 4)} />
+	</div>
 
-<!-- Funnyfarm -->
-<SectionHeader header="Funnyfarm" seeAllSlug="funnyfarm" />
-<PostSummaryCardList posts={data.latest.funnyfarm} />
+	<div>
+		<!-- Funnyfarm -->
+		<SectionHeader header="Funnyfarm" seeAllSlug="funnyfarm" />
+		<PostSummaryCardList posts={data.latest.funnyfarm.slice(0, 4)} />
+	</div>
+</div>
 
 {@html `<script type="application/ld+json">${JSON.stringify(audioxideStructuredData())}</script>`}
 
 <style>
+	.homepage-content-container {
+		display: grid;
+		gap: 2rem;
+	}
 </style>

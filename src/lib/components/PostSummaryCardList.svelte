@@ -28,7 +28,13 @@
 <style>
 	.posts-container {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-		gap: 2rem;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1rem;
+	}
+	/* Tablet media query */
+	@media (min-width: 768px) {
+		.posts-container {
+			grid-template-columns: repeat(4, 1fr);
+		}
 	}
 </style>
