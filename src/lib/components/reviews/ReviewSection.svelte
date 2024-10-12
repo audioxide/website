@@ -17,11 +17,11 @@
 	<ContentBlock html={contentBlock.review} />
 	<div class="fav-tracks">
 		<h4>Favourite tracks //</h4>
-		<ul>
+		<ol>
 			{#each contentBlock.tracks as track, i}
 				<li style="margin-left: {i}rem">{track}</li>
 			{/each}
-		</ul>
+		</ol>
 	</div>
 	<div class="score">
 		<span class="score-given">{contentBlock.score.score}</span>
@@ -46,8 +46,13 @@
 		flex-direction: row;
 		gap: 0.5rem;
 	}
+	ol {
+		list-style-type: none;
+		padding: 0;
+	}
 	li {
 		font-family: 'Spectral', serif;
+		list-style-type: none;
 	}
 	.score {
 		font-size: 1.5rem;

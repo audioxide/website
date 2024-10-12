@@ -28,12 +28,14 @@
 	<meta name="description" content={metadata.summary} />
 </svelte:head>
 
-<PostHeader
-	datePublished={metadata.created}
-	title={metadata.title}
-	summary={metadata.summary}
-	author={metadata.author}
-/>
+<div class="header">
+	<PostHeader
+		datePublished={metadata.created}
+		title={metadata.title}
+		summary={metadata.summary}
+		author={metadata.author}
+	/>
+</div>
 
 {#if metadata.showFeaturedImage}
 	<figure>
@@ -66,6 +68,7 @@
 			color: #666;
 		}
 	}
+	.header,
 	.content {
 		max-width: 800px;
 		margin: 0 auto;
