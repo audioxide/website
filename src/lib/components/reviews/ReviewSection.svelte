@@ -12,20 +12,22 @@
 	} = $props();
 </script>
 
-<div class="content-block" style="--primary-color: {primaryColor}">
+<div class="review-block" style="--primary-color: {primaryColor}">
 	<h3>{contentBlock.author.authors[0].forename}</h3>
 	<ContentBlock html={contentBlock.review} />
-	<div class="fav-tracks">
-		<h4>Favourite tracks //</h4>
-		<ol>
-			{#each contentBlock.tracks as track, i}
-				<li style="margin-left: {i}rem">{track}</li>
-			{/each}
-		</ol>
-	</div>
-	<div class="score">
-		<span class="score-given">{contentBlock.score.score}</span>
-		/{contentBlock.score.max}
+	<div class="tracks-and-scores-container">
+		<div class="fav-tracks">
+			<h4>Favourite tracks //</h4>
+			<ol>
+				{#each contentBlock.tracks as track, i}
+					<li style="margin-left: {i}rem">{track}</li>
+				{/each}
+			</ol>
+		</div>
+		<div class="score">
+			<span class="score-given">{contentBlock.score.score}</span>
+			/{contentBlock.score.max}
+		</div>
 	</div>
 </div>
 {#if !isLast}
@@ -37,14 +39,20 @@
 		font-size: 1.3rem;
 		margin: 1rem 0;
 	}
-	.content-block {
-		position: relative;
+	.review-block {
 		margin-bottom: 2rem;
+	}
+	.tracks-and-scores-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: 1rem;
 	}
 	.fav-tracks {
 		display: flex;
 		flex-direction: row;
 		gap: 0.5rem;
+		align-items: flex-start;
 	}
 	ol {
 		list-style-type: none;
@@ -61,12 +69,15 @@
 		padding: 1rem;
 		width: fit-content;
 		border-radius: 50%;
-		position: absolute;
-		right: 0;
-		bottom: 0;
+		align-self: flex-end;
 	}
 	.score-given {
 		color: var(--primary-color);
 		font-size: 1.8rem;
+	}
+	@media (min-width: 768px) {
+		.tracks-and-scores-container {
+			flex-direction: row;
+		}
 	}
 </style>
