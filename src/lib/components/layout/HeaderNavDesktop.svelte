@@ -4,7 +4,6 @@
 	let { links }: { links: NavSection[] } = $props();
 </script>
 
-NavSection
 <nav>
 	<ul>
 		{#each links as item}
