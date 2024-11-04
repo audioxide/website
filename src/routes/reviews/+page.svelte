@@ -84,4 +84,10 @@
 		gap: 1rem;
 		margin-bottom: 2rem;
 	}
+	select {
+		padding: 0.5rem;
+		border-radius: 0.5rem;
+		border: 1px solid lightgray;
+		background-color: var(--white-color);
+	}
 </style>

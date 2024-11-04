@@ -12,7 +12,7 @@
 </script>
 
 <svelte:head>
-	<title>{data.author?.name} // {SITE_NAME}</title>
+	<title>{data.author?.name} // Authors // {SITE_NAME}</title>
 	<meta name="description" content={`Author profile for ${data.author?.name}`} />
 </svelte:head>
 
