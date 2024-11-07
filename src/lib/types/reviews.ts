@@ -30,3 +30,11 @@ export interface ReviewMetadata extends SharedPostMetadata {
 		styles: string[];
 	};
 }
+
+export interface RecentReviewSummary {
+	image: string;
+	score: number;
+	artist: string;
+	album: string;
+	slug: string;
+}

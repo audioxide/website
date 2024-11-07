@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { NAVIGATION_LINKS, SITE_NAME } from '$lib/constants';
 	import { icons } from '$lib/styles/icons';
+	import type { RecentReviewSummary } from '$lib/types/reviews';
 	import Icon from '../Icon.svelte';
 	import LogoPlain from '../logos/LogoPlain.svelte';
 	import HeaderAlbumBanner from './HeaderAlbumBanner.svelte';
@@ -11,13 +12,7 @@
 	const {
 		recentReviews
 	}: {
-		recentReviews: {
-			image: string;
-			score: number;
-			artist: string;
-			album: string;
-			slug: string;
-		}[];
+		recentReviews: RecentReviewSummary[];
 	} = $props();
 
 	let showMobileMenu = $state(false);
@@ -26,13 +21,6 @@
 		showMobileMenu = !showMobileMenu;
 		document.body.style.overflow = showMobileMenu ? 'hidden' : 'auto';
 	};
-
-	const covers = recentReviews.map((review) => {
-		return {
-			cover: review.image,
-			slug: review.slug
-		};
-	});
 </script>
 
 <header>
@@ -61,7 +49,7 @@
 		</div>
 		<HeaderMenuDesktop links={NAVIGATION_LINKS} />
 	</div>
-	<HeaderAlbumBanner {covers} />
+	<HeaderAlbumBanner {recentReviews} />
 </header>
 
 <style>

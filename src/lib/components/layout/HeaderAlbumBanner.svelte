@@ -1,11 +1,10 @@
 <script lang="ts">
+	import type { RecentReviewSummary } from '$lib/types/reviews';
+
 	let {
-		covers
+		recentReviews
 	}: {
-		covers: {
-			cover: string;
-			slug: string;
-		}[];
+		recentReviews: RecentReviewSummary[];
 	} = $props();
 
 	const assignClass = (i: number) => {
@@ -17,9 +16,17 @@
 </script>
 
 <div class="album-banner">
-	{#each covers as cover, i}
-		<a href={`/reviews/${cover.slug}`} class={assignClass(i)}>
-			<img src={cover.cover} alt="" />
+	{#each recentReviews as recentReview, i}
+		<a href={`/reviews/${recentReview.slug}`} class={assignClass(i)}>
+			<div class="square">
+				<img
+					src={recentReview.image}
+					alt={`Album artwork of '${recentReview.album}' by ${recentReview.artist}`}
+				/>
+				<div class="score-container">
+					<div class="score">{recentReview.score}/30</div>
+				</div>
+			</div>
 		</a>
 	{/each}
 </div>
@@ -34,6 +41,30 @@
 	.tablet,
 	.desktop {
 		display: none;
+	}
+	.square {
+		position: relative;
+	}
+	.score-container {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.6);
+		display: none;
+	}
+	.score {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		font-family: 'Rounded Elegance', sans-serif;
+		color: white;
+		font-size: 2rem;
+	}
+	.square:hover .score-container {
+		display: block;
 	}
 	@media (min-width: 768px) {
 		.burger {
