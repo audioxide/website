@@ -20,6 +20,7 @@
 		<a href={`/reviews/${recentReview.slug}`} class={assignClass(i)}>
 			<div class="square">
 				<img
+					class="album-artwork"
 					src={recentReview.image}
 					alt={`Album artwork of '${recentReview.album}' by ${recentReview.artist}`}
 				/>
@@ -65,6 +66,9 @@
 	}
 	.square:hover .score-container {
 		display: block;
+	}
+	.album-artwork {
+		filter: grayscale(50%);
 	}
 	@media (min-width: 768px) {
 		.burger {

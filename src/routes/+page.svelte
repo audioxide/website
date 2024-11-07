@@ -27,41 +27,39 @@
 </svelte:head>
 
 <div class="homepage-content-container">
-	<!-- Lead -->
-	<FeaturedPost post={latestPost.metadata} />
+	<div class="featured-post">
+		<FeaturedPost post={latestPost.metadata} />
+	</div>
 
-	<div>
-		<!-- Album Reviews -->
+	<div class="reviews">
 		<SectionHeader header="Album Reviews" seeAllSlug="reviews" />
-		<PostSummaryCardList posts={data.latest.reviews.slice(0, 8)} />
+		<PostSummaryCardList posts={data.latest.reviews.slice(0, 8)} itemsPerRowDesktop={1} flatPosts />
 	</div>
 
-	<!-- Feed your head -->
-	<FeedYourHead />
+	<div class="feed-your-head">
+		<FeedYourHead />
+	</div>
 
-	<div>
-		<!-- Articles -->
+	<div class="articles">
 		<SectionHeader header="Articles" seeAllSlug="articles" />
-		<PostSummaryCardList posts={data.latest.articles.slice(0, 4)} />
+		<PostSummaryCardList posts={data.latest.articles.slice(0, 4)} itemsPerRowDesktop={2} />
 	</div>
 
-	<!-- Support -->
-	<SupportBlock />
+	<!-- <div class="support-block">
+		<SupportBlock />
+	</div> -->
 
-	<div>
-		<!-- Interviews -->
+	<div class="interviews">
 		<SectionHeader header="Interviews" seeAllSlug="interviews" />
 		<PostSummaryCardList posts={data.latest.interviews.slice(0, 4)} />
 	</div>
 
-	<div>
-		<!-- Listening Parties -->
+	<div class="listening-parties">
 		<SectionHeader header="Listening Parties" seeAllSlug="listening-parties" />
 		<PostSummaryCardList posts={data.latest['listening-parties'].slice(0, 4)} />
 	</div>
 
-	<div>
-		<!-- Funnyfarm -->
+	<div class="funnyfarm">
 		<SectionHeader header="Funnyfarm" seeAllSlug="funnyfarm" />
 		<PostSummaryCardList posts={data.latest.funnyfarm.slice(0, 4)} />
 	</div>
@@ -73,5 +71,37 @@
 	.homepage-content-container {
 		display: grid;
 		gap: 2rem;
+	}
+	@media (min-width: 768px) {
+		.homepage-content-container {
+			display: grid;
+			grid-template-columns: repeat(5, 1fr);
+			grid-template-rows: min-content;
+			gap: 2rem;
+		}
+		.featured-post {
+			grid-area: 1 / 3 / 2 / 6;
+		}
+		.reviews {
+			grid-area: 1 / 1 / 3 / 3;
+		}
+		.feed-your-head {
+			grid-area: 3 / 1 / 4 / 6;
+		}
+		.articles {
+			grid-area: 2 / 3 / 3 / 6;
+		}
+		.interviews {
+			grid-area: 4 / 1 / 5 / 6;
+		}
+		.support-block {
+			grid-area: 5 / 1 / 6 / 6;
+		}
+		.listening-parties {
+			grid-area: 6 / 1 / 7 / 6;
+		}
+		.funnyfarm {
+			grid-area: 7 / 1 / 8 / 6;
+		}
 	}
 </style>

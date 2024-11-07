@@ -5,7 +5,6 @@
 <style>
 	.feed-your-head {
 		display: block;
-		margin-top: 1rem;
 		padding: 1rem;
 		border: 2px solid var(--link-color);
 		border-radius: 0.5rem;

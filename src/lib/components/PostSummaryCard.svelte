@@ -4,31 +4,40 @@
 		title,
 		link,
 		blurb,
+		isFlatView,
 		primaryColor
 	}: {
 		image: string;
 		title: string;
 		link: string;
 		blurb: string;
+		isFlatView?: boolean;
 		primaryColor: string | undefined;
 	} = $props();
 </script>
 
-<div class="card" style="--primary-color: {primaryColor}">
-	<a href={link}>
+<a href={link}>
+	<div class={isFlatView ? 'card-flat' : 'card-reg'} style="--primary-color: {primaryColor}">
 		<img src={image} alt={title} class:border={primaryColor} />
-		<h3>{title}</h3>
-		<p>{blurb}</p>
-	</a>
-</div>
+		<div>
+			<h3>{title}</h3>
+			<p>{blurb}</p>
+		</div>
+	</div>
+</a>
 
 <style>
-	.card {
+	.card-reg {
 		display: flex;
 		flex-direction: column;
 	}
+	.card-flat {
+		display: grid;
+		grid-template-columns: 2fr 3fr;
+		gap: 1rem;
+	}
 
-	.card a {
+	a {
 		text-decoration: none;
 		color: black;
 	}
@@ -45,7 +54,7 @@
 	}
 
 	h3 {
-		margin: 0.5rem 0;
+		margin: 0 0 0.5rem 0;
 		color: var(--link-color);
 		text-decoration: underline;
 	}
