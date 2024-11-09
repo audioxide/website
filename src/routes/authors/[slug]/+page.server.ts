@@ -9,7 +9,6 @@ export async function load({ fetch, params }) {
 	} = await authorsResponse.json();
 
 	const paramSlug = params.slug;
-	console.log('paramSlug', paramSlug);
 	const authorDetails = authors[paramSlug];
 
 	if (authorDetails) {

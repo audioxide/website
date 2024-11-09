@@ -16,6 +16,7 @@
 <style>
 	.authors {
 		margin-bottom: 2rem;
+		line-height: 1.5;
 	}
 	.authors,
 	.authors a {

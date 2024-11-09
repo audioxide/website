@@ -63,7 +63,7 @@
 		transform: translate(-50%, -50%);
 		font-family: 'Rounded Elegance', sans-serif;
 		color: white;
-		font-size: 2rem;
+		font-size: 1.2rem;
 	}
 	.square:hover .score-container {
 		display: block;
@@ -81,10 +81,16 @@
 			justify-content: space-between;
 			padding: 0.5rem 2rem;
 		}
+		.score {
+			font-size: 1.5rem;
+		}
 	}
 	@media (min-width: 1024px) {
 		.desktop {
 			display: block;
+		}
+		.score {
+			font-size: 2rem;
 		}
 	}
 </style>

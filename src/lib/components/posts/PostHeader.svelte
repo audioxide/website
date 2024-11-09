@@ -29,7 +29,6 @@
 
 <style>
 	.post-header {
-		text-align: center;
 		line-height: 1.1;
 		display: flex;
 		flex-direction: column;
@@ -40,8 +39,8 @@
 		font-weight: 600;
 	}
 	.post-summary {
+		font-size: 1.3rem;
 		font-style: italic;
-		font-size: 1.1rem;
 		color: #767676;
 	}
 </style>
