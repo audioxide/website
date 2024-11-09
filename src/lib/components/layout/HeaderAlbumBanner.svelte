@@ -45,6 +45,7 @@
 	}
 	.square {
 		position: relative;
+		z-index: 1;
 	}
 	.score-container {
 		position: absolute;
@@ -66,9 +67,6 @@
 	}
 	.square:hover .score-container {
 		display: block;
-	}
-	.album-artwork {
-		filter: grayscale(50%);
 	}
 	@media (min-width: 768px) {
 		.burger {

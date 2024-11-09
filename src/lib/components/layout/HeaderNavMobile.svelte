@@ -3,6 +3,7 @@
 	import type { NavSection } from '$lib/types/navigation';
 	import FeedYourHead from '../FeedYourHead.svelte';
 	import Icon from '../Icon.svelte';
+	import HeaderLogo from './HeaderLogo.svelte';
 	import HeaderSearchBar from './HeaderSearchBar.svelte';
 
 	let {
@@ -15,16 +16,20 @@
 </script>
 
 <div class="mobile-menu">
-	<div
-		class="x-symbol"
-		aria-label="Toggle menu off"
-		onclick={toggleMobileMenu}
-		onkeydown={toggleMobileMenu}
-		tabindex="0"
-		role="button"
-	>
-		<Icon icon={icons.xSymbol} color="lightgray" />
+	<div class="top-bar">
+		<div
+			class="x-symbol"
+			aria-label="Toggle menu off"
+			onclick={toggleMobileMenu}
+			onkeydown={toggleMobileMenu}
+			tabindex="0"
+			role="button"
+		>
+			<Icon icon={icons.xSymbol} color="lightgray" />
+		</div>
+		<HeaderLogo />
 	</div>
+
 	<HeaderSearchBar />
 	{#each links as item}
 		<a href={item.link} onclick={toggleMobileMenu}><h3>{item.name}</h3></a>
@@ -42,18 +47,25 @@
 </div>
 
 <style>
+	.top-bar {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
 	.mobile-menu {
 		color: lightgray;
+		z-index: 100;
 		position: fixed;
 		top: 0;
 		left: 0;
 		width: 100%;
 		height: 100%;
 		background-color: black;
-		padding: 1rem;
+		padding: 0.5rem 1rem;
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
+		overflow: auto;
 	}
 	a {
 		color: lightgray;
@@ -61,5 +73,9 @@
 	}
 	li {
 		margin-left: 1rem;
+	}
+	.x-symbol {
+		display: flex;
+		align-items: center;
 	}
 </style>

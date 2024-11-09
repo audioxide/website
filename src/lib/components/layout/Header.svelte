@@ -3,8 +3,8 @@
 	import { icons } from '$lib/styles/icons';
 	import type { RecentReviewSummary } from '$lib/types/reviews';
 	import Icon from '../Icon.svelte';
-	import LogoPlain from '../logos/LogoPlain.svelte';
 	import HeaderAlbumBanner from './HeaderAlbumBanner.svelte';
+	import HeaderLogo from './HeaderLogo.svelte';
 	import HeaderMenuDesktop from './HeaderNavDesktop.svelte';
 	import HeaderMenuMobile from './HeaderNavMobile.svelte';
 	import HeaderSearchBar from './HeaderSearchBar.svelte';
@@ -19,7 +19,7 @@
 
 	const toggleMobileMenu = () => {
 		showMobileMenu = !showMobileMenu;
-		document.body.style.overflow = showMobileMenu ? 'hidden' : 'auto';
+		// document.body.style.overflow = showMobileMenu ? 'hidden' : 'auto';
 	};
 </script>
 
@@ -38,12 +38,7 @@
 		{#if showMobileMenu}
 			<HeaderMenuMobile links={NAVIGATION_LINKS} {toggleMobileMenu} />
 		{/if}
-		<a href="/">
-			<div class="logo-container">
-				<h1>{SITE_NAME}</h1>
-				<LogoPlain />
-			</div>
-		</a>
+		<HeaderLogo />
 		<div class="search">
 			<HeaderSearchBar />
 		</div>
@@ -63,28 +58,9 @@
 		align-items: center;
 		padding: 0.5rem 1rem;
 	}
-	.logo-container {
-		display: flex;
-		flex-direction: row;
-		gap: 0.5em;
-		align-items: center;
-	}
 	.burger {
 		display: flex;
 		align-items: center;
-	}
-	a {
-		font-family: 'Source Sans Pro', sans-serif;
-		color: #fff;
-		text-decoration: none;
-		display: flex;
-		align-items: center;
-	}
-	h1 {
-		font-family: 'Rounded Elegance', sans-serif;
-		font-size: 2rem;
-		text-transform: lowercase;
-		font-weight: 400;
 	}
 	.search {
 		display: none;

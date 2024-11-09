@@ -9,9 +9,6 @@
 
 	let { data } = $props();
 
-	// data.latest is a map of objects. Each object has a key 'metadata' which is an array of objects.
-	// Find the object with the most recent published date
-
 	const latestPost = Object.values(data.latest)
 		.flat()
 		.sort(
