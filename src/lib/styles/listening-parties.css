@@ -7,6 +7,9 @@
 		text-align: center;
 		margin: 2rem 0 1rem 0;
 	}
+	a {
+		color: white;
+	}
 	.speaker-name {
 		font-family: 'Source Sans Pro', sans-serif;
 		font-size: 0.8rem;
