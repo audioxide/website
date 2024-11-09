@@ -27,7 +27,9 @@
 		>
 			<Icon icon={icons.xSymbol} color="lightgray" />
 		</div>
-		<HeaderLogo />
+		<div onclick={toggleMobileMenu} onkeydown={toggleMobileMenu} tabindex="0" role="button">
+			<HeaderLogo />
+		</div>
 	</div>
 
 	<HeaderSearchBar />
