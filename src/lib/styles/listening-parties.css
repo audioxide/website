@@ -1,0 +1,46 @@
+.listening-party {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 2rem;
+	h2 {
+		font-size: 1.2rem;
+		text-align: center;
+		margin: 2rem 0 1rem 0;
+	}
+	.speaker-name {
+		font-family: 'Source Sans Pro', sans-serif;
+		font-size: 0.8rem;
+		margin: 1rem 0 0.5rem 0;
+	}
+	.message {
+		font-family: 'Source Sans Pro', sans-serif;
+		font-size: 0.8rem;
+		width: fit-content;
+		max-width: 300px;
+		padding: 0.5rem;
+		border-radius: 0.8rem;
+		margin-bottom: 0.5rem;
+	}
+	.message.speaker-0 {
+		background-color: #d3d3d3;
+	}
+	.message.speaker-1 {
+		color: white;
+		background-color: #9f5168;
+	}
+	.speaker-name.speaker-1 {
+		text-align: right;
+	}
+	.message.speaker-1 {
+		align-self: flex-end;
+	}
+	@media (min-width: 768px) {
+		h2 {
+			font-size: 1.6rem;
+		}
+		.message {
+			font-size: 1rem;
+			max-width: 500px;
+		}
+	}
+}

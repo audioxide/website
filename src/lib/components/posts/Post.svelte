@@ -3,6 +3,7 @@
 	import type { SharedPostMetadata } from '$lib/types/shared';
 	import { createPostStructuredData } from '../../../utils/schema';
 	import ContentBlock from '../ContentBlock.svelte';
+	import ListeningPartyChat from '../ListeningPartyChat.svelte';
 	import SupportBlock from '../SupportBlock.svelte';
 	import PostHeader from './PostHeader.svelte';
 	import RelatedContent from './PostRelatedContent.svelte';
@@ -47,7 +48,11 @@
 {/if}
 
 <div class="content">
-	<ContentBlock html={content} />
+	{#if metadata.type === 'listening-parties'}
+		<ListeningPartyChat html={content} />
+	{:else}
+		<ContentBlock html={content} />
+	{/if}
 	<RelatedTags relatedTags={metadata.tags} />
 </div>
 
