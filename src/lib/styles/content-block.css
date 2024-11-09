@@ -39,11 +39,13 @@
 		margin-bottom: 1.5rem;
 	}
 
-	li {
+	li,
+	li p {
 		margin-bottom: 0rem;
 	}
 
-	li p {
+	p {
+		overflow-wrap: break-word;
 		margin-bottom: 1rem;
 	}
 }
