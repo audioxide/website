@@ -45,7 +45,6 @@
 	}
 	.square {
 		position: relative;
-		z-index: 1;
 	}
 	.score-container {
 		position: absolute;

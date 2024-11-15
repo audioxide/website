@@ -74,7 +74,7 @@
 		margin-top: 0.5rem;
 		position: absolute;
 		background-color: black;
-		z-index: 100;
+		z-index: 5;
 		padding: 0 0 1rem 0;
 	}
 	.sub-links::before {

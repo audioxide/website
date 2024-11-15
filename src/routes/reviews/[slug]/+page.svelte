@@ -83,7 +83,6 @@
 
 		.header {
 			grid-area: header;
-			z-index: 2;
 		}
 
 		.summary-card {

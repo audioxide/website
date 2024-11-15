@@ -19,7 +19,6 @@
 
 	const toggleMobileMenu = () => {
 		showMobileMenu = !showMobileMenu;
-		// document.body.style.overflow = showMobileMenu ? 'hidden' : 'auto';
 	};
 </script>
 

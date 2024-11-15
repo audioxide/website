@@ -56,7 +56,7 @@
 	}
 	.mobile-menu {
 		color: lightgray;
-		z-index: 100;
+		z-index: 2;
 		position: fixed;
 		top: 0;
 		left: 0;
