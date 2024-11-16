@@ -38,12 +38,12 @@
 			});
 	};
 
-	document.addEventListener('click', (event) => {
-		const searchInput = document.querySelector('.search-input');
-		if (searchInput && !searchInput.contains(event.target as Node)) {
-			searchIsOpen = false;
-		}
-	});
+	// document.addEventListener('click', (event) => {
+	// 	const searchInput = document.querySelector('.search-input');
+	// 	if (searchInput && !searchInput.contains(event.target as Node)) {
+	// 		searchIsOpen = false;
+	// 	}
+	// });
 </script>
 
 <div class="search-container">
