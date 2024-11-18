@@ -7,12 +7,10 @@
 	}: {
 		searchResults: SearchResponse;
 	} = $props();
-
-	const rawTags = searchResults.tags.map((tag) => tag.route.replace('/tags/', ''));
 </script>
 
 <div class="search-results">
-	{#if searchResults.posts.length > 0}
+	{#if searchResults.posts && searchResults.posts.length > 0}
 		<div class="results-section">
 			<h3>Posts</h3>
 			<ul>
@@ -25,10 +23,10 @@
 		</div>
 	{/if}
 
-	{#if searchResults.tags.length > 0}
+	{#if searchResults.tags && searchResults.tags.length > 0}
 		<div class="results-section">
 			<h3>Tags</h3>
-			<PostTags relatedTags={rawTags} />
+			<PostTags relatedTags={searchResults.tags.map((tag) => tag.route.replace('/tags/', ''))} />
 		</div>
 	{/if}
 </div>
