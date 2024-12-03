@@ -53,20 +53,20 @@
 <div class="filters-panel">
 	<select
 		onchange={(e) => {
-		filtersConfig.sortType = (e.target as HTMLSelectElement).value;
-		sortAndFilterPosts();
-	}}
+			filtersConfig.sortType = (e.target as HTMLSelectElement).value;
+			sortAndFilterPosts();
+		}}
 	>
 		<option value="newest">Most recent</option>
-		<option value="oldest">Least recent</option>
+		<option value="oldest">Oldest</option>
 		<option value="highest">Highest Rating</option>
 		<option value="lowest">Lowest Rating</option>
 	</select>
 	<select
 		onchange={(e) => {
-		filtersConfig.filterType = (e.target as HTMLSelectElement).value;
-		sortAndFilterPosts();
-	}}
+			filtersConfig.filterType = (e.target as HTMLSelectElement).value;
+			sortAndFilterPosts();
+		}}
 	>
 		<option value="all">All</option>
 		<option value="newRelease">New releases</option>
