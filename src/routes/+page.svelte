@@ -8,14 +8,6 @@
 	import FeedYourHead from '$lib/components/FeedYourHead.svelte';
 
 	let { data } = $props();
-
-	const latestPost = Object.values(data.latest)
-		.flat()
-		.sort(
-			(a, b) =>
-				new Date(b.metadata.created).getMilliseconds() -
-				new Date(a.metadata.created).getMilliseconds()
-		)[0];
 </script>
 
 <svelte:head>
@@ -26,18 +18,12 @@
 
 <div class="homepage-content-container">
 	<div class="featured-post">
-		<FeaturedPost post={latestPost.metadata} />
+		<FeaturedPost post={data.mostRecentPost.metadata} />
 	</div>
 
 	<div class="reviews">
 		<SectionHeader header="Album Reviews" seeAllSlug="reviews" />
-		<PostSummaryCardList
-			posts={data.latest.reviews
-				.filter((review) => review.metadata.slug !== latestPost.metadata.slug)
-				.slice(0, 8)}
-			itemsPerRowDesktop={1}
-			flatPosts
-		/>
+		<PostSummaryCardList posts={data.latest.reviews} itemsPerRowDesktop={1} flatPosts />
 	</div>
 
 	<div class="feed-your-head">
@@ -46,12 +32,7 @@
 
 	<div class="articles">
 		<SectionHeader header="Articles" seeAllSlug="articles" />
-		<PostSummaryCardList
-			posts={data.latest.articles
-				.filter((article) => article.metadata.slug !== latestPost.metadata.slug)
-				.slice(0, 4)}
-			itemsPerRowDesktop={2}
-		/>
+		<PostSummaryCardList posts={data.latest.articles} itemsPerRowDesktop={2} />
 	</div>
 
 	<!-- <div class="support-block">
@@ -60,29 +41,17 @@
 
 	<div class="interviews">
 		<SectionHeader header="Interviews" seeAllSlug="interviews" />
-		<PostSummaryCardList
-			posts={data.latest.interviews
-				.filter((interview) => interview.metadata.slug !== latestPost.metadata.slug)
-				.slice(0, 4)}
-		/>
+		<PostSummaryCardList posts={data.latest.interviews} />
 	</div>
 
 	<div class="listening-parties">
 		<SectionHeader header="Listening Parties" seeAllSlug="listening-parties" />
-		<PostSummaryCardList
-			posts={data.latest['listening-parties']
-				.filter((listeningParty) => listeningParty.metadata.slug !== latestPost.metadata.slug)
-				.slice(0, 4)}
-		/>
+		<PostSummaryCardList posts={data.latest.listeningParties} />
 	</div>
 
 	<div class="funnyfarm">
 		<SectionHeader header="Funnyfarm" seeAllSlug="funnyfarm" />
-		<PostSummaryCardList
-			posts={data.latest.funnyfarm
-				.filter((funnyfarm) => funnyfarm.metadata.slug !== latestPost.metadata.slug)
-				.slice(0, 4)}
-		/>
+		<PostSummaryCardList posts={data.latest.funnyfarm} />
 	</div>
 </div>
 
