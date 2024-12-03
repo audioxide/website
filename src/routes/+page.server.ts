@@ -23,13 +23,14 @@ export async function load({ fetch }) {
 		.sort(
 			(a, b) => new Date(b.metadata.created).getTime() - new Date(a.metadata.created).getTime()
 		)[0];
+	const mostRecentPostSlug = mostRecentPost.metadata.slug;
 	return {
 		latest: {
-			reviews: filterPosts(latest.reviews, mostRecentPost.metadata.slug, 8),
-			articles: filterPosts(latest.articles, mostRecentPost.metadata.slug, 4),
-			interviews: filterPosts(latest.interviews, mostRecentPost.metadata.slug, 4),
-			listeningParties: filterPosts(latest['listening-parties'], mostRecentPost.metadata.slug, 4),
-			funnyfarm: filterPosts(latest.funnyfarm, mostRecentPost.metadata.slug, 4)
+			reviews: filterPosts(latest.reviews, mostRecentPostSlug, 8),
+			articles: filterPosts(latest.articles, mostRecentPostSlug, 4),
+			interviews: filterPosts(latest.interviews, mostRecentPostSlug, 4),
+			listeningParties: filterPosts(latest['listening-parties'], mostRecentPostSlug, 4),
+			funnyfarm: filterPosts(latest.funnyfarm, mostRecentPostSlug, 4)
 		},
 		mostRecentPost
 	};
