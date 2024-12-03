@@ -19,6 +19,12 @@
 	{@html `<script type="application/ld+json">${JSON.stringify(createReviewStructuredData(metadata))}</script>`}
 </svelte:head>
 
+{#if metadata.week < 15}
+	<div class="oldie-disclaimer">
+		Our early reviews are threadbare to say the least. In the spirit of remembering how we got here,
+		we've left them as they were.
+	</div>
+{/if}
 <div class="container">
 	<div class="header">
 		<ReviewHeader
@@ -61,6 +67,15 @@
 </div>
 
 <style>
+	.oldie-disclaimer {
+		color: #000;
+		background-color: #ffe501;
+		padding: 0.5rem 0.9em;
+		font-weight: 600;
+		border-radius: 5px;
+		display: inline-block;
+		margin-bottom: 2rem;
+	}
 	@media (min-width: 768px) {
 		.container {
 			display: grid;
