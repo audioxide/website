@@ -70,6 +70,9 @@
 </div>
 
 <style>
+	.summary-card {
+		margin-top: 1px;
+	}
 	.summary {
 		color: var(--primary-color);
 		font-family: 'Spectral', serif;
