@@ -33,11 +33,15 @@
 </div>
 
 <style>
+	img {
+		aspect-ratio: 1 / 1;
+	}
 	.album-banner {
 		display: flex;
 		flex-direction: row;
 		border-top: 1px solid #c9c9c9;
 		border-bottom: 1px solid #c9c9c9;
+		height: 20vw;
 	}
 	.tablet,
 	.desktop {
@@ -83,6 +87,9 @@
 		.score {
 			font-size: 1.5rem;
 		}
+		.album-banner {
+			height: calc(100vw / 8);
+		}
 	}
 	@media (min-width: 1024px) {
 		.desktop {
@@ -90,6 +97,9 @@
 		}
 		.score {
 			font-size: 2rem;
+		}
+		.album-banner {
+			height: calc(100vw / 11);
 		}
 	}
 </style>
