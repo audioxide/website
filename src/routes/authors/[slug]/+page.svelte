@@ -51,14 +51,13 @@
 
 <style>
 	h2 {
-		text-align: center;
 		font-size: 2rem;
 	}
 	h3 {
-		text-align: center;
 		font-size: 1.5rem;
 	}
 	.author-page-container {
+		text-align: center;
 		display: flex;
 		flex-direction: column;
 		gap: 2rem;
