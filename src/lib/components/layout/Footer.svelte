@@ -1,5 +1,5 @@
 <script>
-	import { INSTAGRAM_URL, SITE_FOUNDING_YEAR, SITE_NAME, X_URL } from '$lib/constants';
+	import { BLUESKY_URL, INSTAGRAM_URL, SITE_FOUNDING_YEAR } from '$lib/constants';
 	import { icons } from '$lib/styles/icons';
 	import Icon from '../Icon.svelte';
 	import LogoBordered from '../logos/LogoBordered.svelte';
@@ -10,11 +10,11 @@
 <hr />
 <footer>
 	<div class="social-links">
-		<a href={X_URL} target="_blank" rel="noopener noreferrer">
-			<Icon icon={icons.x} />
-		</a>
 		<a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
 			<Icon icon={icons.instagram} />
+		</a>
+		<a href={BLUESKY_URL} target="_blank" rel="noopener noreferrer">
+			<Icon icon={icons.blueSky} />
 		</a>
 		<a href="/">
 			<LogoBordered />
