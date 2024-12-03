@@ -41,7 +41,11 @@
 
 {#if metadata.showFeaturedImage}
 	<figure>
-		<img src={metadata.featuredimage['medium-original']} alt={metadata.featuredimageAlt} />
+		<img
+			loading="lazy"
+			src={metadata.featuredimage['medium-original']}
+			alt={metadata.featuredimageAlt}
+		/>
 		{#if metadata.featuredImageCaption}
 			<figcaption>{@html metadata.featuredImageCaption}</figcaption>
 		{/if}

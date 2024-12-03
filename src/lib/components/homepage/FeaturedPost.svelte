@@ -7,6 +7,7 @@
 <a href={`/${post.type}/${post.slug}`}>
 	<div class="post-container">
 		<img
+			loading="lazy"
 			class="post-image"
 			src={post.featuredimage['medium-original']}
 			alt={post.featuredimageAlt}

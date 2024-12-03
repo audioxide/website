@@ -31,7 +31,7 @@
 	style="--primary-color: {colors[0]}; --secondary-color: {colors[1]}; --tertiary-color: {colors[2]}"
 >
 	<figure>
-		<img src={imageUrl} alt="" />
+		<img loading="lazy" src={imageUrl} alt="" />
 	</figure>
 	<div class="score">
 		<span class="given-score">{scoreGiven}</span><span class="possible-score">/{scorePossible}</span

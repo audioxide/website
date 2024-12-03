@@ -18,7 +18,7 @@
 
 <a href={link}>
 	<div class={isFlatView ? 'card-flat' : 'card-reg'} style="--primary-color: {primaryColor}">
-		<img src={image} alt={title} class:border={primaryColor} />
+		<img loading="lazy" src={image} alt={title} class:border={primaryColor} />
 		<div>
 			<h3>{title}</h3>
 			<p>{blurb}</p>

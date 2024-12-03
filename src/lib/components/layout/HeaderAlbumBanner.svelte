@@ -20,6 +20,7 @@
 		<a href={`/reviews/${recentReview.slug}`} class={assignClass(i)}>
 			<div class="square">
 				<img
+					loading="lazy"
 					class="album-artwork"
 					src={recentReview.image}
 					alt={`Album artwork of '${recentReview.album}' by ${recentReview.artist}`}
@@ -35,6 +36,7 @@
 <style>
 	img {
 		aspect-ratio: 1 / 1;
+		height: 100%;
 	}
 	.album-banner {
 		display: flex;

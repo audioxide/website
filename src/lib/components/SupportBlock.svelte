@@ -4,6 +4,7 @@
 
 <div class="block">
 	<img
+		loading="lazy"
 		class="logo-icon"
 		src="/branding/bordered-emblem-black-transparent.png"
 		alt={`${SITE_NAME} logo`}
