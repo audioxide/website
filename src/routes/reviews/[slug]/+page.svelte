@@ -21,6 +21,7 @@
 <svelte:head>
 	<title>Review: {metadata.album} // {metadata.artist} // {SITE_NAME}</title>
 	<meta name="description" content={metadata.summary} />
+	{@html `<script type="application/ld+json">${JSON.stringify(createReviewStructuredData(metadata))}</script>`}
 </svelte:head>
 
 <div class="container">
@@ -63,8 +64,6 @@
 		<RelatedContent relatedContent={related} />
 	</div>
 </div>
-
-{@html `<script type="application/ld+json">${JSON.stringify(createReviewStructuredData(metadata))}</script>`}
 
 <style>
 	@media (min-width: 768px) {

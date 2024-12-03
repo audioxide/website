@@ -27,6 +27,7 @@
 <svelte:head>
 	<title>{metadata.title} // {SITE_NAME}</title>
 	<meta name="description" content={metadata.summary} />
+	{@html `<script type="application/ld+json">${JSON.stringify(createPostStructuredData(metadata))}</script>`}
 </svelte:head>
 
 <div class="header">
@@ -57,8 +58,6 @@
 </div>
 
 <RelatedContent relatedContent={related} />
-
-{@html `<script type="application/ld+json">${JSON.stringify(createPostStructuredData(metadata))}</script>`}
 
 <style>
 	figure {

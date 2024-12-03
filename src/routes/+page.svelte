@@ -21,6 +21,7 @@
 <svelte:head>
 	<title>{SITE_NAME}</title>
 	<meta name="description" content={SITE_DESCRIPTION} />
+	{@html `<script type="application/ld+json">${JSON.stringify(audioxideStructuredData())}</script>`}
 </svelte:head>
 
 <div class="homepage-content-container">
@@ -61,8 +62,6 @@
 		<PostSummaryCardList posts={data.latest.funnyfarm.slice(0, 4)} />
 	</div>
 </div>
-
-{@html `<script type="application/ld+json">${JSON.stringify(audioxideStructuredData())}</script>`}
 
 <style>
 	.homepage-content-container {
