@@ -12,7 +12,7 @@
 		link: string;
 		blurb: string;
 		isFlatView?: boolean;
-		primaryColor: string | undefined;
+		primaryColor?: string;
 	} = $props();
 </script>
 
@@ -47,6 +47,7 @@
 		height: auto;
 		border-radius: 5px;
 		margin-bottom: 0.8rem;
+		background-color: var(--primary-color);
 	}
 
 	.border {

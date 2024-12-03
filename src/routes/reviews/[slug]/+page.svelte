@@ -8,13 +8,8 @@
 	import ReviewSection from '$lib/components/reviews/ReviewSection.svelte';
 	import { createReviewStructuredData } from '../../../utils/schema';
 
-	let {
-		data
-	}: {
-		data: {
-			review: Review;
-		};
-	} = $props();
+	let { data }: { data: { review: Review } } = $props();
+
 	const { metadata, content, related } = $derived(data.review);
 </script>
 
@@ -82,6 +77,7 @@
 
 		.header {
 			grid-area: header;
+			/* z-index: 1; */
 		}
 
 		.summary-card {
