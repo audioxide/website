@@ -23,7 +23,7 @@
 		"@storybook/svelte": "^8.0.9",
 		"@storybook/sveltekit": "^8.0.9",
 		"@storybook/test": "^8.0.9",
-		"@sveltejs/adapter-auto": "^3.3.1",
+		"@sveltejs/adapter-netlify": "^4.4.0",
 		"@sveltejs/kit": "^2.8.0",
 		"@sveltejs/vite-plugin-svelte": "^4.0.0",
 		"@types/eslint": "^8.56.0",
