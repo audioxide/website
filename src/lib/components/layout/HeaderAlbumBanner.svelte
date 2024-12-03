@@ -41,7 +41,7 @@
 		flex-direction: row;
 		border-top: 1px solid #c9c9c9;
 		border-bottom: 1px solid #c9c9c9;
-		height: 20vw;
+		height: calc(100vw / 5 + 2px);
 	}
 	.tablet,
 	.desktop {
@@ -88,7 +88,7 @@
 			font-size: 1.5rem;
 		}
 		.album-banner {
-			height: calc(100vw / 8);
+			height: calc(100vw / 8 + 2px);
 		}
 	}
 	@media (min-width: 1024px) {
@@ -99,7 +99,7 @@
 			font-size: 2rem;
 		}
 		.album-banner {
-			height: calc(100vw / 11);
+			height: calc(100vw / 11 + 2px);
 		}
 	}
 </style>
