@@ -18,10 +18,11 @@
 <div class="posts-container" style="--items-per-row-desktop: {itemsPerRowDesktop}">
 	{#each posts as post}
 		<PostSummaryCard
-			image={post.metadata.type === 'reviews' || post.metadata.type === 'listening-parties'
-				? post.metadata.featuredimage['medium-square']
-				: post.metadata.featuredimage['medium-standard']}
+			image={post.metadata.featuredimage['small-original']}
 			title={post.metadata.title}
+			aspectRatio={post.metadata.type === 'reviews' || post.metadata.type === 'listening-parties'
+				? '1 / 1'
+				: '3 / 2'}
 			link={`/${post.metadata.type}/${post.metadata.slug}`}
 			blurb={post.metadata.blurb}
 			isFlatView={flatPosts}

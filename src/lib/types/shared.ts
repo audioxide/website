@@ -6,6 +6,24 @@ export interface GenericPost {
 	}[];
 }
 
+export interface FeaturedImageSizes {
+	'xsmall-original': string;
+	'xsmall-square': string;
+	'xsmall-standard': string;
+	'small-original': string;
+	'small-square': string;
+	'small-standard': string;
+	'medium-original': string;
+	'medium-square': string;
+	'medium-standard': string;
+	'large-original': string;
+	'large-square': string;
+	'large-standard': string;
+	'xlarge-original': string;
+	'xlarge-square': string;
+	'xlarge-standard': string;
+}
+
 export interface SharedPostMetadata {
 	id: number;
 	slug: string;
@@ -21,23 +39,7 @@ export interface SharedPostMetadata {
 		name: string;
 		authors: AuthorObject[];
 	};
-	featuredimage: {
-		'xsmall-original': string;
-		'xsmall-square': string;
-		'xsmall-standard': string;
-		'small-original': string;
-		'small-square': string;
-		'small-standard': string;
-		'medium-original': string;
-		'medium-square': string;
-		'medium-standard': string;
-		'large-original': string;
-		'large-square': string;
-		'large-standard': string;
-		'xlarge-original': string;
-		'xlarge-square': string;
-		'xlarge-standard': string;
-	};
+	featuredimage: FeaturedImageSizes;
 	featuredimageAlt: string;
 	showFeaturedImage?: boolean;
 	featuredImageCaption?: string;

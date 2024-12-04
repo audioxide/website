@@ -3,6 +3,7 @@
 		image,
 		title,
 		link,
+		aspectRatio,
 		blurb,
 		isFlatView,
 		primaryColor
@@ -10,6 +11,7 @@
 		image: string;
 		title: string;
 		link: string;
+		aspectRatio: '1 / 1' | '3 / 2';
 		blurb: string;
 		isFlatView?: boolean;
 		primaryColor?: string;
@@ -17,7 +19,10 @@
 </script>
 
 <a href={link}>
-	<div class={isFlatView ? 'card-flat' : 'card-reg'} style="--primary-color: {primaryColor}">
+	<div
+		class={isFlatView ? 'card-flat' : 'card-reg'}
+		style="--primary-color: {primaryColor}; --aspect-ratio: {aspectRatio};"
+	>
 		<img loading="lazy" src={image} alt={title} class:border={primaryColor} />
 		<div>
 			<h3>{title}</h3>
@@ -48,6 +53,7 @@
 		border-radius: 5px;
 		margin-bottom: 0.8rem;
 		background-color: var(--primary-color);
+		aspect-ratio: var(--aspect-ratio);
 	}
 
 	.border {

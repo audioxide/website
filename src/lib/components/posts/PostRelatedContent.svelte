@@ -17,8 +17,9 @@
 	<div class="post-cards">
 		{#each relatedContent as { metadata }}
 			<PostSummaryCard
-				image={metadata.featuredimage['medium-square']}
+				image={metadata.featuredimage['small-square']}
 				title={metadata.title}
+				aspectRatio={'1 / 1'}
 				link={`/${metadata.type}/${metadata.slug}`}
 				blurb={metadata.blurb}
 				primaryColor={metadata.colours ? metadata.colours[0] : undefined}
