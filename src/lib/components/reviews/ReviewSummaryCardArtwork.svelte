@@ -18,13 +18,6 @@
 </script>
 
 <div class="review-artwork-container">
-	{#if albumAward}
-		<img
-			src={`/assets/award-${albumAward}.png`}
-			alt={`${albumAward} award`}
-			class={albumAward === 'platinum' ? 'sticker-award' : 'ribbon-award'}
-		/>
-	{/if}
 	<figure>
 		<img
 			class="album-cover"
@@ -53,6 +46,13 @@
 			</div>
 		{/if}
 	</figure>
+	{#if albumAward}
+		<img
+			src={`/assets/award-${albumAward}.png`}
+			alt={`${albumAward} award`}
+			class={albumAward === 'platinum' ? 'sticker-award' : 'ribbon-award'}
+		/>
+	{/if}
 </div>
 
 <style>

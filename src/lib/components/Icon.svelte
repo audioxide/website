@@ -7,7 +7,7 @@
 		color = styleSettings.defaultIconColor
 	}: {
 		icon: { viewBox: string; d: string };
-		size?: string | number;
+		size?: number;
 		color?: string;
 	} = $props();
 </script>
