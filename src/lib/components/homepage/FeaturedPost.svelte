@@ -2,6 +2,9 @@
 	import type { SharedPostMetadata } from '$lib/types/shared';
 
 	let { post }: { post: SharedPostMetadata } = $props();
+
+	const imageAspectRatio =
+		post.type === 'reviews' || post.type === 'listening-parties' ? '1 / 1' : '3 / 2';
 </script>
 
 <a href={`/${post.type}/${post.slug}`}>
@@ -11,6 +14,7 @@
 			class="post-image"
 			src={post.featuredimage['medium-original']}
 			alt={post.featuredimageAlt}
+			style={`aspect-ratio: ${imageAspectRatio};`}
 		/>
 		<div class="post-info">
 			<h2>{post.title}</h2>
