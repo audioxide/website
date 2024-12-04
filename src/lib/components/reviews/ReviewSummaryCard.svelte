@@ -1,6 +1,8 @@
 <script lang="ts">
 	const {
 		id,
+		albumName,
+		artistName,
 		imageUrl,
 		scoreGiven,
 		scorePossible,
@@ -11,6 +13,8 @@
 		colors
 	}: {
 		id: number;
+		albumName: string;
+		artistName: string;
 		imageUrl: string;
 		scoreGiven: number;
 		scorePossible: number;
@@ -24,6 +28,16 @@
 	const generateId = (id: number): string => {
 		return id.toString().padStart(7, '0');
 	};
+
+	const award = (scoreGiven: number) => {
+		if (scoreGiven >= 27) return 'platinum';
+		if (scoreGiven >= 25) return 'gold';
+		if (scoreGiven >= 23) return 'silver';
+		if (scoreGiven >= 21) return 'bronze';
+		return undefined;
+	};
+
+	const albumAward = $derived(award(scoreGiven));
 </script>
 
 <div
@@ -31,7 +45,19 @@
 	style="--primary-color: {colors[0]}; --secondary-color: {colors[1]}; --tertiary-color: {colors[2]}"
 >
 	<figure>
-		<img loading="lazy" src={imageUrl} alt="" />
+		{#if albumAward}
+			<img
+				src={`/assets/award-${albumAward}.png`}
+				alt={`${albumAward} award`}
+				class={albumAward === 'platinum' ? 'sticker-award' : 'ribbon-award'}
+			/>
+		{/if}
+		<img
+			class="album-cover"
+			loading="lazy"
+			src={imageUrl}
+			alt={`Album artwork of '${albumName}' by ${artistName}`}
+		/>
 	</figure>
 	<div class="score">
 		<span class="given-score">{scoreGiven}</span><span class="possible-score">/{scorePossible}</span
@@ -70,22 +96,37 @@
 </div>
 
 <style>
-	.summary-card {
-		margin-top: 1px;
-	}
 	.summary {
 		color: var(--primary-color);
 		font-family: 'Spectral', serif;
 		padding: 1rem;
 		font-style: italic;
 	}
-	img {
+	figure {
+		position: relative;
+	}
+	.ribbon-award {
+		position: absolute;
+		top: -10px;
+		right: 10%;
+		width: 15%;
+		height: auto;
+	}
+	.sticker-award {
+		position: absolute;
+		top: 5%;
+		right: 8%;
+		width: 25%;
+		transform: rotate(9deg);
+	}
+	.album-cover {
 		width: 100%;
 		aspect-ratio: 1 / 1;
-		outline: 1px solid var(--gray-color);
+		border-left: 1px solid lightgray;
+		border-right: 1px solid lightgray;
+		border-bottom: 1px solid lightgray;
 		background-color: var(--primary-color);
 	}
-	img,
 	.score,
 	.fav-tracks {
 		background-color: var(--primary-color);
