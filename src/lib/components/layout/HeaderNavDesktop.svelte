@@ -1,5 +1,7 @@
 <script lang="ts">
 	import type { NavSection } from '$lib/types/navigation';
+	import { icons } from '$lib/styles/icons';
+	import Icon from '$lib/components/Icon.svelte';
 
 	let { links }: { links: NavSection[] } = $props();
 
@@ -23,7 +25,11 @@
 						role="button"
 					>
 						{item.name}
-						{displaySubLinks ? '▲' : '▼'}
+						<Icon
+							icon={displaySubLinks ? icons.upChevron : icons.downChevron}
+							color="white"
+							size={15}
+						/>
 					</div>
 				{:else}
 					<a
@@ -68,7 +74,7 @@
 	}
 	.pillars li,
 	.sub-links ul {
-		width: 170px;
+		width: 150px;
 	}
 	.sub-links {
 		margin-top: 0.5rem;
@@ -100,7 +106,7 @@
 	nav {
 		display: none;
 	}
-	@media (min-width: 768px) {
+	@media (min-width: 1024px) {
 		nav {
 			display: block;
 		}

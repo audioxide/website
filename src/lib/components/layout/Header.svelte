@@ -64,7 +64,7 @@
 	.search {
 		display: none;
 	}
-	@media (min-width: 768px) {
+	@media (min-width: 1024px) {
 		.burger {
 			display: none;
 		}
