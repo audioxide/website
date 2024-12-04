@@ -37,19 +37,7 @@
 		/>
 	</div>
 	<div class="summary-card">
-		<ReviewSummaryCard
-			id={metadata.week}
-			albumName={metadata.album}
-			artistName={metadata.artist}
-			imageUrl={metadata.featuredimage['medium-square']}
-			scoreGiven={metadata.totalscore.given}
-			scorePossible={metadata.totalscore.possible}
-			summary={metadata.summary}
-			artistLink={metadata.artistLink}
-			essentialTracks={metadata.essentialtracks}
-			favouriteTracks={metadata.favouritetracks}
-			colors={metadata.colours}
-		/>
+		<ReviewSummaryCard review={metadata} />
 	</div>
 	<div class="review">
 		{#each content as contentBlock, i}
