@@ -1,5 +1,7 @@
 <script lang="ts">
+	import { icons } from '$lib/styles/icons';
 	import type { ReviewMetadata } from '$lib/types/reviews';
+	import Icon from '../Icon.svelte';
 
 	const { review }: { review: ReviewMetadata } = $props();
 
@@ -12,6 +14,7 @@
 	};
 
 	const albumAward = $derived(award(review.totalscore.given));
+	let showCredit = $state(false);
 </script>
 
 <div class="review-artwork-container">
@@ -29,6 +32,26 @@
 			src={review.featuredimage['small-square']}
 			alt={`Album artwork of '${review.album}' by ${review.artist}`}
 		/>
+		{#if review.artworkCredit}
+			<figcaption class={showCredit ? 'show' : 'hide'}>
+				The album artwork of <span class="album-name">{review.album}</span> by {review.artist}
+				{review.artworkCredit}
+				{#if review.artworkCreditSource}
+					<a href={review.artworkCreditSource} target="_blank" rel="noopener noreferrer">
+						<Icon icon={icons.externalLink} size={12} color="#dd0e3e" />
+					</a>
+				{/if}
+			</figcaption>
+			<div
+				role="button"
+				tabindex="0"
+				class="info-icon-wrapper"
+				onclick={() => (showCredit = !showCredit)}
+				onkeydown={(e) => e.key === 'Enter' && (showCredit = !showCredit)}
+			>
+				<Icon icon={icons.info} size={18} color="lightgray" />
+			</div>
+		{/if}
 	</figure>
 </div>
 
@@ -57,5 +80,37 @@
 		border-right: 1px solid lightgray;
 		border-bottom: 1px solid lightgray;
 		background-color: var(--primary-color);
+	}
+	.album-name {
+		font-style: italic;
+		font-size: 0.9rem;
+	}
+	figure {
+		position: relative;
+	}
+	figcaption {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		font-size: 0.9rem;
+		padding: 1rem 3rem 1rem 1rem;
+		color: lightgray;
+		line-height: 1.2;
+		background-color: rgba(0, 0, 0, 0.8);
+	}
+	.info-icon-wrapper {
+		position: absolute;
+		bottom: 5%;
+		right: 5%;
+		&:hover {
+			cursor: pointer;
+		}
+	}
+	.hide {
+		display: none;
+	}
+	.show {
+		display: block;
 	}
 </style>

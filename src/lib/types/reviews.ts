@@ -25,6 +25,8 @@ export interface ReviewMetadata extends SharedPostMetadata {
 	albumMBID: string;
 	artistLink: string;
 	reviewType: string;
+	artworkCredit?: string;
+	artworkCreditSource?: string;
 	components: {
 		scripts: string[];
 		styles: string[];
