@@ -36,14 +36,13 @@
 <style>
 	img {
 		aspect-ratio: 1 / 1;
-		height: 100%;
+		width: calc(100vw / 5);
 	}
 	.album-banner {
 		display: flex;
 		flex-direction: row;
 		border-top: 1px solid #c9c9c9;
 		border-bottom: 1px solid #c9c9c9;
-		height: calc(100vw / 5 + 2px);
 	}
 	.tablet,
 	.desktop {
@@ -89,8 +88,8 @@
 		.score {
 			font-size: 1.5rem;
 		}
-		.album-banner {
-			height: calc(100vw / 8 + 2px);
+		img {
+			width: calc(100vw / 8);
 		}
 	}
 	@media (min-width: 1024px) {
@@ -100,8 +99,8 @@
 		.score {
 			font-size: 2rem;
 		}
-		.album-banner {
-			height: calc(100vw / 11 + 2px);
+		img {
+			width: calc(100vw / 11);
 		}
 	}
 </style>
