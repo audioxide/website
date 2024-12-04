@@ -12,5 +12,5 @@
 	<meta name="robots" content="noindex" />
 </svelte:head>
 
-<SectionHeader header={`All posts tagged '${data.tag.replaceAll('-', ' ')}`} />
+<SectionHeader header={`All posts tagged '${data.tag.replaceAll('-', ' ')}'`} />
 <PostSummaryCardList posts={data.contentWithTag} />
