@@ -87,6 +87,7 @@
 	}
 	figure {
 		position: relative;
+		margin: 0;
 	}
 	figcaption {
 		position: absolute;

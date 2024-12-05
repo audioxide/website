@@ -40,7 +40,7 @@ export interface SharedPostMetadata {
 		authors: AuthorObject[];
 	};
 	featuredimage: FeaturedImageSizes;
-	featuredimageAlt: string;
+	featuredimageAlt?: string;
 	showFeaturedImage?: boolean;
 	featuredImageCaption?: string;
 }

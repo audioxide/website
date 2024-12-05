@@ -43,6 +43,7 @@
 		flex-direction: row;
 		border-top: 1px solid #c9c9c9;
 		border-bottom: 1px solid #c9c9c9;
+		overflow: hidden;
 	}
 	.tablet,
 	.desktop {
