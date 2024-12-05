@@ -10,20 +10,24 @@
 <hr />
 <footer>
 	<div class="social-links">
-		<a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
+		<a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
 			<Icon icon={icons.instagram} />
 		</a>
-		<a href={BLUESKY_URL} target="_blank" rel="noopener noreferrer">
+		<a href={BLUESKY_URL} target="_blank" rel="noopener noreferrer" aria-label="Bluesky">
 			<Icon icon={icons.blueSky} />
 		</a>
-		<a href="/">
+		<a href="/" aria-label="Audioxide homepage">
 			<LogoBordered />
 		</a>
-
-		<a href="mailto:fred@audioxide.com" target="_blank" rel="noopener noreferrer">
+		<a
+			href="mailto:fred@audioxide.com"
+			target="_blank"
+			rel="noopener noreferrer"
+			aria-label="Contact email"
+		>
 			<Icon icon={icons.envelope} />
 		</a>
-		<a href="/feed" target="_blank" rel="noopener noreferrer">
+		<a href="/feed" target="_blank" rel="noopener noreferrer" aria-label="RSS feed">
 			<Icon icon={icons.rss} />
 		</a>
 	</div>
