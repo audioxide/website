@@ -2,6 +2,7 @@
 	import { icons } from '$lib/styles/icons';
 	import type { ReviewMetadata } from '$lib/types/reviews';
 	import Icon from '../Icon.svelte';
+	import InfoIcon from '../InfoIcon.svelte';
 
 	const { review }: { review: ReviewMetadata } = $props();
 
@@ -41,7 +42,7 @@
 				onclick={() => (showCredit = !showCredit)}
 				onkeydown={(e) => e.key === 'Enter' && (showCredit = !showCredit)}
 			>
-				<Icon icon={icons.info} size={18} color="lightgray" />
+				<InfoIcon />
 			</div>
 		{/if}
 	</figure>
@@ -61,7 +62,7 @@
 	.ribbon-award {
 		position: absolute;
 		top: -10px;
-		right: 10%;
+		right: 5%;
 		width: 15%;
 		height: auto;
 	}
@@ -97,7 +98,7 @@
 		padding: 1rem 3rem 1rem 1rem;
 		color: lightgray;
 		line-height: 1.2;
-		background-color: rgba(0, 0, 0, 0.8);
+		background-color: rgba(0, 0, 0, 0.7);
 	}
 	.info-icon-wrapper {
 		position: absolute;
