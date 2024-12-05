@@ -1,4 +1,5 @@
 import {
+	BLUESKY_URL,
 	FACEBOOK_URL,
 	GITHUB_URL,
 	INSTAGRAM_URL,
@@ -35,7 +36,7 @@ export const audioxideStructuredData = () => ({
 		}
 	],
 	url: SITE_URL,
-	sameAs: [FACEBOOK_URL, X_URL, INSTAGRAM_URL, GITHUB_URL],
+	sameAs: [FACEBOOK_URL, X_URL, INSTAGRAM_URL, GITHUB_URL, BLUESKY_URL],
 	isAccessibleForFree: true
 });
 
