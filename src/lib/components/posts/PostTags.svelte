@@ -9,7 +9,7 @@
 <div class="related-tags">
 	<ul>
 		{#each relatedTags as tag}
-			<a href={`/tags/${tag.replace(/ /g, '-')}`}><li>{tag}</li></a>
+			<li><a href={`/tags/${tag.replace(/ /g, '-')}`}><div class="tag">{tag}</div></a></li>
 		{/each}
 	</ul>
 </div>
@@ -27,7 +27,7 @@
 		gap: 0.5rem;
 	}
 
-	.related-tags li {
+	.tag {
 		font-size: 0.9rem;
 		border-radius: 10px;
 		background-color: var(--gray-color);
