@@ -2,6 +2,7 @@
 	import type { ReviewMetadata } from '$lib/types/reviews';
 	import ReviewSummaryCardArtistLink from './ReviewSummaryCardArtistLink.svelte';
 	import ReviewSummaryCardArtwork from './ReviewSummaryCardArtwork.svelte';
+	import ReviewSummaryCardAward from './ReviewSummaryCardAward.svelte';
 
 	const { review }: { review: ReviewMetadata } = $props();
 
@@ -17,6 +18,9 @@
 		   --tertiary-color: {review.colours[2]}"
 >
 	<ReviewSummaryCardArtwork {review} />
+	{#if review.totalscore.given >= 21}
+		<ReviewSummaryCardAward scoreGiven={review.totalscore.given} />
+	{/if}
 	<div class="score">
 		<span class="given-score">{review.totalscore.given}</span><span class="possible-score"
 			>/{review.totalscore.possible}</span
@@ -53,6 +57,9 @@
 </div>
 
 <style>
+	.summary-card {
+		position: relative;
+	}
 	.summary {
 		color: var(--primary-color);
 		font-family: 'Spectral', serif;

@@ -6,15 +6,6 @@
 
 	const { review }: { review: ReviewMetadata } = $props();
 
-	const award = (scoreGiven: number) => {
-		if (scoreGiven >= 27) return 'platinum';
-		if (scoreGiven >= 25) return 'gold';
-		if (scoreGiven >= 23) return 'silver';
-		if (scoreGiven >= 21) return 'bronze';
-		return undefined;
-	};
-
-	const albumAward = $derived(award(review.totalscore.given));
 	let showCredit = $state(false);
 </script>
 
@@ -30,8 +21,8 @@
 				The album artwork of <span class="album-name">{review.album}</span> by {review.artist}
 				{review.artworkCredit}
 				{#if review.artworkCreditSource}
-					<a href={review.artworkCreditSource} target="_blank" rel="noopener noreferrer">
-						<Icon icon={icons.externalLink} size={12} color="#dd0e3e" />
+					<a class="source-link" href={review.artworkCreditSource} target="_blank">
+						Source <Icon icon={icons.externalLink} size={12} color="#dd0e3e" />
 					</a>
 				{/if}
 			</figcaption>
@@ -42,36 +33,15 @@
 				onclick={() => (showCredit = !showCredit)}
 				onkeydown={(e) => e.key === 'Enter' && (showCredit = !showCredit)}
 			>
-				<InfoIcon />
+				<InfoIcon inverted={!showCredit} />
 			</div>
 		{/if}
 	</figure>
-	{#if albumAward}
-		<img
-			src={`/assets/award-${albumAward}.png`}
-			alt={`${albumAward} award`}
-			class={albumAward === 'platinum' ? 'sticker-award' : 'ribbon-award'}
-		/>
-	{/if}
 </div>
 
 <style>
 	.review-artwork-container {
 		position: relative;
-	}
-	.ribbon-award {
-		position: absolute;
-		top: -10px;
-		right: 5%;
-		width: 15%;
-		height: auto;
-	}
-	.sticker-award {
-		position: absolute;
-		top: 5%;
-		right: 8%;
-		width: 25%;
-		transform: rotate(9deg);
 	}
 	.album-cover {
 		width: 100%;
@@ -99,6 +69,11 @@
 		color: lightgray;
 		line-height: 1.2;
 		background-color: rgba(0, 0, 0, 0.7);
+	}
+	.source-link {
+		text-decoration: none;
+		font-weight: bold;
+		white-space: nowrap;
 	}
 	.info-icon-wrapper {
 		position: absolute;
