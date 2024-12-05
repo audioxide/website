@@ -6,7 +6,6 @@
 	import '$lib/styles/reset.css';
 	import '$lib/styles/global.css';
 	import '$lib/styles/fonts.css';
-	import { page } from '$app/stores';
 
 	let {
 		children,
@@ -35,20 +34,16 @@
 	{/if}
 </svelte:head>
 
-{#if $page.url.pathname !== '/feed'}
-	<Header recentReviews={data.bannerReviews} />
-	<main>
-		{@render children()}
-	</main>
-	<Footer />
-
-	<style>
-		main {
-			max-width: 1280px;
-			margin: 2rem auto;
-			padding: 0 1rem;
-		}
-	</style>
-{:else}
+<Header recentReviews={data.bannerReviews} />
+<main>
 	{@render children()}
-{/if}
+</main>
+<Footer />
+
+<style>
+	main {
+		max-width: 1280px;
+		margin: 2rem auto;
+		padding: 0 1rem;
+	}
+</style>
