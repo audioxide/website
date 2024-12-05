@@ -58,7 +58,9 @@
 	{:else}
 		<ContentBlock html={content} />
 	{/if}
-	<RelatedTags relatedTags={metadata.tags} />
+	<div class="related">
+		<RelatedTags relatedTags={metadata.tags} />
+	</div>
 </div>
 
 <hr />
@@ -84,5 +86,8 @@
 	.content {
 		max-width: 800px;
 		margin: 0 auto 2rem auto;
+	}
+	.related {
+		margin-top: 2rem;
 	}
 </style>
