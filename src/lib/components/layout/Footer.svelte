@@ -1,5 +1,5 @@
 <script>
-	import { BLUESKY_URL, INSTAGRAM_URL, SITE_FOUNDING_YEAR } from '$lib/constants';
+	import { BLUESKY_URL, INSTAGRAM_URL, PATREON_URL, SITE_FOUNDING_YEAR } from '$lib/constants';
 	import { icons } from '$lib/styles/icons';
 	import Icon from '../Icon.svelte';
 	import LogoBordered from '../logos/LogoBordered.svelte';
@@ -10,11 +10,11 @@
 <hr />
 <footer>
 	<div class="social-links">
-		<a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-			<Icon icon={icons.instagram} />
-		</a>
 		<a href={BLUESKY_URL} target="_blank" rel="noopener noreferrer" aria-label="Bluesky">
 			<Icon icon={icons.blueSky} />
+		</a>
+		<a href={PATREON_URL} target="_blank" rel="noopener noreferrer" aria-label="Patreon">
+			<Icon icon={icons.patreon} />
 		</a>
 		<a href="/" aria-label="Audioxide homepage">
 			<LogoBordered />

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { SITE_NAME } from '$lib/constants';
+	import { PATREON_URL, SITE_NAME } from '$lib/constants';
 </script>
 
 <div class="block">
@@ -11,7 +11,7 @@
 	/>
 	<div>
 		Support <span class="italic">Audioxide</span>'s independent music journalism.
-		<a href="https://patreon.com">Become a patron</a>
+		<a href={PATREON_URL}>Become a patron</a>
 	</div>
 </div>
 
@@ -23,7 +23,7 @@
 		align-items: center;
 		gap: 1rem;
 		text-align: center;
-		padding: 2rem 0;
+		padding: 2rem 1rem;
 		text-align: center;
 	}
 	.italic {
@@ -31,5 +31,8 @@
 	}
 	img {
 		width: 40px;
+	}
+	a {
+		white-space: nowrap;
 	}
 </style>

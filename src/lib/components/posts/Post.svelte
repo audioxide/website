@@ -61,6 +61,10 @@
 	<RelatedTags relatedTags={metadata.tags} />
 </div>
 
+<hr />
+
+<SupportBlock />
+
 <RelatedContent relatedContent={related} />
 
 <style>
@@ -79,6 +83,6 @@
 	.header,
 	.content {
 		max-width: 800px;
-		margin: 0 auto;
+		margin: 0 auto 2rem auto;
 	}
 </style>

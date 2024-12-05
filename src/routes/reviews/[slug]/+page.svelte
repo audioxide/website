@@ -82,7 +82,6 @@
 
 		.header {
 			grid-area: header;
-			/* z-index: 1; */
 		}
 
 		.summary-card {
@@ -96,6 +95,7 @@
 
 		.related-tags {
 			grid-area: related-tags;
+			margin-bottom: 2rem;
 		}
 
 		.related-content {

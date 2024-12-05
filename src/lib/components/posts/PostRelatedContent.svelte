@@ -12,7 +12,7 @@
 	} = $props();
 </script>
 
-<div class="related-content">
+<div>
 	<SectionHeader header="Related Posts" />
 	<div class="post-cards">
 		{#each relatedContent as { metadata }}
@@ -29,9 +29,6 @@
 </div>
 
 <style>
-	.related-content {
-		margin: 2rem 0;
-	}
 	.post-cards {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
