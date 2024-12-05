@@ -20,7 +20,6 @@
 		<a href={`/reviews/${recentReview.slug}`} class={assignClass(i)}>
 			<div class="square">
 				<img
-					loading="lazy"
 					class="album-artwork"
 					src={recentReview.image}
 					alt={`Album artwork of '${recentReview.album}' by ${recentReview.artist}`}

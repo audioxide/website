@@ -21,7 +21,6 @@
 	<figure>
 		<img
 			class="album-cover"
-			loading="lazy"
 			src={review.featuredimage['small-square']}
 			alt={`Album artwork of '${review.album}' by ${review.artist}`}
 		/>
