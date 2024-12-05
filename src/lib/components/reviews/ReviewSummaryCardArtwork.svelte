@@ -53,18 +53,19 @@
 	}
 	.album-name {
 		font-style: italic;
-		font-size: 0.9rem;
 	}
 	figure {
 		position: relative;
 		margin: 0;
+		* {
+			font-size: 0.9rem;
+		}
 	}
 	figcaption {
 		position: absolute;
 		bottom: 0;
 		left: 0;
 		width: 100%;
-		font-size: 0.9rem;
 		padding: 1rem 3rem 1rem 1rem;
 		color: lightgray;
 		line-height: 1.2;
