@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { SITE_NAME } from '$lib/constants';
+	import { SITE_NAME, SITE_URL } from '$lib/constants';
 	import type { SharedPostMetadata } from '$lib/types/shared';
 	import { createPostStructuredData } from '../../../utils/schema';
 	import ContentBlock from '../ContentBlock.svelte';
+	import OpenGraphMetaTags from '../layout/OpenGraphMetaTags.svelte';
 	import ListeningPartyChat from '../ListeningPartyChat.svelte';
 	import SupportBlock from '../SupportBlock.svelte';
 	import PostHeader from './PostHeader.svelte';
@@ -22,11 +23,22 @@
 	} = $props();
 
 	const { metadata, content, related } = $derived(post);
+
+	const link = `${SITE_URL}/${metadata.type}/${metadata.slug}`;
+	const title = `${metadata.title} // ${SITE_NAME}`;
 </script>
 
 <svelte:head>
-	<title>{metadata.title} // {SITE_NAME}</title>
-	<meta name="description" content={metadata.summary} />
+	<title>{title}</title>
+	<meta name="description" content={metadata.blurb} />
+
+	<OpenGraphMetaTags
+		{link}
+		{title}
+		description={metadata.blurb}
+		image={metadata.featuredimage['medium-original']}
+	/>
+
 	{@html `<script type="application/ld+json">${JSON.stringify(createPostStructuredData(metadata))}</script>`}
 </svelte:head>
 

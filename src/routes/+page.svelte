@@ -6,6 +6,7 @@
 	import FeaturedPost from '$lib/components/homepage/FeaturedPost.svelte';
 	import SupportBlock from '$lib/components/SupportBlock.svelte';
 	import FeedYourHead from '$lib/components/FeedYourHead.svelte';
+	import OpenGraphMetaTags from '$lib/components/layout/OpenGraphMetaTags.svelte';
 
 	let { data } = $props();
 
@@ -17,18 +18,12 @@
 	<title>{SITE_NAME}</title>
 	<meta name="description" content={SITE_DESCRIPTION} />
 
-	<meta property="og:url" content={SITE_URL} />
-	<meta property="og:type" content="website" />
-	<meta property="og:title" content={SITE_NAME} />
-	<meta property="og:description" content={SITE_DESCRIPTION} />
-	<meta property="og:image" content={siteImageUrl} />
-
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta property="twitter:domain" content="audioxide.com" />
-	<meta property="twitter:url" content={SITE_URL} />
-	<meta name="twitter:title" content={SITE_NAME} />
-	<meta name="twitter:description" content={SITE_DESCRIPTION} />
-	<meta name="twitter:image" content={siteImageUrl} />
+	<OpenGraphMetaTags
+		link={SITE_URL}
+		title={SITE_NAME}
+		description={'Reports from the soundscapes'}
+		image={siteImageUrl}
+	/>
 
 	{@html `<script type="application/ld+json">${JSON.stringify(audioxideStructuredData())}</script>`}
 </svelte:head>

@@ -7,6 +7,7 @@
 	import RelatedTags from '$lib/components/posts/PostTags.svelte';
 	import ReviewSection from '$lib/components/reviews/ReviewSection.svelte';
 	import { createReviewStructuredData } from '../../../utils/schema';
+	import OpenGraphMetaTags from '$lib/components/layout/OpenGraphMetaTags.svelte';
 
 	let { data }: { data: { review: Review } } = $props();
 
@@ -20,18 +21,12 @@
 	<title>{title}</title>
 	<meta name="description" content={metadata.blurb} />
 
-	<meta property="og:url" content={link} />
-	<meta property="og:type" content="website" />
-	<meta property="og:title" content={title} />
-	<meta property="og:description" content={`'${metadata.pullquote}.'`} />
-	<meta property="og:image" content={metadata.featuredimage['medium-original']} />
-
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta property="twitter:domain" content="audioxide.com" />
-	<meta property="twitter:url" content={link} />
-	<meta name="twitter:title" content={title} />
-	<meta name="twitter:description" content={`'${metadata.pullquote}.'`} />
-	<meta name="twitter:image" content={metadata.featuredimage['medium-original']} />
+	<OpenGraphMetaTags
+		{link}
+		{title}
+		description={`'${metadata.pullquote}.'`}
+		image={metadata.featuredimage['medium-original']}
+	/>
 
 	{@html `<script type="application/ld+json">${JSON.stringify(createReviewStructuredData(metadata))}</script>`}
 </svelte:head>
