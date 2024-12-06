@@ -3,7 +3,7 @@ import type { SharedPostMetadata } from '$lib/types/shared';
 
 type ContentTypes = 'reviews' | 'articles' | 'interviews' | 'listening-parties' | 'funnyfarm';
 
-type LatestPostsObject = {
+export type LatestPostsObject = {
 	[key in ContentTypes]: { metadata: SharedPostMetadata }[];
 };
 
