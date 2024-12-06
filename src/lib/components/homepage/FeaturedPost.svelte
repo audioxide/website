@@ -48,11 +48,11 @@
 	.summary {
 		font-size: 1rem;
 		font-family: 'Spectral', serif;
-		color: #555;
+		color: black;
 	}
 	.author {
 		font-size: 0.9rem;
 		font-weight: bold;
-		color: #555;
+		color: black;
 	}
 </style>

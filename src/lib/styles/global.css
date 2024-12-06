@@ -39,6 +39,7 @@ a {
 	color: var(--link-color);
 	text-underline-offset: 0.2em;
 	text-decoration-thickness: 0.1em;
+	font-family: var(--site-primary-sans-serif);
 }
 a:hover {
 	opacity: 0.8;

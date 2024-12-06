@@ -85,9 +85,9 @@
 	.header,
 	.content {
 		max-width: 800px;
-		margin: 0 auto 2rem auto;
+		margin: 0 auto;
 	}
 	.related {
-		margin-top: 2rem;
+		margin: 2rem 0;
 	}
 </style>

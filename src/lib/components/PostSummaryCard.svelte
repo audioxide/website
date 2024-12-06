@@ -28,7 +28,7 @@
 		<img loading="lazy" src={image} alt={title} class:border={primaryColor} />
 		<div>
 			<h3>{title}</h3>
-			<p>{blurb}</p>
+			<div class="blurb">{blurb}</div>
 		</div>
 	</div>
 </a>
@@ -45,10 +45,9 @@
 	}
 
 	a {
-		text-decoration: none;
 		color: black;
+		text-decoration: none;
 	}
-
 	img {
 		width: 100%;
 		height: auto;
@@ -66,9 +65,13 @@
 		margin: 0 0 0.5rem 0;
 		color: var(--link-color);
 		text-decoration: underline;
+		text-underline-offset: 0.2em;
+		text-decoration-thickness: 0.1em;
 	}
 
-	p {
+	.blurb {
+		font-size: 1rem;
+		font-family: 'Spectral', serif;
 		margin: 0;
 		text-decoration: none;
 		color: black;

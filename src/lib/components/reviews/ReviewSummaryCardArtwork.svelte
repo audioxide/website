@@ -70,7 +70,7 @@
 		padding: 1rem 3rem 1rem 1rem;
 		color: lightgray;
 		line-height: 1.2;
-		background-color: rgba(0, 0, 0, 0.7);
+		background-color: rgba(0, 0, 0, 0.8);
 	}
 	.source-link {
 		text-decoration: none;
