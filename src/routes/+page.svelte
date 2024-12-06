@@ -1,18 +1,35 @@
 <script>
 	import SectionHeader from '$lib/components/SectionHeader.svelte';
 	import PostSummaryCardList from '$lib/components/PostSummaryCardList.svelte';
-	import { SITE_DESCRIPTION, SITE_NAME } from '$lib/constants';
+	import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '$lib/constants';
 	import { audioxideStructuredData } from '../utils/schema';
 	import FeaturedPost from '$lib/components/homepage/FeaturedPost.svelte';
 	import SupportBlock from '$lib/components/SupportBlock.svelte';
 	import FeedYourHead from '$lib/components/FeedYourHead.svelte';
 
 	let { data } = $props();
+
+	const siteImageUrl =
+		'https://audioxide.com/api/images/article-images/statsioxide-250-featured-image-xlarge-original.jpg';
 </script>
 
 <svelte:head>
 	<title>{SITE_NAME}</title>
 	<meta name="description" content={SITE_DESCRIPTION} />
+
+	<meta property="og:url" content={SITE_URL} />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content={SITE_NAME} />
+	<meta property="og:description" content={SITE_DESCRIPTION} />
+	<meta property="og:image" content={siteImageUrl} />
+
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta property="twitter:domain" content="audioxide.com" />
+	<meta property="twitter:url" content={SITE_URL} />
+	<meta name="twitter:title" content={SITE_NAME} />
+	<meta name="twitter:description" content={SITE_DESCRIPTION} />
+	<meta name="twitter:image" content={siteImageUrl} />
+
 	{@html `<script type="application/ld+json">${JSON.stringify(audioxideStructuredData())}</script>`}
 </svelte:head>
 

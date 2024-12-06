@@ -2,7 +2,7 @@
 	import type { Review } from '$lib/types/reviews.js';
 	import ReviewSummaryCard from '$lib/components/reviews/ReviewSummaryCard.svelte';
 	import ReviewHeader from '$lib/components/reviews/ReviewHeader.svelte';
-	import { SITE_NAME } from '$lib/constants';
+	import { SITE_NAME, SITE_URL } from '$lib/constants';
 	import RelatedContent from '$lib/components/posts/PostRelatedContent.svelte';
 	import RelatedTags from '$lib/components/posts/PostTags.svelte';
 	import ReviewSection from '$lib/components/reviews/ReviewSection.svelte';
@@ -11,11 +11,28 @@
 	let { data }: { data: { review: Review } } = $props();
 
 	const { metadata, content, related } = $derived(data.review);
+
+	const link = `${SITE_URL}/${metadata.type}/${metadata.slug}`;
+	const title = `Review: ${metadata.album} // ${metadata.artist} // ${SITE_NAME}`;
 </script>
 
 <svelte:head>
-	<title>Review: {metadata.album} // {metadata.artist} // {SITE_NAME}</title>
-	<meta name="description" content={metadata.summary} />
+	<title>{title}</title>
+	<meta name="description" content={metadata.blurb} />
+
+	<meta property="og:url" content={link} />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={`'${metadata.pullquote}.'`} />
+	<meta property="og:image" content={metadata.featuredimage['medium-original']} />
+
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta property="twitter:domain" content="audioxide.com" />
+	<meta property="twitter:url" content={link} />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={`'${metadata.pullquote}.'`} />
+	<meta name="twitter:image" content={metadata.featuredimage['medium-original']} />
+
 	{@html `<script type="application/ld+json">${JSON.stringify(createReviewStructuredData(metadata))}</script>`}
 </svelte:head>
 
