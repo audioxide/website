@@ -15,7 +15,7 @@
 <style>
 	time {
 		font-family: 'Source Sans Pro', sans-serif;
-		color: gray;
+		color: var(--gray-text-color);
 		font-size: 0.9rem;
 	}
 </style>

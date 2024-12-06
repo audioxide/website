@@ -37,7 +37,7 @@
 	.header-container {
 		font-family: 'Source Sans Pro', sans-serif;
 		border-bottom: 7px solid var(--primary-color);
-		color: gray;
+		color: var(--gray-text-color);
 		line-height: 1;
 		display: flex;
 		flex-direction: column;

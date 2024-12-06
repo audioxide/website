@@ -108,7 +108,7 @@
 	.review-id {
 		font-family: 'Source Sans Pro', sans-serif;
 		font-size: 0.9rem;
-		color: gray;
+		color: var(--gray-text-color);
 		text-align: right;
 		padding-right: 1rem;
 		margin-top: 0.2rem;

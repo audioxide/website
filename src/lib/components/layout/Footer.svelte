@@ -72,7 +72,7 @@
 	}
 	.copyright {
 		font-size: 0.8em;
-		color: gray;
+		color: var(--gray-text-color);
 		margin-top: 1em;
 	}
 </style>

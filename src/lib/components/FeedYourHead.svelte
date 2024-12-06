@@ -12,7 +12,7 @@
 		text-decoration: none;
 		&:hover {
 			background-color: var(--link-color);
-			color: var(--gray-color);
+			color: white;
 		}
 	}
 </style>
