@@ -28,6 +28,7 @@
 			</figcaption>
 			<div
 				role="button"
+				aria-label="Show artwork credit"
 				tabindex="0"
 				class="info-icon-wrapper"
 				onclick={() => (showCredit = !showCredit)}
