@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Header from '$lib/components/layout/Header.svelte';
 	import Footer from '$lib/components/layout/Footer.svelte';
+	import { navigating } from '$app/stores';
 	import type { Snippet } from 'svelte';
 	import { dev } from '$app/environment';
 	import '$lib/styles/reset.css';
@@ -25,7 +26,7 @@
 </script>
 
 <svelte:head>
-	{#if !dev}
+	{#if !dev && $navigating}
 		<script
 			data-n-head="ssr"
 			data-goatcounter="https://audioxide.goatcounter.com/count"
