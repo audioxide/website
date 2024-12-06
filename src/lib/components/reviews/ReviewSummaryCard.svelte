@@ -52,7 +52,7 @@
 		<ReviewSummaryCardArtistLink artistLink={review.artistLink} />
 	{/if}
 	<div class="review-id">
-		No. {generateId(review.id)}
+		No. {generateId(review.week)}
 	</div>
 </div>
 
