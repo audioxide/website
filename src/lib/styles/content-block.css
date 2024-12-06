@@ -52,4 +52,8 @@
 		overflow-wrap: break-word;
 		margin-bottom: 1rem;
 	}
+	em {
+		font-family: inherit;
+		font-size: inherit;
+	}
 }
