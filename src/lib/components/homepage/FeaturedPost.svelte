@@ -10,7 +10,6 @@
 <a href={`/${post.type}/${post.slug}`}>
 	<div class="post-container">
 		<img
-			loading="lazy"
 			class="post-image"
 			src={post.featuredimage['medium-original']}
 			alt={post.featuredimageAlt}
@@ -56,28 +55,4 @@
 		font-weight: bold;
 		color: #555;
 	}
-	.type {
-		background-color: rgba(255, 255, 255, 0.8);
-		padding: 0.5rem 1rem;
-		border-radius: 4px;
-		font-size: 0.8rem;
-		color: black;
-	}
-	/* @media (min-width: 768px) {
-		.post-container {
-			display: grid;
-			grid-template-columns: 1fr 2fr;
-			gap: 1rem;
-		}
-		.post-image {
-			grid-area: 1 / 2 / 2 / 3;
-		}
-		.post-info {
-			grid-area: 1 / 1 / 2 / 2;
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-			padding: 0;
-		}
-	} */
 </style>
