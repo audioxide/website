@@ -21,7 +21,9 @@
 <a href={link}>
 	<div
 		class={isFlatView ? 'card-flat' : 'card-reg'}
-		style="--primary-color: {primaryColor}; --aspect-ratio: {aspectRatio};"
+		style="--primary-color: {primaryColor
+			? primaryColor
+			: '#f5f5f5'}; --aspect-ratio: {aspectRatio};"
 	>
 		<img loading="lazy" src={image} alt={title} class:border={primaryColor} />
 		<div>
