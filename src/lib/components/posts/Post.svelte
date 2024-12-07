@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { SITE_NAME, SITE_URL } from '$lib/constants';
 	import type { SharedPostMetadata } from '$lib/types/shared';
+	import { imageUrlHack } from '../../../utils';
 	import { createPostStructuredData } from '../../../utils/schema';
 	import ContentBlock from '../ContentBlock.svelte';
 	import OpenGraphMetaTags from '../layout/OpenGraphMetaTags.svelte';
@@ -55,7 +56,7 @@
 	<figure>
 		<img
 			loading="lazy"
-			src={metadata.featuredimage['medium-original']}
+			src={imageUrlHack(metadata.featuredimage['medium-original'])}
 			alt={metadata.featuredimageAlt}
 		/>
 		{#if metadata.featuredImageCaption}
