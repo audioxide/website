@@ -10,7 +10,7 @@ export const FACEBOOK_URL = 'https://www.facebook.com/audioxide';
 export const X_URL = 'https://x.com/audioxide';
 export const INSTAGRAM_URL = 'https://www.instagram.com/audioxidecom';
 export const GITHUB_URL = 'https://github.com/audioxide';
-export const BLUESKY_URL = 'https://bsky.app/profile/audioxide.bsky.social';
+export const BLUESKY_URL = 'https://bsky.app/profile/audioxide.com';
 export const PATREON_URL = 'https://www.patreon.com/c/audioxide';
 
 export const API_URL = dev ? 'http://localhost:8888' : 'https://api.audioxide.com';
