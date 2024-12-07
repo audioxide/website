@@ -11,6 +11,7 @@ import {
 } from '$lib/constants';
 import type { ReviewMetadata } from '$lib/types/reviews';
 import type { SharedPostMetadata } from '$lib/types/shared';
+import { imageUrlHack } from '.';
 
 export const audioxideStructuredData = () => ({
 	'@context': 'http://schema.org',
@@ -57,7 +58,7 @@ export const createReviewStructuredData = (metadata: ReviewMetadata) => {
 				'@type': 'MusicAlbum',
 				name: metadata.album,
 				'@id': `https://musicbrainz.org/release-group/${metadata.albumMBID}`,
-				image: (metadata.featuredimage || {})['medium-square'] || '',
+				image: imageUrlHack((metadata.featuredimage || {})['medium-square']) || '',
 				albumReleaseType: 'http://schema.org/AlbumRelease',
 				byArtist: {
 					'@type': 'MusicGroup',
