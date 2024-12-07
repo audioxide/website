@@ -69,7 +69,7 @@
 	{#if metadata.type === 'listening-parties'}
 		<ListeningPartyChat html={content} />
 	{:else}
-		<ContentBlock html={imageUrlHack(content)} />
+		<ContentBlock html={content} />
 	{/if}
 	<div class="related">
 		<RelatedTags relatedTags={metadata.tags} />
