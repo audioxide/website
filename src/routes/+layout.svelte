@@ -26,7 +26,7 @@
 </script>
 
 <svelte:head>
-	{#if !dev && $navigating}
+	{#if !dev}
 		<script
 			data-n-head="ssr"
 			data-goatcounter="https://audioxide.goatcounter.com/count"
