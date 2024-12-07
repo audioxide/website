@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { imageUrlHack } from '../../utils';
+
 	let {
 		image,
 		title,
@@ -25,7 +27,7 @@
 			? primaryColor
 			: '#f5f5f5'}; --aspect-ratio: {aspectRatio};"
 	>
-		<img loading="lazy" src={image} alt={title} class:border={primaryColor} />
+		<img loading="lazy" src={imageUrlHack(image)} alt={title} class:border={primaryColor} />
 		<div>
 			<h3>{title}</h3>
 			<div class="blurb">{blurb}</div>

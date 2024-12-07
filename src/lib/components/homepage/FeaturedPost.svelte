@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { SharedPostMetadata } from '$lib/types/shared';
+	import { imageUrlHack } from '../../../utils';
 
 	let { post }: { post: SharedPostMetadata } = $props();
 
@@ -11,7 +12,7 @@
 	<div class="post-container">
 		<img
 			class="post-image"
-			src={post.featuredimage['medium-original']}
+			src={imageUrlHack(post.featuredimage['medium-original'])}
 			alt={post.featuredimageAlt}
 			style={`aspect-ratio: ${imageAspectRatio};`}
 		/>
