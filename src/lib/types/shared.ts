@@ -76,3 +76,12 @@ export interface ReviewSection {
 	};
 	tracks: string[];
 }
+
+export interface BannerAlbums {
+	image: string;
+	score: number;
+	artist: string;
+	album: string;
+	slug: string;
+}
+[];
