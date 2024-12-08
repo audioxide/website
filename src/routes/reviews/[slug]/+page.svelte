@@ -78,6 +78,9 @@
 		display: inline-block;
 		margin-bottom: 2rem;
 	}
+	.related-tags {
+		margin-bottom: 2rem;
+	}
 	@media (min-width: 768px) {
 		.container {
 			display: grid;
@@ -107,7 +110,6 @@
 
 		.related-tags {
 			grid-area: related-tags;
-			margin-bottom: 2rem;
 		}
 
 		.related-content {
