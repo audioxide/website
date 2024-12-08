@@ -1,6 +1,6 @@
 # audioxide.com
 
-The code for the Audioxide website, built with [SvelteKit](https://svelte.dev) courtesy of https://github.com/sveltejs.
+The code for the Audioxide website, built with [SvelteKit](https://svelte.dev) courtesy of [@sveltejs](https://github.com/sveltejs).
 
 For local development: 
 
