@@ -69,12 +69,12 @@ export interface ReviewSection {
 		authors: AuthorObject[];
 	};
 	review: string;
-	score: {
+	score?: {
 		score: number;
 		max: number;
 		fraction: number;
 	};
-	tracks: string[];
+	tracks?: string[];
 }
 
 export interface BannerAlbums {
