@@ -13,8 +13,8 @@
 
 	const { metadata, content, related } = $derived(data.review);
 
-	const link = `${SITE_URL}/${metadata.type}/${metadata.slug}`;
-	const title = `Review: ${metadata.album} // ${metadata.artist} // ${SITE_NAME}`;
+	const link = $derived(`${SITE_URL}/${metadata.type}/${metadata.slug}`);
+	const title = $derived(`Review: ${metadata.album} // ${metadata.artist} // ${SITE_NAME}`);
 </script>
 
 <svelte:head>

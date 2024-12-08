@@ -1,5 +1,5 @@
 <script>
-	import { BLUESKY_URL, INSTAGRAM_URL, PATREON_URL, SITE_FOUNDING_YEAR } from '$lib/constants';
+	import { BLUESKY_URL, GITHUB_URL, PATREON_URL, SITE_FOUNDING_YEAR } from '$lib/constants';
 	import { icons } from '$lib/styles/icons';
 	import Icon from '../Icon.svelte';
 	import LogoBordered from '../logos/LogoBordered.svelte';
@@ -10,8 +10,8 @@
 <hr />
 <footer>
 	<div class="social-links">
-		<a href={BLUESKY_URL} target="_blank" rel="noopener noreferrer" aria-label="Bluesky">
-			<Icon icon={icons.blueSky} />
+		<a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+			<Icon icon={icons.gitHub} />
 		</a>
 		<a href={PATREON_URL} target="_blank" rel="noopener noreferrer" aria-label="Patreon">
 			<Icon icon={icons.patreon} />
@@ -19,13 +19,8 @@
 		<a href="/" aria-label="Audioxide homepage">
 			<LogoBordered />
 		</a>
-		<a
-			href="mailto:fred@audioxide.com"
-			target="_blank"
-			rel="noopener noreferrer"
-			aria-label="Contact email"
-		>
-			<Icon icon={icons.envelope} />
+		<a href={BLUESKY_URL} target="_blank" rel="noopener noreferrer" aria-label="Bluesky">
+			<Icon icon={icons.blueSky} />
 		</a>
 		<a href="/feed" target="_blank" rel="noopener noreferrer" aria-label="RSS feed">
 			<Icon icon={icons.rss} />
