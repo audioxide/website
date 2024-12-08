@@ -1,4 +1,3 @@
-import { API_URL } from '$lib/constants';
 import type { AuthorLinks } from '$lib/types/shared';
 
 export const getAuthorLink = (authorLinks: AuthorLinks, authorSlug: string) => {
@@ -21,8 +20,4 @@ export const getAuthorLink = (authorLinks: AuthorLinks, authorSlug: string) => {
 		default:
 			return `/authors/${authorSlug}`;
 	}
-};
-
-export const imageUrlHack = (url: string) => {
-	return url.replace('https://audioxide.com/api', API_URL);
 };
