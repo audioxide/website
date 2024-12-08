@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { RecentReviewSummary } from '$lib/types/reviews';
-	import { imageUrlHack } from '../../../utils';
 
 	let {
 		recentReviews
@@ -22,7 +21,7 @@
 			<div class="square">
 				<img
 					class="album-artwork"
-					src={imageUrlHack(recentReview.image)}
+					src={recentReview.image}
 					alt={`Album artwork of '${recentReview.album}' by ${recentReview.artist}`}
 				/>
 				<div class="score-container">

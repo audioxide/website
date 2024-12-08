@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { icons } from '$lib/styles/icons';
 	import type { ReviewMetadata } from '$lib/types/reviews';
-	import { imageUrlHack } from '../../../utils';
 	import Icon from '../Icon.svelte';
 	import InfoIcon from '../InfoIcon.svelte';
 
@@ -14,7 +13,7 @@
 	<figure>
 		<img
 			class="album-cover"
-			src={imageUrlHack(review.featuredimage['small-square'])}
+			src={review.featuredimage['small-square']}
 			alt={`Album artwork of '${review.album}' by ${review.artist}`}
 		/>
 		{#if review.artworkCredit}
