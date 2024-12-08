@@ -11,7 +11,7 @@
 	let { data } = $props();
 
 	const siteImageUrl =
-		'https://audioxide.com/api/images/article-images/statsioxide-250-featured-image-xlarge-original.jpg';
+		'https://api.audioxide.com/images/article-images/statsioxide-250-featured-image-xlarge-original.jpg';
 </script>
 
 <svelte:head>
