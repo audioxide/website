@@ -15,7 +15,8 @@
 	class="summary-card"
 	style="--primary-color: {review.colours[0]}; 
 		   --secondary-color: {review.colours[1]}; 
-		   --tertiary-color: {review.colours[2]}"
+		   --tertiary-color: {review.colours[2]};
+		   --summary-text-color: {review.colours[3] ? review.colours[3] : review.colours[0]};"
 >
 	<ReviewSummaryCardArtwork {review} />
 	{#if review.totalscore.given >= 21}
@@ -61,7 +62,7 @@
 		position: relative;
 	}
 	.summary {
-		color: var(--primary-color);
+		color: var(--summary-text-color);
 		font-family: 'Spectral', serif;
 		padding: 1rem;
 		font-style: italic;
