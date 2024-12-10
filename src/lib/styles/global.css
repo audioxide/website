@@ -1,10 +1,13 @@
 :root {
+	--site-primary-sans-serif: 'Source Sans Pro', sans-serif;
+	--site-primary-serif: 'Spectral', serif;
+	--content-font-size: 1.1rem;
+
 	--gray-color: #f5f5f5;
 	--gray-text-color: #595959;
 	--link-color: #dd0e3e;
-	--content-font-size: 1.1rem;
-	--site-primary-serif: 'Spectral', serif;
-	--site-primary-sans-serif: 'Source Sans Pro', sans-serif;
+
+	--link-color-dark-mode: #f46688;
 }
 
 * {

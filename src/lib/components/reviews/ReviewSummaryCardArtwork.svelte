@@ -22,7 +22,7 @@
 				{review.artworkCredit}
 				{#if review.artworkCreditSource}
 					<a class="source-link" href={review.artworkCreditSource} target="_blank">
-						Source <Icon icon={icons.externalLink} size={12} color="#dd0e3e" />
+						Source <Icon icon={icons.externalLink} size={12} color="#f46688" />
 					</a>
 				{/if}
 			</figcaption>
@@ -73,6 +73,7 @@
 		background-color: rgba(0, 0, 0, 0.8);
 	}
 	.source-link {
+		color: var(--link-color-dark-mode);
 		text-decoration: none;
 		font-weight: bold;
 		white-space: nowrap;
