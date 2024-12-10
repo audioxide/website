@@ -1,9 +1,8 @@
 import { expect, test } from 'vitest';
 import ColorContrastChecker from 'color-contrast-checker';
-import { API_URL } from '$lib/constants';
 import type { ReviewMetadata } from '$lib/types/reviews';
 
-const reviews = await fetch(`${API_URL}/reviews.json`);
+const reviews = await fetch(`https://api.audioxide.com/reviews.json`);
 const data: {
 	metadata: ReviewMetadata;
 }[] = await reviews.json();
@@ -18,12 +17,14 @@ test('Colour contrast on review pages', () => {
 		const primaryColor = metadata.colours[0];
 		const secondaryColor = metadata.colours[1];
 		const tertiaryColor = metadata.colours[2];
+		const summaryTextColour = metadata.colours[3] ? metadata.colours[3] : primaryColor;
 
-		const primaryContrast = ccc.isLevelAA(primaryColor, '#ffffff');
+		const primaryContrast = ccc.isLevelAA(primaryColor, '#ffffff', 40);
 		const secondaryContrast = ccc.isLevelAA(secondaryColor, primaryColor);
 		const tertiaryContrast = ccc.isLevelAA(tertiaryColor, primaryColor);
+		const summaryContrast = ccc.isLevelAA(summaryTextColour, '#ffffff', 18);
 
-		if (!primaryContrast || !secondaryContrast || !tertiaryContrast) {
+		if (!primaryContrast || !secondaryContrast || !tertiaryContrast || !summaryContrast) {
 			failingReviews.push(metadata.album);
 		} else {
 			passingReviews.push(metadata.album);
@@ -35,7 +36,10 @@ test('Colour contrast on review pages', () => {
 	});
 
 	console.log('Passing reviews: ' + passingReviews.length);
+	console.log('Failing reviews: ' + failingReviews.length);
+
+	console.log('Failing reviews:');
 	failingReviews.forEach((album) => {
-		console.log(album);
+		console.warn(album);
 	});
 });
