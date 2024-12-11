@@ -24,8 +24,8 @@
 
 	const { metadata, content, related } = $derived(post);
 
-	const link = `${SITE_URL}/${metadata.type}/${metadata.slug}`;
-	const title = `${metadata.title} // ${SITE_NAME}`;
+	const link = $derived(`${SITE_URL}/${metadata.type}/${metadata.slug}`);
+	const title = $derived(`${metadata.title} // ${SITE_NAME}`);
 </script>
 
 <svelte:head>
