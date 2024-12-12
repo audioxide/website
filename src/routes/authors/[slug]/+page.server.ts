@@ -2,8 +2,6 @@ import { API_URL } from '$lib/constants';
 import type { ReviewMetadata } from '$lib/types/reviews.js';
 import type { AuthorObject, SharedPostMetadata } from '$lib/types/shared.js';
 
-export const prerender = true;
-
 interface AuthorsMap {
 	[key: string]: AuthorObject;
 }

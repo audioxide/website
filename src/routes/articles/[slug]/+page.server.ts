@@ -1,8 +1,6 @@
 import { API_URL } from '$lib/constants';
 import type { GenericPost, SharedPostMetadata } from '$lib/types/shared.js';
 
-export const prerender = true;
-
 export async function entries() {
 	const articlesResponse = await fetch(`${API_URL}/articles.json`);
 	const articles: {

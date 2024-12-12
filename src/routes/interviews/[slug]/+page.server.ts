@@ -1,8 +1,6 @@
 import { API_URL } from '$lib/constants';
 import type { SharedPostMetadata } from '$lib/types/shared';
 
-export const prerender = true;
-
 export async function entries() {
 	const interviewsResponse = await fetch(`${API_URL}/interviews.json`);
 	const interviews: {

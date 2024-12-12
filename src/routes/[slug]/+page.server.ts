@@ -1,7 +1,5 @@
 import { API_URL } from '$lib/constants';
 
-export const prerender = true;
-
 export async function entries() {
 	const typesResponse = await fetch(`${API_URL}/types.json`);
 	const types: {
