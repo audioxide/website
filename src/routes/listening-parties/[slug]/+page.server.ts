@@ -1,6 +1,8 @@
 import { API_URL } from '$lib/constants';
 import type { SharedPostMetadata } from '$lib/types/shared';
 
+export const prerender = true;
+
 export async function entries() {
 	const listeningPartiesResponse = await fetch(`${API_URL}/listening-parties.json`);
 	const listeningParties: {

@@ -1,6 +1,8 @@
 import { API_URL } from '$lib/constants';
 import type { SharedPostMetadata } from '$lib/types/shared';
 
+export const prerender = true;
+
 export async function entries() {
 	const funnyfarmsResponse = await fetch(`${API_URL}/funnyfarm.json`);
 	const funnyfarms: {

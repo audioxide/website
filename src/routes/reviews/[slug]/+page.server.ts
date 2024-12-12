@@ -2,6 +2,8 @@ import { API_URL } from '$lib/constants';
 import type { ReviewMetadata } from '$lib/types/reviews.js';
 import type { SharedPostMetadata } from '$lib/types/shared.js';
 
+export const prerender = true;
+
 export async function entries() {
 	const reviewsResponse = await fetch(`${API_URL}/reviews.json`);
 	const reviews: {

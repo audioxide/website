@@ -1,6 +1,8 @@
 import { API_URL } from '$lib/constants';
 import type { SharedPostMetadata } from '$lib/types/shared.js';
 
+export const prerender = true;
+
 export async function entries() {
 	const tagsResponse = await fetch(`${API_URL}/tags.json`);
 	const tags: string[] = await tagsResponse.json();
