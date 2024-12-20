@@ -5,7 +5,7 @@ export async function entries() {
 	const tagsResponse = await fetch(`${API_URL}/tags.json`);
 	const tags: string[] = await tagsResponse.json();
 
-	const slugParams = tags.map((tag) => ({ slug: tag.replaceAll('-', ' ') }));
+	const slugParams = tags.map((tag) => ({ slug: tag.replaceAll(' ', '-') }));
 
 	return slugParams;
 }
