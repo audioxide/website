@@ -1,6 +1,8 @@
 import { API_URL } from '$lib/constants';
 import type { SearchResponse } from '$lib/types/search';
 
+export const prerender = false;
+
 export async function load({ fetch, url }) {
 	const searchTerm = url.searchParams.get('q');
 	const searchUrl = `${API_URL}/search?term=${searchTerm}`;

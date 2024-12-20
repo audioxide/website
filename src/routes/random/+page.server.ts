@@ -1,6 +1,8 @@
 import { API_URL } from '$lib/constants';
 import { redirect } from '@sveltejs/kit';
 
+export const prerender = false;
+
 export const load = async ({ fetch }) => {
 	const response = await fetch(`${API_URL}/types.json`);
 	const contentTypesSummary = await response.json();
