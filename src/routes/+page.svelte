@@ -25,6 +25,8 @@
 		image={siteImageUrl}
 	/>
 
+	<meta name="google-site-verification" content="aAaGDXrBixmXjHGSOVCBJexlPGi6VtPyX_WOSLhcKFs" />
+
 	{@html `<script type="application/ld+json">${JSON.stringify(audioxideStructuredData())}</script>`}
 </svelte:head>
 
