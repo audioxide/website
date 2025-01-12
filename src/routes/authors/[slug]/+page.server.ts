@@ -2,11 +2,26 @@ import { API_URL } from '$lib/constants';
 import type { ReviewMetadata } from '$lib/types/reviews.js';
 import type { AuthorObject, SharedPostMetadata } from '$lib/types/shared.js';
 
-export async function load({ fetch, params }) {
+interface AuthorsMap {
+	[key: string]: AuthorObject;
+}
+
+const getAuthors = async () => {
 	const authorsResponse = await fetch(`${API_URL}/authors.json`);
-	const authors: {
-		[key: string]: AuthorObject;
-	} = await authorsResponse.json();
+	const authors: AuthorsMap = await authorsResponse.json();
+	return authors;
+};
+
+export async function entries() {
+	const authors = await getAuthors();
+
+	const slugParams = Object.keys(authors).map((authorSlug) => ({ slug: authorSlug }));
+
+	return slugParams;
+}
+
+export async function load({ fetch, params }) {
+	const authors: AuthorsMap = await getAuthors();
 
 	const paramSlug = params.slug;
 	const authorDetails = authors[paramSlug];

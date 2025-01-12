@@ -96,9 +96,9 @@
 		.interviews {
 			grid-area: 4 / 1 / 5 / 6;
 		}
-		.support-block {
+		/* .support-block {
 			grid-area: 5 / 1 / 6 / 6;
-		}
+		} */
 		.listening-parties {
 			grid-area: 6 / 1 / 7 / 6;
 		}
