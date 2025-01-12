@@ -24,21 +24,22 @@ test('Colour contrast on review pages', () => {
 		const tertiaryContrast = ccc.isLevelAA(tertiaryColor, primaryColor);
 		const summaryContrast = ccc.isLevelAA(summaryTextColour, '#ffffff', 18);
 
-		if (!primaryContrast || !secondaryContrast || !tertiaryContrast || !summaryContrast) {
+		const allTestsPass =
+			primaryContrast && secondaryContrast && tertiaryContrast && summaryContrast;
+
+		if (!allTestsPass) {
 			failingReviews.push(metadata.album);
 		} else {
 			passingReviews.push(metadata.album);
 		}
 
-		// expect(primaryContrast).toBe(true);
-		// expect(secondaryContrast).toBe(true);
-		// expect(tertiaryContrast).toBe(true);
+		expect(allTestsPass).toBe(true);
 	});
 
 	console.log('Passing reviews: ' + passingReviews.length);
 	console.log('Failing reviews: ' + failingReviews.length);
 
-	console.log('Failing reviews:');
+	console.warn('Reviews failing WCAG AA contrast requirements:');
 	failingReviews.forEach((album) => {
 		console.warn(album);
 	});
