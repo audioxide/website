@@ -1,0 +1,15 @@
+/api/* EXT_API_URL/:splat 200!
+
+/feed/* EXT_API_URL/feed/:splat 200!
+
+/listeningparties/* /listening-parties/:splat 200
+
+/articles/some-spotify-and-the-strange-new-world-of-music-consumption /articles/soma-spotify-and-the-brave-new-world-of-music-consumption 200
+
+/reviews/adventures-of-a-reluctant-superhero-chali-2nakrafty-kuts /reviews/chali-2na-krafty-kuts-adventures-of-a-reluctant-superhero 200
+
+/reviews/review-heaven-upside-down-marilyn-manson /reviews/marilyn-manson-heaven-upside-down 200
+
+/wp-content/uploads/2019/01/Soma-Spotify-main-image.png /articles/soma-spotify-and-the-brave-new-world-of-music-consumption 200
+
+/wp-content/uploads/2017/08/vault-boy-shadow-1024x910.jpg /articles/world-on-fire-the-music-of-fallout-3/ 200

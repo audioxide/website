@@ -1,45 +1,9 @@
 [build]
   publish = "build"
-  command = "export SITE_URL=$URL && export EXT_API_URL=$PROD_API_URL && sed -i \"s|SITE_URL|${URL}|g\" netlify.toml && sed -i \"s|EXT_API_URL|${EXT_API_URL}|g\" netlify.toml && export API_URL=$SITE_URL/api && npm run build"
+  command = "export SITE_URL=$URL && export EXT_API_URL=$PROD_API_URL && sed -i \"s|SITE_URL|${URL}|g\" netlify.toml && sed -i \"s|EXT_API_URL|${EXT_API_URL}|g\" _redirects && export API_URL=$SITE_URL/api && npm run build"
 
 [context.deploy-preview]
-  command = "export SITE_URL=$DEPLOY_PRIME_URL && export EXT_API_URL=$DP_API_URL && sed -i \"s|SITE_URL|${DEPLOY_PRIME_URL}|g\" netlify.toml && sed -i \"s|EXT_API_URL|${EXT_API_URL}|g\" netlify.toml && export API_URL=$SITE_URL/api && npm run build"
-
-[[redirects]]
-  from = "/api/*"
-  to = "EXT_API_URL/:splat"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/feed/*"
-  to = "EXT_API_URL/feed/:splat"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/listeningparties/*"
-  to = "/listening-parties/:splat"
-
-[[redirects]]
-  from = "/articles/some-spotify-and-the-strange-new-world-of-music-consumption"
-  to = "/articles/soma-spotify-and-the-brave-new-world-of-music-consumption"
-
-[[redirects]]
-  from = "/reviews/adventures-of-a-reluctant-superhero-chali-2nakrafty-kuts"
-  to = "/reviews/chali-2na-krafty-kuts-adventures-of-a-reluctant-superhero"
-
-[[redirects]]
-  from = "/reviews/review-heaven-upside-down-marilyn-manson"
-  to = "/reviews/marilyn-manson-heaven-upside-down"
-
-[[redirects]]
-  from = "/wp-content/uploads/2019/01/Soma-Spotify-main-image.png"
-  to = "/articles/soma-spotify-and-the-brave-new-world-of-music-consumption"
-
-[[redirects]]
-  from = "/wp-content/uploads/2017/08/vault-boy-shadow-1024x910.jpg"
-  to = "/articles/world-on-fire-the-music-of-fallout-3/"
+  command = "export SITE_URL=$DEPLOY_PRIME_URL && export EXT_API_URL=$DP_API_URL && sed -i \"s|SITE_URL|${DEPLOY_PRIME_URL}|g\" netlify.toml && sed -i \"s|EXT_API_URL|${EXT_API_URL}|g\" _redirects && export API_URL=$SITE_URL/api && npm run build"
 
 [[headers]]
   for = "/api/*"
