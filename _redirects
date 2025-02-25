@@ -8,39 +8,39 @@
 /listeningparties/* /listening-parties/:splat 200
 
 # The following redirects cater for slug changes made a considerable time after publishing
-/articles/some-spotify-and-the-strange-new-world-of-music-consumption /articles/soma-spotify-and-the-brave-new-world-of-music-consumption 200
+/articles/some-spotify-and-the-strange-new-world-of-music-consumption /articles/soma-spotify-and-the-brave-new-world-of-music-consumption 301
 
-/reviews/adventures-of-a-reluctant-superhero-chali-2nakrafty-kuts /reviews/chali-2na-krafty-kuts-adventures-of-a-reluctant-superhero 200
+/reviews/adventures-of-a-reluctant-superhero-chali-2nakrafty-kuts /reviews/chali-2na-krafty-kuts-adventures-of-a-reluctant-superhero 301
 
-/reviews/review-heaven-upside-down-marilyn-manson /reviews/marilyn-manson-heaven-upside-down 200
+/reviews/review-heaven-upside-down-marilyn-manson /reviews/marilyn-manson-heaven-upside-down 301
 
-/reviews/the-dark-side-of-the-moon /reviews/pink-floyd-the-dark-side-of-the-moon 200
+/reviews/the-dark-side-of-the-moon /reviews/pink-floyd-the-dark-side-of-the-moon 301
 
-/reviews/demon-days /reviews/gorillaz-demon-days 200
+/reviews/demon-days /reviews/gorillaz-demon-days 301
 
-/reviews/price-purple-rain /reviews/prince-purple-rain 200
+/reviews/price-purple-rain /reviews/prince-purple-rain 301
 
-/reviews/the-life-of-pablo /reviews/kanye-west-the-life-of-pablo 200
+/reviews/the-life-of-pablo /reviews/kanye-west-the-life-of-pablo 301
 
 # Redirect anything looking for Nuxt assets
 /_nuxt/* / 404
 
 # The following redirects correct any links to the old wordpress file structure 
-/wp-content/uploads/2019/01/Soma-Spotify-main-image.png /articles/soma-spotify-and-the-brave-new-world-of-music-consumption 200
+/wp-content/uploads/2019/01/Soma-Spotify-main-image.png /articles/soma-spotify-and-the-brave-new-world-of-music-consumption 301
 
-/wp-content/uploads/2017/08/vault-boy-shadow-1024x910.jpg /articles/world-on-fire-the-music-of-fallout-3/ 200
+/wp-content/uploads/2017/08/vault-boy-shadow-1024x910.jpg /articles/world-on-fire-the-music-of-fallout-3/ 301
 
-/wp-content/uploads/2016/07/tp-dungeon.jpg EXT_API_URL/images/article-images/hyrules-lament-dungeon-small-original.jpg 200
+/wp-content/uploads/2016/07/tp-dungeon.jpg EXT_API_URL/images/article-images/hyrules-lament-dungeon-small-original.jpg 301
 
-/wp-content/uploads/2016/07/twilight-realm-1024x755.jpg EXT_API_URL/images/article-images/hyrules-lament-twilight-realm-small-original.jpg 200
+/wp-content/uploads/2016/07/twilight-realm-1024x755.jpg EXT_API_URL/images/article-images/hyrules-lament-twilight-realm-small-original.jpg 301
 
-/wp-content/uploads/2016/07/hyrulefield.jpg EXT_API_URL/images/article-images/hyrules-lament-forest-small-original.jpg 200
+/wp-content/uploads/2016/07/hyrulefield.jpg EXT_API_URL/images/article-images/hyrules-lament-forest-small-original.jpg 301
 
-/wp-content/uploads/2016/01/Singles-Culture.jpg EXT_API_URL/images/article-images/beauty-from-circumstance-singles-culture-small-original.jpg 200
+/wp-content/uploads/2016/01/Singles-Culture.jpg EXT_API_URL/images/article-images/beauty-from-circumstance-singles-culture-small-original.jpg 301
 
-/wp-content/uploads/2019/01/Spotify-wrapped.jpg EXT_API_URL/images/article-images/spotify-wrapped-small-original.jpg 200
+/wp-content/uploads/2019/01/Spotify-wrapped.jpg EXT_API_URL/images/article-images/spotify-wrapped-small-original.jpg 301
 
-/wp-content/uploads/2017/01/Homogenic-500x500.jpg EXT_API_URL/images/album-artwork/homogenic-bjork-small-original.jpg 200
+/wp-content/uploads/2017/01/Homogenic-500x500.jpg EXT_API_URL/images/album-artwork/homogenic-bjork-small-original.jpg 301
 
 # Provide a catch all fallback for any request for wordpress URLs to the homepage
 /wp-content/* / 404
@@ -59,7 +59,7 @@
 /security.txt / 404
 /sw.js / 404
 /aab9 / 404
-/aaa9
+/aaa9 / 404
 
 # Miscellaneous file requests we regularly see
 /us/album/disintegration-deluxe-edition-remastered/371772227 / 404
